@@ -1,0 +1,24 @@
+# Dépendances
+node_modules/
+
+# Environnement
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+venv/
+.venv/
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Build
+dist/
+build/
