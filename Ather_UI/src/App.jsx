@@ -1,60 +1,175 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Search,
-  ArrowRight,
-  ArrowLeft,
-  Users,
-  Building2,
-  Heart,
-  MapPin,
-  Calendar,
-  Clock,
-  User,
-  Leaf,
-  Target,
-  Sparkles,
-  CheckCircle2,
-  ChevronRight,
-  ChevronDown,
-  Globe,
-  X,
-  Share2,
-  ShieldCheck,
-  ExternalLink,
-  Phone,
-  Mail,
-  Send
-} from 'lucide-react';
+import './style.css';
+
+// Clean SVG Icons (zero external library dependency, zero emoji)
+function IconMapPin({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+  );
+}
+
+function IconCalendar({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+      <line x1="16" x2="16" y1="2" y2="6"/>
+      <line x1="8" x2="8" y1="2" y2="6"/>
+      <line x1="3" x2="21" y1="10" y2="10"/>
+    </svg>
+  );
+}
+
+function IconUsers({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+  );
+}
+
+function IconShieldCheck({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+  );
+}
+
+function IconArrowRight({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14"/>
+      <path d="m12 5 7 7-7 7"/>
+    </svg>
+  );
+}
+
+function IconSearch({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="7"/>
+      <path d="m21 21-4.3-4.3"/>
+    </svg>
+  );
+}
+
+function IconCheck({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+  );
+}
+
+function IconPaperclip({ className = "w-5 h-5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+    </svg>
+  );
+}
+
+function IconBuilding({ className = "w-7 h-7" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 21V6a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v15"/>
+      <path d="M15 10h4a1 1 0 0 1 1 1v10"/>
+      <path d="M2 21h20"/>
+      <path d="M7 9h.01M7 13h.01M7 17h.01M11 9h.01M11 13h.01M11 17h.01"/>
+    </svg>
+  );
+}
+
+function IconMail({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="14" rx="2"/>
+      <path d="m3 7 9 6 9-6"/>
+    </svg>
+  );
+}
+
+function IconPhone({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+    </svg>
+  );
+}
+
+// Skeleton Placeholder for Mission Card
+function MissionCardSkeleton() {
+  return (
+    <div className="mission-card skeleton-card">
+      <div>
+        <div className="mission-img-wrap skeleton-shimmer" style={{ height: '210px' }}>
+          <div className="skeleton-badge skeleton-shimmer"></div>
+        </div>
+        <div className="mission-content">
+          <div className="skeleton-line skeleton-shimmer" style={{ width: '45%', height: '14px', marginBottom: '12px' }}></div>
+          <div className="skeleton-line skeleton-shimmer" style={{ width: '85%', height: '20px', marginBottom: '10px' }}></div>
+          <div className="skeleton-line skeleton-shimmer" style={{ width: '60%', height: '20px', marginBottom: '16px' }}></div>
+          <div className="skeleton-line skeleton-shimmer" style={{ width: '100%', height: '13px', marginBottom: '8px' }}></div>
+          <div className="skeleton-line skeleton-shimmer" style={{ width: '88%', height: '13px', marginBottom: '22px' }}></div>
+          <div className="mission-details">
+            <div className="skeleton-line skeleton-shimmer" style={{ width: '55%', height: '14px' }}></div>
+            <div className="skeleton-line skeleton-shimmer" style={{ width: '50%', height: '14px' }}></div>
+            <div className="skeleton-line skeleton-shimmer" style={{ width: '65%', height: '14px' }}></div>
+          </div>
+        </div>
+      </div>
+      <div className="mission-action">
+        <div className="skeleton-btn skeleton-shimmer"></div>
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
-  // Language state: 'fr' or 'ar'
-  const [lang, setLang] = useState('fr');
-  const isAr = lang === 'ar';
-
-  // Search & Filter state
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
-  const [selectedWilayaFilter, setSelectedWilayaFilter] = useState('Toutes');
+  // Loading state with skeleton placeholders
+  const [isMissionsLoading, setIsMissionsLoading] = useState(true);
 
   // Modals state
-  const [selectedMissionForApply, setSelectedMissionForApply] = useState(null);
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [signupModalOpen, setSignupModalOpen] = useState(false);
+  const [signupView, setSignupView] = useState('choice'); // 'choice' | 'ben' | 'asso'
+  const [applyModalOpen, setApplyModalOpen] = useState(false);
+  const [selectedMission, setSelectedMission] = useState('');
+  const [appliedFileName, setAppliedFileName] = useState('');
   const [toastMessage, setToastMessage] = useState(null);
 
-  // Form states
-  const [volunteerName, setVolunteerName] = useState('');
-  const [volunteerPhone, setVolunteerPhone] = useState('');
-  const [appliedMissions, setAppliedMissions] = useState([]);
+  // Category filter for missions
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
 
-  // Local data - 100% Frontend with 0 Backend required
-  const initialStats = {
-    volunteers_count: 12500,
-    associations_count: 350,
-    missions_count: 1200,
-    wilayas_count: 58,
+  // Initial skeleton loading timer
+  useEffect(() => {
+    const timer = setTimeout(() => setIsMissionsLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleCategoryChange = (cat) => {
+    if (cat === selectedCategoryFilter) return;
+    setIsMissionsLoading(true);
+    setSelectedCategoryFilter(cat);
+    setTimeout(() => setIsMissionsLoading(false), 380);
   };
 
+  const categories = [
+    'Toutes',
+    'Environnement',
+    'Solidarité',
+    'Éducation',
+    'Santé',
+    'Aide d\'urgence'
+  ];
+
+  // 6 verified Algerian missions from previous version
   const [missionsList, setMissionsList] = useState([
     {
       id: 1,
@@ -142,1080 +257,537 @@ export default function App() {
     }
   ]);
 
-  const categories = [
-    "Toutes",
-    "Environnement",
-    "Solidarité",
-    "Éducation",
-    "Santé",
-    "Aide d'urgence"
-  ];
+  const filteredMissions = missionsList.filter((m) => {
+    if (selectedCategoryFilter === 'Toutes') return true;
+    return m.category.toLowerCase() === selectedCategoryFilter.toLowerCase();
+  });
 
-  // Scroll-triggered counter animation
-  const statsSectionRef = useRef(null);
-  const [displayStats, setDisplayStats] = useState({
+  // Animated counters on scroll
+  const statsRef = useRef(null);
+  const [counts, setCounts] = useState({
     volunteers: 0,
     associations: 0,
     missions: 0,
     wilayas: 0
   });
 
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3800);
+  };
+
   useEffect(() => {
-    const el = statsSectionRef.current;
+    const el = statsRef.current;
     if (!el) return;
 
-    let animFrameId = null;
-    let isCurrentlyAnimating = false;
-
-    const startAnimation = () => {
-      isCurrentlyAnimating = true;
-      const duration = 1800; // 1.8s
-      const startTime = performance.now();
-
-      const tick = (now) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // easeOutCubic: 1 - (1 - t)^3
-        const ease = 1 - Math.pow(1 - progress, 3);
-
-        setDisplayStats({
-          volunteers: Math.floor(initialStats.volunteers_count * ease),
-          associations: Math.floor(initialStats.associations_count * ease),
-          missions: Math.floor(initialStats.missions_count * ease),
-          wilayas: Math.floor(initialStats.wilayas_count * ease)
-        });
-
-        if (progress < 1) {
-          animFrameId = requestAnimationFrame(tick);
-        } else {
-          setDisplayStats({
-            volunteers: initialStats.volunteers_count,
-            associations: initialStats.associations_count,
-            missions: initialStats.missions_count,
-            wilayas: initialStats.wilayas_count
-          });
-          isCurrentlyAnimating = false;
-        }
-      };
-
-      animFrameId = requestAnimationFrame(tick);
+    let animFrame = null;
+    const duration = 1600;
+    const targets = {
+      volunteers: 12500,
+      associations: 350,
+      missions: 1200,
+      wilayas: 58
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (animFrameId) cancelAnimationFrame(animFrameId);
-            startAnimation();
-          } else {
-            if (animFrameId) cancelAnimationFrame(animFrameId);
-            isCurrentlyAnimating = false;
-            setDisplayStats({
-              volunteers: 0,
-              associations: 0,
-              missions: 0,
-              wilayas: 0
-            });
-          }
+    const runCount = () => {
+      let t0 = null;
+      const step = (ts) => {
+        if (!t0) t0 = ts;
+        const p = Math.min((ts - t0) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        setCounts({
+          volunteers: Math.round(targets.volunteers * ease),
+          associations: Math.round(targets.associations * ease),
+          missions: Math.round(targets.missions * ease),
+          wilayas: Math.round(targets.wilayas * ease)
         });
-      },
-      { threshold: 0.25 }
-    );
+        if (p < 1) {
+          animFrame = requestAnimationFrame(step);
+        } else {
+          setCounts(targets);
+        }
+      };
+      animFrame = requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          runCount();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
 
     observer.observe(el);
 
     return () => {
       observer.disconnect();
-      if (animFrameId) cancelAnimationFrame(animFrameId);
+      if (animFrame) cancelAnimationFrame(animFrame);
     };
   }, []);
 
-  const formatNumber = (num) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const openSignup = (view = 'choice') => {
+    setSignupView(view);
+    setSignupModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
-  const showToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3500);
+  const closeSignup = () => {
+    setSignupModalOpen(false);
+    document.body.style.overflow = '';
   };
 
-  const handleApplyMission = (e) => {
-    e.preventDefault();
-    if (!selectedMissionForApply) return;
+  const openApply = (missionTitle) => {
+    setSelectedMission(missionTitle);
+    setAppliedFileName('');
+    setApplyModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
 
-    // Decrement spots
-    setMissionsList(prev => prev.map(m => {
-      if (m.id === selectedMissionForApply.id && m.spots_remaining > 0) {
-        return { ...m, spots_remaining: m.spots_remaining - 1 };
+  const closeApply = () => {
+    setApplyModalOpen(false);
+    document.body.style.overflow = '';
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        closeSignup();
+        closeApply();
       }
-      return m;
-    }));
-
-    setAppliedMissions(prev => [...prev, selectedMissionForApply.id]);
-    showToast(isAr ? `تهانينا ${volunteerName || ''} ! تم تسجيل مشاركتك بنجاح.` : `Félicitations ${volunteerName || ''} ! Votre inscription à la mission a été confirmée.`);
-    setSelectedMissionForApply(null);
-    setVolunteerName('');
-    setVolunteerPhone('');
-  };
-
-  const filteredMissions = missionsList.filter(m => {
-    const matchCategory = selectedCategoryFilter === 'Toutes' || m.category === selectedCategoryFilter;
-    const matchWilaya = selectedWilayaFilter === 'Toutes' || m.wilaya?.toLowerCase().includes(selectedWilayaFilter.toLowerCase());
-    const matchSearch = !searchQuery || m.title?.toLowerCase().includes(searchQuery.toLowerCase()) || m.location?.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchCategory && matchWilaya && matchSearch;
-  });
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
-    <div className={`min-h-screen bg-[#fafaf9] text-slate-900 ${isAr ? 'font-arabic' : 'font-sans'}`} dir={isAr ? 'rtl' : 'ltr'}>
-      {/* Toast notification */}
+    <>
+      {/* Toast Notification (zero emoji) */}
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 bg-[#0d5b61] text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-bold animate-in slide-in-from-bottom duration-300">
-          <CheckCircle2 className="w-5 h-5 text-emerald-300 shrink-0" />
+        <div className="toast-notice">
+          <IconCheck className="w-4 h-4 text-emerald-300 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
 
-      {/* 1. MAIN NAVIGATION HEADER */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Brand Logo (From Capture d'écran 2026-09-11 210313.png) */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img
-              src="/assets/logo.png"
-              alt="Athar Platform أثر"
-              className="h-14 w-auto object-contain hover:scale-102 transition-transform"
-            />
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold">
-            <a
-              href="#accueil"
-              className="relative text-[#0c363d] font-bold py-2 group"
-            >
-              {isAr ? 'الرئيسية' : 'Accueil'}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0f766e] rounded-full"></span>
-            </a>
-            <a
-              href="#missions"
-              className="text-slate-600 hover:text-[#0c363d] transition-colors py-2"
-            >
-              {isAr ? 'الفرص التطوعية' : 'Missions'}
-            </a>
-            <a
-              href="#associations"
-              className="text-slate-600 hover:text-[#0c363d] transition-colors py-2"
-            >
-              {isAr ? 'الجمعيات' : 'Associations'}
-            </a>
-            <a
-              href="#valeurs"
-              className="text-slate-600 hover:text-[#0c363d] transition-colors py-2"
-            >
-              {isAr ? 'عن المنصة' : 'À propos'}
-            </a>
-            <a
-              href="#blog"
-              onClick={(e) => { e.preventDefault(); showToast(isAr ? "قسم المدونة وقصص الأثر قيد التحديث !" : "Le Blog & Récits d'impact sera disponible très prochainement !"); }}
-              className="text-slate-600 hover:text-[#0c363d] transition-colors py-2"
-            >
-              {isAr ? 'المدونة' : 'Blog'}
-            </a>
-          </nav>
-
-          {/* Right Header Actions */}
-          <div className="flex items-center gap-3.5">
-            {/* Search Button */}
-            <button
-              onClick={() => setIsSearchOpen(true)}
-              className="p-2.5 rounded-full border border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300 hover:bg-slate-50 transition-all"
-              title={isAr ? 'بحث' : 'Recherche'}
-            >
-              <Search className="w-4 h-4" />
-            </button>
-
-            {/* Login Link */}
-            <button
-              onClick={() => setIsRegisterModalOpen(true)}
-              className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:text-[#0c363d] hover:bg-slate-50 rounded-xl transition-all"
-            >
-              {isAr ? 'تسجيل الدخول' : 'Se connecter'}
-            </button>
-
-            {/* Register CTA Button */}
-            <button
-              onClick={() => setIsRegisterModalOpen(true)}
-              className="px-5 py-2.5 rounded-full bg-[#0d5b61] hover:bg-[#094348] text-white text-sm font-bold shadow-xs hover:shadow-md transition-all flex items-center gap-2"
-            >
-              <span>{isAr ? 'إنشاء حساب' : "S'inscrire"}</span>
-              {isAr ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-            </button>
-
-            {/* Language Switcher */}
-            <div className="flex items-center text-xs font-bold border-l border-slate-200 pl-3.5 ml-1 text-slate-500">
-              <button
-                onClick={() => setLang('fr')}
-                className={`px-1.5 py-1 rounded transition-colors ${!isAr ? 'text-[#0c363d] font-extrabold' : 'text-slate-400 hover:text-slate-700'}`}
-              >
-                FR
-              </button>
-              <span className="text-slate-300 mx-0.5">|</span>
-              <button
-                onClick={() => setLang('ar')}
-                className={`px-1.5 py-1 rounded transition-colors ${isAr ? 'text-[#0c363d] font-extrabold' : 'text-slate-400 hover:text-slate-700'}`}
-              >
-                AR
-              </button>
+      {/* HEADER */}
+      <header>
+        <div className="wrap">
+          <nav className="nav">
+            <div className="brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <img
+                src="/assets/logo.png"
+                alt="Athar Platform أثر"
+                style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
+              />
             </div>
-          </div>
+
+            <div className="menu">
+              <a href="#accueil" className="active">Accueil</a>
+              <a href="#missions">Missions</a>
+              <a href="#causes">Causes</a>
+              <a href="#about">À propos</a>
+              <a href="#contact">Contact</a>
+            </div>
+
+            <div className="right">
+              <div
+                className="icon-btn"
+                title="Recherche"
+                onClick={() => showToast("Recherche bientôt disponible !")}
+              >
+                <IconSearch className="w-4 h-4" />
+              </div>
+
+              <button className="btn btn-ghost" onClick={() => openSignup('ben')}>
+                Se connecter
+              </button>
+
+              <button className="btn btn-green" onClick={() => openSignup('choice')}>
+                <span>S'inscrire</span>
+                <IconArrowRight className="w-3.5 h-3.5 ml-1 inline" />
+              </button>
+
+              <div
+                className="lang"
+                onClick={() => showToast("La version arabe complète sera activée très bientôt !")}
+              >
+                <b>FR</b> | AR
+              </div>
+            </div>
+          </nav>
         </div>
       </header>
 
-      {/* 2. HERO SECTION (Exact replica of WhatsApp Image 2026-09-08 at 23.39.46.jpeg) */}
-      <section id="accueil" className="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9]/50 to-white pt-6 md:pt-10 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-            
-            {/* HERO LEFT COLUMN */}
-            <div className="lg:col-span-6 xl:col-span-6 space-y-6">
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2">
-                <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d5b61] bg-[#0d5b61]/8 px-3 py-1 rounded-full border border-[#0d5b61]/15">
-                  {isAr ? 'العمل التطوعي في خدمة جزائر متضامنة' : "LE BÉNÉVOLAT AU SERVICE D'UNE ALGÉRIE SOLIDAIRE"}
-                </span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 className="font-serif-display font-extrabold text-[#0c363d] text-4xl sm:text-5xl lg:text-[54px] leading-[1.14] tracking-tight">
-                {isAr ? (
-                  <>
-                    <span>أعطِ من وقتك.</span>
-                    <br />
-                    <span className="text-[#0d5b61]">اصنع أثراً.</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Donnez de votre temps.</span>
-                    <br />
-                    <span>Créez de l'impact.</span>
-                  </>
-                )}
-              </h1>
-
-              {/* Lead Paragraph */}
-              <p className="text-slate-600 text-base sm:text-[17px] leading-relaxed max-w-xl">
-                {isAr
-                  ? 'أثر هي المنصة الوطنية التي تربط المتطوعين والجمعيات في الجزائر، لنصنع معاً أثراً مستداماً. انضم إلى مجتمع ملتزم وشارك في مبادرات قريبة منك.'
-                  : "Athar est la plateforme qui connecte les bénévoles et les associations en Algérie, pour faire grandir l'impact ensemble. Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous."
-                }
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => setIsRegisterModalOpen(true)}
-                  className="px-6 py-3.5 rounded-full bg-[#0d5b61] hover:bg-[#094348] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2.5"
-                >
-                  <span>{isAr ? 'إنشاء حساب' : 'Créer un compte'}</span>
-                  {isAr ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-                </button>
-
-                <a
-                  href="#missions"
-                  className="px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-[#0c363d] font-bold text-sm border border-slate-300 shadow-2xs hover:shadow-xs transition-all"
-                >
-                  {isAr ? 'اكتشف الفرص التطوعية' : 'Découvrir les missions'}
-                </a>
-              </div>
-
-              {/* Floating Community Card ("Rejoignez la communauté Athar" / "Vous êtes...") */}
-              <div className="pt-4">
-                <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-slate-100 relative">
-                  <div className="mb-4">
-                    <h2 className="text-base sm:text-lg font-bold text-slate-900">
-                      {isAr ? 'انضم إلى مجتمع أثر' : 'Rejoignez la communauté Athar'}
-                    </h2>
-                    <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                      {isAr ? 'أنت...' : 'Vous êtes...'}
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Role 1: Bénévole */}
-                    <div
-                      onClick={() => setIsRegisterModalOpen(true)}
-                      className="group bg-[#f8fafc] hover:bg-emerald-50/50 p-4 rounded-2xl border border-slate-100 hover:border-emerald-200 transition-all cursor-pointer flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="w-11 h-11 rounded-full bg-[#0f766e] text-white flex items-center justify-center mb-3 shadow-xs group-hover:scale-105 transition-transform">
-                          <User className="w-5 h-5" />
-                        </div>
-                        <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-[#0f766e] transition-colors">
-                          {isAr ? 'متطوع / متطوعة' : 'Un·e bénévole'}
-                        </h3>
-                        <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                          {isAr
-                            ? 'اعثر على مهام تناسب مهاراتك وشارك في تجارب إنسانية فريدة.'
-                            : 'Trouvez des missions qui vous correspondent, partagez vos compétences et vivez des expériences humaines uniques.'
-                          }
-                        </p>
-                      </div>
-                      <div className="mt-4 pt-2">
-                        <span className="w-7 h-7 rounded-full bg-slate-200/90 group-hover:bg-[#0f766e] group-hover:text-white flex items-center justify-center text-slate-700 transition-all">
-                          {isAr ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Role 2: Association */}
-                    <div
-                      onClick={() => showToast(isAr ? "فضاء الجمعيات سيكون متاحاً قريباً. شكراً لاهتمامكم بمنصة أثر !" : "L'espace association ouvrira très prochainement. Restez connectés !")}
-                      className="group bg-[#f8fafc] hover:bg-orange-50/50 p-4 rounded-2xl border border-slate-100 hover:border-orange-200 transition-all cursor-pointer flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="w-11 h-11 rounded-full bg-[#e05d49] text-white flex items-center justify-center mb-3 shadow-xs group-hover:scale-105 transition-transform">
-                          <Users className="w-5 h-5" />
-                        </div>
-                        <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-[#e05d49] transition-colors">
-                          {isAr ? 'جمعية أو منظمة' : 'Une association'}
-                        </h3>
-                        <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                          {isAr
-                            ? 'انشر مهامك التطوعية، والتقِ بمتطوعين شغوفين لدعم أهدافك.'
-                            : "Publiez vos missions, rencontrez des bénévoles motivés et accélérez l'impact de vos actions."
-                          }
-                        </p>
-                      </div>
-                      <div className="mt-4 pt-2">
-                        <span className="w-7 h-7 rounded-full bg-slate-200/90 group-hover:bg-[#e05d49] group-hover:text-white flex items-center justify-center text-slate-700 transition-all">
-                          {isAr ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* HERO RIGHT COLUMN (Algerian Volunteer overlooking Algiers with Maqam Echahid & Calligraphy) */}
-            <div className="lg:col-span-6 xl:col-span-6 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-white">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden">
-                  <img
-                    src="/assets/hero-algeria-clean.jpg"
-                    alt="Bénévole Athar devant Alger et le Monument des Martyrs"
-                    className="w-full h-full object-cover object-center transform hover:scale-101 transition-transform duration-700"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
-
-                  <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/60 shadow-xs">
-                    <span className="font-arabic font-bold text-[#0c363d] text-xs">
-                      كل عمل صغير يصنع أثراً كبيراً ✨
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-4 right-4 max-w-xs text-right">
-                    <p className="font-handwriting text-white text-xl sm:text-2xl drop-shadow-md tracking-wide">
-                      Ensemble, laissons une empreinte positive en Algérie
-                    </p>
-                    <div className="w-24 h-1 bg-[#d4af37] rounded-full ml-auto mt-1"></div>
-                  </div>
-                </div>
-
-                <div className="bg-white px-6 py-4 flex items-center justify-between border-t border-slate-100">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/assets/zellige-tile.jpg"
-                      alt="Zellige Algérien"
-                      className="w-10 h-10 rounded-lg object-cover border border-amber-200 shadow-2xs"
-                    />
-                    <div>
-                      <div className="text-xs font-bold text-[#0c363d]">
-                        {isAr ? 'فخر الانتماء والعطاء' : 'Fierté & Engagement'}
-                      </div>
-                      <div className="text-[11px] text-slate-500 font-medium">
-                        {isAr ? 'في جميع ربوع الجزائر 🇩🇿' : 'À travers les 58 wilayas 🇩🇿'}
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => {
-                      const el = document.getElementById('missions');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="text-xs font-bold text-[#0d5b61] hover:text-[#094348] flex items-center gap-1.5 bg-teal-50 px-3 py-1.5 rounded-lg border border-teal-100 transition-colors"
-                  >
-                    <span>{isAr ? 'اكتشف الميدان' : 'Missions actives'}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 3. STATISTICS BAR (Statistiques clés avec incrémentation au scroll) */}
-      <section ref={statsSectionRef} className="bg-white border-y border-slate-200/80 py-8 relative shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-8 items-center">
-            
-            {/* Stat 1: Bénévoles */}
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 text-[#0d5b61] flex items-center justify-center shrink-0 border border-teal-100">
-                <Users className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#0c363d] tracking-tight">
-                  {formatNumber(displayStats.volunteers)}
-                </div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">
-                  {isAr ? 'متطوع مسجل' : 'bénévoles inscrits'}
-                </div>
-              </div>
-            </div>
-
-            {/* Stat 2: Associations */}
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 text-[#0d5b61] flex items-center justify-center shrink-0 border border-teal-100">
-                <Building2 className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#0c363d] tracking-tight">
-                  {displayStats.associations}
-                </div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">
-                  {isAr ? 'جمعية شريكة' : 'associations partenaires'}
-                </div>
-              </div>
-            </div>
-
-            {/* Stat 3: Missions */}
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 text-[#0d5b61] flex items-center justify-center shrink-0 border border-teal-100">
-                <Heart className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#0c363d] tracking-tight">
-                  {formatNumber(displayStats.missions)}
-                </div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">
-                  {isAr ? 'مهمة منجزة ومنشورة' : 'missions publiées'}
-                </div>
-              </div>
-            </div>
-
-            {/* Stat 4: Wilayas */}
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 text-[#0d5b61] flex items-center justify-center shrink-0 border border-teal-100">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#0c363d] tracking-tight">
-                  {displayStats.wilayas}
-                </div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">
-                  {isAr ? 'ولاية مغطاة' : 'wilayas couvertes'}
-                </div>
-              </div>
-            </div>
-
-            {/* Stat 5: Quote Box */}
-            <div className="col-span-2 md:col-span-4 lg:col-span-1 border-t lg:border-t-0 lg:border-l border-slate-200 pt-4 lg:pt-0 lg:pl-6">
-              <div className="flex items-start gap-2.5">
-                <span className="text-[#0d5b61] text-3xl font-serif leading-none shrink-0">“</span>
-                <div>
-                  <p className="text-xs sm:text-xs font-medium text-slate-700 leading-snug italic">
-                    {isAr
-                      ? '« الجزائر الأقوى تُبنى بمواطنين ملتزمين ومتضامنين. »'
-                      : '« Une Algérie plus forte se construit avec des citoyens engagés. »'
-                    }
-                  </p>
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <span className="w-4 h-0.5 bg-[#d4af37]"></span>
-                    <span className="text-[11px] font-bold text-slate-500">
-                      {isAr ? 'فريق أثر' : 'Équipe Athar'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 4. SECOND SECTION - VALUE PROPOSITION & VALUES */}
-      <section id="valeurs" className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Column: Heading + Algerian Bay Landscape Card */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <span className="text-xs font-extrabold tracking-wider uppercase text-[#0d5b61]">
-                  {isAr ? 'من أجل جزائر أكثر تضامناً' : 'POUR UNE ALGÉRIE PLUS SOLIDAIRE'}
-                </span>
-                <h2 className="font-serif-display font-extrabold text-[#0c363d] text-3xl sm:text-4xl lg:text-[40px] leading-tight mt-2">
-                  {isAr ? (
-                    <>
-                      <span>روابط إنسانية.</span>
-                      <br />
-                      <span>مجتمعات أكثر قوة.</span>
-                      <br />
-                      <span className="text-[#0f766e]">أثر مستدام.</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Des connexions humaines.</span>
-                      <br />
-                      <span>Des communautés plus fortes.</span>
-                      <br />
-                      <span className="text-[#0f766e]">Un impact durable.</span>
-                    </>
-                  )}
-                </h2>
-              </div>
-
-              {/* Scenic card with Algerian handwritten note */}
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 max-w-md group">
-                <img
-                  src="/assets/sidebar-crop.png"
-                  alt="Notre Algérie solidaire"
-                  className="w-full h-52 object-cover object-center group-hover:scale-103 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="font-handwriting text-white text-2xl drop-shadow-md">
-                    {isAr ? 'جزائرنا، بكل بساطة أكثر تضامناً' : 'Notre Algérie, tout simplement plus solidaire'}
-                  </p>
-                  <div className="w-20 h-0.5 bg-[#d4af37] mt-1 rounded-full"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: 3 Value Cards */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-5">
-              
-              {/* Card 1 */}
-              <div className="bg-[#f8fafc] rounded-2xl p-6 border border-slate-200/70 hover:border-teal-200 hover:shadow-md transition-all flex flex-col justify-between">
-                <div>
-                  <div className="w-12 h-12 rounded-full bg-teal-100 text-[#0f766e] flex items-center justify-center mb-5">
-                    <Users className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base mb-2">
-                    {isAr ? 'لقاءات ذات معنى' : 'Des rencontres qui ont du sens'}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {isAr
-                      ? 'منصة تقرب بين المواطنين حول قيم العطاء والعمل المشترك.'
-                      : 'Une plateforme qui rapproche des femmes et des hommes autour de valeurs communes.'
-                    }
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2 */}
-              <div className="bg-[#f8fafc] rounded-2xl p-6 border border-slate-200/70 hover:border-emerald-200 hover:shadow-md transition-all flex flex-col justify-between">
-                <div>
-                  <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mb-5">
-                    <Leaf className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base mb-2">
-                    {isAr ? 'مجتمعات أكثر ترابطاً' : 'Des communautés plus fortes'}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {isAr
-                      ? 'معاً، ندعم المبادرات المحلية والميدانية في كل الولايات.'
-                      : 'Ensemble, nous soutenons des initiatives locales dans toutes les wilayas.'
-                    }
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-[#f8fafc] rounded-2xl p-6 border border-slate-200/70 hover:border-amber-200 hover:shadow-md transition-all flex flex-col justify-between">
-                <div>
-                  <div className="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mb-5">
-                    <Target className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base mb-2">
-                    {isAr ? 'أثر إيجابي في الجزائر' : 'Un impact positif en Algérie'}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {isAr
-                      ? 'كل مهمة تطوعية تسهم في بناء مجتمع متكافل ومستدام.'
-                      : 'Chaque mission contribue à une société plus solidaire, inclusive et durable.'
-                    }
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Slogan Banner Divider */}
-          <div className="mt-16 pt-8 border-t border-slate-100 flex items-center justify-center gap-4 text-center">
-            <span className="hidden sm:inline-block w-16 h-0.5 bg-[#d4af37]"></span>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#b8972e]">
-              {isAr ? 'مواطنون ملتزمون. جزائر أكثر تضامناً.' : 'DES GENS ENGAGÉS. UNE ALGÉRIE PLUS SOLIDAIRE.'}
-            </span>
-            <span className="hidden sm:inline-block w-16 h-0.5 bg-[#d4af37]"></span>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. PANORAMIC SHOWCASE BANNER (Using Gemini_Generated_Image_3yv3t53yv3t53yv3.jpg) */}
-      <section className="relative overflow-hidden bg-slate-900 text-white">
-        <div className="relative h-64 sm:h-80 w-full">
-          <img
-            src="/assets/algeria-panoramic.jpg"
-            alt="Chaque action laisse une empreinte - Baie d'Alger"
-            className="w-full h-full object-cover object-center opacity-85"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent"></div>
-          
-          <div className="absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-            <div className="max-w-xl space-y-3">
-              <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[11px] font-bold tracking-wider uppercase">
-                {isAr ? 'الجزائر تجمعنا' : 'Initiative Citoyenne Nationale'}
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-                {isAr ? 'كل عمل يترك بصمة في الجزائر.' : 'Chaque action laisse une empreinte.'}
-              </h2>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-                {isAr
-                  ? 'سواء كنت متطوعاً يبحث عن العطاء أو جمعية تبحث عن الدعم، منصة أثر تفتح لك الأبواب للمساهمة الفعلية.'
-                  : 'Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.'
-                }
-              </p>
-              <div className="pt-2">
-                <button
-                  onClick={() => setIsRegisterModalOpen(true)}
-                  className="px-5 py-2.5 rounded-full bg-white text-[#0c363d] hover:bg-slate-100 font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
-                >
-                  <span>{isAr ? 'انضم الآن مجاناً' : 'Rejoindre la communauté'}</span>
-                  {isAr ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
-                </button>
-              </div>
+      {/* HERO : photo en fond plein écran, texte par-dessus */}
+      <section className="hero" id="accueil">
+        <div className="wrap">
+          <div className="herotext">
+            <div className="eyebrow">Le bénévolat au service d'une Algérie solidaire</div>
+            <h1>
+              <span className="blue">Donnez de votre temps.</span>
+              <br />
+              <span className="green">Créez de l'impact.</span>
+            </h1>
+            <p>
+              Athar est la plateforme qui connecte les bénévoles et les associations en Algérie,
+              pour faire grandir l'impact ensemble et bâtir une communauté solidaire.
+            </p>
+            <div className="cta">
+              <button className="btn btn-green btn-lg flex items-center gap-2" onClick={() => openSignup('choice')}>
+                <span>Créer un compte</span>
+                <IconArrowRight className="w-4 h-4" />
+              </button>
+              <a href="#missions" className="btn btn-ghost btn-lg">
+                Découvrir les missions
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. MISSIONS EXPLORER SECTION */}
-      <section id="missions" className="py-16 bg-[#f8fafc] border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0d5b61]">
-                {isAr ? 'مهام ميدانية حقيقية' : 'SUR LE TERRAIN'}
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0c363d] tracking-tight mt-1">
-                {isAr ? 'فرص تطوعية مميزة في انتظارك' : 'Missions engagées près de chez vous'}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                {isAr ? 'اختر المهمة التي تناسبك وانضم إلى فرق المتطوعين في ولايتك' : 'Explorez des missions vérifiées dans différentes wilayas et thématiques.'}
-              </p>
-            </div>
-
-            {/* Category Filters */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {categories.map((cat, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedCategoryFilter(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                    selectedCategoryFilter === cat
-                      ? 'bg-[#0d5b61] text-white shadow-xs'
-                      : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Missions Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredMissions.map((m) => (
-              <div
-                key={m.id}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="relative h-44 w-full overflow-hidden">
-                    <img
-                      src={m.image_url}
-                      alt={m.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#0c363d] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-2xs border border-white/80">
-                      {m.category}
-                    </span>
-                  </div>
-
-                  <div className="p-5 space-y-2.5">
-                    <div className="text-xs font-semibold text-emerald-700 flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                      <span>{m.association_name}</span>
-                    </div>
-
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-[#0d5b61] transition-colors">
-                      {m.title}
-                    </h3>
-
-                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                      {m.description}
-                    </p>
-
-                    <div className="space-y-1.5 text-xs text-slate-500 pt-2 border-t border-slate-100">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                        <span>{m.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                        <span>{m.date_str}</span>
-                      </div>
-                      <div className="flex items-center gap-2 font-medium text-slate-700">
-                        <User className="w-3.5 h-3.5 text-slate-400" />
-                        <span>{m.spots_remaining} places disponibles</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-5 pt-0">
-                  <button
-                    onClick={() => setSelectedMissionForApply(m)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#0d5b61] hover:bg-[#094348] text-white text-xs font-bold transition-all shadow-2xs flex items-center justify-center gap-2"
-                  >
-                    <span>{isAr ? 'أريد المشاركة' : 'Je participe à cette mission'}</span>
-                    {isAr ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 7. ASSOCIATIONS PARTENAIRES SHOWCASE */}
-      <section id="associations" className="py-16 bg-white border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0d5b61]">
-              {isAr ? 'النسيج الجمعوي الجزائري' : 'COLLABORATION & CONFIANCE'}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0c363d] tracking-tight mt-1">
-              {isAr ? 'جمعيات معتمدة تنشط في الميدان' : 'Plus de 350 associations partenaires'}
+      {/* DÉFINITION + STATISTIQUES (style Wyze) */}
+      <section className="about" id="about">
+        <div className="wrap">
+          <div className="atop">
+            <h2 className="atitle">
+              Choisir Athar, c'est faire<br />grandir l'impact,<br />
+              <span className="or">pas seulement aider.</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2">
-              {isAr
-                ? 'نعمل جنباً إلى جنب مع المنظمات الخيرية والتنموية الرائدة في الجزائر.'
-                : 'Des organisations solidaires de confiance, vérifiées et actives au plus près des besoins locaux.'
-              }
+            <div className="adesc">
+              <p>
+                Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie,
+                pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain
+                des causes qui ont besoin d'eux, partout dans le pays.
+              </p>
+              <p className="anote">
+                Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.
+              </p>
+            </div>
+          </div>
+
+          <div className="stats" ref={statsRef}>
+            <div className="stat">
+              <div className="num">
+                {counts.volunteers.toLocaleString('fr-FR').replace(/\s/g, ' ')}
+              </div>
+              <div className="lb">bénévoles inscrits</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                {counts.associations}
+              </div>
+              <div className="lb">associations partenaires</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                {counts.missions.toLocaleString('fr-FR').replace(/\s/g, ' ')}
+              </div>
+              <div className="lb">missions publiées</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                {counts.wilayas}
+              </div>
+              <div className="lb">wilayas couvertes</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CAUSES / TYPES DE MISSIONS */}
+      <section className="causes" id="causes">
+        <div className="wrap">
+          <div className="chead">
+            <h2>Des causes qui ont besoin de vous</h2>
+            <p>
+              Quelle que soit la cause qui vous touche, une mission vous attend.
+              Découvrez les domaines dans lesquels notre communauté s'engage.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              { name: "Croissant Rouge Algérien", wilaya: "National", tag: "Humanitaire" },
-              { name: "Association Green Future", wilaya: "Alger & Oran", tag: "Environnement" },
-              { name: "Lire pour Demain", wilaya: "Alger", tag: "Éducation" },
-              { name: "Association El Chifa", wilaya: "Constantine", tag: "Santé" }
-            ].map((asso, i) => (
-              <div key={i} className="bg-[#f8fafc] rounded-2xl p-5 border border-slate-200/80 text-center hover:border-teal-200 hover:shadow-xs transition-all">
-                <div className="w-12 h-12 mx-auto rounded-full bg-teal-50 text-[#0d5b61] flex items-center justify-center font-bold text-lg mb-3">
-                  {asso.name.charAt(0)}
-                </div>
-                <h3 className="font-bold text-sm text-slate-900">{asso.name}</h3>
-                <span className="inline-block px-2.5 py-0.5 rounded-full bg-slate-200/60 text-slate-600 text-[10px] font-semibold mt-2">
-                  {asso.tag} • {asso.wilaya}
-                </span>
+          <div className="cgrid">
+            <div className="cc">
+              <div className="ci" style={{ background: '#e6f3ef', color: '#0d5b61' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 24l8.8-8.3a5 5 0 0 0 0-7.1Z"/>
+                </svg>
               </div>
-            ))}
-          </div>
+              <h3>Solidarité</h3>
+              <p>Soutenez les familles en difficulté, organisez des collectes et soyez présent pour votre communauté dans les moments durs.</p>
+            </div>
 
-          <div className="mt-10 text-center">
-            <button
-              onClick={() => showToast(isAr ? "فضاء انضمام الجمعيات سيكون متاحاً قريباً. شكراً لاهتمامكم بمنصة أثر !" : "L'espace d'inscription des associations ouvrira très prochainement. Restez connectés !")}
-              className="px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow-md transition-all inline-flex items-center gap-2"
-            >
-              <span>{isAr ? 'سجّل جمعيتك على المنصة' : 'Inscrire mon association sur Athar'}</span>
-              {isAr ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-            </button>
+            <div className="cc">
+              <div className="ci" style={{ background: '#eef2fb', color: '#0c363d' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M22 9 12 4 2 9l10 5 10-5Z"/>
+                  <path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>
+                </svg>
+              </div>
+              <h3>Éducation</h3>
+              <p>Accompagnez les enfants, animez des ateliers d'alphabétisation et ouvrez les portes du savoir à tous.</p>
+            </div>
+
+            <div className="cc">
+              <div className="ci" style={{ background: '#faf2dd', color: '#f59e0b' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M12 3C7 8 7 14 12 21c5-7 5-13 0-18Z"/>
+                  <path d="M12 21c-4-3-6-7-2-11"/>
+                </svg>
+              </div>
+              <h3>Environnement</h3>
+              <p>Plantez des arbres, nettoyez les plages et les quartiers, et protégez la beauté naturelle de l'Algérie.</p>
+            </div>
+
+            <div className="cc">
+              <div className="ci" style={{ background: '#fdeeea', color: '#e05d49' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 24l8.8-8.3a5 5 0 0 0 0-7.1Z"/>
+                  <path d="M6 12h3l1.5-3 3 6L18 12h0"/>
+                </svg>
+              </div>
+              <h3>Santé</h3>
+              <p>Participez aux campagnes de sensibilisation, aux dons du sang et aux initiatives de soin de proximité.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 8. SEARCH MODAL */}
-      {isSearchOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-              <h3 className="font-bold text-slate-900 text-base">
-                {isAr ? 'البحث عن فرصة تطوعية' : 'Rechercher une mission ou association'}
-              </h3>
+      {/* MISSIONS EXPLORER SECTION (centrée et aérée) */}
+      <section id="missions" className="missions">
+        <div className="wrap">
+          <div className="missions-head">
+            <div className="eyebrow">SUR LE TERRAIN</div>
+            <h2>Missions engagées près de chez vous</h2>
+            <p>Explorez des missions vérifiées dans différentes wilayas et thématiques.</p>
+          </div>
+
+          {/* Filtres thématiques centrés */}
+          <div className="missions-filter-bar">
+            {categories.map((cat, idx) => (
               <button
-                onClick={() => setIsSearchOpen(false)}
-                className="p-1 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+                key={idx}
+                onClick={() => handleCategoryChange(cat)}
+                className={`filter-btn ${selectedCategoryFilter === cat ? 'active' : ''}`}
               >
-                <X className="w-5 h-5" />
+                {cat}
               </button>
-            </div>
+            ))}
+          </div>
 
-            <div className="mt-4 space-y-4">
-              <div className="relative">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={isAr ? 'اكتب كلمة البحث (مثال: تشجير، قسنطينة، قراءة...)' : 'Mot-clé, wilaya, thématique...'}
-                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#0d5b61] focus:ring-1 focus:ring-[#0d5b61]"
-                  autoFocus
-                />
+          {/* Grille des missions spacieuse avec skeleton loader */}
+          <div className="missions-grid">
+            {isMissionsLoading ? (
+              [1, 2, 3].map((n) => <MissionCardSkeleton key={n} />)
+            ) : filteredMissions.length === 0 ? (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '48px 16px', color: '#64748B' }}>
+                <p style={{ fontSize: '18px', fontWeight: 600 }}>Aucune mission trouvée pour cette catégorie.</p>
               </div>
+            ) : (
+              filteredMissions.map((m) => (
+                <div key={m.id} className="mission-card">
+                  <div>
+                    <div className="mission-img-wrap">
+                      <img src={m.image_url} alt={m.title} />
+                      <span className="mission-tag">{m.category}</span>
+                    </div>
 
-              <div className="flex items-center justify-between pt-2">
-                <span className="text-xs text-slate-500 font-medium">
-                  {filteredMissions.length} {isAr ? 'نتائج مطابقة' : 'missions trouvées'}
-                </span>
-                <button
-                  onClick={() => setIsSearchOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-[#0d5b61] text-white text-xs font-bold hover:bg-[#094348] transition-colors"
-                >
-                  {isAr ? 'عرض النتائج' : 'Voir les résultats'}
-                </button>
-              </div>
-            </div>
+                    <div className="mission-content">
+                      <div className="mission-asso">
+                        <IconShieldCheck className="w-4 h-4 shrink-0" />
+                        <span>{m.association_name}</span>
+                      </div>
+
+                      <h3 className="mission-title">{m.title}</h3>
+
+                      <p className="mission-desc">{m.description}</p>
+
+                      <div className="mission-details">
+                        <div className="mission-detail-row">
+                          <IconMapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                          <span>{m.location}</span>
+                        </div>
+                        <div className="mission-detail-row">
+                          <IconCalendar className="w-4 h-4 text-slate-400 shrink-0" />
+                          <span>{m.date_str}</span>
+                        </div>
+                        <div className="mission-detail-row spots">
+                          <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
+                          <span>{m.spots_remaining} places disponibles</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mission-action">
+                    <button
+                      onClick={() => openApply(m.title)}
+                      className="mission-btn"
+                    >
+                      <span>Je participe à cette mission</span>
+                      <IconArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
-      )}
+      </section>
 
-      {/* 9. PARTICIPATION MODAL */}
-      {selectedMissionForApply && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative">
-            <button
-              onClick={() => setSelectedMissionForApply(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="text-center pb-3">
-              <div className="w-12 h-12 rounded-full bg-teal-50 text-[#0d5b61] flex items-center justify-center mx-auto mb-3">
-                <Heart className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg">
-                {isAr ? 'المشاركة في المهمة' : 'Rejoindre cette mission'}
-              </h3>
-              <p className="text-xs text-slate-500 mt-1 font-semibold text-[#0d5b61]">
-                {selectedMissionForApply.title}
+      {/* CONTACT */}
+      <section className="contact" id="contact">
+        <div className="wrap">
+          <div className="ccard2">
+            <div className="cleft">
+              <h2>Contactez-nous</h2>
+              <p className="clead">
+                Une question, une idée de partenariat, ou juste envie de dire bonjour ? Nous serions ravis d'échanger avec vous.
               </p>
-            </div>
-
-            <form onSubmit={handleApplyMission} className="space-y-3.5 mt-2">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {isAr ? 'الاسم واللقب' : 'Nom et Prénom'}
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={volunteerName}
-                  onChange={(e) => setVolunteerName(e.target.value)}
-                  placeholder={isAr ? 'مثال: أمين بن علي' : 'Ex: Amine Benali'}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#0d5b61]"
-                />
+              <div className="cinfo">
+                <div className="crow">
+                  <span className="cico">
+                    <IconMail className="w-4 h-4" />
+                  </span>
+                  <span>hello@athar.dz</span>
+                </div>
+                <div className="crow">
+                  <span className="cico">
+                    <IconPhone className="w-4 h-4" />
+                  </span>
+                  <span>+213 23 45 67 89</span>
+                </div>
+                <div className="crow">
+                  <span className="cico">
+                    <IconMapPin className="w-4 h-4" />
+                  </span>
+                  <span>Alger, Algérie</span>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {isAr ? 'رقم الهاتف' : 'Numéro de téléphone'}
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={volunteerPhone}
-                  onChange={(e) => setVolunteerPhone(e.target.value)}
-                  placeholder="05 / 06 / 07 ..."
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#0d5b61]"
-                />
+              <div className="creach">Suivez-nous</div>
+              <div className="csoc">
+                <a className="sb" onClick={() => showToast("Réseaux sociaux Athar bientôt en ligne !")}>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/>
+                  </svg>
+                </a>
+                <a className="sb" onClick={() => showToast("Réseaux sociaux Athar bientôt en ligne !")}>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <path d="M22 3 11 14M22 3l-7 18-4-7-7-4 18-7Z"/>
+                  </svg>
+                </a>
+                <a className="sb" onClick={() => showToast("Réseaux sociaux Athar bientôt en ligne !")}>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <circle cx="6" cy="12" r="2.4"/>
+                    <circle cx="18" cy="6" r="2.4"/>
+                    <circle cx="18" cy="18" r="2.4"/>
+                    <path d="M8.2 11 15.8 7M8.2 13l7.6 4"/>
+                  </svg>
+                </a>
               </div>
-
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl bg-[#0d5b61] hover:bg-[#094348] text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2"
-                >
-                  <span>{isAr ? 'تأكيد المشاركة التطوعية' : 'Confirmer ma participation'}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-
-      {/* 11. REGISTER / LOGIN MODAL */}
-      {isRegisterModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative">
-            <button
-              onClick={() => setIsRegisterModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="text-center pb-3">
-              <div className="w-12 h-12 rounded-full bg-teal-50 text-[#0d5b61] flex items-center justify-center mx-auto mb-3">
-                <User className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg">
-                {isAr ? 'انضم إلى مجتمع أثر' : 'Bienvenue sur Athar'}
-              </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                {isAr ? 'سجل حسابك في ثوانٍ وابدأ رحلة التطوع' : 'Créez votre profil de bénévole engagé en Algérie.'}
-              </p>
             </div>
 
             <form
+              className="cform"
               onSubmit={(e) => {
                 e.preventDefault();
-                showToast(isAr ? 'مرحباً بك في مجتمع أثر !' : 'Bienvenue ! Votre compte bénévole est activé.');
-                setIsRegisterModalOpen(false);
+                showToast("Message envoyé avec succès ! Notre équipe vous répondra sous peu.");
+                e.target.reset();
               }}
-              className="space-y-3.5 mt-2"
             >
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {isAr ? 'البريد الإلكتروني' : 'Adresse Email'}
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="votre.email@exemple.dz"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#0d5b61]"
-                />
-              </div>
+              <label>Nom complet</label>
+              <input type="text" required placeholder="Votre nom" />
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {isAr ? 'كلمة المرور' : 'Mot de passe'}
-                </label>
-                <input
-                  type="password"
-                  required
-                  placeholder="••••••••"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#0d5b61]"
-                />
-              </div>
+              <label>Email</label>
+              <input type="email" required placeholder="vous@exemple.com" />
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl bg-[#0d5b61] hover:bg-[#094348] text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2"
-                >
-                  <span>{isAr ? 'تأكيد والانضمام' : 'Continuer'}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+              <label>Message</label>
+              <textarea required placeholder="Comment pouvons-nous vous aider ?"></textarea>
+
+              <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
+                Envoyer le message
+              </button>
             </form>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* 12. MAIN FOOTER */}
-      <footer className="bg-[#0c2a30] text-white border-t border-slate-800 pt-12 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      {/* 12. MAIN FOOTER (comme le tout premier) */}
+      <footer className="footer-dark">
+        <div className="wrap">
+          <div className="footer-grid">
             {/* Col 1 */}
-            <div className="space-y-4 md:col-span-1">
-              <div className="bg-white/10 p-2 rounded-2xl inline-block">
+            <div>
+              <div className="footer-brand-badge">
                 <img
                   src="/assets/logo.png"
                   alt="Athar Logo"
-                  className="h-12 w-auto brightness-0 invert object-contain"
                 />
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                {isAr
-                  ? 'منصة وطنية جزائرية مخصصة للعمل التطوعي والتضامن المجتمعي. كل خطوة تصنع أثراً.'
-                  : "Plateforme nationale algérienne dédiée à l'engagement bénévole et à la solidarité active. Chaque action laisse une empreinte."
-                }
+              <p className="footer-lead">
+                Plateforme nationale algérienne dédiée à l'engagement bénévole et à la solidarité active. Chaque action laisse une empreinte.
               </p>
-              <div className="text-xs font-bold text-amber-400">
-                🇩🇿 Fièrement développé pour l'Algérie
+              <div className="footer-tagline">
+                Fièrement développé pour l'Algérie
               </div>
             </div>
 
             {/* Col 2 */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-                {isAr ? 'التنقل' : 'Navigation'}
+              <h4 className="footer-col-title">
+                Navigation
               </h4>
-              <ul className="space-y-2 text-xs text-slate-300">
-                <li><a href="#accueil" className="hover:text-white transition-colors">{isAr ? 'الرئيسية' : 'Accueil'}</a></li>
-                <li><a href="#missions" className="hover:text-white transition-colors">{isAr ? 'المهمات التطوعية' : 'Missions'}</a></li>
-                <li><a href="#associations" className="hover:text-white transition-colors">{isAr ? 'الجمعيات' : 'Associations'}</a></li>
-                <li><a href="#valeurs" className="hover:text-white transition-colors">{isAr ? 'رؤيتنا' : 'Notre vision'}</a></li>
+              <ul className="footer-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#missions">Missions</a></li>
+                <li><a href="#causes">Causes</a></li>
+                <li><a href="#about">À propos</a></li>
               </ul>
             </div>
 
             {/* Col 3 */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-                {isAr ? 'فضاءات المنصة' : 'Espaces'}
+              <h4 className="footer-col-title">
+                Espaces
               </h4>
-              <ul className="space-y-2 text-xs text-slate-300">
+              <ul className="footer-links">
                 <li>
-                  <button onClick={() => setIsRegisterModalOpen(true)} className="hover:text-white transition-colors text-left">
-                    {isAr ? 'فضاء المتطوع' : 'Espace Bénévole'}
+                  <button onClick={() => openSignup('choice')}>
+                    Espace Bénévole
                   </button>
                 </li>
                 <li>
-                  <button onClick={() => showToast(isAr ? "فضاء انضمام الجمعيات سيكون متاحاً قريباً. شكراً لاهتمامكم بمنصة أثر !" : "L'espace d'inscription des associations ouvrira très prochainement. Restez connectés !")} className="hover:text-white transition-colors text-left">
-                    {isAr ? 'فضاء الجمعيات' : 'Espace Association'}
+                  <button onClick={() => showToast("L'espace d'inscription des associations ouvrira très prochainement. Restez connectés !")}>
+                    Espace Association
                   </button>
                 </li>
-                <li><a href="#missions" className="hover:text-white transition-colors">{isAr ? 'خريطة الولايات' : '58 Wilayas'}</a></li>
+                <li><a href="#missions">58 Wilayas</a></li>
               </ul>
             </div>
 
             {/* Col 4 */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-                {isAr ? 'تواصل معنا' : 'Contact'}
+              <h4 className="footer-col-title">
+                Contact
               </h4>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="footer-contact-info">
                 Alger, Algérie<br />
                 contact@athar.dz
               </p>
-              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
-                {isAr ? 'جميع الحقوق محفوظة © 2025 منصة أثر' : '© 2025 Plateforme Athar. Tous droits réservés.'}
+              <div className="footer-contact-copy">
+                © 2025 Plateforme Athar. Tous droits réservés.
               </div>
             </div>
           </div>
 
-          <div className="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400">
+          <div className="footer-bottom">
             <div>
-              {isAr ? 'أثر – العمل التطوعي في خدمة الجزائر' : 'Athar – Le bénévolat au service d’une Algérie solidaire.'}
+              Athar – Le bénévolat au service d'une Algérie solidaire.
             </div>
-            <div className="mt-2 sm:mt-0 flex items-center gap-4">
+            <div className="footer-cities">
               <span>Alger</span>
               <span>•</span>
               <span>Oran</span>
@@ -1227,6 +799,304 @@ export default function App() {
           </div>
         </div>
       </footer>
-    </div>
+
+      {/* MODAL : CHOIX DU TYPE DE COMPTE & FORMULAIRES */}
+      <div className={`modal ${signupModalOpen ? 'on' : ''}`} aria-hidden={!signupModalOpen}>
+        <div className="modal-bg" onClick={closeSignup}></div>
+        <div className="modal-card" role="dialog" aria-modal="true" aria-label="Créer un compte">
+          <button className="modal-x" onClick={closeSignup} aria-label="Fermer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M6 6l12 12M18 6 6 18"/>
+            </svg>
+          </button>
+
+          {/* ÉTAPE 1 : CHOIX */}
+          {signupView === 'choice' && (
+            <div className="mview">
+              <div className="modal-head">
+                <h3>Créer un compte</h3>
+                <p>Rejoignez Athar. Choisissez le type de compte qui vous correspond.</p>
+              </div>
+              <div className="choices">
+                <div className="choice ben" onClick={() => setSignupView('ben')}>
+                  <div className="choice-ic">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                      <circle cx="12" cy="8" r="3.4"/>
+                      <path d="M5 20c0-3.6 3.1-5.5 7-5.5s7 1.9 7 5.5"/>
+                    </svg>
+                  </div>
+                  <div className="choice-txt">
+                    <h4>Bénévole</h4>
+                    <p>Je veux donner de mon temps et rejoindre des missions près de chez moi.</p>
+                  </div>
+                </div>
+
+                <div className="choice asso" onClick={() => setSignupView('asso')}>
+                  <div className="choice-ic">
+                    <IconBuilding className="w-7 h-7" />
+                  </div>
+                  <div className="choice-txt">
+                    <h4>Association</h4>
+                    <p>Je représente une association et je veux publier des missions et trouver des bénévoles.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-foot">
+                Déjà un compte ? <a onClick={() => setSignupView('ben')}>Se connecter</a>
+              </div>
+            </div>
+          )}
+
+          {/* ÉTAPE 2 : FORMULAIRE BÉNÉVOLE */}
+          {signupView === 'ben' && (
+            <div className="mview">
+              <button className="mback" onClick={() => setSignupView('choice')}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M19 12H5M11 6 5 12l6 6"/>
+                </svg> Retour
+              </button>
+              <div className="modal-head sm">
+                <div className="mtag ben">Bénévole</div>
+                <h3>Créer mon compte bénévole</h3>
+              </div>
+              <form
+                className="mform"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  showToast("Compte bénévole créé avec succès ! Bienvenue sur Athar.");
+                  closeSignup();
+                }}
+              >
+                <div className="frow">
+                  <div>
+                    <label>Prénom</label>
+                    <input type="text" required placeholder="Ex. Amine" />
+                  </div>
+                  <div>
+                    <label>Nom</label>
+                    <input type="text" required placeholder="Ex. Bellouze" />
+                  </div>
+                </div>
+
+                <label>Email</label>
+                <input type="email" required placeholder="vous@exemple.com" />
+
+                <div className="frow">
+                  <div>
+                    <label>Téléphone</label>
+                    <input type="tel" required placeholder="0X XX XX XX XX" />
+                  </div>
+                  <div>
+                    <label>Wilaya</label>
+                    <select defaultValue="Alger">
+                      <option value="">Choisir…</option>
+                      <option value="Alger">16 - Alger</option>
+                      <option value="Béjaïa">06 - Béjaïa</option>
+                      <option value="Oran">31 - Oran</option>
+                      <option value="Constantine">25 - Constantine</option>
+                      <option value="Sétif">19 - Sétif</option>
+                      <option value="Tizi Ouzou">15 - Tizi Ouzou</option>
+                      <option value="Autre">Autre wilaya</option>
+                    </select>
+                  </div>
+                </div>
+
+                <label>Centres d'intérêt</label>
+                <div className="chips">
+                  <label className="chip">
+                    <input type="checkbox" defaultChecked />
+                    <span>Solidarité</span>
+                  </label>
+                  <label className="chip">
+                    <input type="checkbox" defaultChecked />
+                    <span>Éducation</span>
+                  </label>
+                  <label className="chip">
+                    <input type="checkbox" defaultChecked />
+                    <span>Environnement</span>
+                  </label>
+                  <label className="chip">
+                    <input type="checkbox" defaultChecked />
+                    <span>Santé</span>
+                  </label>
+                </div>
+
+                <label>Mot de passe</label>
+                <input type="password" required placeholder="••••••••" />
+
+                <label className="agree">
+                  <input type="checkbox" required defaultChecked />
+                  <span>J'accepte les conditions d'utilisation d'Athar.</span>
+                </label>
+
+                <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
+                  Créer mon compte
+                </button>
+              </form>
+            </div>
+          )}
+
+          {/* ÉTAPE 2 : FORMULAIRE ASSOCIATION */}
+          {signupView === 'asso' && (
+            <div className="mview">
+              <button className="mback" onClick={() => setSignupView('choice')}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M19 12H5M11 6 5 12l6 6"/>
+                </svg> Retour
+              </button>
+              <div className="modal-head sm">
+                <div className="mtag asso">Association</div>
+                <h3>Créer le compte de l'association</h3>
+              </div>
+              <form
+                className="mform"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  showToast("Demande d'enregistrement transmise ! Notre équipe validera votre agrément.");
+                  closeSignup();
+                }}
+              >
+                <label>Nom de l'association</label>
+                <input type="text" required placeholder="Ex. Association El Baraka" />
+
+                <div className="frow">
+                  <div>
+                    <label>N° d'agrément</label>
+                    <input type="text" required placeholder="Registre / RNA" />
+                  </div>
+                  <div>
+                    <label>Wilaya</label>
+                    <select defaultValue="Alger">
+                      <option value="">Choisir…</option>
+                      <option value="Alger">16 - Alger</option>
+                      <option value="Béjaïa">06 - Béjaïa</option>
+                      <option value="Oran">31 - Oran</option>
+                      <option value="Constantine">25 - Constantine</option>
+                      <option value="Sétif">19 - Sétif</option>
+                      <option value="Tizi Ouzou">15 - Tizi Ouzou</option>
+                      <option value="Autre">Autre wilaya</option>
+                    </select>
+                  </div>
+                </div>
+
+                <label>Email officiel</label>
+                <input type="email" required placeholder="contact@association.dz" />
+
+                <label>Téléphone</label>
+                <input type="tel" required placeholder="0X XX XX XX XX" />
+
+                <label>Domaine d'action</label>
+                <select defaultValue="Solidarité">
+                  <option value="">Choisir…</option>
+                  <option value="Solidarité">Solidarité</option>
+                  <option value="Éducation">Éducation</option>
+                  <option value="Environnement">Environnement</option>
+                  <option value="Santé">Santé</option>
+                  <option value="Multi-domaines">Multi-domaines</option>
+                </select>
+
+                <label>Mot de passe</label>
+                <input type="password" required placeholder="••••••••" />
+
+                <div className="verif">
+                  <IconShieldCheck className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span>Votre compte sera vérifié avant validation (document d'agrément demandé).</span>
+                </div>
+
+                <label className="agree">
+                  <input type="checkbox" required defaultChecked />
+                  <span>J'accepte les conditions d'utilisation d'Athar.</span>
+                </label>
+
+                <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
+                  Créer le compte
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* MODAL : CANDIDATURE À UNE MISSION */}
+      <div className={`modal ${applyModalOpen ? 'on' : ''}`} aria-hidden={!applyModalOpen}>
+        <div className="modal-bg" onClick={closeApply}></div>
+        <div className="modal-card" role="dialog" aria-modal="true" aria-label="Candidater à une mission">
+          <button className="modal-x" onClick={closeApply} aria-label="Fermer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M6 6l12 12M18 6 6 18"/>
+            </svg>
+          </button>
+
+          <div className="modal-head sm">
+            <div className="mtag ben">Candidature</div>
+            <h3>Candidater à cette mission</h3>
+            <p className="applymission">{selectedMission || '—'}</p>
+          </div>
+
+          <form
+            className="mform"
+            onSubmit={(e) => {
+              e.preventDefault();
+              showToast(`Candidature envoyée avec succès pour "${selectedMission}" !`);
+              closeApply();
+            }}
+          >
+            <div className="frow">
+              <div>
+                <label>Prénom</label>
+                <input type="text" required placeholder="Ex. Amine" />
+              </div>
+              <div>
+                <label>Nom</label>
+                <input type="text" required placeholder="Ex. Bellouze" />
+              </div>
+            </div>
+
+            <label>Email</label>
+            <input type="email" required placeholder="vous@exemple.com" />
+
+            <label>Téléphone</label>
+            <input type="tel" required placeholder="0X XX XX XX XX" />
+
+            <label>Disponibilité</label>
+            <select defaultValue="Week-end">
+              <option value="">Choisir…</option>
+              <option value="En semaine">En semaine</option>
+              <option value="Week-end">Week-end</option>
+              <option value="Soirées">Soirées</option>
+              <option value="Flexible">Flexible</option>
+            </select>
+
+            <label>Message de motivation</label>
+            <textarea required placeholder="Pourquoi cette mission vous intéresse-t-elle ?"></textarea>
+
+            <label>CV / pièce jointe <span className="opt">(optionnel)</span></label>
+            <label className={`filebox ${appliedFileName ? 'has' : ''}`}>
+              <input
+                type="file"
+                accept=".pdf,.doc,.docx,.jpg,.png"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    setAppliedFileName(e.target.files[0].name);
+                  }
+                }}
+              />
+              <IconPaperclip className="w-5 h-5 text-[#0d5b61] shrink-0" />
+              <span className="filetxt">
+                {appliedFileName ? (
+                  <><b>{appliedFileName}</b></>
+                ) : (
+                  <>Glissez un fichier ou <b>cliquez pour choisir</b> (PDF, image…)</>
+                )}
+              </span>
+            </label>
+
+            <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '12px' }}>
+              Envoyer ma candidature
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
