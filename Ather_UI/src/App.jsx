@@ -163,33 +163,6 @@ export default function App() {
   // Category filter for missions
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
 
-  // Hero panoramic slider state
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
-  const heroSlides = [
-    {
-      image: "/assets/algeria-panoramic.jpg",
-      badge: "INITIATIVE CITOYENNE NATIONALE",
-      title: "Chaque action laisse une empreinte.",
-      desc: "Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.",
-      buttonText: "Rejoindre la communauté",
-      action: () => openSignup('choice')
-    },
-    {
-      image: "/assets/hero-banner-full.jpg",
-      badge: "ENGAGEMENT CITOYEN & SOLIDARITÉ",
-      title: "Ensemble pour une Algérie solidaire.",
-      desc: "Plus de 12 500 bénévoles et 350 associations déjà mobilisés à travers les 58 wilayas pour créer un impact réel.",
-      buttonText: "Découvrir les missions",
-      action: () => {
-        const el = document.getElementById('missions');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  ];
-
-  const nextSlide = () => setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
-  const prevSlide = () => setCurrentHeroSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-
   // Initial skeleton loading timer
   useEffect(() => {
     const timer = setTimeout(() => setIsMissionsLoading(false), 600);
@@ -464,58 +437,37 @@ export default function App() {
         </div>
       </header>
 
-      {/* HERO PANORAMIQUE BANNER (comme la capture d'écran) */}
-      <section className="panoramic-hero-wrapper" id="accueil">
-        <div className="panoramic-hero-slider">
-          {heroSlides.map((slide, idx) => (
-            <div
-              key={idx}
-              className={`panoramic-hero-slide ${idx === currentHeroSlide ? 'active' : ''}`}
-            >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="panoramic-hero-img"
-              />
-              <div className="panoramic-hero-overlay"></div>
-              <div className="panoramic-hero-content">
-                <span className="panoramic-hero-badge">
-                  {slide.badge}
-                </span>
-                <h1 className="panoramic-hero-title">
-                  {slide.title}
-                </h1>
-                <p className="panoramic-hero-desc">
-                  {slide.desc}
-                </p>
-                <div>
-                  <button
-                    onClick={slide.action}
-                    className="panoramic-hero-btn"
-                  >
-                    <span>{slide.buttonText}</span>
-                    <IconArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+      {/* BANNIÈRE PANORAMIQUE ORIGINALE (La toute première fois - Photo unique) */}
+      <section className="panoramic-banner" id="accueil">
+        <div className="panoramic-banner-inner">
+          <img
+            src="/assets/algeria-panoramic.jpg"
+            alt="Chaque action laisse une empreinte - Baie d'Alger"
+            className="panoramic-banner-img"
+          />
+          <div className="panoramic-banner-overlay"></div>
+          <div className="wrap panoramic-banner-content">
+            <div className="panoramic-banner-text">
+              <span className="panoramic-banner-badge">
+                Initiative Citoyenne Nationale
+              </span>
+              <h1 className="panoramic-banner-title">
+                Chaque action laisse une empreinte.
+              </h1>
+              <p className="panoramic-banner-desc">
+                Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.
+              </p>
+              <div className="panoramic-banner-action">
+                <button
+                  onClick={() => openSignup('choice')}
+                  className="panoramic-banner-btn"
+                >
+                  <span>Rejoindre la communauté</span>
+                  <IconArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
-          ))}
-
-          {/* Flèches latérales */}
-          <button
-            onClick={prevSlide}
-            className="panoramic-arrow prev"
-            aria-label="Diapositive précédente"
-          >
-            <IconChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="panoramic-arrow next"
-            aria-label="Diapositive suivante"
-          >
-            <IconChevronRight className="w-5 h-5" />
-          </button>
+          </div>
         </div>
       </section>
 

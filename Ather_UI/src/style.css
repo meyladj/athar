@@ -33,142 +33,117 @@ header{background:#fff;border-bottom:1px solid var(--gris);position:sticky;top:0
 .lang{font-size:13px;font-weight:700;color:#5b6472;cursor:pointer}
 .lang b{color:var(--vert)}
 
-/* ===== HERO PANORAMIQUE (comme la capture d'écran) ===== */
-.panoramic-hero-wrapper{
-  position:relative;
-  width:100%;
-  max-width:1380px;
-  margin:18px auto 0;
-  padding:0 30px;
+/* ===== BANNIÈRE PANORAMIQUE ORIGINALE (La toute première fois) ===== */
+.panoramic-banner {
+  position: relative;
+  overflow: hidden;
+  background: #0f172a;
+  color: #fff;
+  width: 100%;
 }
-.panoramic-hero-slider{
-  position:relative;
-  width:100%;
-  min-height:380px;
-  height:410px;
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 16px 40px -15px rgba(15,23,42,.18);
-  background:#0c2a30;
+.panoramic-banner-inner {
+  position: relative;
+  width: 100%;
+  height: 340px;
 }
-.panoramic-hero-slide{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .5s ease;
+.panoramic-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  opacity: 0.9;
+  image-rendering: -webkit-optimize-contrast;
 }
-.panoramic-hero-slide.active{
-  opacity:1;
-  pointer-events:auto;
+.panoramic-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(2, 6, 23, 0.85) 0%, rgba(2, 6, 23, 0.5) 45%, rgba(2, 6, 23, 0.05) 75%, transparent 100%);
+  z-index: 1;
 }
-.panoramic-hero-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 36%;
-  image-rendering:-webkit-optimize-contrast;
+.panoramic-banner-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
-.panoramic-hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, rgba(12,42,48,.86) 0%, rgba(12,42,48,.66) 38%, rgba(12,42,48,.18) 64%, rgba(12,42,48,0) 84%);
-  z-index:1;
+.panoramic-banner-text {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.panoramic-hero-content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:0 54px;
-  max-width:650px;
-  color:#fff;
+.panoramic-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
-.panoramic-hero-badge{
-  display:inline-flex;
-  align-items:center;
-  width:fit-content;
-  background:rgba(255,255,255,.18);
-  backdrop-filter:blur(6px);
-  color:#ffffff;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  padding:6px 14px;
-  border-radius:999px;
-  margin-bottom:16px;
-  border:1px solid rgba(255,255,255,.25);
+.panoramic-banner-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0;
 }
-.panoramic-hero-title{
-  font-size:40px;
-  line-height:1.12;
-  font-weight:800;
-  color:#ffffff;
-  letter-spacing:-.5px;
-  margin-bottom:14px;
+.panoramic-banner-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  margin: 0;
+  max-width: 520px;
 }
-.panoramic-hero-desc{
-  font-size:15px;
-  line-height:1.6;
-  color:rgba(255,255,255,.92);
-  margin-bottom:24px;
-  max-width:530px;
+.panoramic-banner-action {
+  padding-top: 6px;
 }
-.panoramic-hero-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background:#ffffff;
-  color:var(--bleu);
-  font-family:inherit;
-  font-weight:700;
-  font-size:14px;
-  padding:13px 26px;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  box-shadow:0 10px 25px -8px rgba(0,0,0,.3);
-  transition:all .2s ease;
-  width:fit-content;
+.panoramic-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0c363d;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13.5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.15s ease;
 }
-.panoramic-hero-btn:hover{
-  background:#f8fafc;
-  transform:translateY(-2px);
-  box-shadow:0 14px 30px -8px rgba(0,0,0,.4);
-  color:var(--vert);
+.panoramic-banner-btn:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  color: var(--vert);
 }
 
-/* Flèches latérales du slider */
-.panoramic-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:rgba(30,41,59,.72);
-  color:#ffffff;
-  display:grid;
-  place-items:center;
-  border:none;
-  cursor:pointer;
-  z-index:10;
-  transition:all .2s ease;
-  backdrop-filter:blur(4px);
+@media (max-width: 768px) {
+  .panoramic-banner-inner {
+    height: auto;
+    min-height: 320px;
+    padding: 44px 0;
+  }
+  .panoramic-banner-title {
+    font-size: 26px;
+  }
+  .panoramic-banner-desc {
+    font-size: 13.5px;
+  }
 }
-.panoramic-arrow:hover{
-  background:rgba(15,23,42,.92);
-  transform:translateY(-50%) scale(1.08);
-}
-.panoramic-arrow.prev{left:10px}
-.panoramic-arrow.next{right:10px}
 
 /* ===== DÉFINITION + STATISTIQUES (style Wyze) ===== */
 .about{padding:78px 0 66px;background:#fff}
