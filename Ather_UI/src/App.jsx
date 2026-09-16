@@ -104,6 +104,22 @@ function IconPhone({ className = "w-4 h-4" }) {
   );
 }
 
+function IconChevronLeft({ className = "w-5 h-5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+  );
+}
+
+function IconChevronRight({ className = "w-5 h-5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m9 18 6-6-6-6"/>
+    </svg>
+  );
+}
+
 // Skeleton Placeholder for Mission Card
 function MissionCardSkeleton() {
   return (
@@ -147,6 +163,33 @@ export default function App() {
   // Category filter for missions
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
 
+  // Hero panoramic slider state
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const heroSlides = [
+    {
+      image: "/assets/algeria-panoramic.jpg",
+      badge: "INITIATIVE CITOYENNE NATIONALE",
+      title: "Chaque action laisse une empreinte.",
+      desc: "Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.",
+      buttonText: "Rejoindre la communauté",
+      action: () => openSignup('choice')
+    },
+    {
+      image: "/assets/hero-banner-full.jpg",
+      badge: "ENGAGEMENT CITOYEN & SOLIDARITÉ",
+      title: "Ensemble pour une Algérie solidaire.",
+      desc: "Plus de 12 500 bénévoles et 350 associations déjà mobilisés à travers les 58 wilayas pour créer un impact réel.",
+      buttonText: "Découvrir les missions",
+      action: () => {
+        const el = document.getElementById('missions');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  ];
+
+  const nextSlide = () => setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
+  const prevSlide = () => setCurrentHeroSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+
   // Initial skeleton loading timer
   useEffect(() => {
     const timer = setTimeout(() => setIsMissionsLoading(false), 600);
@@ -166,7 +209,8 @@ export default function App() {
     'Solidarité',
     'Éducation',
     'Santé',
-    'Aide d\'urgence'
+    'Aide d\'urgence',
+    'Patrimoine'
   ];
 
   // 6 verified Algerian missions from previous version
@@ -386,9 +430,9 @@ export default function App() {
             <div className="menu">
               <a href="#accueil" className="active">Accueil</a>
               <a href="#missions">Missions</a>
-              <a href="#causes">Causes</a>
+              <a href="#causes">Associations</a>
               <a href="#about">À propos</a>
-              <a href="#contact">Contact</a>
+              <a href="#contact">Blog</a>
             </div>
 
             <div className="right">
@@ -420,29 +464,141 @@ export default function App() {
         </div>
       </header>
 
-      {/* HERO : photo en fond plein écran, texte par-dessus */}
-      <section className="hero" id="accueil">
-        <div className="wrap">
-          <div className="herotext">
-            <div className="eyebrow">Le bénévolat au service d'une Algérie solidaire</div>
-            <h1>
-              <span className="blue">Donnez de votre temps.</span>
-              <br />
-              <span className="green">Créez de l'impact.</span>
-            </h1>
-            <p>
-              Athar est la plateforme qui connecte les bénévoles et les associations en Algérie,
-              pour faire grandir l'impact ensemble et bâtir une communauté solidaire.
-            </p>
-            <div className="cta">
-              <button className="btn btn-green btn-lg flex items-center gap-2" onClick={() => openSignup('choice')}>
-                <span>Créer un compte</span>
-                <IconArrowRight className="w-4 h-4" />
-              </button>
-              <a href="#missions" className="btn btn-ghost btn-lg">
-                Découvrir les missions
-              </a>
+      {/* HERO PANORAMIQUE BANNER (comme la capture d'écran) */}
+      <section className="panoramic-hero-wrapper" id="accueil">
+        <div className="panoramic-hero-slider">
+          {heroSlides.map((slide, idx) => (
+            <div
+              key={idx}
+              className={`panoramic-hero-slide ${idx === currentHeroSlide ? 'active' : ''}`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="panoramic-hero-img"
+              />
+              <div className="panoramic-hero-overlay"></div>
+              <div className="panoramic-hero-content">
+                <span className="panoramic-hero-badge">
+                  {slide.badge}
+                </span>
+                <h1 className="panoramic-hero-title">
+                  {slide.title}
+                </h1>
+                <p className="panoramic-hero-desc">
+                  {slide.desc}
+                </p>
+                <div>
+                  <button
+                    onClick={slide.action}
+                    className="panoramic-hero-btn"
+                  >
+                    <span>{slide.buttonText}</span>
+                    <IconArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
             </div>
+          ))}
+
+          {/* Flèches latérales */}
+          <button
+            onClick={prevSlide}
+            className="panoramic-arrow prev"
+            aria-label="Diapositive précédente"
+          >
+            <IconChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="panoramic-arrow next"
+            aria-label="Diapositive suivante"
+          >
+            <IconChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
+
+      {/* MISSIONS EXPLORER SECTION (exactement comme la capture d'écran) */}
+      <section id="missions" className="missions">
+        <div className="wrap">
+          <div className="missions-head-row">
+            <div className="missions-head-left">
+              <div className="eyebrow">SUR LE TERRAIN</div>
+              <h2>Missions engagées près de chez vous</h2>
+              <p>Explorez des missions vérifiées dans différentes wilayas et thématiques.</p>
+            </div>
+
+            {/* Filtres thématiques alignés à droite */}
+            <div className="missions-filter-bar">
+              {categories.map((cat, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleCategoryChange(cat)}
+                  className={`filter-btn ${selectedCategoryFilter === cat ? 'active' : ''}`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Grille des missions spacieuse avec skeleton loader */}
+          <div className="missions-grid">
+            {isMissionsLoading ? (
+              [1, 2, 3].map((n) => <MissionCardSkeleton key={n} />)
+            ) : filteredMissions.length === 0 ? (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '48px 16px', color: '#64748B' }}>
+                <p style={{ fontSize: '18px', fontWeight: 600 }}>Aucune mission trouvée pour cette catégorie.</p>
+              </div>
+            ) : (
+              filteredMissions.map((m) => (
+                <div key={m.id} className="mission-card">
+                  <div>
+                    <div className="mission-img-wrap">
+                      <img src={m.image_url} alt={m.title} />
+                      <span className="mission-tag">{m.category}</span>
+                    </div>
+
+                    <div className="mission-content">
+                      <div className="mission-asso">
+                        <IconShieldCheck className="w-4 h-4 shrink-0" />
+                        <span>{m.association_name}</span>
+                      </div>
+
+                      <h3 className="mission-title">{m.title}</h3>
+
+                      <p className="mission-desc">{m.description}</p>
+
+                      <div className="mission-details">
+                        <div className="mission-detail-row">
+                          <IconMapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                          <span>{m.location}</span>
+                        </div>
+                        <div className="mission-detail-row">
+                          <IconCalendar className="w-4 h-4 text-slate-400 shrink-0" />
+                          <span>{m.date_str}</span>
+                        </div>
+                        <div className="mission-detail-row spots">
+                          <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
+                          <span>{m.spots_remaining} places disponibles</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mission-action">
+                    <button
+                      onClick={() => openApply(m.title)}
+                      className="mission-btn"
+                    >
+                      <span>Je participe à cette mission</span>
+                      <IconArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -550,88 +706,6 @@ export default function App() {
               <h3>Santé</h3>
               <p>Participez aux campagnes de sensibilisation, aux dons du sang et aux initiatives de soin de proximité.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MISSIONS EXPLORER SECTION (centrée et aérée) */}
-      <section id="missions" className="missions">
-        <div className="wrap">
-          <div className="missions-head">
-            <div className="eyebrow">SUR LE TERRAIN</div>
-            <h2>Missions engagées près de chez vous</h2>
-            <p>Explorez des missions vérifiées dans différentes wilayas et thématiques.</p>
-          </div>
-
-          {/* Filtres thématiques centrés */}
-          <div className="missions-filter-bar">
-            {categories.map((cat, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleCategoryChange(cat)}
-                className={`filter-btn ${selectedCategoryFilter === cat ? 'active' : ''}`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Grille des missions spacieuse avec skeleton loader */}
-          <div className="missions-grid">
-            {isMissionsLoading ? (
-              [1, 2, 3].map((n) => <MissionCardSkeleton key={n} />)
-            ) : filteredMissions.length === 0 ? (
-              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '48px 16px', color: '#64748B' }}>
-                <p style={{ fontSize: '18px', fontWeight: 600 }}>Aucune mission trouvée pour cette catégorie.</p>
-              </div>
-            ) : (
-              filteredMissions.map((m) => (
-                <div key={m.id} className="mission-card">
-                  <div>
-                    <div className="mission-img-wrap">
-                      <img src={m.image_url} alt={m.title} />
-                      <span className="mission-tag">{m.category}</span>
-                    </div>
-
-                    <div className="mission-content">
-                      <div className="mission-asso">
-                        <IconShieldCheck className="w-4 h-4 shrink-0" />
-                        <span>{m.association_name}</span>
-                      </div>
-
-                      <h3 className="mission-title">{m.title}</h3>
-
-                      <p className="mission-desc">{m.description}</p>
-
-                      <div className="mission-details">
-                        <div className="mission-detail-row">
-                          <IconMapPin className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>{m.location}</span>
-                        </div>
-                        <div className="mission-detail-row">
-                          <IconCalendar className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>{m.date_str}</span>
-                        </div>
-                        <div className="mission-detail-row spots">
-                          <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
-                          <span>{m.spots_remaining} places disponibles</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mission-action">
-                    <button
-                      onClick={() => openApply(m.title)}
-                      className="mission-btn"
-                    >
-                      <span>Je participe à cette mission</span>
-                      <IconArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
           </div>
         </div>
       </section>
