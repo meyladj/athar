@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Athar — Le bénévolat pour une Algérie solidaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><div class="wrap"><nav class="nav">
+  <div class="brand">
+    <img class="mark" src="images/athar-logo.png" onerror="this.src='/images/athar-logo.png'" alt="Athar">
+    <div><div class="bt">ATHAR</div><div class="bs">ATHAR PLATFORM</div></div>
+  </div>
+  <div class="menu"><a class="active" href="#home">Home</a><a href="#missions">Missions</a><a href="#associations">Associations</a><a href="#about">About</a><a href="#blog">Blog</a></div>
+  <div class="right">
+    <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">◐</button>
+    <button class="icon-btn" id="searchToggle" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
+    <button class="btn btn-ghost" data-login>Log in</button>
+    <button class="btn btn-green" data-signup>Sign up →</button>
+    <button class="lang" id="langToggle" type="button"><b>EN</b> | AR</button>
+  </div>
+</nav></div></header>
+
+<!-- HERO : photo en fond plein écran, texte par-dessus -->
+<section class="hero" id="home"><div class="wrap">
+  <div class="herotext">
+    <div class="eyebrow">Le bénévolat au service d'une Algérie solidaire</div>
+    <h1><span class="blue">Donnez de votre temps.</span><br><span class="green">Créez de l'impact.</span></h1>
+    <div class="cta">
+      <button class="btn btn-green btn-lg" data-signup>Créer un compte →</button>
+      <button class="btn btn-ghost btn-lg">Découvrir les missions</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- DÉFINITION + STATISTIQUES (style Wyze) -->
+<section class="about" id="about"><div class="wrap">
+  <div class="atop">
+    <h2 class="atitle">Choisir Athar, c'est faire<br>grandir l'impact,<br><span class="or">pas seulement aider.</span></h2>
+    <div class="adesc">
+      <p>Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie, pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain des causes qui ont besoin d'eux, partout dans le pays.</p>
+      <p class="anote">Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.</p>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num" data-target="12500" data-sep="1">0</div><div class="lb">bénévoles inscrits</div></div>
+    <div class="stat"><div class="num" data-target="350">0</div><div class="lb">associations partenaires</div></div>
+    <div class="stat"><div class="num" data-target="1200" data-sep="1">0</div><div class="lb">missions publiées</div></div>
+    <div class="stat"><div class="num" data-target="58">0</div><div class="lb">wilayas couvertes</div></div>
+  </div>
+</div></section>
+
+<!-- CAUSES / TYPES DE MISSIONS -->
+<section class="causes" id="associations"><div class="wrap">
+  <div class="chead">
+    <h2>Des causes qui ont besoin de vous</h2>
+    <p>Quelle que soit la cause qui vous touche, une mission vous attend. Découvrez les domaines dans lesquels notre communauté s'engage.</p>
+  </div>
+  <div class="cgrid">
+    <div class="cc">
+      <div class="ci" style="background:#e6f3ef;color:#006D5B"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 24l8.8-8.3a5 5 0 0 0 0-7.1Z"/></svg></div>
+      <h3>Solidarité</h3>
+      <p>Soutenez les familles en difficulté, organisez des collectes et soyez présent pour votre communauté dans les moments durs.</p>
+    </div>
+    <div class="cc">
+      <div class="ci" style="background:#eef2fb;color:#1E3A8A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 9 12 4 2 9l10 5 10-5Z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
+      <h3>Éducation</h3>
+      <p>Accompagnez les enfants, animez des ateliers d'alphabétisation et ouvrez les portes du savoir à tous.</p>
+    </div>
+    <div class="cc">
+      <div class="ci" style="background:#faf2dd;color:#C79A2E"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3C7 8 7 14 12 21c5-7 5-13 0-18Z"/><path d="M12 21c-4-3-6-7-2-11"/></svg></div>
+      <h3>Environnement</h3>
+      <p>Plantez des arbres, nettoyez les plages et les quartiers, et protégez la beauté naturelle de l'Algérie.</p>
+    </div>
+    <div class="cc">
+      <div class="ci" style="background:#fdeeea;color:#E8735A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 24l8.8-8.3a5 5 0 0 0 0-7.1Z"/><path d="M6 12h3l1.5-3 3 6L18 12h0"/></svg></div>
+      <h3>Santé</h3>
+      <p>Participez aux campagnes de sensibilisation, aux dons du sang et aux initiatives de soin de proximité.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- MISSIONS CITOYENNES À LA UNE (ALIGNÉES SUR http://localhost:5173/#accueil) -->
+<section class="missions" id="missions"><div class="wrap">
+  <div class="missions-head">
+    <span class="missions-eyebrow">Opportunités d'engagement</span>
+    <h2>Missions citoyennes à la une</h2>
+    <p>Des associations algériennes ont besoin de vous dès maintenant. Choisissez une mission et candidatez en quelques clics.</p>
+
+    <!-- Filtres par catégorie -->
+    <div class="category-chips" id="catChips">
+      <button class="cat-chip active" data-cat="all">Toutes</button>
+      <button class="cat-chip" data-cat="Environnement">Environnement</button>
+      <button class="cat-chip" data-cat="Solidarité">Solidarité</button>
+      <button class="cat-chip" data-cat="Éducation">Éducation</button>
+      <button class="cat-chip" data-cat="Santé">Santé</button>
+      <button class="cat-chip" data-cat="Aide d'urgence">Aide d'urgence</button>
+      <button class="cat-chip" data-cat="Patrimoine">Patrimoine</button>
+    </div>
+  </div>
+
+  <div class="mgrid" id="missionsGrid">
+    <!-- Mission 1 : Plantation d'arbres à Zéralda -->
+    <article class="mcard" data-category="Environnement">
+      <div class="mcard-img-wrap">
+        <img class="mcard-img" src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Plantation d'arbres à Zéralda" loading="lazy">
+        <div class="mcard-overlay"></div>
+        <span class="mcard-badge">Environnement</span>
+        <button class="mcard-heart" title="Ajouter aux favoris" onclick="toggleFavCard(this, 1)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l7.8-7.4a5 5 0 0 0 1-4.9Z"/></svg>
+        </button>
+      </div>
+      <div class="mbody">
+        <div class="m-assoc"><span class="m-assoc-dot"></span><span>Association Green Future</span></div>
+        <h3>Plantation d'arbres à Zéralda</h3>
+        <p>Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Matériel de jardinage et gants fournis sur place.</p>
+        <div class="mmeta-list">
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Zéralda, Alger</span>
+          </div>
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>Sam. 12 avr. 2025 • 9h00 – 15h00</span>
+          </div>
+          <div class="mmeta-row spots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>15 places disponibles sur 30</span>
+          </div>
+        </div>
+        <button class="btn-apply-card" data-apply="Plantation d'arbres à Zéralda">
+          <span>Candidater à cette mission</span> →
+        </button>
+      </div>
+    </article>
+
+    <!-- Mission 2 : Campagne de distribution de paniers alimentaires -->
+    <article class="mcard" data-category="Solidarité">
+      <div class="mcard-img-wrap">
+        <img class="mcard-img" src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80" alt="Campagne de distribution de paniers alimentaires" loading="lazy">
+        <div class="mcard-overlay"></div>
+        <span class="mcard-badge">Solidarité</span>
+        <button class="mcard-heart" title="Ajouter aux favoris" onclick="toggleFavCard(this, 2)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l7.8-7.4a5 5 0 0 0 1-4.9Z"/></svg>
+        </button>
+      </div>
+      <div class="mbody">
+        <div class="m-assoc"><span class="m-assoc-dot"></span><span>Croissant Rouge Algérien</span></div>
+        <h3>Campagne de distribution de paniers alimentaires</h3>
+        <p>Tri, conditionnement et acheminement de colis alimentaires solidaires destinés à 300 familles nécessiteuses recensées.</p>
+        <div class="mmeta-list">
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Bab Ezzouar, Alger</span>
+          </div>
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>Sam. 19 avr. 2025 • 9h00 – 16h00</span>
+          </div>
+          <div class="mmeta-row spots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>20 places disponibles sur 40</span>
+          </div>
+        </div>
+        <button class="btn-apply-card" data-apply="Campagne de distribution de paniers alimentaires">
+          <span>Candidater à cette mission</span> →
+        </button>
+      </div>
+    </article>
+
+    <!-- Mission 3 : Ateliers de lecture pour enfants -->
+    <article class="mcard" data-category="Éducation">
+      <div class="mcard-img-wrap">
+        <img class="mcard-img" src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Ateliers de lecture pour enfants" loading="lazy">
+        <div class="mcard-overlay"></div>
+        <span class="mcard-badge">Éducation</span>
+        <button class="mcard-heart" title="Ajouter aux favoris" onclick="toggleFavCard(this, 3)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l7.8-7.4a5 5 0 0 0 1-4.9Z"/></svg>
+        </button>
+      </div>
+      <div class="mbody">
+        <div class="m-assoc"><span class="m-assoc-dot"></span><span>Lire pour Demain</span></div>
+        <h3>Ateliers de lecture pour enfants</h3>
+        <p>Animation de contes, jeux de rôles et éveil à la lecture pour un groupe d'enfants de 6 à 11 ans au centre culturel.</p>
+        <div class="mmeta-list">
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Hydra, Alger</span>
+          </div>
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>Mer. 16 avr. 2025 • 14h00 – 17h00</span>
+          </div>
+          <div class="mmeta-row spots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>8 places disponibles sur 15</span>
+          </div>
+        </div>
+        <button class="btn-apply-card" data-apply="Ateliers de lecture pour enfants">
+          <span>Candidater à cette mission</span> →
+        </button>
+      </div>
+    </article>
+
+    <!-- Mission 4 : Nettoyage et préservation des plages des Andalouses -->
+    <article class="mcard" data-category="Environnement">
+      <div class="mcard-img-wrap">
+        <img class="mcard-img" src="https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80" alt="Nettoyage et préservation des plages des Andalouses" loading="lazy">
+        <div class="mcard-overlay"></div>
+        <span class="mcard-badge">Environnement</span>
+        <button class="mcard-heart" title="Ajouter aux favoris" onclick="toggleFavCard(this, 4)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l7.8-7.4a5 5 0 0 0 1-4.9Z"/></svg>
+        </button>
+      </div>
+      <div class="mbody">
+        <div class="m-assoc"><span class="m-assoc-dot"></span><span>Association Green Future</span></div>
+        <h3>Nettoyage des plages des Andalouses</h3>
+        <p>Grande journée citoyenne de dépollution marine et sensibilisation au tri sélectif le long du littoral oranais.</p>
+        <div class="mmeta-list">
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Les Andalouses, Oran</span>
+          </div>
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>Ven. 2 mai 2025 • 8h30 – 14h00</span>
+          </div>
+          <div class="mmeta-row spots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>25 places disponibles sur 50</span>
+          </div>
+        </div>
+        <button class="btn-apply-card" data-apply="Nettoyage et préservation des plages des Andalouses">
+          <span>Candidater à cette mission</span> →
+        </button>
+      </div>
+    </article>
+
+    <!-- Mission 5 : Caravane de don du sang et dépistage au CHU -->
+    <article class="mcard" data-category="Santé">
+      <div class="mcard-img-wrap">
+        <img class="mcard-img" src="https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=800&q=80" alt="Caravane de don du sang et dépistage au CHU" loading="lazy">
+        <div class="mcard-overlay"></div>
+        <span class="mcard-badge">Santé</span>
+        <button class="mcard-heart" title="Ajouter aux favoris" onclick="toggleFavCard(this, 5)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l7.8-7.4a5 5 0 0 0 1-4.9Z"/></svg>
+        </button>
+      </div>
+      <div class="mbody">
+        <div class="m-assoc"><span class="m-assoc-dot"></span><span>Association El Chifa Santé</span></div>
+        <h3>Caravane de don du sang au CHU</h3>
+        <p>Organisation logistique et accueil des donneurs de sang volontaires au Centre de Transfusion Sanguine.</p>
+        <div class="mmeta-list">
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>CHU Benbadis, Constantine</span>
+          </div>
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>Jeu. 8 mai 2025 • 9h00 – 16h30</span>
+          </div>
+          <div class="mmeta-row spots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>12 places disponibles sur 25</span>
+          </div>
+        </div>
+        <button class="btn-apply-card" data-apply="Caravane de don du sang et dépistage au CHU">
+          <span>Candidater à cette mission</span> →
+        </button>
+      </div>
+    </article>
+
+    <!-- Mission 6 : Soutien scolaire et tutorat pour collégiens -->
+    <article class="mcard" data-category="Éducation">
+      <div class="mcard-img-wrap">
+        <img class="mcard-img" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Soutien scolaire et tutorat pour collégiens" loading="lazy">
+        <div class="mcard-overlay"></div>
+        <span class="mcard-badge">Éducation</span>
+        <button class="mcard-heart" title="Ajouter aux favoris" onclick="toggleFavCard(this, 6)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l7.8-7.4a5 5 0 0 0 1-4.9Z"/></svg>
+        </button>
+      </div>
+      <div class="mbody">
+        <div class="m-assoc"><span class="m-assoc-dot"></span><span>Association Amel Solidarité</span></div>
+        <h3>Soutien scolaire pour collégiens</h3>
+        <p>Aide aux devoirs et révisions en mathématiques et langues pour des élèves motivés préparant le brevet.</p>
+        <div class="mmeta-list">
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Belouizdad, Alger</span>
+          </div>
+          <div class="mmeta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>Sam. 26 avr. 2025 • 10h00 – 13h00</span>
+          </div>
+          <div class="mmeta-row spots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>6 places disponibles sur 12</span>
+          </div>
+        </div>
+        <button class="btn-apply-card" data-apply="Soutien scolaire et tutorat pour collégiens">
+          <span>Candidater à cette mission</span> →
+        </button>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact"><div class="wrap">
+  <div class="ccard2">
+    <div class="cleft">
+      <h2>Contactez-nous</h2>
+      <p class="clead">Une question, une idée de partenariat, ou juste envie de dire bonjour ? Nous serions ravis d'échanger avec vous.</p>
+      <div class="cinfo">
+        <div class="crow"><span class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>hello@athar.dz</div>
+        <div class="crow"><span class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>+213 23 45 67 89</div>
+        <div class="crow"><span class="cico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Alger, Algérie</div>
+      </div>
+      <div class="creach">Suivez-nous</div>
+      <div class="csoc">
+        <a class="sb"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></a>
+        <a class="sb"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 3 11 14M22 3l-7 18-4-7-7-4 18-7Z"/></svg></a>
+        <a class="sb"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.2 11 15.8 7M8.2 13l7.6 4"/></svg></a>
+      </div>
+    </div>
+    <form class="cform" onsubmit="return false">
+      <label>Nom complet</label>
+      <input type="text" placeholder="Votre nom">
+      <label>Email</label>
+      <input type="email" placeholder="vous@exemple.com">
+      <label>Message</label>
+      <textarea placeholder="Comment pouvons-nous vous aider ?"></textarea>
+      <button class="btn btn-green btn-lg" style="width:100%;margin-top:6px">Envoyer le message</button>
+    </form>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="wrap">
+  <div class="fgridm">
+    <div class="fbrand">
+      <div class="ftile"><img src="images/athar-logo.png" onerror="this.src='/images/athar-logo.png'" alt="Athar logo"></div>
+      <p>Connecter les cœurs, bâtir des communautés partout en Algérie.</p>
+    </div>
+    <div class="fcol"><h4>EXPLORE</h4><a href="#home">Home</a><a href="#missions">Missions</a><a href="#associations">Associations</a></div>
+    <div class="fcol"><h4>ATHAR</h4><a href="#about">About</a><a href="#about">Blog</a><a href="#contact">Contact</a></div>
+    <div class="fcol"><h4>LEGAL</h4><a href="#contact">Privacy</a><a href="#contact">Terms</a></div>
+  </div>
+  <div class="fbottom">© 2026 ATHAR · Tous droits réservés.</div>
+</div></footer>
+
+<!-- MODAL : choix du type de compte -->
+<div class="modal" id="signupModal" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Créer un compte">
+    <button class="modal-x" data-close aria-label="Fermer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+
+    <!-- ÉTAPE 1 : choix -->
+    <div class="mview" data-view="choice">
+      <div class="modal-head">
+        <h3>Créer un compte</h3>
+        <p>Rejoignez Athar. Choisissez le type de compte qui vous correspond.</p>
+      </div>
+      <div class="choices">
+        <a class="choice ben" data-go="ben">
+          <div class="choice-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-5.5 7-5.5s7 1.9 7 5.5"/></svg></div>
+          <div class="choice-txt">
+            <h4>Bénévole</h4>
+            <p>Je veux donner de mon temps et rejoindre des missions près de chez moi.</p>
+          </div>
+        </a>
+        <a class="choice asso" data-go="asso">
+          <div class="choice-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 21V6a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v15"/><path d="M15 10h4a1 1 0 0 1 1 1v10"/><path d="M2 21h20"/><path d="M7 9h.01M7 13h.01M7 17h.01M11 9h.01M11 13h.01M11 17h.01"/></svg></div>
+          <div class="choice-txt">
+            <h4>Association</h4>
+            <p>Je représente une association et je veux publier des missions et trouver des bénévoles.</p>
+          </div>
+        </a>
+      </div>
+      <div class="modal-foot">Déjà un compte ? <a data-login>Se connecter</a></div>
+    </div>
+
+    <!-- (les formulaires ci-dessous) -->
+    <!-- ÉTAPE 2 : formulaire BÉNÉVOLE -->
+    <div class="mview" data-view="ben" hidden>
+      <button class="mback" data-back><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6 5 12l6 6"/></svg> Retour</button>
+      <div class="modal-head sm"><div class="mtag ben">Bénévole</div><h3>Créer mon compte bénévole</h3></div>
+      <form class="mform" onsubmit="return false">
+        <div class="fsec">Informations personnelles</div>
+        <div class="frow">
+          <div><label>Prénom</label><input type="text" placeholder="Ex. Amine"></div>
+          <div><label>Nom</label><input type="text" placeholder="Ex. Bellouze"></div>
+        </div>
+        <div class="frow">
+          <div><label>Date de naissance</label><input type="date"></div>
+          <div><label>Genre</label>
+            <select><option value="">Choisir…</option><option>Homme</option><option>Femme</option><option>Préfère ne pas dire</option></select>
+          </div>
+        </div>
+        <div class="frow">
+          <div><label>Email</label><input type="email" placeholder="vous@exemple.com"></div>
+          <div><label>Téléphone</label><input type="tel" placeholder="0X XX XX XX XX"></div>
+        </div>
+
+        <div class="fsec">Localisation</div>
+        <div class="frow">
+          <div><label>Wilaya</label>
+            <select><option value="">Choisir…</option><option>Alger</option><option>Béjaïa</option><option>Oran</option><option>Constantine</option><option>Sétif</option><option>Tizi Ouzou</option><option>Autre</option></select>
+          </div>
+          <div><label>Commune</label><input type="text" placeholder="Ex. Amizour"></div>
+        </div>
+        <label>Adresse <span class="opt">(facultatif)</span></label><input type="text" placeholder="Quartier, rue…">
+
+        <div class="fsec">Compétences &amp; profil</div>
+        <label>Compétences</label>
+        <div class="chips">
+          <label class="chip"><input type="checkbox"><span>Informatique</span></label>
+          <label class="chip"><input type="checkbox"><span>Enseignement</span></label>
+          <label class="chip"><input type="checkbox"><span>Santé / Secourisme</span></label>
+          <label class="chip"><input type="checkbox"><span>Communication</span></label>
+          <label class="chip"><input type="checkbox"><span>Logistique</span></label>
+          <label class="chip"><input type="checkbox"><span>Traduction</span></label>
+          <label class="chip"><input type="checkbox"><span>Design</span></label>
+          <label class="chip"><input type="checkbox"><span>Animation</span></label>
+          <label class="chip"><input type="checkbox"><span>Photographie</span></label>
+        </div>
+        <label>Langues parlées</label>
+        <div class="chips">
+          <label class="chip"><input type="checkbox"><span>Arabe</span></label>
+          <label class="chip"><input type="checkbox"><span>Français</span></label>
+          <label class="chip"><input type="checkbox"><span>Anglais</span></label>
+          <label class="chip"><input type="checkbox"><span>Tamazight</span></label>
+        </div>
+        <label>Centres d'intérêt</label>
+        <div class="chips">
+          <label class="chip"><input type="checkbox"><span>Solidarité</span></label>
+          <label class="chip"><input type="checkbox"><span>Éducation</span></label>
+          <label class="chip"><input type="checkbox"><span>Environnement</span></label>
+          <label class="chip"><input type="checkbox"><span>Santé</span></label>
+        </div>
+        <label>Disponibilité</label>
+        <select><option value="">Choisir…</option><option>En semaine</option><option>Week-end</option><option>Soirées</option><option>Flexible</option></select>
+        <label>Expérience en bénévolat <span class="opt">(facultatif)</span></label>
+        <textarea placeholder="Missions déjà réalisées, associations…"></textarea>
+
+        <div class="fsec">Sécurité</div>
+        <label>Mot de passe</label><input type="password" placeholder="••••••••">
+        <label class="agree"><input type="checkbox"> J'accepte les conditions d'utilisation d'Athar.</label>
+        <button class="btn btn-green btn-lg" style="width:100%;margin-top:6px">Créer mon compte</button>
+      </form>
+    </div>
+
+    <!-- ÉTAPE 2 : formulaire ASSOCIATION -->
+    <div class="mview" data-view="asso" hidden>
+      <button class="mback" data-back><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6 5 12l6 6"/></svg> Retour</button>
+      <div class="modal-head sm"><div class="mtag asso">Association</div><h3>Créer le compte de l'association</h3></div>
+      <form class="mform" onsubmit="return false">
+        <div class="fsec">Document d'agrément</div>
+        <div class="scanhint">📄 Importez le scan de votre agrément : les informations (nom, n° d'agrément, wilaya) seront <b>extraites automatiquement</b> et remplies pour vous.</div>
+        <label class="filebox scan" id="scanBox">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7V5a1 1 0 0 1 1-1h2M20 7V5a1 1 0 0 0-1-1h-2M4 17v2a1 1 0 0 0 1 1h2M20 17v2a1 1 0 0 1-1 1h-2M3 12h18"/></svg>
+          <span class="filetxt">Scanner l'agrément — <b>cliquez pour importer</b> (PDF ou photo)</span>
+        </label>
+        <div class="scanres" id="scanRes" hidden><span class="spin"></span> Analyse du document en cours…</div>
+
+        <div class="fsec">Informations de l'association</div>
+        <label>Nom de l'association</label><input type="text" id="assoName" placeholder="Ex. Association El Baraka">
+        <div class="frow">
+          <div><label>N° d'agrément</label><input type="text" id="assoNum" placeholder="Registre / RNA"></div>
+          <div><label>Date de création</label><input type="date"></div>
+        </div>
+        <label>Nom du responsable / représentant légal</label><input type="text" placeholder="Ex. Karim Meziane">
+
+        <div class="fsec">Localisation &amp; contact</div>
+        <div class="frow">
+          <div><label>Wilaya</label>
+            <select id="assoWilaya"><option value="">Choisir…</option><option>Alger</option><option>Béjaïa</option><option>Oran</option><option>Constantine</option><option>Sétif</option><option>Tizi Ouzou</option><option>Autre</option></select>
+          </div>
+          <div><label>Commune</label><input type="text" placeholder="Ex. El Kseur"></div>
+        </div>
+        <label>Adresse du siège</label><input type="text" placeholder="Rue, quartier…">
+        <div class="frow">
+          <div><label>Email officiel</label><input type="email" placeholder="contact@association.dz"></div>
+          <div><label>Téléphone</label><input type="tel" placeholder="0X XX XX XX XX"></div>
+        </div>
+        <label>Site web / page Facebook <span class="opt">(facultatif)</span></label><input type="text" placeholder="https://facebook.com/...">
+
+        <div class="fsec">Activité</div>
+        <label>Domaine d'action</label>
+        <select><option value="">Choisir…</option><option>Solidarité</option><option>Éducation</option><option>Environnement</option><option>Santé</option><option>Multi-domaines</option></select>
+        <label>Description de l'association</label>
+        <textarea placeholder="Vos missions, vos actions, votre public…"></textarea>
+        <label>Logo de l'association <span class="opt">(facultatif)</span></label>
+        <label class="filebox" id="logoBox">
+          <input type="file" accept=".jpg,.jpeg,.png,.svg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/></svg>
+          <span class="filetxt">Importer le logo (image)</span>
+        </label>
+
+        <div class="fsec">Sécurité</div>
+        <label>Mot de passe</label><input type="password" placeholder="••••••••">
+        <div class="verif"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Votre compte sera vérifié manuellement avant validation, à partir du document d'agrément fourni.</div>
+        <label class="agree"><input type="checkbox"> J'accepte les conditions d'utilisation d'Athar.</label>
+        <button class="btn btn-green btn-lg" style="width:100%;margin-top:6px">Créer le compte</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL : candidature à une mission -->
+<div class="modal" id="applyModal" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Candidater à une mission">
+    <button class="modal-x" data-close aria-label="Fermer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="modal-head sm"><div class="mtag ben">Candidature</div><h3>Candidater à cette mission</h3><p class="applymission" id="applyMissionName">—</p></div>
+    <form class="mform" onsubmit="return false">
+      <div class="frow">
+        <div><label>Prénom</label><input type="text" placeholder="Ex. Amine"></div>
+        <div><label>Nom</label><input type="text" placeholder="Ex. Bellouze"></div>
+      </div>
+      <label>Email</label><input type="email" placeholder="vous@exemple.com">
+      <label>Téléphone</label><input type="tel" placeholder="0X XX XX XX XX">
+      <label>Disponibilité</label>
+      <select><option value="">Choisir…</option><option>En semaine</option><option>Week-end</option><option>Soirées</option><option>Flexible</option></select>
+      <label>Message de motivation</label>
+      <textarea placeholder="Pourquoi cette mission vous intéresse-t-elle ?"></textarea>
+      <label>CV / pièce jointe <span class="opt">(optionnel)</span></label>
+      <label class="filebox" id="fileBox">
+        <input type="file" accept=".pdf,.doc,.docx,.jpg,.png">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/></svg>
+        <span class="filetxt">Glissez un fichier ou <b>cliquez pour choisir</b> (PDF, image…)</span>
+      </label>
+      <button class="btn btn-green btn-lg" style="width:100%;margin-top:12px">Envoyer ma candidature</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL : connexion -->
+<div class="modal" id="loginModal" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Se connecter" style="max-width:440px">
+    <button class="modal-x" data-close aria-label="Fermer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="modal-head" style="text-align:center">
+      <div style="width:56px;height:56px;margin:0 auto 6px"><svg viewBox="0 0 100 100"><path d="M50,86 C22,64 6,46 6,28 C6,15 16,7 27,7 C36,7 44,13 50,22 C56,13 64,7 73,7 C84,7 94,15 94,28 C94,46 78,64 50,86 Z" fill="#006D5B"/><circle cx="27" cy="15" r="8.5" fill="#1E3A8A"/><circle cx="73" cy="15" r="8.5" fill="#D4AF37"/></svg></div>
+      <h3>Bon retour parmi nous</h3>
+      <p>Connectez-vous à votre espace Athar.</p>
+    </div>
+    <div class="loginok" id="loginOk" hidden>✓ Compte créé avec succès. Connectez-vous pour continuer.</div>
+    <div class="login-profile" style="display:flex;gap:8px;margin:0 0 16px">
+      <button type="button" class="btn btn-green" id="loginVolunteer" style="flex:1">Bénévole</button>
+      <button type="button" class="btn btn-ghost" id="loginAssociation" style="flex:1">Association</button>
+    </div>
+    <form class="mform" id="loginForm" onsubmit="return false">
+      <label>Email</label><input type="email" placeholder="vous@exemple.com" required>
+      <label>Mot de passe</label><input type="password" placeholder="••••••••" required>
+      <div style="display:flex;justify-content:flex-end;margin:-8px 0 14px"><a style="font-size:12.5px;font-weight:700;color:var(--vert);cursor:pointer">Mot de passe oublié ?</a></div>
+      <button class="btn btn-green btn-lg" style="width:100%">Se connecter →</button>
+    </form>
+    <div class="modal-foot">Pas encore de compte ? <a data-signup2>Créer un compte</a></div>
+  </div>
+</div>
+
+<script>
+// helper : fermer tous les modals
+function atharCloseAll(){
+  document.querySelectorAll('.modal.on').forEach(function(m){ m.classList.remove('on'); m.setAttribute('aria-hidden','true'); });
+  document.body.style.overflow='';
+}
+// ===== Modal : choix du compte + formulaires =====
+(function(){
+  var modal=document.getElementById('signupModal');
+  var views=modal.querySelectorAll('.mview');
+  function show(name){ views.forEach(function(v){ v.hidden = (v.dataset.view!==name); }); }
+  function open(){ atharCloseAll(); show('choice'); modal.classList.add('on'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  window.atharOpenSignup=open;
+  document.querySelectorAll('[data-signup],[data-signup2]').forEach(function(b){ b.addEventListener('click', open); });
+  modal.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.go); }); });
+  modal.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ show('choice'); }); });
+  modal.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', atharCloseAll); });
+  // après création du compte → écran de connexion
+  modal.querySelectorAll('.mform').forEach(function(f){ f.addEventListener('submit', function(){ window.atharOpenLogin(true); }); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') atharCloseAll(); });
+
+  // logo association : afficher le nom du fichier
+  var logoBox=document.getElementById('logoBox');
+  if(logoBox){ var li=logoBox.querySelector('input[type=file]'), lt=logoBox.querySelector('.filetxt');
+    li.addEventListener('change', function(){ if(li.files.length){ lt.innerHTML='🖼️ '+li.files[0].name; logoBox.classList.add('has'); } }); }
+
+  // scan de l'agrément : simulation d'extraction OCR (à remplacer par l'IA du backend)
+  var scanBox=document.getElementById('scanBox'), scanRes=document.getElementById('scanRes');
+  if(scanBox){ var si=scanBox.querySelector('input[type=file]'), st=scanBox.querySelector('.filetxt');
+    si.addEventListener('change', function(){
+      if(!si.files.length) return;
+      st.innerHTML='📎 '+si.files[0].name; scanBox.classList.add('has');
+      scanRes.hidden=false; scanRes.className='scanres'; scanRes.innerHTML='<span class="spin"></span> Analyse du document en cours…';
+      setTimeout(function(){
+        // valeurs extraites (exemple de démo)
+        document.getElementById('assoName').value='Association El Baraka';
+        document.getElementById('assoNum').value='DZ-2019-04127';
+        document.getElementById('assoWilaya').value='Béjaïa';
+        scanRes.className='scanres ok';
+        scanRes.innerHTML='✓ Informations extraites automatiquement — vérifiez puis complétez.';
+      },1800);
+    }); }
+})();
+
+// ===== Modal : connexion =====
+(function(){
+  var modal=document.getElementById('loginModal');
+  var okmsg=document.getElementById('loginOk');
+  function open(fromSignup){ atharCloseAll(); okmsg.hidden=!fromSignup; modal.classList.add('on'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  window.atharOpenLogin=open;
+  document.querySelectorAll('[data-login]').forEach(function(b){ b.addEventListener('click', function(){ open(false); }); });
+  modal.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', atharCloseAll); });
+  // Connexion de démonstration : le profil choisi ouvre son espace.
+  var loginProfile='volunteer';
+  var volunteerBtn=document.getElementById('loginVolunteer');
+  var associationBtn=document.getElementById('loginAssociation');
+  volunteerBtn.addEventListener('click',function(){ loginProfile='volunteer'; volunteerBtn.className='btn btn-green'; associationBtn.className='btn btn-ghost'; });
+  associationBtn.addEventListener('click',function(){ loginProfile='association'; associationBtn.className='btn btn-green'; volunteerBtn.className='btn btn-ghost'; });
+  document.getElementById('loginForm').addEventListener('submit', function(){
+    window.location.href=loginProfile==='association'?'dashboard_association.html':'dashboard_benevole.html';
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') atharCloseAll(); });
+})();
+
+// ===== Modal : candidature à une mission =====
+(function(){
+  var modal=document.getElementById('applyModal');
+  var nameEl=document.getElementById('applyMissionName');
+  function open(mission){ nameEl.textContent=mission||''; modal.classList.add('on'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ modal.classList.remove('on'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  document.querySelectorAll('[data-apply]').forEach(function(b){ b.addEventListener('click', function(){ open(b.dataset.apply); }); });
+  modal.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', close); });
+  modal.querySelector('.mform').addEventListener('submit', function(){ alert('Candidature envoyée ! (à connecter au backend Django)'); close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+  // afficher le nom du fichier choisi
+  var box=document.getElementById('fileBox'), inp=box.querySelector('input[type=file]'), txt=box.querySelector('.filetxt');
+  inp.addEventListener('change', function(){ if(inp.files.length){ txt.innerHTML='📎 '+inp.files[0].name; box.classList.add('has'); } });
+})();
+
+// Compteur qui "monte" comme un calculateur quand la section devient visible
+function runCount(el){
+  var target=+el.dataset.target, sep=el.dataset.sep==='1', t0=null, dur=1600;
+  function fmt(n){ return sep ? n.toLocaleString('fr-FR').replace(/ /g,' ') : String(n); }
+  function step(ts){
+    if(!t0) t0=ts;
+    var p=Math.min((ts-t0)/dur,1), e=1-Math.pow(1-p,3); // ease-out
+    el.textContent=fmt(Math.round(target*e));
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(en.isIntersecting){ runCount(en.target); io.unobserve(en.target); }
+  });
+},{threshold:.6});
+document.querySelectorAll('.num[data-target]').forEach(function(n){ io.observe(n); });
+
+// Navigation, language and theme controls
+(function(){
+  var theme=document.getElementById('themeToggle');
+  if(theme){
+    theme.addEventListener('click',function(){
+      document.body.classList.toggle('dark');
+      theme.textContent=document.body.classList.contains('dark')?'☀':'◐';
+      theme.setAttribute('aria-label',document.body.classList.contains('dark')?'Switch to light mode':'Switch to dark mode');
+    });
+  }
+  var search=document.getElementById('searchToggle');
+  if(search){ search.addEventListener('click',function(){
+    var field=document.querySelector('.sfield input');
+    document.getElementById('missions').scrollIntoView({behavior:'smooth'});
+    if(field){ field.focus(); }
+  }); }
+  var lang=document.getElementById('langToggle');
+  var translations={
+    'Home':'الرئيسية','Missions':'المهام','Associations':'الجمعيات','About':'من نحن','Blog':'المدونة','Log in':'تسجيل الدخول','Sign up →':'إنشاء حساب ←','Donnez de votre temps.':'امنح من وقتك.','Créez de l\'impact.':'اصنع فرقاً.','Découvrir les missions':'اكتشف المهام','Créer un compte →':'إنشاء حساب ←','Contactez-nous':'تواصل معنا','Des causes qui ont besoin de vous':'قضايا تحتاجكم','Missions à la une':'مهام مميزة','EXPLORE':'استكشف','LEGAL':'قانوني','ATHAR':'أثر','ATHAR PLATFORM':'منصة أثر'
+  };
+  var original={}; Object.keys(translations).forEach(function(k){ original[translations[k]]=k; });
+  function swapLanguage(ar){
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    var node; while(node=walker.nextNode()){
+      var value=node.nodeValue.trim(); if(!value) continue;
+      var next=ar?(translations[value]||value):(original[value]||value);
+      if(next!==value) node.nodeValue=node.nodeValue.replace(value,next);
+    }
+  }
+  if(lang){ lang.addEventListener('click',function(){
+    var ar=document.documentElement.lang!=='ar';
+    document.documentElement.lang=ar?'ar':'en';
+    document.documentElement.dir=ar?'rtl':'ltr';
+    lang.innerHTML=ar?'<b>AR</b> | EN':'<b>EN</b> | AR';
+    document.querySelector('.bt').textContent=ar?'أثــر':'ATHAR';
+    document.querySelector('.bs').textContent=ar?'منصة أثر':'ATHAR PLATFORM';
+    swapLanguage(ar);
+    document.body.classList.toggle('rtl',ar);
+  }); }
+})();
+
+// Filtrage dynamique des missions par catégorie (comme http://localhost:5173)
+(function(){
+  var chips = document.querySelectorAll('.cat-chip');
+  var cards = document.querySelectorAll('.mgrid .mcard');
+  chips.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      chips.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.dataset.cat;
+      cards.forEach(function(card){
+        if(cat === 'all' || card.dataset.category === cat){
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+
+// Gestion des favoris sur les cartes de missions
+window.toggleFavCard = function(btn, id){
+  btn.classList.toggle('fav');
+  var isFav = btn.classList.contains('fav');
+  var svg = btn.querySelector('svg');
+  if(svg){
+    if(isFav){
+      svg.setAttribute('fill', '#e11d48');
+      svg.setAttribute('stroke', '#e11d48');
+    } else {
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+    }
+  }
+};
+
+</script>
+
+</body>
+</html>
