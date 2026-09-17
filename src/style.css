@@ -662,7 +662,7 @@ header{background:#fff;border-bottom:1px solid var(--gris);position:sticky;top:0
   overflow: hidden;
   padding: 40px 48px;
   border-radius: 24px;
-  background: url('/assets/algeria-panoramic.jpg') center/cover no-repeat;
+  background: url('./assets/algeria-panoramic.jpg') center/cover no-repeat;
   min-height: 220px;
   color: #fff;
   box-shadow: 0 16px 36px -12px rgba(12, 42, 48, 0.28);

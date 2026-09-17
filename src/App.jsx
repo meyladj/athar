@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './style.css';
+import logoImg from './assets/logo.png';
+import panoramicImg from './assets/algeria-panoramic.jpg';
 
 // Clean SVG Icons (zero external library dependency, zero emoji)
 function IconMapPin({ className = "w-3.5 h-3.5" }) {
@@ -1614,7 +1616,7 @@ export default function App() {
               <nav className="nav">
                 <div className="brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                   <img
-                    src="/assets/logo.png"
+                    src={logoImg}
                     alt="Athar Platform أثر"
                     style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
                   />
@@ -1680,7 +1682,7 @@ export default function App() {
       <section className="panoramic-banner" id="accueil">
         <div className="panoramic-banner-inner">
           <img
-            src="/assets/algeria-panoramic.jpg"
+            src={panoramicImg}
             alt="Chaque action laisse une empreinte - Baie d'Alger"
             className="panoramic-banner-img"
           />
@@ -2004,7 +2006,7 @@ export default function App() {
             <div>
               <div className="footer-brand-badge">
                 <img
-                  src="/assets/logo.png"
+                  src={logoImg}
                   alt="Athar Logo"
                 />
               </div>
@@ -2100,7 +2102,7 @@ export default function App() {
                 }}
                 title="Retour au site public"
               >
-                <img src="/assets/logo.png" alt="Athar logo" />
+                <img src={logoImg} alt="Athar logo" />
                 <div className="brand-title">
                   <strong>ATHAR</strong>
                   <small>PLATEFORME ALGÉRIENNE</small>
@@ -3426,7 +3428,7 @@ export default function App() {
                 }}
               >
                 <img
-                  src="/assets/logo.png"
+                  src={logoImg}
                   alt="Athar Platform أثر"
                   style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
                 />
@@ -4516,7 +4518,7 @@ export default function App() {
 
           <div className="modal-head" style={{ textAlign: 'center', marginBottom: '20px' }}>
             <img
-              src="/assets/logo.png"
+              src={logoImg}
               alt="Logo Athar"
               style={{ height: '70px', width: 'auto', objectFit: 'contain', margin: '0 auto 12px', display: 'block' }}
             />
