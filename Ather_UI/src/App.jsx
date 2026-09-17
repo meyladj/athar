@@ -195,6 +195,33 @@ function IconFileText({ className = "w-4 h-4" }) {
   );
 }
 
+function IconClock({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </svg>
+  );
+}
+
+function IconAward({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="8" r="6"/>
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+    </svg>
+  );
+}
+
+function IconEdit({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg>
+  );
+}
+
 // Liste officielle des 69 wilayas d'Algérie
 const WILAYAS_LIST = [
   { code: '01', name: 'Adrar' },
@@ -296,19 +323,623 @@ function MissionCardSkeleton() {
   );
 }
 
+// ============================================================================
+// DICTIONNAIRE DE TRADUCTION MULTILINGUE (FR / AR / EN)
+// ============================================================================
+const translations = {
+  fr: {
+    navHome: "Accueil",
+    navMissions: "Missions",
+    navAssociations: "Associations",
+    navAbout: "À propos",
+    navBlog: "Blog",
+    navSearch: "Recherche",
+    navLogin: "Se connecter",
+    navSignup: "S'inscrire",
+    navBackToPublic: "← Retour au site public",
+    
+    heroBadge: "Initiative Citoyenne Nationale",
+    heroTitle: "Chaque action laisse une empreinte.",
+    heroSubtitle: "Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.",
+    heroExplore: "Explorer les missions",
+    heroJoin: "Rejoindre la communauté",
+    heroAssocSpace: "Espace Association",
+    
+    statVolunteers: "bénévoles inscrits",
+    statAssocs: "associations partenaires",
+    statMissions: "missions publiées",
+    statWilayas: "wilayas couvertes",
+    
+    causesTitle: "Des causes qui ont besoin de vous",
+    causesSubtitle: "Quelle que soit la cause qui vous touche, une mission vous attend. Découvrez les domaines dans lesquels notre communauté s'engage.",
+    causeSolidarityTitle: "Solidarité",
+    causeSolidarityDesc: "Soutenez les familles en difficulté, organisez des collectes et soyez présent pour votre communauté dans les moments durs.",
+    causeEducationTitle: "Éducation",
+    causeEducationDesc: "Accompagnez les enfants, animez des ateliers d'alphabétisation et ouvrez les portes du savoir à tous.",
+    causeEnvironmentTitle: "Environnement",
+    causeEnvironmentDesc: "Plantez des arbres, nettoyez les plages et les quartiers, et protégez la beauté naturelle de l'Algérie.",
+    causeHealthTitle: "Santé",
+    causeHealthDesc: "Participez aux campagnes de sensibilisation, aux dons du sang et aux initiatives de soin de proximité.",
+    
+    missionsEyebrow: "SUR LE TERRAIN",
+    missionsSectionTitle: "Missions engagées près de chez vous",
+    missionsSectionSub: "Explorez des missions vérifiées dans différentes wilayas et thématiques.",
+    filterAll: "Toutes",
+    filterSolidarity: "Solidarité",
+    filterEducation: "Éducation",
+    filterEnvironment: "Environnement",
+    filterHealth: "Santé",
+    spotsLeft: "places restantes",
+    btnParticipate: "Participer",
+    btnFull: "Complet",
+    
+    assocsSectionTitle: "Les associations qui font bouger l'Algérie",
+    assocsSectionSub: "Des structures agréées et engagées sur le terrain dans les 69 wilayas.",
+    btnViewAssoc: "Voir l'association",
+    
+    contactTitle: "Contactez-nous",
+    contactLead: "Une question, une idée de partenariat, ou juste envie de dire bonjour ? Nous serions ravis d'échanger avec vous.",
+    contactBtn: "Envoyer le message",
+    
+    footerTagline: "Des gens engagés. Une Algérie plus solidaire.",
+    footerRights: "Tous droits réservés.",
+    footerWilayas: "Présent dans les 69 wilayas",
+    
+    dashTitle: "Tableau de bord",
+    dashNavOverview: "Vue générale",
+    dashNavMissions: "Missions & Offres",
+    dashNavCandidates: "Candidatures",
+    dashNavProfile: "Profil Association",
+    dashNavMembers: "Adhérents & Équipe",
+    dashNavSettings: "Paramètres",
+    dashNavLogout: "Déconnexion",
+    dashWelcomeTitle: "Bonjour, El Baraka",
+    dashWelcomeBadge: "Association vérifiée",
+    dashWelcomeSub: "Gérez vos missions solidaires, mobilisez des bénévoles engagés et suivez l'impact de vos actions caritatives à travers les 69 wilayas.",
+    dashBtnNewMission: "+ Créer une mission",
+    dashStatActiveMissions: "Offres publiées",
+    dashStatVolunteers: "Bénévoles touchés",
+    dashStatPending: "Candidatures à traiter",
+    dashStatWilayas: "Missions en cours",
+    dashSearchPlaceholder: "Rechercher une mission (titre, lieu...)",
+    dashFilterTheme: "Toutes les catégories",
+    dashFilterDate: "Toutes les dates",
+    dashFilterStatus: "Tous les statuts",
+    dashStatusOpen: "Ouverte",
+    dashStatusClosed: "Fermée (Complet)",
+    dashCandidatesTitle: "Candidatures reçues",
+    dashBtnAccept: "Accepter",
+    dashBtnRefuse: "Refuser",
+    dashBtnContact: "Contacter",
+    
+    modalLoginTitle: "Connexion à votre espace",
+    tabVolunteer: "Bénévole",
+    tabAssoc: "Association",
+    labelEmail: "Adresse email",
+    labelPassword: "Mot de passe",
+    btnConnect: "Se connecter",
+    noAccount: "Pas encore de compte ?",
+    signupFree: "S'inscrire gratuitement"
+  },
+  ar: {
+    navHome: "الرئيسية",
+    navMissions: "الفرص التطوعية",
+    navAssociations: "الجمعيات",
+    navAbout: "من نحن",
+    navBlog: "المدونة",
+    navSearch: "بحث",
+    navLogin: "تسجيل الدخول",
+    navSignup: "إنشاء حساب",
+    navBackToPublic: "← العودة للموقع العام",
+    
+    heroBadge: "المبادرة الوطنية للعمل التطوعي",
+    heroTitle: "كل عمل يترك أثراً.",
+    heroSubtitle: "سواء كنت مواطناً يرغب في التطوع ببعض الوقت أو جمعية تبحث عن طاقات حية، منصة أثر ترافقك في كل خطوة.",
+    heroExplore: "استكشف الفرص",
+    heroJoin: "انضم إلى مجتمعنا",
+    heroAssocSpace: "فضاء الجمعيات",
+    
+    statVolunteers: "متطوع مسجل",
+    statAssocs: "جمعية شريكة",
+    statMissions: "مبادرة منشورة",
+    statWilayas: "ولاية مغطاة",
+    
+    causesTitle: "قضايا تحتاج إلى جهودكم",
+    causesSubtitle: "مهما كانت القضية التي تهمك، هناك فرصة تطوعية بانتظارك. اكتشف المجالات التي ينشط فيها مجتمعنا.",
+    causeSolidarityTitle: "التضامن والتكافل",
+    causeSolidarityDesc: "مساندة العائلات المحتاجة، تنظيم قوافل الإغاثة وتقديم يد العون لمجتمعك في الأوقات الصعبة.",
+    causeEducationTitle: "التعليم والتكوين",
+    causeEducationDesc: "مرافقة الأطفال والشباب، تنشيط ورشات محو الأمية وفتح أبواب العلم والمعرفة للجميع.",
+    causeEnvironmentTitle: "البيئة والتشجير",
+    causeEnvironmentDesc: "المشاركة في حملات التشجير، تنظيف الشواطئ والأحياء وحماية الثروات الطبيعية لبلادنا.",
+    causeHealthTitle: "الصحة والإسعاف",
+    causeHealthDesc: "المساهمة في قوافل الفحص المجاني، حملات التبرع بالدم ونشر الوعي الصحي الميداني.",
+    
+    missionsEyebrow: "في الميدان",
+    missionsSectionTitle: "مبادرات تطوعية قريبة منك",
+    missionsSectionSub: "استكشف مبادرات معتمدة وموثوقة عبر مختلف الولايات والمجالات.",
+    filterAll: "الكل",
+    filterSolidarity: "تضامن",
+    filterEducation: "تعليم",
+    filterEnvironment: "بيئة",
+    filterHealth: "صحة",
+    spotsLeft: "مقاعد متبقية",
+    btnParticipate: "مشاركة",
+    btnFull: "مكتمل",
+    
+    assocsSectionTitle: "جمعيات رائدة تصنع الأثر",
+    assocsSectionSub: "منظمات معتمدة وفاعلة ميدانياً عبر 69 ولاية في ربوع الوطن.",
+    btnViewAssoc: "عرض الجمعية",
+    
+    contactTitle: "تواصل معنا",
+    contactLead: "لديك استفسار، فكرة شراكة، أو ترغب في الانضمام إلينا؟ يسعدنا جداً التواصل والتعاون معك.",
+    contactBtn: "إرسال الرسالة",
+    
+    footerTagline: "سواعد معطاءة، لأجل جزائر أكثر تكافلاً وتضامناً.",
+    footerRights: "جميع الحقوق محفوظة.",
+    footerWilayas: "حاضرون في 69 ولاية",
+    
+    dashTitle: "لوحة التحكم",
+    dashNavOverview: "نظرة عامة",
+    dashNavMissions: "المبادرات والفرص",
+    dashNavCandidates: "طلبات التطوع",
+    dashNavProfile: "الملف التعريفي",
+    dashNavMembers: "الأعضاء والفريق",
+    dashNavSettings: "الإعدادات",
+    dashNavLogout: "تسجيل الخروج",
+    dashWelcomeTitle: "مرحباً، جمعية البركة",
+    dashWelcomeBadge: "جمعية معتمدة",
+    dashWelcomeSub: "أدِر مبادراتك التطوعية، وجنّد متطوعين فاعلين، وتابع أثر نشاطك الخيري عبر 69 ولاية.",
+    dashBtnNewMission: "+ مبادرة جديدة",
+    dashStatActiveMissions: "فرص منشورة",
+    dashStatVolunteers: "متطوع مجنّد",
+    dashStatPending: "طلبات قيد المراجعة",
+    dashStatWilayas: "مبادرات جارية",
+    dashSearchPlaceholder: "ابحث عن مبادرة (العنوان، المكان...)",
+    dashFilterTheme: "كافة المجالات",
+    dashFilterDate: "كافة التواريخ",
+    dashFilterStatus: "كافة الحالات",
+    dashStatusOpen: "متاحة للتسجيل",
+    dashStatusClosed: "مكتملة (مغلقة)",
+    dashCandidatesTitle: "طلبات التطوع الواردة",
+    dashBtnAccept: "قبول",
+    dashBtnRefuse: "رفض",
+    dashBtnContact: "مراسلة",
+    
+    modalLoginTitle: "تسجيل الدخول إلى حسابك",
+    tabVolunteer: "متطوع",
+    tabAssoc: "جمعية",
+    labelEmail: "البريد الإلكتروني",
+    labelPassword: "كلمة المرور",
+    btnConnect: "تسجيل الدخول",
+    noAccount: "ليس لديك حساب بعد؟",
+    signupFree: "أنشئ حسابك مجاناً"
+  },
+  en: {
+    navHome: "Home",
+    navMissions: "Missions",
+    navAssociations: "Associations",
+    navAbout: "About Us",
+    navBlog: "Blog",
+    navSearch: "Search",
+    navLogin: "Log In",
+    navSignup: "Sign Up",
+    navBackToPublic: "← Back to Public Site",
+    
+    heroBadge: "National Volunteering Initiative",
+    heroTitle: "Every action leaves an imprint.",
+    heroSubtitle: "Whether you wish to dedicate a few hours or you are an association seeking motivated volunteers, Athar supports your journey.",
+    heroExplore: "Explore Missions",
+    heroJoin: "Join the Community",
+    heroAssocSpace: "Association Space",
+    
+    statVolunteers: "registered volunteers",
+    statAssocs: "partner charities",
+    statMissions: "published missions",
+    statWilayas: "wilayas covered",
+    
+    causesTitle: "Causes that need your support",
+    causesSubtitle: "Whatever cause inspires you, a meaningful mission awaits. Discover the fields where our community is making a difference.",
+    causeSolidarityTitle: "Solidarity & Care",
+    causeSolidarityDesc: "Support families in need, organize charity drives, and stand by your community in challenging times.",
+    causeEducationTitle: "Education & Literacy",
+    causeEducationDesc: "Mentor children, host literacy workshops, and open the doors of knowledge to everyone.",
+    causeEnvironmentTitle: "Environment & Ecology",
+    causeEnvironmentDesc: "Plant trees, clean up beaches and neighborhoods, and protect Algeria's natural beauty.",
+    causeHealthTitle: "Healthcare & Aid",
+    causeHealthDesc: "Take part in health screening campaigns, voluntary blood donations, and local community care.",
+    
+    missionsEyebrow: "ON THE GROUND",
+    missionsSectionTitle: "Meaningful missions near you",
+    missionsSectionSub: "Explore verified opportunities across different wilayas and categories.",
+    filterAll: "All",
+    filterSolidarity: "Solidarity",
+    filterEducation: "Education",
+    filterEnvironment: "Environment",
+    filterHealth: "Health",
+    spotsLeft: "spots left",
+    btnParticipate: "Join Mission",
+    btnFull: "Full",
+    
+    assocsSectionTitle: "Organizations Making an Impact",
+    assocsSectionSub: "Accredited charities actively working on the ground across all 69 wilayas.",
+    btnViewAssoc: "View Charity",
+    
+    contactTitle: "Contact Us",
+    contactLead: "Have a question, a partnership proposal, or just want to say hello? We'd love to hear from you.",
+    contactBtn: "Send Message",
+    
+    footerTagline: "Committed people. A stronger, more supportive Algeria.",
+    footerRights: "All rights reserved.",
+    footerWilayas: "Present across 69 wilayas",
+    
+    dashTitle: "Dashboard",
+    dashNavOverview: "Overview",
+    dashNavMissions: "Missions & Needs",
+    dashNavCandidates: "Applications",
+    dashNavProfile: "Charity Profile",
+    dashNavMembers: "Members & Team",
+    dashNavSettings: "Settings",
+    dashNavLogout: "Log Out",
+    dashWelcomeTitle: "Hello, El Baraka",
+    dashWelcomeBadge: "Verified Charity",
+    dashWelcomeSub: "Manage volunteer missions, recruit dedicated helpers, and monitor the social impact of your actions across 69 wilayas.",
+    dashBtnNewMission: "+ Create Mission",
+    dashStatActiveMissions: "Published Offers",
+    dashStatVolunteers: "Volunteers Engaged",
+    dashStatPending: "Pending Reviews",
+    dashStatWilayas: "Active Missions",
+    dashSearchPlaceholder: "Search missions (title, location...)",
+    dashFilterTheme: "All Categories",
+    dashFilterDate: "All Dates",
+    dashFilterStatus: "All Statuses",
+    dashStatusOpen: "Open",
+    dashStatusClosed: "Full (Closed)",
+    dashCandidatesTitle: "Received Applications",
+    dashBtnAccept: "Accept",
+    dashBtnRefuse: "Decline",
+    dashBtnContact: "Contact",
+    
+    modalLoginTitle: "Sign in to your account",
+    tabVolunteer: "Volunteer",
+    tabAssoc: "Association",
+    labelEmail: "Email address",
+    labelPassword: "Password",
+    btnConnect: "Sign In",
+    noAccount: "Don't have an account?",
+    signupFree: "Sign up for free"
+  }
+};
+
+// Composant Sélecteur de Langue élégant (zéro emoji, design épuré vert émeraude)
+function LanguageDropdown({ currentLang, setCurrentLang }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const languages = [
+    { code: 'fr', label: 'Français', badge: 'FR' },
+    { code: 'ar', label: 'العربية', badge: 'AR' },
+    { code: 'en', label: 'English', badge: 'EN' }
+  ];
+
+  return (
+    <div className="lang-dropdown-wrapper" ref={ref}>
+      <button
+        type="button"
+        className="lang-dropdown-btn"
+        onClick={() => setOpen(!open)}
+        aria-label="Changer de langue"
+        title="Changer de langue / Change language / تغيير اللغة"
+      >
+        <svg className="lang-globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+        <span className="lang-current-code">{currentLang.toUpperCase()}</span>
+        <svg className={`lang-chevron ${open ? 'rotate' : ''}`} width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      {open && (
+        <div className="lang-dropdown-menu">
+          {languages.map(lang => (
+            <button
+              key={lang.code}
+              type="button"
+              className={`lang-menu-item ${currentLang === lang.code ? 'active' : ''}`}
+              onClick={() => {
+                setCurrentLang(lang.code);
+                setOpen(false);
+              }}
+            >
+              <span>{lang.label}</span>
+              <span className="lang-badge">{lang.badge}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
+  // Langue courante ('fr' | 'ar' | 'en') avec persistance
+  const [currentLang, setCurrentLang] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('athar_lang') || 'fr';
+    }
+    return 'fr';
+  });
+
+  // Gestion dynamique de la direction RTL et de la langue sur le document HTML
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('athar_lang', currentLang);
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    }
+  }, [currentLang]);
+
+  // Fonction utilitaire de traduction
+  const t = (key) => {
+    return translations[currentLang]?.[key] || translations['fr']?.[key] || key;
+  };
+
   // Loading state with skeleton placeholders
   const [isMissionsLoading, setIsMissionsLoading] = useState(true);
 
-  // View routing ('landing' | 'association')
+  // View routing ('landing' | 'association' | 'volunteer')
   const [currentView, setCurrentView] = useState(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#association' || window.location.pathname.includes('dashboard_association')) {
         return 'association';
       }
+      if (window.location.hash === '#volunteer' || window.location.pathname.includes('dashboard_benevole')) {
+        return 'volunteer';
+      }
     }
     return 'landing';
   });
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#association') {
+        setCurrentView('association');
+      } else if (window.location.hash === '#volunteer') {
+        setCurrentView('volunteer');
+      } else if (window.location.hash === '#accueil' || !window.location.hash) {
+        setCurrentView('landing');
+      }
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  // BÉNÉVOLE STATE
+  const [volunteerActiveTab, setVolunteerActiveTab] = useState('overview'); // 'overview' | 'explore' | 'applications' | 'profile' | 'security'
+  const [volunteerSearchQuery, setVolunteerSearchQuery] = useState('');
+  const [volunteerThemeFilter, setVolunteerThemeFilter] = useState('all');
+  const [volunteerWilayaFilter, setVolunteerWilayaFilter] = useState('all');
+  const [applyingMission, setApplyingMission] = useState(null);
+  const [volunteerApplyNote, setVolunteerApplyNote] = useState('');
+
+  const [volunteerUser, setVolunteerUser] = useState({
+    name: "Yasmine Belkacem",
+    email: "yasmine.belkacem@gmail.com",
+    phone: "+213 555 24 68 10",
+    wilaya: "16 - Alger",
+    commune: "Bab El Oued",
+    bio: "Étudiante en médecine, bénévole active depuis 2 ans sur des actions pédiatriques, de distribution solidaire et de soutien scolaire.",
+    skills: ["Premiers secours", "Animation d'enfants", "Logistique de dons", "Sensibilisation médicale"],
+    availability: "Week-ends & Mercredis",
+    hoursVolunteered: 48,
+    completedMissionsCount: 12
+  });
+
+  const [volunteerApplications, setVolunteerApplications] = useState([
+    {
+      id: 101,
+      missionId: 1,
+      missionTitle: "Distribution de repas — Ramadan",
+      associationName: "Association El Baraka",
+      wilaya: "06 - Béjaïa",
+      category: "Solidarité",
+      date: "15 Mars 2025",
+      status: "accepted", // 'pending' | 'accepted' | 'rejected' | 'completed'
+      appliedDate: "10 Mars 2025",
+      notes: "Candidature validée ! Rendez-vous au centre de tri à 09h00."
+    },
+    {
+      id: 102,
+      missionId: 2,
+      missionTitle: "Soutien scolaire pour enfants défavorisés",
+      associationName: "Association El Baraka",
+      wilaya: "16 - Alger",
+      category: "Éducation",
+      date: "22 Mars 2025",
+      status: "pending",
+      appliedDate: "12 Mars 2025",
+      notes: "En cours d'examen par le coordinateur pédagogique."
+    },
+    {
+      id: 103,
+      missionId: 3,
+      missionTitle: "Campagne de reboisement à Tizi Ouzou",
+      associationName: "Association Terre Verte",
+      wilaya: "15 - Tizi Ouzou",
+      category: "Environnement",
+      date: "12 Février 2025",
+      status: "completed",
+      appliedDate: "01 Février 2025",
+      hours: 6,
+      notes: "Mission accomplie avec succès. Attestation délivrée."
+    }
+  ]);
+
+  const [volunteerPasswordForm, setVolunteerPasswordForm] = useState({
+    current: '',
+    newPass: '',
+    confirmPass: ''
+  });
+
+  const handleApplyAsVolunteer = (mission) => {
+    if (!mission) return;
+    const already = volunteerApplications.find(a => a.missionId === mission.id);
+    if (already) {
+      showToast("Vous avez déjà postulé à cette mission.");
+      setApplyingMission(null);
+      return;
+    }
+    const newApp = {
+      id: Date.now(),
+      missionId: mission.id,
+      missionTitle: mission.title,
+      associationName: mission.association_name || "Association El Baraka",
+      wilaya: mission.wilaya || mission.location || "16 - Alger",
+      category: mission.category || "Solidarité",
+      date: mission.date || "À convenir",
+      status: "pending",
+      appliedDate: "Aujourd'hui",
+      notes: volunteerApplyNote || "Candidature déposée, en attente d'examen."
+    };
+    setVolunteerApplications(prev => [newApp, ...prev]);
+
+    // Also register candidate on association side
+    const newCand = {
+      id: Date.now(),
+      missionId: mission.id,
+      missionTitle: mission.title,
+      name: volunteerUser.name,
+      initials: volunteerUser.name.split(' ').map(n => n[0]).join('').slice(0, 2),
+      wilaya: volunteerUser.wilaya,
+      age: 24,
+      email: volunteerUser.email,
+      phone: volunteerUser.phone,
+      skills: volunteerUser.skills,
+      languages: ["Arabe", "Français", "Anglais"],
+      motivation: volunteerApplyNote || volunteerUser.bio,
+      appliedDate: "Aujourd'hui",
+      status: "pending"
+    };
+    setCandidatesList(prev => [newCand, ...prev]);
+
+    setApplyingMission(null);
+    setVolunteerApplyNote('');
+    showToast(`Candidature transmise à ${mission.title} !`);
+  };
+
+  const handleCancelApplication = (appId) => {
+    const app = volunteerApplications.find(a => a.id === appId);
+    setVolunteerApplications(prev => prev.filter(a => a.id !== appId));
+    if (app) {
+      setCandidatesList(prev => prev.filter(c => !(c.missionId === app.missionId && c.name === volunteerUser.name)));
+    }
+    showToast("Candidature retirée.");
+  };
+
+  const [volunteerAppStatusFilter, setVolunteerAppStatusFilter] = useState('all'); // 'all' | 'pending' | 'accepted' | 'completed' | 'rejected'
+  const [newSkillInput, setNewSkillInput] = useState('');
+
+  const handleAddVolunteerSkill = (e) => {
+    e?.preventDefault();
+    if (!newSkillInput.trim()) return;
+    if (volunteerUser.skills.includes(newSkillInput.trim())) {
+      showToast("Cette compétence est déjà dans votre profil.");
+      return;
+    }
+    setVolunteerUser(prev => ({
+      ...prev,
+      skills: [...prev.skills, newSkillInput.trim()]
+    }));
+    setNewSkillInput('');
+    showToast("Compétence ajoutée au profil !");
+  };
+
+  const handleRemoveVolunteerSkill = (skillToRemove) => {
+    setVolunteerUser(prev => ({
+      ...prev,
+      skills: prev.skills.filter(s => s !== skillToRemove)
+    }));
+    showToast("Compétence retirée.");
+  };
+
+  const handleUpdateVolunteerPassword = (e) => {
+    e.preventDefault();
+    if (!volunteerPasswordForm.newPass || volunteerPasswordForm.newPass !== volunteerPasswordForm.confirmPass) {
+      showToast("Les nouveaux mots de passe ne correspondent pas.");
+      return;
+    }
+    setVolunteerPasswordForm({ current: '', newPass: '', confirmPass: '' });
+    showToast("Mot de passe mis à jour avec succès !");
+  };
+
+  // ASSOCIATION STATE EXTENSIONS
+  const [editingMission, setEditingMission] = useState(null);
+  const [isEditingAssocProfile, setIsEditingAssocProfile] = useState(false);
+  const [assocPasswordForm, setAssocPasswordForm] = useState({
+    current: '',
+    newPass: '',
+    confirmPass: ''
+  });
+
+  const handleUpdateAssocPassword = (e) => {
+    e.preventDefault();
+    if (!assocPasswordForm.newPass || assocPasswordForm.newPass !== assocPasswordForm.confirmPass) {
+      showToast("Les nouveaux mots de passe ne correspondent pas.");
+      return;
+    }
+    setAssocPasswordForm({ current: '', newPass: '', confirmPass: '' });
+    showToast("Mot de passe association mis à jour avec succès !");
+  };
+
+  const handleSaveEditMission = (e) => {
+    e.preventDefault();
+    if (!editingMission) return;
+    setAssociationMissions(prev => prev.map(m => {
+      if (m.id === editingMission.id) {
+        return {
+          ...m,
+          title: editingMission.title,
+          category: editingMission.category,
+          location: editingMission.location,
+          wilaya: editingMission.wilaya || editingMission.location,
+          date: editingMission.date,
+          spots_total: parseInt(editingMission.spots_total, 10) || m.spots_total,
+          description: editingMission.description
+        };
+      }
+      return m;
+    }));
+    setEditingMission(null);
+    showToast("Mission modifiée avec succès !");
+  };
+
+  const handleToggleMissionClose = (missionId) => {
+    setAssociationMissions(prev => prev.map(m => {
+      if (m.id === missionId) {
+        const isFull = m.spots_registered >= m.spots_total;
+        if (isFull) {
+          showToast(`Mission "${m.title}" réouverte (+5 places) !`);
+          return { ...m, spots_total: m.spots_total + 5 };
+        } else {
+          showToast(`Mission "${m.title}" clôturée.`);
+          return { ...m, spots_registered: m.spots_total };
+        }
+      }
+      return m;
+    }));
+  };
 
   const [isDarkMode, setIsDarkMode] = useState(false);
   const toggleDarkMode = () => {
@@ -466,8 +1097,8 @@ export default function App() {
 
     setCandidatesList(prev => prev.map(c => c.id === cand.id ? { ...c, status: 'accepted' } : c));
     
-    // Incrémenter les inscrits de la mission
-    if (targetMission) {
+    // Incrémenter les inscrits de la mission si le candidat n'était pas déjà accepté
+    if (targetMission && cand.status !== 'accepted') {
       setAssociationMissions(prev => prev.map(m => {
         if (m.id === targetMission.id) {
           const newRegistered = Math.min(m.spots_registered + 1, m.spots_total);
@@ -477,6 +1108,14 @@ export default function App() {
       }));
     }
 
+    // Synchroniser avec les candidatures de l'espace bénévole
+    setVolunteerApplications(prev => prev.map(va => {
+      if (va.missionId === cand.missionId && (cand.name.includes("Yasmine") || cand.name === volunteerUser.name)) {
+        return { ...va, status: 'accepted', notes: "Candidature validée par l'association ! Vous êtes attendu sur le terrain." };
+      }
+      return va;
+    }));
+
     if (selectedCandidateDetail && selectedCandidateDetail.id === cand.id) {
       setSelectedCandidateDetail(prev => ({ ...prev, status: 'accepted' }));
     }
@@ -485,7 +1124,29 @@ export default function App() {
   };
 
   const handleRejectCandidate = (cand) => {
+    const targetMission = associationMissions.find(m => m.id === cand.missionId);
+    const wasAccepted = cand.status === 'accepted';
+
     setCandidatesList(prev => prev.map(c => c.id === cand.id ? { ...c, status: 'rejected' } : c));
+    
+    // Décrémenter si elle était acceptée auparavant
+    if (wasAccepted && targetMission) {
+      setAssociationMissions(prev => prev.map(m => {
+        if (m.id === targetMission.id) {
+          return { ...m, spots_registered: Math.max(0, m.spots_registered - 1) };
+        }
+        return m;
+      }));
+    }
+
+    // Synchroniser avec les candidatures de l'espace bénévole
+    setVolunteerApplications(prev => prev.map(va => {
+      if (va.missionId === cand.missionId && (cand.name.includes("Yasmine") || cand.name === volunteerUser.name)) {
+        return { ...va, status: 'rejected', notes: "La mission a atteint son quota ou le profil n'a pas été retenu pour cette session." };
+      }
+      return va;
+    }));
+
     if (selectedCandidateDetail && selectedCandidateDetail.id === cand.id) {
       setSelectedCandidateDetail(prev => ({ ...prev, status: 'rejected' }));
     }
@@ -903,6 +1564,9 @@ export default function App() {
       if (window.location.hash === '#association') {
         setCurrentView('association');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (window.location.hash === '#volunteer') {
+        setCurrentView('volunteer');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (window.location.hash === '#accueil' || window.location.hash === '' || window.location.hash === '#missions') {
         setCurrentView('landing');
       }
@@ -932,7 +1596,7 @@ export default function App() {
   const pendingCandidatesCount = candidatesList.filter(c => c.status === 'pending').length;
 
   return (
-    <>
+    <div className={`app-root ${currentLang === 'ar' ? 'rtl-mode' : ''}`} dir={currentLang === 'ar' ? 'rtl' : 'ltr'}>
       {/* Toast Notification (zero emoji) */}
       {toastMessage && (
         <div className="toast-notice">
@@ -957,8 +1621,8 @@ export default function App() {
                 </div>
 
                 <div className="menu">
-                  <a href="#accueil" className="active">Accueil</a>
-                  <a href="#missions">Missions</a>
+                  <a href="#accueil" className="active">{t('navHome')}</a>
+                  <a href="#missions">{t('navMissions')}</a>
                   <a
                     href="#association"
                     onClick={(e) => {
@@ -966,39 +1630,47 @@ export default function App() {
                       setCurrentView('association');
                       window.location.hash = '#association';
                       window.scrollTo({ top: 0, behavior: 'smooth' });
-                      showToast("Espace Association El Baraka");
+                      showToast(t('dashTitle') + " - Association El Baraka");
                     }}
                   >
-                    Associations
+                    {t('navAssociations')}
                   </a>
-                  <a href="#about">À propos</a>
-                  <a href="#contact">Blog</a>
+                  <a
+                    href="#volunteer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentView('volunteer');
+                      window.location.hash = '#volunteer';
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      showToast(currentLang === 'ar' ? `فضاء المتطوع - ${volunteerUser.name}` : `Espace Bénévole - ${volunteerUser.name}`);
+                    }}
+                  >
+                    {currentLang === 'ar' ? "فضاء المتطوع" : currentLang === 'en' ? "Volunteer" : "Bénévoles"}
+                  </a>
+                  <a href="#about">{t('navAbout')}</a>
+                  <a href="#contact">{t('navBlog')}</a>
                 </div>
 
             <div className="right">
               <div
                 className="icon-btn"
-                title="Recherche"
-                onClick={() => showToast("Recherche bientôt disponible !")}
+                title={t('navSearch')}
+                onClick={() => showToast(currentLang === 'ar' ? "البحث سيكون متاحاً قريباً!" : "Recherche bientôt disponible !")}
               >
                 <IconSearch className="w-4 h-4" />
               </div>
 
               <button className="btn btn-ghost" onClick={() => openLogin('volunteer')}>
-                Se connecter
+                {t('navLogin')}
               </button>
 
               <button className="btn btn-green" onClick={() => openSignup('choice')}>
-                <span>S'inscrire</span>
-                <IconArrowRight className="w-3.5 h-3.5 ml-1 inline" />
+                <span>{t('navSignup')}</span>
+                <IconArrowRight className={`w-3.5 h-3.5 inline ${currentLang === 'ar' ? 'mr-1 transform rotate-180' : 'ml-1'}`} />
               </button>
 
-              <div
-                className="lang"
-                onClick={() => showToast("La version arabe complète sera activée très bientôt !")}
-              >
-                <b>FR</b> | AR
-              </div>
+              {/* SÉLECTEUR DE LANGUE DISCRET & ÉLÉGANT */}
+              <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
             </div>
           </nav>
         </div>
@@ -1016,21 +1688,21 @@ export default function App() {
           <div className="wrap panoramic-banner-content">
             <div className="panoramic-banner-text">
               <span className="panoramic-banner-badge">
-                Initiative Citoyenne Nationale
+                {t('heroBadge')}
               </span>
               <h1 className="panoramic-banner-title">
-                Chaque action laisse une empreinte.
+                {t('heroTitle')}
               </h1>
               <p className="panoramic-banner-desc">
-                Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.
+                {t('heroSubtitle')}
               </p>
               <div className="panoramic-banner-action">
                 <button
                   onClick={() => openSignup('choice')}
                   className="panoramic-banner-btn"
                 >
-                  <span>Rejoindre la communauté</span>
-                  <IconArrowRight className="w-4 h-4" />
+                  <span>{t('heroJoin')}</span>
+                  <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'rotate-180' : ''}`} />
                 </button>
               </div>
             </div>
@@ -1147,25 +1819,25 @@ export default function App() {
               <div className="num">
                 {counts.volunteers.toLocaleString('fr-FR').replace(/\s/g, ' ')}
               </div>
-              <div className="lb">bénévoles inscrits</div>
+              <div className="lb">{t('statVolunteers')}</div>
             </div>
             <div className="stat">
               <div className="num">
                 {counts.associations}
               </div>
-              <div className="lb">associations partenaires</div>
+              <div className="lb">{t('statAssocs')}</div>
             </div>
             <div className="stat">
               <div className="num">
                 {counts.missions.toLocaleString('fr-FR').replace(/\s/g, ' ')}
               </div>
-              <div className="lb">missions publiées</div>
+              <div className="lb">{t('statMissions')}</div>
             </div>
             <div className="stat">
               <div className="num">
                 {counts.wilayas}
               </div>
-              <div className="lb">wilayas couvertes</div>
+              <div className="lb">{t('statWilayas')}</div>
             </div>
           </div>
         </div>
@@ -1175,55 +1847,71 @@ export default function App() {
       <section className="causes" id="causes">
         <div className="wrap">
           <div className="chead">
-            <h2>Des causes qui ont besoin de vous</h2>
+            <h2>{t('causesTitle')}</h2>
             <p>
-              Quelle que soit la cause qui vous touche, une mission vous attend.
-              Découvrez les domaines dans lesquels notre communauté s'engage.
+              {t('causesSubtitle')}
             </p>
           </div>
 
           <div className="cgrid">
             <div className="cc">
-              <div className="ci" style={{ background: '#e6f3ef', color: '#0d5b61' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 24l8.8-8.3a5 5 0 0 0 0-7.1Z"/>
-                </svg>
+              <div className="cc-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80"
+                  alt={t('causeSolidarityTitle')}
+                  className="cc-img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Solidarité</h3>
-              <p>Soutenez les familles en difficulté, organisez des collectes et soyez présent pour votre communauté dans les moments durs.</p>
+              <div className="cc-body">
+                <h3>{t('causeSolidarityTitle')}</h3>
+                <p>{t('causeSolidarityDesc')}</p>
+              </div>
             </div>
 
             <div className="cc">
-              <div className="ci" style={{ background: '#eef2fb', color: '#0c363d' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M22 9 12 4 2 9l10 5 10-5Z"/>
-                  <path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>
-                </svg>
+              <div className="cc-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+                  alt={t('causeEducationTitle')}
+                  className="cc-img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Éducation</h3>
-              <p>Accompagnez les enfants, animez des ateliers d'alphabétisation et ouvrez les portes du savoir à tous.</p>
+              <div className="cc-body">
+                <h3>{t('causeEducationTitle')}</h3>
+                <p>{t('causeEducationDesc')}</p>
+              </div>
             </div>
 
             <div className="cc">
-              <div className="ci" style={{ background: '#faf2dd', color: '#f59e0b' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M12 3C7 8 7 14 12 21c5-7 5-13 0-18Z"/>
-                  <path d="M12 21c-4-3-6-7-2-11"/>
-                </svg>
+              <div className="cc-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80"
+                  alt={t('causeEnvironmentTitle')}
+                  className="cc-img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Environnement</h3>
-              <p>Plantez des arbres, nettoyez les plages et les quartiers, et protégez la beauté naturelle de l'Algérie.</p>
+              <div className="cc-body">
+                <h3>{t('causeEnvironmentTitle')}</h3>
+                <p>{t('causeEnvironmentDesc')}</p>
+              </div>
             </div>
 
             <div className="cc">
-              <div className="ci" style={{ background: '#fdeeea', color: '#e05d49' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M20.8 8.6a5 5 0 0 0-7.1 0L12 10.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 24l8.8-8.3a5 5 0 0 0 0-7.1Z"/>
-                  <path d="M6 12h3l1.5-3 3 6L18 12h0"/>
-                </svg>
+              <div className="cc-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80"
+                  alt={t('causeHealthTitle')}
+                  className="cc-img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Santé</h3>
-              <p>Participez aux campagnes de sensibilisation, aux dons du sang et aux initiatives de soin de proximité.</p>
+              <div className="cc-body">
+                <h3>{t('causeHealthTitle')}</h3>
+                <p>{t('causeHealthDesc')}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1427,11 +2115,12 @@ export default function App() {
                   onClick={() => {
                     setCurrentView('landing');
                     window.location.hash = '#accueil';
-                    showToast("Retour au site public");
+                    showToast(currentLang === 'ar' ? "العودة للموقع العام" : "Retour au site public");
                   }}
                 >
-                  ← Retour au site public
+                  {t('navBackToPublic')}
                 </button>
+                <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
                 <button
                   className="notif-btn"
                   onClick={() => {
@@ -1450,7 +2139,7 @@ export default function App() {
                   <div className="avatar-icon">EB</div>
                   <div>
                     <span>Association El Baraka</span>
-                    <small style={{ display: 'block', color: 'var(--muted)', fontSize: '10.5px' }}>Organisateur agréé</small>
+                    <small style={{ display: 'block', color: 'var(--muted)', fontSize: '10.5px' }}>{t('dashWelcomeBadge')}</small>
                   </div>
                   <span>▾</span>
                 </div>
@@ -1461,7 +2150,7 @@ export default function App() {
             <section className="hero-panoramic">
               <div className="hero-eyebrow">ESPACE ASSOCIATION · EL BARAKA</div>
               <h1 className="hero-title">
-                Bonjour, El Baraka
+                {t('dashWelcomeTitle')}
                 <span style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -1475,11 +2164,11 @@ export default function App() {
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}>
                   <IconShieldCheck className="w-3.5 h-3.5" />
-                  Association vérifiée
+                  {t('dashWelcomeBadge')}
                 </span>
               </h1>
               <p className="hero-desc">
-                Gérez vos missions solidaires, mobilisez des bénévoles engagés et suivez l'impact de vos actions caritatives à travers les 69 wilayas.
+                {t('dashWelcomeSub')}
               </p>
             </section>
 
@@ -1494,7 +2183,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="dash-impact-num">{associationMissions.length}</div>
-                  <div className="dash-impact-lbl">Offres publiées</div>
+                  <div className="dash-impact-lbl">{t('dashStatActiveMissions')}</div>
                 </div>
               </article>
 
@@ -1509,7 +2198,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="dash-impact-num">{totalSpotsRegistered + 290}</div>
-                  <div className="dash-impact-lbl">Bénévoles touchés</div>
+                  <div className="dash-impact-lbl">{t('dashStatVolunteers')}</div>
                 </div>
               </article>
 
@@ -1521,13 +2210,13 @@ export default function App() {
                   </svg>
                 </div>
                 <div>
-                  <div className="dash-impact-num">{candidatesList.length + 276}</div>
-                  <div className="dash-impact-lbl">Candidatures reçues</div>
+                  <div className="dash-impact-num">69</div>
+                  <div className="dash-impact-lbl">Wilayas actives</div>
                 </div>
               </article>
 
               <article className="dash-impact-card">
-                <div className="dash-impact-icon rose">
+                <div className="dash-impact-icon coral">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <circle cx="12" cy="12" r="10"/>
                     <polyline points="12 6 12 12 16 14"/>
@@ -1535,7 +2224,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="dash-impact-num">{openMissionsCount}</div>
-                  <div className="dash-impact-lbl">Missions en cours</div>
+                  <div className="dash-impact-lbl">{t('dashStatWilayas')}</div>
                 </div>
               </article>
             </section>
@@ -1565,7 +2254,7 @@ export default function App() {
                       onClick={() => setDashActiveTab('missions')}
                     >
                       <IconBriefcase className="w-4 h-4" />
-                      <span>Missions & Offres</span>
+                      <span>{t('dashNavMissions')}</span>
                       <span className="pill-badge">{associationMissions.length}</span>
                     </button>
 
@@ -1575,7 +2264,7 @@ export default function App() {
                       onClick={() => setDashActiveTab('adherents')}
                     >
                       <IconUsers className="w-4 h-4" />
-                      <span>Candidatures</span>
+                      <span>{t('dashNavCandidates')}</span>
                       <span className="pill-badge" style={pendingCandidatesCount > 0 ? { background: '#fef3c7', color: '#92400e' } : {}}>
                         {pendingCandidatesCount > 0 ? `${pendingCandidatesCount} en attente` : candidatesList.length}
                       </span>
@@ -1587,7 +2276,7 @@ export default function App() {
                       onClick={() => setDashActiveTab('besoins')}
                     >
                       <IconPackage className="w-4 h-4" />
-                      <span>Besoins matériels</span>
+                      <span>{t('dashNavMembers')}</span>
                       <span className="pill-badge">{needsList.length}</span>
                     </button>
 
@@ -1597,7 +2286,7 @@ export default function App() {
                       onClick={() => setDashActiveTab('profil')}
                     >
                       <IconBuilding className="w-4 h-4" />
-                      <span>Profil association</span>
+                      <span>{t('dashNavProfile')}</span>
                     </button>
 
                     <button
@@ -1606,7 +2295,7 @@ export default function App() {
                       onClick={() => setDashActiveTab('parametres')}
                     >
                       <IconSettings className="w-4 h-4" />
-                      <span>Paramètres</span>
+                      <span>{t('dashNavSettings')}</span>
                     </button>
                   </div>
                 </div>
@@ -1620,11 +2309,11 @@ export default function App() {
                   onClick={() => {
                     setCurrentView('landing');
                     window.location.hash = '#accueil';
-                    showToast("Retour au site public");
+                    showToast(currentLang === 'ar' ? "العودة للموقع العام" : "Retour au site public");
                   }}
                 >
-                  <IconChevronLeft className="w-4 h-4" />
-                  <span>Retour au site public</span>
+                  <IconChevronLeft className={`w-4 h-4 ${currentLang === 'ar' ? 'rotate-180' : ''}`} />
+                  <span>{t('navBackToPublic')}</span>
                 </button>
               </aside>
 
@@ -1969,15 +2658,38 @@ export default function App() {
                                 </div>
                               </div>
 
-                              {/* ACCÈS CANDIDATURES */}
+                              {/* ACCÈS CANDIDATURES & GESTION DE MISSION */}
                               <div style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'flex-end',
+                                justifyContent: 'space-between',
+                                flexWrap: 'wrap',
+                                gap: '8px',
                                 marginTop: '12px',
                                 paddingTop: '10px',
                                 borderTop: '1px solid #f1f5f9'
                               }}>
+                                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                                  <button
+                                    type="button"
+                                    className="dash-btn-sm dash-btn-outline"
+                                    onClick={() => setEditingMission({ ...m })}
+                                    title="Modifier les détails de la mission"
+                                  >
+                                    <IconEdit className="w-3.5 h-3.5" />
+                                    <span>Modifier</span>
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className={`dash-btn-sm ${isFull ? 'dash-btn-outline' : 'dash-btn-danger-outline'}`}
+                                    onClick={() => handleToggleMissionClose(m.id)}
+                                    title={isFull ? "Réouvrir avec 5 places supplémentaires" : "Marquer comme complète"}
+                                  >
+                                    <IconLock className="w-3.5 h-3.5" />
+                                    <span>{isFull ? 'Réouvrir (+5)' : 'Clôturer'}</span>
+                                  </button>
+                                </div>
+
                                 <button
                                   type="button"
                                   className="btn-mission-candidates"
@@ -1987,12 +2699,114 @@ export default function App() {
                                   }}
                                 >
                                   <IconUsers className="w-3.5 h-3.5" />
-                                  <span>Consulter les candidatures ({missionCandidates.length})</span>
+                                  <span>Candidatures ({missionCandidates.length})</span>
                                 </button>
                               </div>
                             </div>
                           );
                         })}
+                      </div>
+                    )}
+
+                    {/* MODAL : ÉDITION RAPIDE D'UNE MISSION */}
+                    {editingMission && (
+                      <div className="modal on" role="dialog" aria-modal="true" aria-label="Modifier la mission">
+                        <div className="modal-bg" onClick={() => setEditingMission(null)}></div>
+                        <div className="modal-card" style={{ maxWidth: '520px' }}>
+                          <button className="modal-x" onClick={() => setEditingMission(null)} aria-label="Fermer">
+                            <IconX className="w-4 h-4" />
+                          </button>
+
+                          <div className="modal-head sm">
+                            <div className="mtag asso">Édition de mission</div>
+                            <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '4px 0 0' }}>Modifier la mission</h3>
+                            <p style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
+                              Mettez à jour les informations, la capacité et la localisation.
+                            </p>
+                          </div>
+
+                          <form className="mform" onSubmit={handleSaveEditMission}>
+                            <label>Titre de la mission</label>
+                            <input
+                              type="text"
+                              required
+                              value={editingMission.title || ''}
+                              onChange={(e) => setEditingMission({ ...editingMission, title: e.target.value })}
+                            />
+
+                            <div className="frow">
+                              <div>
+                                <label>Thématique</label>
+                                <select
+                                  value={editingMission.category || 'Solidarité'}
+                                  onChange={(e) => setEditingMission({ ...editingMission, category: e.target.value })}
+                                >
+                                  <option value="Solidarité">Solidarité</option>
+                                  <option value="Éducation">Éducation</option>
+                                  <option value="Environnement">Environnement</option>
+                                  <option value="Santé">Santé</option>
+                                  <option value="Aide d'urgence">Aide d'urgence</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label>Wilaya (69 wilayas)</label>
+                                <select
+                                  value={editingMission.location || editingMission.wilaya || 'Alger'}
+                                  onChange={(e) => setEditingMission({ ...editingMission, location: e.target.value, wilaya: e.target.value })}
+                                >
+                                  {WILAYAS_LIST.map((w) => (
+                                    <option key={w.code} value={w.name}>
+                                      {w.code} - {w.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
+
+                            <div className="frow">
+                              <div>
+                                <label>Date de la mission</label>
+                                <input
+                                  type="text"
+                                  value={editingMission.date || ''}
+                                  onChange={(e) => setEditingMission({ ...editingMission, date: e.target.value })}
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label>Places totales (Capacité max)</label>
+                                <input
+                                  type="number"
+                                  min={editingMission.spots_registered || 1}
+                                  max="500"
+                                  value={editingMission.spots_total || ''}
+                                  onChange={(e) => setEditingMission({ ...editingMission, spots_total: e.target.value })}
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            <label>Description des missions</label>
+                            <textarea
+                              rows={3}
+                              value={editingMission.description || ''}
+                              onChange={(e) => setEditingMission({ ...editingMission, description: e.target.value })}
+                            ></textarea>
+
+                            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '16px' }}>
+                              <button
+                                type="button"
+                                className="btn btn-ghost"
+                                onClick={() => setEditingMission(null)}
+                              >
+                                Annuler
+                              </button>
+                              <button type="submit" className="btn btn-green">
+                                Enregistrer les modifications
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     )}
                   </>
@@ -2302,48 +3116,174 @@ export default function App() {
                 {dashActiveTab === 'profil' && (
                   <div className="dash-card">
                     <div className="dash-card-header">
-                      <h2>Profil officiel & Informations de l'association</h2>
-                      <span style={{ background: '#dcfce7', color: '#15803d', fontSize: '12px', fontWeight: 800, padding: '4px 12px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                        <IconShieldCheck className="w-3.5 h-3.5" />
-                        Dossier vérifié
-                      </span>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '24px' }}>
-                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Nom légal</span>
-                        <strong style={{ fontSize: '16px', color: 'var(--bleu)' }}>{assocProfile.name}</strong>
+                      <div>
+                        <h2>Profil officiel & Informations de l'association</h2>
+                        <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                          Gérez vos coordonnées officielles et votre présentation publique.
+                        </p>
                       </div>
-                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>N° d'Agrément officiel</span>
-                        <strong style={{ fontSize: '16px', color: 'var(--vert)' }}>{assocProfile.agrement}</strong>
-                      </div>
-                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Responsable légal</span>
-                        <strong style={{ fontSize: '15px' }}>{assocProfile.responsable}</strong>
-                      </div>
-                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Siège & Wilaya</span>
-                        <strong style={{ fontSize: '15px' }}>{assocProfile.commune}, {assocProfile.wilaya}</strong>
-                      </div>
-                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Email de contact</span>
-                        <strong style={{ fontSize: '14.5px' }}>{assocProfile.email}</strong>
-                      </div>
-                      <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Téléphone officiel</span>
-                        <strong style={{ fontSize: '14.5px' }}>{assocProfile.phone}</strong>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ background: '#dcfce7', color: '#15803d', fontSize: '12px', fontWeight: 800, padding: '4px 12px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                          <IconShieldCheck className="w-3.5 h-3.5" />
+                          Dossier vérifié
+                        </span>
+                        <button
+                          type="button"
+                          className="dash-btn-sm dash-btn-outline"
+                          onClick={() => setIsEditingAssocProfile(!isEditingAssocProfile)}
+                        >
+                          <IconEdit className="w-3.5 h-3.5" />
+                          <span>{isEditingAssocProfile ? 'Annuler' : 'Modifier le profil'}</span>
+                        </button>
                       </div>
                     </div>
 
-                    <div style={{ background: '#f8fafc', padding: '18px', borderRadius: '14px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
-                      <span style={{ fontSize: '12px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>
-                        Présentation de l'association
-                      </span>
-                      <p style={{ margin: 0, fontSize: '14px', lineHeight: '1.6', color: '#334155' }}>
-                        {assocProfile.description}
-                      </p>
-                    </div>
+                    {isEditingAssocProfile ? (
+                      <form
+                        className="mform"
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          setIsEditingAssocProfile(false);
+                          showToast("Profil de l'association mis à jour avec succès !");
+                        }}
+                      >
+                        <div className="frow">
+                          <div>
+                            <label>Nom légal (fixé par l'agrément)</label>
+                            <input type="text" value={assocProfile.name} disabled style={{ background: '#f1f5f9', cursor: 'not-allowed' }} />
+                          </div>
+                          <div>
+                            <label>N° d'Agrément officiel</label>
+                            <input type="text" value={assocProfile.agrement} disabled style={{ background: '#f1f5f9', cursor: 'not-allowed' }} />
+                          </div>
+                        </div>
+
+                        <div className="frow">
+                          <div>
+                            <label>Responsable légal / Président</label>
+                            <input
+                              type="text"
+                              value={assocProfile.responsable}
+                              onChange={(e) => setAssocProfile({ ...assocProfile, responsable: e.target.value })}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label>Wilaya (69 wilayas)</label>
+                            <select
+                              value={assocProfile.wilaya}
+                              onChange={(e) => setAssocProfile({ ...assocProfile, wilaya: e.target.value })}
+                            >
+                              {WILAYAS_LIST.map((w) => (
+                                <option key={w.code} value={w.name}>
+                                  {w.code} - {w.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="frow">
+                          <div>
+                            <label>Commune</label>
+                            <input
+                              type="text"
+                              value={assocProfile.commune}
+                              onChange={(e) => setAssocProfile({ ...assocProfile, commune: e.target.value })}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label>Adresse du siège</label>
+                            <input
+                              type="text"
+                              value={assocProfile.address}
+                              onChange={(e) => setAssocProfile({ ...assocProfile, address: e.target.value })}
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="frow">
+                          <div>
+                            <label>Email de contact officiel</label>
+                            <input
+                              type="email"
+                              value={assocProfile.email}
+                              onChange={(e) => setAssocProfile({ ...assocProfile, email: e.target.value })}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label>Téléphone officiel</label>
+                            <input
+                              type="tel"
+                              value={assocProfile.phone}
+                              onChange={(e) => setAssocProfile({ ...assocProfile, phone: e.target.value })}
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <label>Présentation de l'association</label>
+                        <textarea
+                          rows={3}
+                          value={assocProfile.description}
+                          onChange={(e) => setAssocProfile({ ...assocProfile, description: e.target.value })}
+                        ></textarea>
+
+                        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '14px' }}>
+                          <button
+                            type="button"
+                            className="btn btn-ghost"
+                            onClick={() => setIsEditingAssocProfile(false)}
+                          >
+                            Annuler
+                          </button>
+                          <button type="submit" className="btn btn-green">
+                            Enregistrer le profil
+                          </button>
+                        </div>
+                      </form>
+                    ) : (
+                      <>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '24px' }}>
+                          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Nom légal</span>
+                            <strong style={{ fontSize: '16px', color: 'var(--bleu)' }}>{assocProfile.name}</strong>
+                          </div>
+                          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>N° d'Agrément officiel</span>
+                            <strong style={{ fontSize: '16px', color: 'var(--vert)' }}>{assocProfile.agrement}</strong>
+                          </div>
+                          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Responsable légal</span>
+                            <strong style={{ fontSize: '15px' }}>{assocProfile.responsable}</strong>
+                          </div>
+                          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Siège & Wilaya</span>
+                            <strong style={{ fontSize: '15px' }}>{assocProfile.commune}, {assocProfile.wilaya}</strong>
+                          </div>
+                          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Email de contact</span>
+                            <strong style={{ fontSize: '14.5px' }}>{assocProfile.email}</strong>
+                          </div>
+                          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <span style={{ fontSize: '11.5px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase' }}>Téléphone officiel</span>
+                            <strong style={{ fontSize: '14.5px' }}>{assocProfile.phone}</strong>
+                          </div>
+                        </div>
+
+                        <div style={{ background: '#f8fafc', padding: '18px', borderRadius: '14px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+                          <span style={{ fontSize: '12px', color: 'var(--muted)', display: 'block', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>
+                            Présentation de l'association
+                          </span>
+                          <p style={{ margin: 0, fontSize: '14px', lineHeight: '1.6', color: '#334155' }}>
+                            {assocProfile.description}
+                          </p>
+                        </div>
+                      </>
+                    )}
 
                     <div style={{
                       display: 'flex',
@@ -2364,53 +3304,1069 @@ export default function App() {
                   </div>
                 )}
 
-                {/* 5. ONGLET PARAMÈTRES */}
+                {/* 5. ONGLET PARAMÈTRES & SÉCURITÉ */}
                 {dashActiveTab === 'parametres' && (
-                  <div className="dash-card">
-                    <div className="dash-card-header">
-                      <h2>Paramètres du compte & Notifications</h2>
-                      <span style={{ fontSize: '13px', color: 'var(--muted)' }}>Configuration générale</span>
+                  <>
+                    <div className="dash-card">
+                      <div className="dash-card-header">
+                        <h2>Paramètres du compte & Notifications</h2>
+                        <span style={{ fontSize: '13px', color: 'var(--muted)' }}>Configuration générale</span>
+                      </div>
+
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                          <div>
+                            <strong style={{ display: 'block', fontSize: '14.5px' }}>Notifications par email</strong>
+                            <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>Recevoir un email instantané pour chaque nouvelle candidature</span>
+                          </div>
+                          <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', accentColor: 'var(--vert)' }} />
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                          <div>
+                            <strong style={{ display: 'block', fontSize: '14.5px' }}>Clôture automatique des missions complètes</strong>
+                            <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>Fermer l'offre automatiquement quand les places sont atteintes</span>
+                          </div>
+                          <input type="checkbox" defaultChecked disabled style={{ width: '20px', height: '20px', accentColor: 'var(--vert)' }} />
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                          <div>
+                            <strong style={{ display: 'block', fontSize: '14.5px' }}>Visibilité publique de l'association</strong>
+                            <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>Votre association apparaît dans l'annuaire des 69 wilayas</span>
+                          </div>
+                          <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', accentColor: 'var(--vert)' }} />
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        className="btn btn-green btn-lg"
+                        style={{ marginTop: '24px' }}
+                        onClick={() => showToast("Paramètres sauvegardés avec succès")}
+                      >
+                        Enregistrer les notifications
+                      </button>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                    {/* SÉCURITÉ DU COMPTE & MOT DE PASSE */}
+                    <div className="dash-card" style={{ marginTop: '20px' }}>
+                      <div className="dash-card-header">
                         <div>
-                          <strong style={{ display: 'block', fontSize: '14.5px' }}>Notifications par email</strong>
-                          <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>Recevoir un email instantané pour chaque nouvelle candidature</span>
+                          <h2>Sécurité & Changement de mot de passe</h2>
+                          <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                            Mettez à jour le mot de passe d'accès à l'espace association.
+                          </p>
                         </div>
-                        <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', accentColor: 'var(--vert)' }} />
+                        <IconLock className="w-5 h-5 text-slate-400" />
                       </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <div>
-                          <strong style={{ display: 'block', fontSize: '14.5px' }}>Clôture automatique des missions complètes</strong>
-                          <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>Fermer l'offre automatiquement quand les places sont atteintes</span>
+                      <form className="mform" onSubmit={handleUpdateAssocPassword}>
+                        <div className="frow">
+                          <div>
+                            <label>Mot de passe actuel</label>
+                            <input
+                              type="password"
+                              placeholder="••••••••"
+                              value={assocPasswordForm.current}
+                              onChange={(e) => setAssocPasswordForm({ ...assocPasswordForm, current: e.target.value })}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label>Nouveau mot de passe</label>
+                            <input
+                              type="password"
+                              placeholder="Nouveau mot de passe"
+                              value={assocPasswordForm.newPass}
+                              onChange={(e) => setAssocPasswordForm({ ...assocPasswordForm, newPass: e.target.value })}
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label>Confirmer le mot de passe</label>
+                            <input
+                              type="password"
+                              placeholder="Confirmer"
+                              value={assocPasswordForm.confirmPass}
+                              onChange={(e) => setAssocPasswordForm({ ...assocPasswordForm, confirmPass: e.target.value })}
+                              required
+                            />
+                          </div>
                         </div>
-                        <input type="checkbox" defaultChecked disabled style={{ width: '20px', height: '20px', accentColor: 'var(--vert)' }} />
-                      </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
-                        <div>
-                          <strong style={{ display: 'block', fontSize: '14.5px' }}>Visibilité publique de l'association</strong>
-                          <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>Votre association apparaît dans l'annuaire des 69 wilayas</span>
-                        </div>
-                        <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', accentColor: 'var(--vert)' }} />
-                      </div>
+                        <button type="submit" className="btn btn-green" style={{ marginTop: '10px' }}>
+                          Mettre à jour le mot de passe
+                        </button>
+                      </form>
                     </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </main>
+        </div>
+      )}
+
+      {/* ======================================================== */}
+      {/* 3. DASHBOARD BÉNÉVOLE (Espace personnalisé & Sobre) */}
+      {/* ======================================================== */}
+      {currentView === 'volunteer' && (
+        <div className="dash-assoc-root dash-volunteer-root">
+          <main className="wrap">
+            {/* TOP HEADER BÉNÉVOLE */}
+            <header className="top">
+              <a
+                href="#accueil"
+                className="brand"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCurrentView('landing');
+                  window.location.hash = '#accueil';
+                }}
+              >
+                <img
+                  src="/assets/logo.png"
+                  alt="Athar Platform أثر"
+                  style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
+                />
+              </a>
+
+              <div className="actions">
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: '#f0fdf4',
+                  color: 'var(--vert)',
+                  border: '1px solid #bbf7d0',
+                  padding: '6px 14px',
+                  borderRadius: '999px',
+                  fontSize: '12px',
+                  fontWeight: 800
+                }}>
+                  <IconShieldCheck className="w-3.5 h-3.5" />
+                  <span>ESPACE BÉNÉVOLE</span>
+                </div>
+
+                <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
+
+                <div
+                  className="user"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => setVolunteerActiveTab('profile')}
+                  title="Voir mon profil bénévole"
+                >
+                  <div className="avatar" style={{ background: '#0d5b61', color: '#fff', fontWeight: 800 }}>
+                    {volunteerUser.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                  </div>
+                  <div>
+                    <span>{volunteerUser.name}</span>
+                    <small style={{ display: 'block', color: 'var(--muted)', fontSize: '10.5px' }}>
+                      {volunteerUser.wilaya}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            {/* HERO PANORAMIQUE BÉNÉVOLE */}
+            <section className="hero-panoramic">
+              <div className="hero-eyebrow">ESPACE BÉNÉVOLE · {volunteerUser.name.toUpperCase()}</div>
+              <h1 className="hero-title">
+                Chaque action laisse une empreinte.
+                <span style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: '#dcfce7',
+                  color: '#15803d',
+                  fontSize: '12.5px',
+                  fontWeight: 800,
+                  padding: '4px 14px',
+                  borderRadius: '999px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                }}>
+                  <IconShieldCheck className="w-3.5 h-3.5" />
+                  Bénévole vérifié
+                </span>
+              </h1>
+              <p className="hero-desc">
+                Suivez votre engagement solidaire, découvrez des missions adaptées à votre profil et rejoignez les associations actives sur le terrain à travers 69 wilayas.
+              </p>
+            </section>
+
+            {/* 4 STATS IMPACT CARDS BÉNÉVOLE */}
+            <section className="dash-impact-grid">
+              <article className="dash-impact-card">
+                <div className="dash-impact-icon green">
+                  <IconAward className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="dash-impact-num">{volunteerUser.completedMissionsCount}</div>
+                  <div className="dash-impact-lbl">Missions accomplies</div>
+                </div>
+              </article>
+
+              <article className="dash-impact-card">
+                <div className="dash-impact-icon blue">
+                  <IconClock className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="dash-impact-num">{volunteerUser.hoursVolunteered} h</div>
+                  <div className="dash-impact-lbl">Heures d'engagement</div>
+                </div>
+              </article>
+
+              <article className="dash-impact-card">
+                <div className="dash-impact-icon gold">
+                  <IconBriefcase className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="dash-impact-num">
+                    {volunteerApplications.filter(a => a.status === 'pending' || a.status === 'accepted').length}
+                  </div>
+                  <div className="dash-impact-lbl">Candidatures en cours</div>
+                </div>
+              </article>
+
+              <article className="dash-impact-card">
+                <div className="dash-impact-icon coral">
+                  <IconMapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="dash-impact-num">69</div>
+                  <div className="dash-impact-lbl">Wilayas accessibles</div>
+                </div>
+              </article>
+            </section>
+
+            {/* GRILLE PRINCIPALE BÉNÉVOLE : BARRE UNIQUE À GAUCHE, CONTENU À DROITE */}
+            <div className="dash-main-grid">
+              {/* BARRE LATÉRALE UNIQUE BÉNÉVOLE */}
+              <aside className="dash-unified-sidebar">
+                <div className="sidebar-profile-head">
+                  <div className="sidebar-profile-avatar" style={{ background: '#0d5b61', color: '#fff', fontWeight: 800 }}>
+                    {volunteerUser.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                  </div>
+                  <div className="sidebar-profile-info">
+                    <strong>{volunteerUser.name}</strong>
+                    <small>{volunteerUser.commune}, {volunteerUser.wilaya}</small>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="sidebar-section-label">Menu Bénévole</div>
+                  <div className="sidebar-nav-list">
+                    <button
+                      type="button"
+                      className={`sidebar-nav-btn ${volunteerActiveTab === 'overview' ? 'active' : ''}`}
+                      onClick={() => setVolunteerActiveTab('overview')}
+                    >
+                      <IconAward className="w-4 h-4" />
+                      <span>Vue d'ensemble</span>
+                    </button>
 
                     <button
                       type="button"
-                      className="btn btn-green btn-lg"
-                      style={{ marginTop: '24px' }}
-                      onClick={() => showToast("Paramètres sauvegardés avec succès")}
+                      className={`sidebar-nav-btn ${volunteerActiveTab === 'explore' ? 'active' : ''}`}
+                      onClick={() => setVolunteerActiveTab('explore')}
                     >
-                      Enregistrer les modifications
+                      <IconSearch className="w-4 h-4" />
+                      <span>Trouver des missions</span>
+                      <span className="pill-badge">{associationMissions.filter(m => m.spots_registered < m.spots_total).length}</span>
                     </button>
+
+                    <button
+                      type="button"
+                      className={`sidebar-nav-btn ${volunteerActiveTab === 'applications' ? 'active' : ''}`}
+                      onClick={() => setVolunteerActiveTab('applications')}
+                    >
+                      <IconBriefcase className="w-4 h-4" />
+                      <span>Mes candidatures</span>
+                      <span className="pill-badge" style={{ background: '#e0f2fe', color: '#0369a1' }}>
+                        {volunteerApplications.length}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className={`sidebar-nav-btn ${volunteerActiveTab === 'profile' ? 'active' : ''}`}
+                      onClick={() => setVolunteerActiveTab('profile')}
+                    >
+                      <IconUsers className="w-4 h-4" />
+                      <span>Profil & Compétences</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className={`sidebar-nav-btn ${volunteerActiveTab === 'security' ? 'active' : ''}`}
+                      onClick={() => setVolunteerActiveTab('security')}
+                    >
+                      <IconSettings className="w-4 h-4" />
+                      <span>Sécurité du compte</span>
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="sidebar-back-btn"
+                  onClick={() => {
+                    setCurrentView('landing');
+                    window.location.hash = '#accueil';
+                    showToast(currentLang === 'ar' ? "العودة للموقع العام" : "Retour au site public");
+                  }}
+                >
+                  <IconChevronLeft className={`w-4 h-4 ${currentLang === 'ar' ? 'rotate-180' : ''}`} />
+                  <span>{t('navBackToPublic')}</span>
+                </button>
+              </aside>
+
+              {/* CONTENU À DROITE SELON L'ONGLET BÉNÉVOLE */}
+              <div className="dash-content-right">
+                {/* 1. VUE D'ENSEMBLE (IMPACT PERSONNEL & PROCHAINE MISSION) */}
+                {volunteerActiveTab === 'overview' && (
+                  <>
+                    {/* PROCHAINE MISSION CONFIRMÉE */}
+                    {(() => {
+                      const nextConfirmed = volunteerApplications.find(a => a.status === 'accepted');
+                      if (nextConfirmed) {
+                        return (
+                          <div className="dash-card" style={{ borderLeft: '4px solid var(--vert)', marginBottom: '18px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span className="badge-status accepted">
+                                  <IconCheck className="w-3.5 h-3.5" />
+                                  Prochaine mission confirmée
+                                </span>
+                                <span style={{ fontSize: '12.5px', color: 'var(--muted)', fontWeight: 600 }}>
+                                  Date : {nextConfirmed.date}
+                                </span>
+                              </div>
+                              <span style={{ fontSize: '12.5px', color: 'var(--vert)', fontWeight: 700 }}>
+                                {nextConfirmed.wilaya}
+                              </span>
+                            </div>
+
+                            <h2 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 6px', color: 'var(--texte)' }}>
+                              {nextConfirmed.missionTitle}
+                            </h2>
+                            <p style={{ margin: '0 0 14px', fontSize: '13.5px', color: '#475569', lineHeight: '1.5' }}>
+                              Organisée par <strong>{nextConfirmed.associationName}</strong>. {nextConfirmed.notes}
+                            </p>
+
+                            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', paddingTop: '12px', borderTop: '1px solid #f1f5f9' }}>
+                              <span style={{ fontSize: '12px', color: 'var(--muted)', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                                <IconShieldCheck className="w-4 h-4 text-emerald-600" />
+                                Présence enregistrée automatiquement pour attestation
+                              </span>
+                              <button
+                                type="button"
+                                className="dash-btn-sm dash-btn-outline"
+                                onClick={() => setVolunteerActiveTab('applications')}
+                              >
+                                <span>Voir toutes mes candidatures</span>
+                                <IconArrowRight className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return (
+                        <div className="dash-card" style={{ marginBottom: '18px', textAlign: 'center', padding: '28px 20px' }}>
+                          <IconBriefcase className="w-8 h-8 text-slate-300" style={{ margin: '0 auto 8px', display: 'block' }} />
+                          <h3 style={{ margin: '0 0 4px', fontSize: '16px', fontWeight: 800 }}>Aucune mission programmée ce mois-ci</h3>
+                          <p style={{ margin: '0 0 14px', fontSize: '13px', color: 'var(--muted)' }}>
+                            Découvrez les opportunités des associations et postulez en 1 clic pour prêter main-forte.
+                          </p>
+                          <button
+                            type="button"
+                            className="btn btn-green"
+                            onClick={() => setVolunteerActiveTab('explore')}
+                          >
+                            Trouver une mission de bénévolat
+                          </button>
+                        </div>
+                      );
+                    })()}
+
+                    {/* SUIVI RÉCENT DE VOS CANDIDATURES */}
+                    <div className="dash-card">
+                      <div className="dash-card-header">
+                        <div>
+                          <h2>Vos candidatures récentes</h2>
+                          <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                            Dernières interactions avec les associations partenaires
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          className="dash-btn-sm dash-btn-outline"
+                          onClick={() => setVolunteerActiveTab('applications')}
+                        >
+                          Voir tout ({volunteerApplications.length})
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {volunteerApplications.slice(0, 3).map((app) => (
+                          <div
+                            key={app.id}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              flexWrap: 'wrap',
+                              gap: '12px',
+                              padding: '14px 16px',
+                              background: '#f8fafc',
+                              borderRadius: '12px',
+                              border: '1px solid #e2e8f0'
+                            }}
+                          >
+                            <div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                                <span className="mission-cat-badge">{app.category}</span>
+                                <strong style={{ fontSize: '14px', color: 'var(--texte)' }}>{app.missionTitle}</strong>
+                              </div>
+                              <span style={{ fontSize: '12.5px', color: 'var(--muted)' }}>
+                                {app.associationName} · {app.wilaya} · Date : {app.date}
+                              </span>
+                            </div>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                              <span className={`badge-status ${app.status}`}>
+                                {app.status === 'accepted' && '✓ Validée'}
+                                {app.status === 'pending' && 'En attente'}
+                                {app.status === 'completed' && '✓ Accomplie'}
+                                {app.status === 'rejected' && 'Non retenue'}
+                              </span>
+                              {app.status === 'pending' && (
+                                <button
+                                  type="button"
+                                  className="dash-btn-sm dash-btn-danger-outline"
+                                  onClick={() => handleCancelApplication(app.id)}
+                                  title="Annuler ma candidature"
+                                >
+                                  Retirer
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* COMPÉTENCES DÉCLARÉES */}
+                    <div className="dash-card" style={{ marginTop: '18px' }}>
+                      <div className="dash-card-header">
+                        <div>
+                          <h2>Compétences déclarées</h2>
+                          <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                            Visibles par les associations pour accélérer l'approbation de vos candidatures
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          className="dash-btn-sm dash-btn-outline"
+                          onClick={() => setVolunteerActiveTab('profile')}
+                        >
+                          <IconEdit className="w-3.5 h-3.5" />
+                          <span>Gérer</span>
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                        {volunteerUser.skills.map((skill, idx) => (
+                          <span key={idx} className="skill-pill">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* 2. TROUVER DES MISSIONS (EXPLORE & OPPORTUNITÉS) */}
+                {volunteerActiveTab === 'explore' && (
+                  <>
+                    <div className="dash-filters-card">
+                      <div className="dash-filters-top-row">
+                        {/* Recherche par mot-clé */}
+                        <div className="dash-search-wrap">
+                          <IconSearch className="w-4 h-4" />
+                          <input
+                            type="text"
+                            placeholder="Rechercher une opportunité (mot-clé, titre, association...)"
+                            value={volunteerSearchQuery}
+                            onChange={(e) => setVolunteerSearchQuery(e.target.value)}
+                          />
+                          {volunteerSearchQuery && (
+                            <button
+                              type="button"
+                              className="dash-search-clear"
+                              onClick={() => setVolunteerSearchQuery('')}
+                            >
+                              <IconX className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Filtre Wilaya parmi les 69 */}
+                        <select
+                          className="dash-filter-select"
+                          value={volunteerWilayaFilter}
+                          onChange={(e) => setVolunteerWilayaFilter(e.target.value)}
+                        >
+                          <option value="all">Toutes les wilayas (69)</option>
+                          {WILAYAS_LIST.map((w) => (
+                            <option key={w.code} value={w.name}>
+                              {w.code} - {w.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Filtres par thématique */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', paddingTop: '10px', borderTop: '1px solid #f1f5f9' }}>
+                        <div className="dash-filter-pills">
+                          <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--muted)', marginRight: '2px' }}>
+                            Thèmes :
+                          </span>
+                          {['all', 'Solidarité', 'Éducation', 'Environnement', 'Santé', "Aide d'urgence"].map((th) => (
+                            <button
+                              key={th}
+                              type="button"
+                              className={`dash-pill-btn ${volunteerThemeFilter === th ? 'active' : ''}`}
+                              onClick={() => setVolunteerThemeFilter(th)}
+                            >
+                              {th === 'all' ? 'Tous les thèmes' : th}
+                            </button>
+                          ))}
+                        </div>
+
+                        {(volunteerSearchQuery || volunteerThemeFilter !== 'all' || volunteerWilayaFilter !== 'all') && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setVolunteerSearchQuery('');
+                              setVolunteerThemeFilter('all');
+                              setVolunteerWilayaFilter('all');
+                            }}
+                            style={{ background: 'none', border: 'none', color: 'var(--vert)', fontSize: '12px', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
+                          >
+                            Réinitialiser
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* LISTE DES MISSIONS DISPONIBLES POUR LE BÉNÉVOLE */}
+                    {(() => {
+                      const filteredMissions = associationMissions.filter(m => {
+                        if (volunteerSearchQuery.trim()) {
+                          const q = volunteerSearchQuery.trim().toLowerCase();
+                          const match = m.title?.toLowerCase().includes(q) || m.description?.toLowerCase().includes(q) || m.location?.toLowerCase().includes(q);
+                          if (!match) return false;
+                        }
+                        if (volunteerThemeFilter !== 'all' && m.category !== volunteerThemeFilter) return false;
+                        if (volunteerWilayaFilter !== 'all' && m.location !== volunteerWilayaFilter && m.wilaya !== volunteerWilayaFilter) return false;
+                        return true;
+                      });
+
+                      if (filteredMissions.length === 0) {
+                        return (
+                          <div className="dash-empty-state">
+                            <IconSearch className="w-8 h-8 text-slate-300" style={{ margin: '0 auto 10px', display: 'block' }} />
+                            <h3>Aucune mission ne correspond à votre recherche</h3>
+                            <p>Modifiez vos critères ou parcourez les autres wilayas d'Algérie.</p>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div className="missions-list-wrap">
+                          {filteredMissions.map(m => {
+                            const isApplied = volunteerApplications.some(a => a.missionId === m.id);
+                            const isFull = m.spots_registered >= m.spots_total;
+                            const fillPercent = Math.min(Math.round((m.spots_registered / m.spots_total) * 100), 100);
+
+                            return (
+                              <div key={m.id} className="mission-cap-card">
+                                <div className="mission-cap-header">
+                                  <div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '8px' }}>
+                                      <span className="mission-cat-badge">{m.category}</span>
+                                      <span className="mission-meta-item">
+                                        <IconMapPin className="w-3.5 h-3.5" />
+                                        {m.location}
+                                      </span>
+                                      <span className="mission-meta-item">
+                                        <IconCalendar className="w-3.5 h-3.5" />
+                                        {m.date}
+                                      </span>
+                                    </div>
+                                    <h3 style={{ fontSize: '16.5px', fontWeight: 800, color: 'var(--texte)', margin: '2px 0 0' }}>
+                                      {m.title}
+                                    </h3>
+                                  </div>
+                                  <div>
+                                    {isApplied ? (
+                                      <span className="badge-status accepted">Candidature envoyée ✓</span>
+                                    ) : isFull ? (
+                                      <span className="cap-status-pill closed">Complet</span>
+                                    ) : (
+                                      <span className="cap-status-pill open">
+                                        <span className="cap-dot-pulse"></span>
+                                        {m.spots_total - m.spots_registered} places dispo
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+
+                                <p style={{ fontSize: '13px', color: '#64748b', margin: '8px 0 12px', lineHeight: '1.5' }}>
+                                  {m.description}
+                                </p>
+
+                                <div className="cap-progress-container">
+                                  <div className="cap-progress-head">
+                                    <span className="label">Bénévoles mobilisés :</span>
+                                    <span className={`numbers ${isFull ? 'full' : ''}`}>
+                                      <strong>{m.spots_registered}</strong> / {m.spots_total} ({fillPercent}%)
+                                    </span>
+                                  </div>
+                                  <div className="cap-bar-track">
+                                    <div className={`cap-bar-fill ${isFull ? 'full' : ''}`} style={{ width: `${fillPercent}%` }}></div>
+                                  </div>
+                                </div>
+
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #f1f5f9' }}>
+                                  {isApplied ? (
+                                    <button
+                                      type="button"
+                                      className="dash-btn-sm dash-btn-outline"
+                                      onClick={() => setVolunteerActiveTab('applications')}
+                                    >
+                                      Suivre ma candidature
+                                    </button>
+                                  ) : isFull ? (
+                                    <button type="button" className="dash-btn-sm" disabled style={{ opacity: 0.6, cursor: 'not-allowed', background: '#f1f5f9' }}>
+                                      Session complète
+                                    </button>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      className="btn btn-green btn-sm"
+                                      onClick={() => setApplyingMission(m)}
+                                    >
+                                      Postuler à cette mission
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })()}
+                  </>
+                )}
+
+                {/* 3. MES CANDIDATURES (SUIVI DU STATUT EN TEMPS RÉEL) */}
+                {volunteerActiveTab === 'applications' && (
+                  <div className="dash-card">
+                    <div className="dash-card-header">
+                      <div>
+                        <h2>Mes candidatures & Historique de missions</h2>
+                        <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                          Suivez les retours des associations et vos attestations de bénévolat
+                        </p>
+                      </div>
+                      <span className="pill-badge" style={{ background: 'var(--vert)', color: '#fff', padding: '6px 14px', borderRadius: '999px', fontSize: '12px', fontWeight: 800 }}>
+                        {volunteerApplications.length} candidatures
+                      </span>
+                    </div>
+
+                    {/* FILTRES PAR STATUT */}
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
+                      {[
+                        { id: 'all', label: `Toutes (${volunteerApplications.length})` },
+                        { id: 'pending', label: `En attente (${volunteerApplications.filter(a => a.status === 'pending').length})` },
+                        { id: 'accepted', label: `Validées (${volunteerApplications.filter(a => a.status === 'accepted').length})` },
+                        { id: 'completed', label: `Accomplies (${volunteerApplications.filter(a => a.status === 'completed').length})` },
+                        { id: 'rejected', label: `Refusées (${volunteerApplications.filter(a => a.status === 'rejected').length})` },
+                      ].map(tab => (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          className={`filter-btn ${volunteerAppStatusFilter === tab.id ? 'active' : ''}`}
+                          onClick={() => setVolunteerAppStatusFilter(tab.id)}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* LISTE DES CANDIDATURES */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                      {volunteerApplications
+                        .filter(a => volunteerAppStatusFilter === 'all' || a.status === volunteerAppStatusFilter)
+                        .map(app => (
+                          <div
+                            key={app.id}
+                            style={{
+                              padding: '16px 18px',
+                              borderRadius: '12px',
+                              background: '#ffffff',
+                              border: '1px solid #e2e8f0',
+                              boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '8px' }}>
+                              <div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '4px' }}>
+                                  <span className="mission-cat-badge">{app.category}</span>
+                                  <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: 'var(--texte)' }}>
+                                    {app.missionTitle}
+                                  </h3>
+                                </div>
+                                <span style={{ fontSize: '13px', color: 'var(--muted)' }}>
+                                  Association : <strong>{app.associationName}</strong> · Wilaya : {app.wilaya} · Date : {app.date}
+                                </span>
+                              </div>
+
+                              <span className={`badge-status ${app.status}`}>
+                                {app.status === 'accepted' && '✓ Candidature validée'}
+                                {app.status === 'pending' && 'En attente d\'examen'}
+                                {app.status === 'completed' && '✓ Mission accomplie'}
+                                {app.status === 'rejected' && 'Non retenue'}
+                              </span>
+                            </div>
+
+                            {/* NOTE OU RETOUR DE L'ASSOCIATION */}
+                            <div style={{
+                              background: '#f8fafc',
+                              borderRadius: '8px',
+                              padding: '10px 14px',
+                              fontSize: '13px',
+                              color: '#334155',
+                              margin: '10px 0',
+                              borderLeft: '3px solid var(--vert)'
+                            }}>
+                              <strong style={{ display: 'block', fontSize: '11.5px', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '2px' }}>
+                                Message / Consigne :
+                              </strong>
+                              {app.notes}
+                            </div>
+
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', paddingTop: '10px', borderTop: '1px solid #f1f5f9' }}>
+                              <span style={{ fontSize: '12px', color: 'var(--muted)' }}>
+                                Postulée le : {app.appliedDate}
+                              </span>
+
+                              <div style={{ display: 'flex', gap: '8px' }}>
+                                {app.status === 'pending' && (
+                                  <button
+                                    type="button"
+                                    className="dash-btn-sm dash-btn-danger-outline"
+                                    onClick={() => handleCancelApplication(app.id)}
+                                  >
+                                    Annuler la candidature
+                                  </button>
+                                )}
+                                {app.status === 'accepted' && (
+                                  <button
+                                    type="button"
+                                    className="dash-btn-sm dash-btn-outline"
+                                    onClick={() => showToast(`Coordonnées de l'association : 034 12 34 56 (contact@elbaraka-dz.org)`)}
+                                  >
+                                    Contacter l'association
+                                  </button>
+                                )}
+                                {app.status === 'completed' && (
+                                  <button
+                                    type="button"
+                                    className="dash-btn-sm dash-btn-outline"
+                                    onClick={() => showToast("Attestation officielle délivrée et enregistrée.")}
+                                  >
+                                    Télécharger l'attestation
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. PROFIL BÉNÉVOLE & COMPÉTENCES */}
+                {volunteerActiveTab === 'profile' && (
+                  <div className="dash-card">
+                    <div className="dash-card-header">
+                      <div>
+                        <h2>Mon profil bénévole & Compétences</h2>
+                        <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                          Ces informations permettent aux associations d'examiner et valider vos candidatures
+                        </p>
+                      </div>
+                      <span style={{ background: '#dcfce7', color: '#15803d', fontSize: '12px', fontWeight: 800, padding: '4px 12px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                        <IconShieldCheck className="w-3.5 h-3.5" />
+                        Profil actif
+                      </span>
+                    </div>
+
+                    <form
+                      className="mform"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        showToast("Profil bénévole enregistré avec succès !");
+                      }}
+                    >
+                      <div className="frow">
+                        <div>
+                          <label>Nom complet</label>
+                          <input
+                            type="text"
+                            value={volunteerUser.name}
+                            onChange={(e) => setVolunteerUser({ ...volunteerUser, name: e.target.value })}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label>Email</label>
+                          <input
+                            type="email"
+                            value={volunteerUser.email}
+                            onChange={(e) => setVolunteerUser({ ...volunteerUser, email: e.target.value })}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className="frow">
+                        <div>
+                          <label>Téléphone</label>
+                          <input
+                            type="tel"
+                            value={volunteerUser.phone}
+                            onChange={(e) => setVolunteerUser({ ...volunteerUser, phone: e.target.value })}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label>Wilaya de résidence (69 wilayas)</label>
+                          <select
+                            value={volunteerUser.wilaya}
+                            onChange={(e) => setVolunteerUser({ ...volunteerUser, wilaya: e.target.value })}
+                          >
+                            {WILAYAS_LIST.map(w => (
+                              <option key={w.code} value={`${w.code} - ${w.name}`}>
+                                {w.code} - {w.name}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="frow">
+                        <div>
+                          <label>Commune</label>
+                          <input
+                            type="text"
+                            value={volunteerUser.commune}
+                            onChange={(e) => setVolunteerUser({ ...volunteerUser, commune: e.target.value })}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label>Disponibilités habituelles</label>
+                          <input
+                            type="text"
+                            value={volunteerUser.availability}
+                            onChange={(e) => setVolunteerUser({ ...volunteerUser, availability: e.target.value })}
+                            placeholder="Ex. Week-ends, Soirées, Plein temps"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <label>Bio / Présentation personnelle</label>
+                      <textarea
+                        rows={3}
+                        value={volunteerUser.bio}
+                        onChange={(e) => setVolunteerUser({ ...volunteerUser, bio: e.target.value })}
+                      ></textarea>
+
+                      {/* GESTION DYNAMIQUE DES COMPÉTENCES */}
+                      <div style={{ marginTop: '16px', marginBottom: '16px' }}>
+                        <label style={{ display: 'block', marginBottom: '6px' }}>Compétences & Domaines d'expertise</label>
+                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '10px' }}>
+                          {volunteerUser.skills.map((s, idx) => (
+                            <span key={idx} className="skill-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                              <span>{s}</span>
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveVolunteerSkill(s)}
+                                style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: '13px', padding: 0, lineHeight: 1 }}
+                                title="Supprimer la compétence"
+                              >
+                                ✕
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '8px', maxWidth: '380px' }}>
+                          <input
+                            type="text"
+                            placeholder="Ajouter une compétence..."
+                            value={newSkillInput}
+                            onChange={(e) => setNewSkillInput(e.target.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                e.preventDefault();
+                                handleAddVolunteerSkill();
+                              }
+                            }}
+                          />
+                          <button
+                            type="button"
+                            className="dash-btn-sm dash-btn-outline"
+                            onClick={handleAddVolunteerSkill}
+                            style={{ whiteSpace: 'nowrap' }}
+                          >
+                            + Ajouter
+                          </button>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '18px' }}>
+                        <button type="submit" className="btn btn-green btn-lg">
+                          Enregistrer mon profil
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                )}
+
+                {/* 5. SÉCURITÉ DU COMPTE */}
+                {volunteerActiveTab === 'security' && (
+                  <div className="dash-card">
+                    <div className="dash-card-header">
+                      <div>
+                        <h2>Sécurité du compte & Mot de passe</h2>
+                        <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--muted)' }}>
+                          Modifiez votre mot de passe d'accès à l'Espace Bénévole
+                        </p>
+                      </div>
+                      <IconLock className="w-5 h-5 text-slate-400" />
+                    </div>
+
+                    <form className="mform" onSubmit={handleUpdateVolunteerPassword}>
+                      <div className="frow">
+                        <div>
+                          <label>Mot de passe actuel</label>
+                          <input
+                            type="password"
+                            placeholder="••••••••"
+                            value={volunteerPasswordForm.current}
+                            onChange={(e) => setVolunteerPasswordForm({ ...volunteerPasswordForm, current: e.target.value })}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label>Nouveau mot de passe</label>
+                          <input
+                            type="password"
+                            placeholder="Nouveau mot de passe"
+                            value={volunteerPasswordForm.newPass}
+                            onChange={(e) => setVolunteerPasswordForm({ ...volunteerPasswordForm, newPass: e.target.value })}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label>Confirmer le mot de passe</label>
+                          <input
+                            type="password"
+                            placeholder="Confirmer"
+                            value={volunteerPasswordForm.confirmPass}
+                            onChange={(e) => setVolunteerPasswordForm({ ...volunteerPasswordForm, confirmPass: e.target.value })}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <button type="submit" className="btn btn-green" style={{ marginTop: '10px' }}>
+                        Mettre à jour mon mot de passe
+                      </button>
+                    </form>
                   </div>
                 )}
               </div>
             </div>
           </main>
+        </div>
+      )}
+
+      {/* MODAL : CONFIRMATION DE CANDIDATURE BÉNÉVOLE */}
+      {applyingMission && (
+        <div className="modal on" role="dialog" aria-modal="true" aria-label="Confirmer la candidature">
+          <div className="modal-bg" onClick={() => setApplyingMission(null)}></div>
+          <div className="modal-card" style={{ maxWidth: '480px' }}>
+            <button className="modal-x" onClick={() => setApplyingMission(null)} aria-label="Fermer">
+              <IconX className="w-4 h-4" />
+            </button>
+
+            <div className="modal-head sm">
+              <div className="mtag asso">{applyingMission.category || 'Solidarité'}</div>
+              <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '4px 0 0' }}>
+                Postuler à cette mission
+              </h3>
+              <p style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
+                {applyingMission.title}
+              </p>
+            </div>
+
+            <div style={{ background: '#f8fafc', borderRadius: '10px', padding: '12px 14px', marginBottom: '14px', border: '1px solid #e2e8f0', fontSize: '13px' }}>
+              <div><strong>Association :</strong> {applyingMission.association_name || "Association El Baraka"}</div>
+              <div style={{ marginTop: '3px' }}><strong>Lieu & Date :</strong> {applyingMission.location || applyingMission.wilaya} · {applyingMission.date}</div>
+            </div>
+
+            <form
+              className="mform"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleApplyAsVolunteer(applyingMission);
+              }}
+            >
+              <label>Message ou motivation (facultatif)</label>
+              <textarea
+                rows={3}
+                placeholder="Indiquez brièvement vos motivations ou disponibilités pour cette mission..."
+                value={volunteerApplyNote}
+                onChange={(e) => setVolunteerApplyNote(e.target.value)}
+              ></textarea>
+
+              <div style={{ fontSize: '12px', color: 'var(--muted)', margin: '8px 0 16px', lineHeight: '1.4' }}>
+                Vos coordonnées ({volunteerUser.email}, {volunteerUser.phone}) et compétences ({volunteerUser.skills.slice(0, 3).join(', ')}) seront transmises directement à l'association organisatrice.
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => setApplyingMission(null)}
+                >
+                  Annuler
+                </button>
+                <button type="submit" className="btn btn-green">
+                  Confirmer ma candidature
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
 
@@ -2565,10 +4521,10 @@ export default function App() {
               style={{ height: '70px', width: 'auto', objectFit: 'contain', margin: '0 auto 12px', display: 'block' }}
             />
             <h3 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '25px', fontWeight: 700, color: 'var(--bleu)' }}>
-              Bon retour parmi nous
+              {t('modalLoginTitle')}
             </h3>
             <p style={{ margin: '6px 0 0', fontSize: '14px', color: '#5a6472' }}>
-              Connectez-vous à votre espace Athar
+              Athar · أثر
             </p>
           </div>
 
@@ -2580,7 +4536,7 @@ export default function App() {
               style={{ flex: 1, padding: '10px 14px', fontSize: '13.5px', fontWeight: 700 }}
               onClick={() => setLoginProfile('volunteer')}
             >
-              Bénévole
+              {t('tabVolunteer')}
             </button>
             <button
               type="button"
@@ -2588,7 +4544,7 @@ export default function App() {
               style={{ flex: 1, padding: '10px 14px', fontSize: '13.5px', fontWeight: 700 }}
               onClick={() => setLoginProfile('association')}
             >
-              Association
+              {t('tabAssoc')}
             </button>
           </div>
 
@@ -2597,20 +4553,28 @@ export default function App() {
             onSubmit={(e) => {
               e.preventDefault();
               closeLogin();
-              setCurrentView('association');
-              window.location.hash = '#association';
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              showToast("Bienvenue dans votre Espace Association El Baraka !");
+              if (loginProfile === 'volunteer') {
+                setCurrentView('volunteer');
+                window.location.hash = '#volunteer';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showToast(currentLang === 'ar' ? `مرحباً بك مجدداً ${volunteerUser.name}!` : `Bienvenue dans votre Espace Bénévole, ${volunteerUser.name} !`);
+              } else {
+                setCurrentView('association');
+                window.location.hash = '#association';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showToast(currentLang === 'ar' ? "مرحباً بكم في فضاء جمعية البركة!" : "Bienvenue dans votre Espace Association El Baraka !");
+              }
             }}
           >
-            <label>Email</label>
+            <label>{t('labelEmail')}</label>
             <input
+              key={loginProfile}
               type="email"
-              placeholder={loginProfile === 'association' ? "contact@elbaraka-dz.org" : "vous@exemple.com"}
-              defaultValue={loginProfile === 'association' ? "contact@elbaraka-dz.org" : ""}
+              placeholder={loginProfile === 'association' ? "contact@elbaraka-dz.org" : "yasmine.belkacem@gmail.com"}
+              defaultValue={loginProfile === 'association' ? "contact@elbaraka-dz.org" : "yasmine.belkacem@gmail.com"}
               required
             />
-            <label>Mot de passe</label>
+            <label>{t('labelPassword')}</label>
             <input
               type="password"
               placeholder="••••••••"
@@ -2620,18 +4584,18 @@ export default function App() {
             <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '-8px 0 14px' }}>
               <a
                 style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--vert)', cursor: 'pointer' }}
-                onClick={() => showToast("Un lien de réinitialisation vous sera envoyé par email.")}
+                onClick={() => showToast(currentLang === 'ar' ? "سيتم إرسال رابط التعيين إلى بريدك الإلكتروني." : "Un lien de réinitialisation vous sera envoyé par email.")}
               >
-                Mot de passe oublié ?
+                {currentLang === 'ar' ? "نسيت كلمة المرور؟" : currentLang === 'en' ? "Forgot password?" : "Mot de passe oublié ?"}
               </a>
             </div>
             <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%' }}>
-              Se connecter →
+              {t('btnConnect')}
             </button>
           </form>
 
           <div className="modal-foot">
-            Pas encore de compte ? <a onClick={() => openSignup('choice')}>Créer un compte</a>
+            {t('noAccount')} <a onClick={() => openSignup('choice')}>{t('signupFree')}</a>
           </div>
         </div>
       </div>
@@ -3012,6 +4976,6 @@ export default function App() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
