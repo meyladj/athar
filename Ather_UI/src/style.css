@@ -477,7 +477,7 @@ header{background:#fff;border-bottom:1px solid var(--gris);position:sticky;top:0
 .cform{display:flex;flex-direction:column}
 .cform label{font-size:14px;font-weight:700;color:var(--bleu);margin-bottom:8px}
 .cform input,.cform textarea{font-family:inherit;font-size:14px;color:#0f172a;border:1px solid #cbd5e1;background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:18px;outline:none;transition:all .2s ease}
-.cform input:focus,.cform textarea:focus{border-color:#0d5b61;background:#ffffff;box-shadow:0 0 0 3px rgba(0, 109, 91,0.15)}
+.cform input:focus,.cform textarea:focus{border-color:#006D5B;background:#ffffff;box-shadow:0 0 0 3px rgba(0, 109, 91,0.15)}
 .cform textarea{min-height:120px;resize:vertical}
 
 .app-root {
@@ -581,7 +581,7 @@ header{background:#fff;border-bottom:1px solid var(--gris);position:sticky;top:0
 
 .mform label{font-size:13px;font-weight:700;color:var(--bleu);margin-bottom:7px}
 .mform input,.mform select,.mform textarea{font-family:inherit;font-size:14px;color:#0f172a;border:1px solid #cbd5e1;background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:16px;outline:none;width:100%;transition:all .2s ease}
-.mform input:focus,.mform select:focus,.mform textarea:focus{border-color:#0d5b61;background:#ffffff;box-shadow:0 0 0 3px rgba(0, 109, 91,0.15)}
+.mform input:focus,.mform select:focus,.mform textarea:focus{border-color:#006D5B;background:#ffffff;box-shadow:0 0 0 3px rgba(0, 109, 91,0.15)}
 .mform textarea{min-height:90px;resize:vertical}
 .applymission{margin-top:8px;font-size:14px;font-weight:700;color:var(--vert)}
 .opt{color:#9aa3af;font-weight:500}
@@ -592,6 +592,63 @@ header{background:#fff;border-bottom:1px solid var(--gris);position:sticky;top:0
 .filebox input[type=file]{display:none}
 .filetxt{font-size:13px}
 .filetxt b{color:var(--vert)}
+/* séparateurs de section dans le formulaire */
+.fsec{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--vert);border-bottom:1px solid var(--gris);padding-bottom:8px;margin:8px 0 16px}
+.mview .mform .fsec:first-child{margin-top:0}
+/* scan agrément + résultat OCR */
+.scanhint{font-size:12.5px;line-height:1.55;color:#5a6472;background:#eef2fb;border:1px solid #dbe4f7;border-radius:11px;padding:12px 14px;margin-bottom:14px}
+.scanhint b{color:var(--bleu)}
+.filebox.scan svg{color:var(--bleu)}
+.filebox.scan:hover{border-color:var(--bleu);background:#f5f8ff}
+.filebox.scan.has{border-color:var(--bleu);color:var(--bleu)}
+.scanres{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;margin:12px 0 6px;color:#5a6472}
+.scanres.ok{color:var(--vert)}
+.spin{width:15px;height:15px;border:2px solid #cdd6e6;border-top-color:var(--bleu);border-radius:50%;animation:spin .7s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Bandeau "Bonjour utilisateur" de l'espace bénévole (charte ATHAR) */
+.portal-welcome{background:linear-gradient(120deg,#e6f3ef 0%,#dcefe6 55%,#eef2fb 100%);border:1px solid var(--gris);border-radius:18px;padding:26px 30px}
+.pw-hi{font-family:'Lora',Georgia,serif;font-size:30px;font-weight:700;color:var(--bleu);letter-spacing:-.5px;line-height:1.1;display:flex;align-items:center;gap:10px}
+.pw-sub{margin-top:8px;font-size:15.5px;color:#38566a;max-width:640px}
+.pw-verif{display:inline-flex;align-items:center;gap:6px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:800;color:var(--vert);background:#e6f3ef;border:1px solid #b9e0d3;border-radius:999px;padding:5px 12px}
+@media (max-width:620px){ .pw-hi{font-size:24px} }
+/* Bouton Se déconnecter (bas de la sidebar) */
+.portal-logout-btn{display:flex;align-items:center;gap:10px;width:100%;justify-content:flex-start;background:#fff;border:1.5px solid var(--gris);color:#c0392b;font-family:inherit;font-weight:700;font-size:14px;padding:11px 14px;border-radius:12px;cursor:pointer;transition:all .15s}
+.portal-logout-btn:hover{background:#fdecea;border-color:#f0c7c0}
+/* Groupes de candidatures par mission */
+.cand-group{background:#f8faf9;border:1px solid var(--gris);border-radius:16px;padding:16px 16px 18px}
+.cand-group-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:0 4px}
+.cand-group-title{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;color:var(--bleu)}
+.cand-group-title svg{color:var(--vert)}
+.cand-group-count{font-size:12px;font-weight:800;color:var(--vert);background:#e6f3ef;border:1px solid #b9e0d3;border-radius:999px;padding:4px 12px;white-space:nowrap}
+/* ===== CALENDRIER RÉEL ===== */
+.cal-wrap{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+.cal-main{padding:20px 22px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-title{font-size:19px;font-weight:800;color:var(--bleu);text-transform:capitalize}
+.cal-nav{width:38px;height:38px;border:1px solid var(--gris);background:#fff;border-radius:10px;font-size:20px;color:var(--vert);cursor:pointer;line-height:1;display:grid;place-items:center;transition:all .15s}
+.cal-nav:hover{background:var(--emerald-light);border-color:var(--vert)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.cal-weekdays{margin-bottom:8px}
+.cal-wd{text-align:center;font-size:11.5px;font-weight:800;color:#9aa3af;text-transform:uppercase;letter-spacing:.5px;padding:4px 0}
+.cal-cell{min-height:74px;border:1px solid var(--gris);border-radius:12px;padding:8px;display:flex;flex-direction:column;background:#fff;transition:all .12s}
+.cal-cell.empty{border:0;background:transparent}
+.cal-daynum{font-size:13.5px;font-weight:700;color:#475569}
+.cal-cell.has{border-color:var(--vert);background:#f4faf7;cursor:pointer}
+.cal-cell.has .cal-daynum{color:var(--vert);font-weight:800}
+.cal-dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
+.cal-dot{width:9px;height:9px;border-radius:50%}
+.cal-side{padding:20px}
+.cal-side-title{font-size:15px;font-weight:800;color:#1f2a37;margin-bottom:14px;text-transform:capitalize}
+.cal-item{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-top:1px solid var(--gris);cursor:pointer}
+.cal-item:first-of-type{border-top:0;padding-top:0}
+.cal-item-dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:none}
+.cal-item-title{font-size:13.5px;font-weight:700;color:#1f2a37;line-height:1.3}
+.cal-item-meta{font-size:12px;color:#7a8494;margin-top:3px}
+.cal-empty{font-size:13px;color:#7a8494}
+.cal-legend{display:flex;flex-direction:column;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--gris)}
+.cal-legend span{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#5a6472;font-weight:600}
+.cal-legend i{width:10px;height:10px;border-radius:50%}
+@media (max-width:900px){ .cal-wrap{grid-template-columns:1fr} .cal-cell{min-height:58px} }
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}
 .chip{position:relative;margin:0}
@@ -693,7 +750,7 @@ textarea:hover {
   background-color: #ffffff;
 }
 
-/* Effet Focus (clic dans le champ) : Vert émeraude #0d5b61 + ombre subtile */
+/* Effet Focus (clic dans le champ) : Vert émeraude #006D5B + ombre subtile */
 .inp:focus,
 .inp:focus-visible,
 input[type="text"]:not(.saas-search-input-raw):focus,
@@ -707,7 +764,7 @@ select.inp:focus,
 select:focus,
 textarea.inp:focus,
 textarea:focus {
-  border-color: #0d5b61 !important;
+  border-color: #006D5B !important;
   background-color: #ffffff !important;
   box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.15) !important;
   outline: none !important;
@@ -744,15 +801,15 @@ textarea {
 /* MODERN SAAS DASHBOARD (ATHAR OS)                         */
 /* ======================================================== */
 :root {
-  --emerald-main: #0d5b61;
-  --emerald-hover: #0a474c;
-  --emerald-light: #f0fdf4;
-  --emerald-border: #bbf7d0;
-  --saas-bg: #f8fafc;
+  --emerald-main: #006D5B;   /* Vert officiel ATHAR */
+  --emerald-hover: #005244;  /* Vert foncé ATHAR */
+  --emerald-light: #e6f3ef;  /* Vert très clair ATHAR */
+  --emerald-border: #b9e0d3;
+  --saas-bg: #f4f6f3;
   --saas-card-bg: #ffffff;
-  --saas-border: #e2e8f0;
-  --saas-text-dark: #0f172a;
-  --saas-text-muted: #64748b;
+  --saas-border: #e5e7eb;
+  --saas-text-dark: #152b3c;
+  --saas-text-muted: #5a6472;
   --saas-sidebar-w: 260px;
 }
 
@@ -1284,15 +1341,37 @@ textarea {
 }
 
 .saas-metric-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid var(--saas-border);
-  border-radius: 14px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 22px 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  box-shadow: 0 14px 30px -26px rgba(20,40,50,.4);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
+.saas-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -24px rgba(20,40,50,.5);
+}
+/* Bandeau de couleur en haut de chaque carte (palette ATHAR) */
+.saas-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.saas-metrics-grid > .saas-metric-card:nth-child(1)::before { background: var(--vert); }
+.saas-metrics-grid > .saas-metric-card:nth-child(2)::before { background: var(--bleu); }
+.saas-metrics-grid > .saas-metric-card:nth-child(3)::before { background: var(--or); }
+.saas-metrics-grid > .saas-metric-card:nth-child(4)::before { background: var(--corail); }
+.saas-metrics-grid > .saas-metric-card:nth-child(1) .saas-metric-value { color: var(--vert); }
+.saas-metrics-grid > .saas-metric-card:nth-child(2) .saas-metric-value { color: var(--bleu); }
+.saas-metrics-grid > .saas-metric-card:nth-child(3) .saas-metric-value { color: #b8901f; }
+.saas-metrics-grid > .saas-metric-card:nth-child(4) .saas-metric-value { color: var(--corail); }
 
 .saas-metric-top {
   display: flex;
@@ -1684,19 +1763,28 @@ textarea {
 }
 
 .saas-btn-primary {
-  background: var(--emerald-main);
+  background: linear-gradient(135deg, var(--emerald-main), var(--emerald-hover));
   color: #ffffff;
   border: none;
-  padding: 9px 20px;
-  border-radius: 9px;
-  font-size: 13px;
+  padding: 11px 22px;
+  border-radius: 11px;
+  font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   font-family: inherit;
+  box-shadow: 0 10px 22px -12px rgba(0,109,91,.7);
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
 }
+.saas-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px -12px rgba(0,109,91,.8);
+}
+.saas-btn-danger { border-radius: 11px; transition: all .15s ease; }
+.saas-btn-danger:hover { background: #fecaca; }
 
 /* RESPONSIVE SAAS DASHBOARD */
 @media (max-width: 1024px) {
@@ -2063,32 +2151,40 @@ textarea {
 .portal-root {
   width: 100%;
   min-height: 100vh;
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--saas-bg);
+  color: var(--saas-text-dark);
   font-family: 'Plus Jakarta Sans', sans-serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;            /* SIDEBAR (gauche) | CONTENU (droite) */
 }
 
+/* ===== SIDEBAR GAUCHE ===== */
 .portal-header {
   position: sticky;
   top: 0;
-  width: 100%;
-  height: 72px;
+  flex: none;
+  width: 250px;
+  height: 100vh;
   background: #ffffff;
-  border-bottom: 1px solid #cbd5e1;
+  border-right: 1px solid var(--gris);
   z-index: 1000;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 32px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 22px 16px 18px;
+  box-shadow: 2px 0 14px -10px rgba(20,40,50,.25);
+  overflow-y: auto;
 }
 
 .portal-header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  padding: 4px 8px 16px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--gris);
 }
 
 .portal-logo {
@@ -2105,66 +2201,76 @@ textarea {
 
 .portal-nav {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  margin-top: 6px;
 }
 
 .portal-nav-link {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
-  color: #475569;
+  color: #5a6472;
   cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
   transition: all 0.15s ease;
   position: relative;
   font-family: inherit;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .portal-nav-link:hover {
   color: var(--emerald-main);
-  background: #f0fdf4;
+  background: var(--emerald-light);
 }
 
 .portal-nav-link.active {
   color: var(--emerald-main);
-  background: #f0fdf4;
+  background: var(--emerald-light);
   font-weight: 800;
 }
 
 .portal-nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -16px;
-  left: 16px;
-  right: 16px;
-  height: 3px;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 3.5px;
   background: var(--emerald-main);
   border-radius: 999px;
 }
 
 .portal-header-right {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: auto;            /* pousse en bas de la sidebar */
+  padding-top: 14px;
+  border-top: 1px solid var(--gris);
 }
 
 .portal-search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: 999px;
-  padding: 7px 14px;
-  width: 220px;
+  background: var(--saas-bg);
+  border: 1px solid var(--gris);
+  border-radius: 12px;
+  padding: 9px 14px;
+  width: 100%;
   transition: all 0.2s ease;
 }
 
 .portal-search-bar:focus-within {
-  width: 270px;
   border-color: var(--emerald-main);
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.12);
@@ -2202,7 +2308,7 @@ textarea {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--emerald-main) 0%, #0f766e 100%);
+  background: linear-gradient(135deg, var(--emerald-main) 0%, #005244 100%);
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
@@ -2231,8 +2337,8 @@ textarea {
 
 .portal-profile-menu {
   position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+  bottom: calc(100% + 8px);
+  left: 0;
   width: 280px;
   background: #ffffff;
   border: 1px solid #cbd5e1;
@@ -2327,10 +2433,17 @@ textarea {
 }
 
 .portal-container {
-  max-width: 1240px;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
   width: 100%;
-  margin: 0 auto;
-  padding: 20px 24px 64px;
+  padding: 26px 34px 64px;
+}
+.portal-container > * {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ======================================================== */
@@ -2341,7 +2454,7 @@ textarea {
   border-radius: 20px;
   overflow: hidden;
   padding: 40px 48px;
-  background: linear-gradient(135deg, #0d5b61 0%, #063c40 100%);
+  background: linear-gradient(135deg, #006D5B 0%, #063c40 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -2387,7 +2500,7 @@ textarea {
 
 .aiesec-hero-cv-btn {
   background: #ffffff !important;
-  color: #0d5b61 !important;
+  color: #006D5B !important;
   font-weight: 800 !important;
   font-size: 14px !important;
   padding: 13px 24px !important;
@@ -2503,13 +2616,13 @@ textarea {
 }
 
 .sdg-badge-animaux {
-  color: #0f766e !important;
+  color: #005244 !important;
   background: #ccfbf1 !important;
   border: 1px solid #99f6e4 !important;
 }
 
 .sdg-badge-default {
-  color: #0d5b61 !important;
+  color: #006D5B !important;
   background: #f0fdf4 !important;
   border: 1px solid #bbf7d0 !important;
 }
@@ -2578,7 +2691,7 @@ textarea {
 
 .aiesec-btn-apply {
   flex: 1;
-  background: #0d5b61 !important;
+  background: #006D5B !important;
   color: #ffffff !important;
   padding: 10px 14px !important;
   font-size: 13px !important;
@@ -2668,17 +2781,50 @@ textarea {
 }
 
 @media (max-width: 900px) {
+  .portal-root {
+    flex-direction: column;
+  }
   .portal-header {
-    padding: 0 16px;
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--gris);
+    overflow: visible;
+  }
+  .portal-header-left {
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
   }
   .portal-nav {
-    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  .portal-nav-link {
+    width: auto;
+  }
+  .portal-header-right {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+    margin-left: auto;
+    padding-top: 0;
+    border-top: none;
+    gap: 10px;
   }
   .portal-search-bar {
-    width: 160px;
+    width: 180px;
   }
-  .portal-search-bar:focus-within {
-    width: 200px;
+  .portal-container {
+    height: auto;
+    overflow: visible;
   }
   .aiesec-hero-box {
     flex-direction: column;

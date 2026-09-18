@@ -959,7 +959,7 @@ function getCategoryBadgeTheme(category) {
     case 'Animaux':
       return {
         label: 'Protection Animale',
-        color: '#0f766e',
+        color: '#005244',
         bg: '#ccfbf1',
         border: '#99f6e4',
         className: 'sdg-badge-animaux'
@@ -967,7 +967,7 @@ function getCategoryBadgeTheme(category) {
     default:
       return {
         label: category || 'Action Citoyenne',
-        color: '#0d5b61',
+        color: '#006D5B',
         bg: '#f0fdf4',
         border: '#bbf7d0',
         className: 'sdg-badge-default'
@@ -1481,6 +1481,7 @@ export default function App() {
   // Active tab in SaaS sidebar:
   // 'overview' | 'missions' | 'new_mission' | 'candidatures' | 'besoins_collectes' | 'benevoles' | 'calendrier' | 'parametres'
   const [dashActiveTab, setDashActiveTab] = useState('overview');
+  const [calMonth, setCalMonth] = useState(new Date(2025, 3, 1)); // Avril 2025 (mois affiché au calendrier)
   const [selectedCandidateDetail, setSelectedCandidateDetail] = useState(null);
   const [selectedCandidateDrawer, setSelectedCandidateDrawer] = useState(null);
 
@@ -1515,6 +1516,7 @@ export default function App() {
       location: "Alger",
       wilaya: "Alger",
       date: "12 avr. 2025",
+      dateISO: "2025-04-12",
       spots_registered: 18,
       spots_total: 20,
       description: "Préparation et distribution de 300 repas chauds chaque soir pour les jeûneurs et familles démunies."
@@ -1527,6 +1529,7 @@ export default function App() {
       location: "Béjaïa",
       wilaya: "Béjaïa",
       date: "19 avr. 2025",
+      dateISO: "2025-04-19",
       spots_registered: 5,
       spots_total: 5,
       description: "Cours de remise à niveau en mathématiques et langues pour 35 collégiens préparant le BEM."
@@ -1539,6 +1542,7 @@ export default function App() {
       location: "Tizi Ouzou",
       wilaya: "Tizi Ouzou",
       date: "26 avr. 2025",
+      dateISO: "2025-04-26",
       spots_registered: 22,
       spots_total: 30,
       description: "Plantation de 1000 arbustes pour la régénération du couvert forestier du massif du Djurdjura."
@@ -1551,6 +1555,7 @@ export default function App() {
       location: "Béjaïa",
       wilaya: "Béjaïa",
       date: "2 mars 2025",
+      dateISO: "2025-03-02",
       spots_registered: 15,
       spots_total: 15,
       description: "Conditionnement de colis de vêtements chauds et couvertures acheminés vers les villages isolés."
@@ -1999,6 +2004,22 @@ export default function App() {
   const [loginProfile, setLoginProfile] = useState('association'); // 'volunteer' | 'association'
   const [signupModalOpen, setSignupModalOpen] = useState(false);
   const [signupView, setSignupView] = useState('choice'); // 'choice' | 'ben' | 'asso'
+  // Scan de l'agrément (simulation OCR) + champs auto-remplis
+  const [assoScan, setAssoScan] = useState('idle'); // 'idle' | 'scanning' | 'done'
+  const [assoScanName, setAssoScanName] = useState('');
+  const [assoFields, setAssoFields] = useState({ nom: '', num: '', wilaya: '' });
+  const [assoLogoName, setAssoLogoName] = useState('');
+  const handleAgrementScan = (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    setAssoScanName(f.name);
+    setAssoScan('scanning');
+    setTimeout(() => {
+      // valeurs extraites (démo) — à remplacer par l'OCR du backend
+      setAssoFields({ nom: 'Association El Baraka', num: 'DZ-2019-04127', wilaya: 'Béjaïa' });
+      setAssoScan('done');
+    }, 1800);
+  };
   const [applyModalOpen, setApplyModalOpen] = useState(false);
   const [publishModalOpen, setPublishModalOpen] = useState(false);
   const [selectedMission, setSelectedMission] = useState('');
@@ -2686,6 +2707,55 @@ export default function App() {
         </div>
       </section>
 
+      {/* DÉFINITION + STATISTIQUES (style Wyze) */}
+      <section className="about" id="stats-section">
+        <div className="wrap">
+          <div className="atop">
+            <h2 className="atitle">
+              Choisir Athar, c'est faire<br />grandir l'impact,<br />
+              <span className="or">pas seulement aider.</span>
+            </h2>
+            <div className="adesc">
+              <p>
+                Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie,
+                pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain
+                des causes qui ont besoin d'eux, partout dans le pays.
+              </p>
+              <p className="anote">
+                Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.
+              </p>
+            </div>
+          </div>
+
+          <div className="stats" ref={statsRef}>
+            <div className="stat">
+              <div className="num">
+                {counts.volunteers.toLocaleString('fr-FR').replace(/\s/g, ' ')}
+              </div>
+              <div className="lb">{t('statVolunteers')}</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                {counts.associations}
+              </div>
+              <div className="lb">{t('statAssocs')}</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                {counts.missions.toLocaleString('fr-FR').replace(/\s/g, ' ')}
+              </div>
+              <div className="lb">{t('statMissions')}</div>
+            </div>
+            <div className="stat">
+              <div className="num">
+                {counts.wilayas}
+              </div>
+              <div className="lb">{t('statWilayas')}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* MISSIONS EXPLORER SECTION (exactement comme la capture d'écran) */}
       <section id="missions" className="missions">
         <div className="wrap">
@@ -2796,55 +2866,6 @@ export default function App() {
               <span>Voir plus</span>
               <IconArrowRight className="w-4 h-4" />
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* DÉFINITION + STATISTIQUES (style Wyze) */}
-      <section className="about" id="stats-section">
-        <div className="wrap">
-          <div className="atop">
-            <h2 className="atitle">
-              Choisir Athar, c'est faire<br />grandir l'impact,<br />
-              <span className="or">pas seulement aider.</span>
-            </h2>
-            <div className="adesc">
-              <p>
-                Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie,
-                pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain
-                des causes qui ont besoin d'eux, partout dans le pays.
-              </p>
-              <p className="anote">
-                Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.
-              </p>
-            </div>
-          </div>
-
-          <div className="stats" ref={statsRef}>
-            <div className="stat">
-              <div className="num">
-                {counts.volunteers.toLocaleString('fr-FR').replace(/\s/g, ' ')}
-              </div>
-              <div className="lb">{t('statVolunteers')}</div>
-            </div>
-            <div className="stat">
-              <div className="num">
-                {counts.associations}
-              </div>
-              <div className="lb">{t('statAssocs')}</div>
-            </div>
-            <div className="stat">
-              <div className="num">
-                {counts.missions.toLocaleString('fr-FR').replace(/\s/g, ' ')}
-              </div>
-              <div className="lb">{t('statMissions')}</div>
-            </div>
-            <div className="stat">
-              <div className="num">
-                {counts.wilayas}
-              </div>
-              <div className="lb">{t('statWilayas')}</div>
-            </div>
           </div>
         </div>
       </section>
@@ -3134,15 +3155,6 @@ export default function App() {
 
               <button
                 type="button"
-                className={`saas-nav-item ${dashActiveTab === 'new_mission' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('new_mission')}
-              >
-                <IconPlusCircle className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'نشر مبادرة' : currentLang === 'en' ? 'Publish Mission' : 'Publier une mission'}</span>
-              </button>
-
-              <button
-                type="button"
                 className={`saas-nav-item ${dashActiveTab === 'candidatures' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('candidatures')}
               >
@@ -3189,8 +3201,8 @@ export default function App() {
                 className={`saas-nav-item ${dashActiveTab === 'parametres' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('parametres')}
               >
-                <IconSettings className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الإعدادات' : currentLang === 'en' ? 'Settings' : 'Paramètres'}</span>
+                <IconUsers className="w-4 h-4" />
+                <span>{currentLang === 'ar' ? 'ملفي الشخصي' : currentLang === 'en' ? 'My Profile' : 'Mon profil'}</span>
               </button>
             </nav>
 
@@ -3198,9 +3210,9 @@ export default function App() {
             <div className="saas-sidebar-footer">
               <div className="saas-watermark-card">
                 <svg className="saas-watermark-bg" viewBox="0 0 100 70" fill="none" opacity="0.12">
-                  <path d="M10 50 Q 30 10, 50 40 T 90 20" stroke="#0d5b61" strokeWidth="4" fill="none" />
-                  <circle cx="50" cy="40" r="14" fill="#0d5b61" />
-                  <circle cx="85" cy="22" r="8" fill="#0d5b61" />
+                  <path d="M10 50 Q 30 10, 50 40 T 90 20" stroke="#006D5B" strokeWidth="4" fill="none" />
+                  <circle cx="50" cy="40" r="14" fill="#006D5B" />
+                  <circle cx="85" cy="22" r="8" fill="#006D5B" />
                 </svg>
                 <p className="saas-watermark-quote">
                   {currentLang === 'ar'
@@ -3405,12 +3417,13 @@ export default function App() {
               {/* ======================================================== */}
               {dashActiveTab === 'overview' && (
                 <div>
-                  {/* Titre de section */}
-                  <div className="saas-card-header">
-                    <div>
-                      <h2>Tableau de bord — {assocProfile.name}</h2>
-                      <p>Suivez vos indicateurs clés, l'avancement des missions et la mobilisation citoyenne</p>
-                    </div>
+                  {/* BONJOUR ASSOCIATION (charte ATHAR) */}
+                  <div className="portal-welcome" style={{ marginBottom: '22px' }}>
+                    <h1 className="pw-hi">
+                      {t('dashWelcomeTitle')} <span className="pw-wave">👋</span>
+                      <span className="pw-verif"><IconShieldCheck className="w-4 h-4" /> {t('dashWelcomeBadge')}</span>
+                    </h1>
+                    <p className="pw-sub">{t('dashWelcomeSub')}</p>
                   </div>
 
                   {/* 4 Cartes Métriques SaaS avec badges d'évolution */}
@@ -4409,11 +4422,34 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Liste des candidatures */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    {candidatesList
-                      .filter(c => candidateFilter === 'all' || c.status === candidateFilter)
-                      .map((cand) => (
+                  {/* Liste des candidatures GROUPÉES PAR MISSION */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                    {(() => {
+                      const filtered = candidatesList.filter(c => candidateFilter === 'all' || c.status === candidateFilter);
+                      const groups = {};
+                      filtered.forEach(c => {
+                        const key = c.missionTitle || 'Autres missions';
+                        (groups[key] = groups[key] || []).push(c);
+                      });
+                      const entries = Object.entries(groups);
+                      if (entries.length === 0) {
+                        return (
+                          <div className="saas-card" style={{ padding: '30px', textAlign: 'center', color: '#64748b', fontWeight: 600 }}>
+                            Aucune candidature dans cette catégorie.
+                          </div>
+                        );
+                      }
+                      return entries.map(([mission, cands]) => (
+                        <div key={mission} className="cand-group">
+                          <div className="cand-group-head">
+                            <div className="cand-group-title">
+                              <IconBriefcase className="w-4 h-4" />
+                              <span>{mission}</span>
+                            </div>
+                            <span className="cand-group-count">{cands.length} candidature{cands.length > 1 ? 's' : ''}</span>
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            {cands.map((cand) => (
                         <div
                           key={cand.id}
                           className="saas-card"
@@ -4481,7 +4517,11 @@ export default function App() {
                             )}
                           </div>
                         </div>
-                      ))}
+                            ))}
+                          </div>
+                        </div>
+                      ));
+                    })()}
                   </div>
                 </div>
               )}
@@ -4976,73 +5016,82 @@ export default function App() {
                   <div className="saas-card-header">
                     <div>
                       <h2>Agenda & Calendrier des interventions</h2>
-                      <p>Vue chronologique de vos missions programmées à travers les wilayas</p>
+                      <p>Vos missions programmées, repérées par un point de couleur sur leur jour</p>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {associationMissions.map((m) => {
-                      const isFull = m.spots_registered >= m.spots_total;
-                      return (
-                        <div
-                          key={m.id}
-                          className="saas-card"
-                          style={{
-                            padding: '18px 22px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            flexWrap: 'wrap',
-                            gap: '16px'
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-                            <div style={{
-                              background: '#f0fdf4',
-                              border: '1.5px solid var(--emerald-border)',
-                              borderRadius: '12px',
-                              padding: '10px 14px',
-                              textAlign: 'center',
-                              minWidth: '85px'
-                            }}>
-                              <IconCalendar className="w-4 h-4" style={{ color: 'var(--emerald-main)', margin: '0 auto 4px' }} />
-                              <strong style={{ fontSize: '13px', color: 'var(--emerald-main)', display: 'block' }}>
-                                {m.date}
-                              </strong>
-                            </div>
-
-                            <div>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                                <span className="saas-badge" style={{ background: '#f1f5f9', color: '#475569' }}>{m.category}</span>
-                                <strong style={{ fontSize: '15.5px', color: '#0f172a' }}>{m.title}</strong>
-                              </div>
-                              <div style={{ fontSize: '12.5px', color: '#64748b', display: 'flex', gap: '12px' }}>
-                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                  <IconMapPin className="w-3.5 h-3.5" />
-                                  {m.wilaya || m.location}
-                                </span>
-                                <span>·</span>
-                                <span>{m.spots_registered} bénévoles confirmés / {m.spots_total}</span>
-                              </div>
-                            </div>
+                  {(() => {
+                    const catColor = (c) =>
+                      c === 'Éducation' ? 'var(--bleu)'
+                      : c === 'Environnement' ? 'var(--vert)'
+                      : c === 'Santé' ? 'var(--turq)'
+                      : 'var(--corail)';
+                    const y = calMonth.getFullYear();
+                    const mo = calMonth.getMonth();
+                    const monthName = calMonth.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+                    const startDay = (new Date(y, mo, 1).getDay() + 6) % 7; // Lundi = 0
+                    const daysInMonth = new Date(y, mo + 1, 0).getDate();
+                    const pad = (n) => String(n).padStart(2, '0');
+                    const iso = (d) => `${y}-${pad(mo + 1)}-${pad(d)}`;
+                    const missionsOfDay = (d) => associationMissions.filter((m) => m.dateISO === iso(d));
+                    const monthMissions = associationMissions.filter((m) => m.dateISO && m.dateISO.startsWith(`${y}-${pad(mo + 1)}`));
+                    const cells = [];
+                    for (let i = 0; i < startDay; i++) cells.push(null);
+                    for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+                    return (
+                      <div className="cal-wrap">
+                        <div className="cal-main saas-card">
+                          <div className="cal-head">
+                            <button type="button" className="cal-nav" onClick={() => setCalMonth(new Date(y, mo - 1, 1))} aria-label="Mois précédent">‹</button>
+                            <div className="cal-title">{monthName}</div>
+                            <button type="button" className="cal-nav" onClick={() => setCalMonth(new Date(y, mo + 1, 1))} aria-label="Mois suivant">›</button>
                           </div>
-
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <span className={`saas-badge ${isFull ? 'complete' : 'active'}`}>
-                              {isFull ? 'Effectif complet' : 'Inscriptions en cours'}
-                            </span>
-                            <button
-                              type="button"
-                              className="saas-quick-btn outline"
-                              onClick={() => setDashActiveTab('missions')}
-                            >
-                              Gérer
-                            </button>
+                          <div className="cal-grid cal-weekdays">
+                            {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((w) => (
+                              <div key={w} className="cal-wd">{w}</div>
+                            ))}
+                          </div>
+                          <div className="cal-grid">
+                            {cells.map((d, i) => d === null ? (
+                              <div key={'e' + i} className="cal-cell empty"></div>
+                            ) : (
+                              <div key={d} className={`cal-cell ${missionsOfDay(d).length ? 'has' : ''}`}>
+                                <span className="cal-daynum">{d}</span>
+                                <div className="cal-dots">
+                                  {missionsOfDay(d).map((m) => (
+                                    <span key={m.id} className="cal-dot" style={{ background: catColor(m.category) }} title={m.title}></span>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+
+                        <div className="cal-side saas-card">
+                          <h3 className="cal-side-title">Missions de {monthName}</h3>
+                          {monthMissions.length === 0 ? (
+                            <p className="cal-empty">Aucune mission programmée ce mois-ci.</p>
+                          ) : (
+                            monthMissions.map((m) => (
+                              <div key={m.id} className="cal-item" onClick={() => setDashActiveTab('missions')}>
+                                <span className="cal-item-dot" style={{ background: catColor(m.category) }}></span>
+                                <div>
+                                  <div className="cal-item-title">{m.title}</div>
+                                  <div className="cal-item-meta">{m.date} · {m.wilaya || m.location}</div>
+                                </div>
+                              </div>
+                            ))
+                          )}
+                          <div className="cal-legend">
+                            <span><i style={{ background: 'var(--vert)' }}></i>Environnement</span>
+                            <span><i style={{ background: 'var(--bleu)' }}></i>Éducation</span>
+                            <span><i style={{ background: 'var(--corail)' }}></i>Solidarité</span>
+                            <span><i style={{ background: 'var(--turq)' }}></i>Santé</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
 
@@ -5518,63 +5567,62 @@ export default function App() {
               />
             </div>
 
-            {/* CENTRE : LIENS DE NAVIGATION PRINCIPAUX */}
+            {/* CENTRE : LIENS DE NAVIGATION PRINCIPAUX (SIDEBAR) */}
             <nav className="portal-nav">
               <button
                 type="button"
-                className="portal-nav-link"
-                onClick={() => {
-                  setSelectedMissionDetail(null);
-                  setCurrentView('landing');
-                  window.location.hash = '#accueil';
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              >
-                <span>Accueil</span>
-              </button>
-
-              <button
-                type="button"
                 className={`portal-nav-link ${(volunteerPortalTab === 'missions' || selectedMissionDetail) ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedMissionDetail(null);
-                  setVolunteerPortalTab('missions');
-                }}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('missions'); }}
               >
-                <span>Missions</span>
+                <IconSearch className="w-4 h-4" /><span>Missions</span>
               </button>
 
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'associations' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedMissionDetail(null);
-                  setVolunteerPortalTab('associations');
-                }}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('associations'); }}
               >
-                <span>Associations</span>
+                <IconBuilding className="w-4 h-4" /><span>Associations</span>
               </button>
 
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'profile' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedMissionDetail(null);
-                  setVolunteerPortalTab('profile');
-                }}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('profile'); }}
               >
-                <span>Bénévoles</span>
+                <IconUsers className="w-4 h-4" /><span>Mon profil</span>
               </button>
 
               <button
                 type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'about' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedMissionDetail(null);
-                  setVolunteerPortalTab('about');
-                }}
+                className={`portal-nav-link ${volunteerPortalTab === 'applications' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('applications'); }}
               >
-                <span>À propos</span>
+                <IconFileText className="w-4 h-4" /><span>Mes candidatures</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'favorites' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('favorites'); }}
+              >
+                <IconHeart className="w-4 h-4" /><span>Mes offres sauvegardées</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'certificates' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('certificates'); }}
+              >
+                <IconAward className="w-4 h-4" /><span>Mes certificats &amp; badges</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'settings' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('settings'); }}
+              >
+                <IconSettings className="w-4 h-4" /><span>Paramètres</span>
               </button>
             </nav>
 
@@ -5628,7 +5676,7 @@ export default function App() {
                       <strong>Notifications</strong>
                       <button
                         type="button"
-                        style={{ background: 'none', border: 'none', color: '#0d5b61', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
+                        style={{ background: 'none', border: 'none', color: '#006D5B', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
                         onClick={() => {
                           setVolunteerNotifications(prev => prev.map(n => ({ ...n, unread: false })));
                           showToast("Toutes les notifications marquées comme lues.");
@@ -5639,7 +5687,7 @@ export default function App() {
                     </div>
                     {volunteerNotifications.map(notif => (
                       <div key={notif.id} className="saas-notif-item">
-                        <div className="saas-notif-avatar" style={{ background: '#f0fdf4', color: '#0d5b61' }}>
+                        <div className="saas-notif-avatar" style={{ background: '#f0fdf4', color: '#006D5B' }}>
                           <IconCheck className="w-3.5 h-3.5" />
                         </div>
                         <div>
@@ -5656,133 +5704,20 @@ export default function App() {
               {/* Sélecteur de langue */}
               <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
 
-              {/* Menu Profil utilisateur (Avatar Nadia + rôle Bénévole) */}
-              <div style={{ position: 'relative' }}>
-                <button
-                  type="button"
-                  className="portal-user-btn"
-                  onClick={() => {
-                    setIsVolunteerProfileOpen(!isVolunteerProfileOpen);
-                    setIsVolunteerNotifOpen(false);
-                  }}
-                >
-                  <div className="portal-user-avatar">
-                    {volunteerUser.initials}
-                  </div>
-                  <div className="portal-user-meta">
-                    <div className="portal-user-name">{volunteerUser.firstName}</div>
-                    <div className="portal-user-badge">Bénévole</div>
-                  </div>
-                  <IconChevronDown className="w-3.5 h-3.5 text-slate-400" />
-                </button>
-
-                {/* Menu Déroulant du Profil */}
-                {isVolunteerProfileOpen && (
-                  <div className="portal-profile-menu">
-                    <div className="portal-profile-menu-header">
-                      <strong>{volunteerUser.name}</strong>
-                      <small>{volunteerUser.email}</small>
-                      <div className="portal-profile-tag">Bénévole Vérifiée Athar</div>
-                    </div>
-
-                    <button
-                      type="button"
-                      className="portal-menu-item"
-                      onClick={() => {
-                        setIsVolunteerProfileOpen(false);
-                        setSelectedMissionDetail(null);
-                        setVolunteerPortalTab('profile');
-                      }}
-                    >
-                      <IconUsers className="w-4 h-4 text-emerald-700" />
-                      <div>
-                        <strong>Mon Profil (CV / Portfolio)</strong>
-                        <small>Expériences, compétences, causes</small>
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="portal-menu-item"
-                      onClick={() => {
-                        setIsVolunteerProfileOpen(false);
-                        setSelectedMissionDetail(null);
-                        setVolunteerPortalTab('applications');
-                      }}
-                    >
-                      <IconFileText className="w-4 h-4 text-emerald-700" />
-                      <div>
-                        <strong>Mes Candidatures</strong>
-                        <small>{volunteerApplications.length} candidatures suivies</small>
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="portal-menu-item"
-                      onClick={() => {
-                        setIsVolunteerProfileOpen(false);
-                        setSelectedMissionDetail(null);
-                        setVolunteerPortalTab('favorites');
-                      }}
-                    >
-                      <IconHeart className="w-4 h-4 text-emerald-700" filled={volunteerFavorites.length > 0} />
-                      <div>
-                        <strong>Mes Offres Sauvegardées</strong>
-                        <small>{volunteerFavorites.length} opportunités enregistrées</small>
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="portal-menu-item"
-                      onClick={() => {
-                        setIsVolunteerProfileOpen(false);
-                        setSelectedMissionDetail(null);
-                        setVolunteerPortalTab('certificates');
-                      }}
-                    >
-                      <IconAward className="w-4 h-4 text-emerald-700" />
-                      <div>
-                        <strong>Mes Certificats & Badges</strong>
-                        <small>{volunteerCertificates.length} attestations officielles</small>
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="portal-menu-item"
-                      onClick={() => {
-                        setIsVolunteerProfileOpen(false);
-                        setSelectedMissionDetail(null);
-                        setVolunteerPortalTab('settings');
-                      }}
-                    >
-                      <IconSettings className="w-4 h-4 text-slate-500" />
-                      <div>
-                        <strong>Paramètres</strong>
-                        <small>Sécurité et notifications</small>
-                      </div>
-                    </button>
-
-                    <div className="saas-dropdown-divider"></div>
-
-                    <button
-                      type="button"
-                      className="portal-menu-item danger"
-                      onClick={() => {
-                        setIsVolunteerProfileOpen(false);
-                        setCurrentView('landing');
-                        window.location.hash = '#accueil';
-                        showToast("Déconnexion réussie. À bientôt Nadia !");
-                      }}
-                    >
-                      <IconLogOut className="w-4 h-4" />
-                      <span>Se déconnecter</span>
-                    </button>
-                  </div>
-                )}
-              </div>
+              {/* Déconnexion (les autres entrées sont désormais dans la navbar) */}
+              <button
+                type="button"
+                className="portal-logout-btn"
+                onClick={() => {
+                  setCurrentView('landing');
+                  window.location.hash = '#accueil';
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  showToast("Déconnexion réussie. À bientôt Nadia !");
+                }}
+              >
+                <IconLogOut className="w-4 h-4" />
+                <span>Se déconnecter</span>
+              </button>
             </div>
           </header>
 
@@ -5807,7 +5742,7 @@ export default function App() {
                       border: '1px solid #cbd5e1',
                       borderRadius: '10px',
                       padding: '9px 18px',
-                      color: '#0d5b61',
+                      color: '#006D5B',
                       background: '#ffffff'
                     }}
                   >
@@ -5890,7 +5825,7 @@ export default function App() {
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', flexWrap: 'wrap' }}>
                       <span style={{
-                        background: '#0d5b61',
+                        background: '#006D5B',
                         color: '#ffffff',
                         padding: '5px 14px',
                         borderRadius: '999px',
@@ -5944,7 +5879,7 @@ export default function App() {
                     {/* BLOC 1 : PROJET & THÉMATIQUE D'ACTION */}
                     <div className="cv-section-card">
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-                        <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: '#f0fdf4', color: '#0d5b61', display: 'grid', placeItems: 'center' }}>
+                        <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
                           <IconAward className="w-5 h-5" />
                         </div>
                         <div>
@@ -5956,7 +5891,7 @@ export default function App() {
                       </div>
 
                       <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '14px 18px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <span style={{ background: '#0d5b61', color: '#ffffff', padding: '6px 12px', borderRadius: '8px', fontWeight: 900, fontSize: '14px' }}>
+                        <span style={{ background: '#006D5B', color: '#ffffff', padding: '6px 12px', borderRadius: '8px', fontWeight: 900, fontSize: '14px' }}>
                           {selectedMissionDetail.category}
                         </span>
                         <div>
@@ -6122,7 +6057,7 @@ export default function App() {
                         <div className="cv-section-card">
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                              <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: '#f0fdf4', color: '#0d5b61', display: 'grid', placeItems: 'center' }}>
+                              <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
                                 <IconMapPin className="w-5 h-5" />
                               </div>
                               <div>
@@ -6148,7 +6083,7 @@ export default function App() {
                                   border: 'none',
                                   cursor: 'pointer',
                                   background: missionMapType === 'osm' ? '#ffffff' : 'transparent',
-                                  color: missionMapType === 'osm' ? '#0d5b61' : '#64748b',
+                                  color: missionMapType === 'osm' ? '#006D5B' : '#64748b',
                                   boxShadow: missionMapType === 'osm' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
                                   transition: 'all 0.15s ease'
                                 }}
@@ -6166,7 +6101,7 @@ export default function App() {
                                   border: 'none',
                                   cursor: 'pointer',
                                   background: missionMapType === 'google' ? '#ffffff' : 'transparent',
-                                  color: missionMapType === 'google' ? '#0d5b61' : '#64748b',
+                                  color: missionMapType === 'google' ? '#006D5B' : '#64748b',
                                   boxShadow: missionMapType === 'google' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
                                   transition: 'all 0.15s ease'
                                 }}
@@ -6225,7 +6160,7 @@ export default function App() {
                                   gap: '6px',
                                   fontSize: '12.5px',
                                   fontWeight: 700,
-                                  color: '#0d5b61',
+                                  color: '#006D5B',
                                   textDecoration: 'none',
                                   padding: '7px 13px',
                                   borderRadius: '8px',
@@ -6277,13 +6212,13 @@ export default function App() {
                       <div style={{ marginBottom: '18px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: 700, color: '#475569', marginBottom: '6px' }}>
                           <span>Places restantes</span>
-                          <span style={{ color: '#0d5b61' }}>{selectedMissionDetail.spots_remaining} sur {selectedMissionDetail.spots_total}</span>
+                          <span style={{ color: '#006D5B' }}>{selectedMissionDetail.spots_remaining} sur {selectedMissionDetail.spots_total}</span>
                         </div>
                         <div style={{ width: '100%', height: '8px', background: '#e2e8f0', borderRadius: '999px', overflow: 'hidden' }}>
                           <div style={{
                             width: `${Math.round(((selectedMissionDetail.spots_total - selectedMissionDetail.spots_remaining) / selectedMissionDetail.spots_total) * 100)}%`,
                             height: '100%',
-                            background: '#0d5b61',
+                            background: '#006D5B',
                             borderRadius: '999px'
                           }}></div>
                         </div>
@@ -6375,6 +6310,12 @@ export default function App() {
                 {/* 1. PAGE CATALOGUE / EXPLORATION (Style AIESEC Search) */}
                 {volunteerPortalTab === 'missions' && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+                    {/* BONJOUR UTILISATEUR (charte ATHAR) */}
+                    <div className="portal-welcome">
+                      <h1 className="pw-hi">Bonjour {volunteerUser.name.split(' ')[0]} <span className="pw-wave">👋</span></h1>
+                      <p className="pw-sub">Merci d'être là ! Ensemble, nous faisons une Algérie plus solidaire.</p>
+                    </div>
 
                     {/* FILTRES HORIZONTAUX ÉPURÉS EN HAUT (Style AIESEC Search Filters) */}
                     <div className="cv-section-card" style={{ padding: '18px 22px', marginBottom: 0 }}>
@@ -6614,7 +6555,7 @@ export default function App() {
                                 {/* Corps de la carte */}
                                 <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                                   {/* Association avec badge vérifié */}
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12.5px', fontWeight: 700, color: '#0d5b61', marginBottom: '8px' }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12.5px', fontWeight: 700, color: '#006D5B', marginBottom: '8px' }}>
                                     <IconShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
                                     <span>{m.association_name}</span>
                                   </div>
@@ -6631,13 +6572,13 @@ export default function App() {
                                   <div style={{ marginBottom: '16px' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '6px' }}>
                                       <span>{m.spots_remaining} places disponibles</span>
-                                      <span style={{ color: '#0d5b61' }}>sur {m.spots_total}</span>
+                                      <span style={{ color: '#006D5B' }}>sur {m.spots_total}</span>
                                     </div>
                                     <div style={{ width: '100%', height: '6px', background: '#e2e8f0', borderRadius: '999px', overflow: 'hidden' }}>
                                       <div style={{
                                         width: `${pctFilled}%`,
                                         height: '100%',
-                                        background: '#0d5b61',
+                                        background: '#006D5B',
                                         borderRadius: '999px'
                                       }}></div>
                                     </div>
@@ -6719,7 +6660,7 @@ export default function App() {
                             width: '84px',
                             height: '84px',
                             borderRadius: '50%',
-                            background: 'linear-gradient(135deg, #0d5b61 0%, #0f766e 100%)',
+                            background: 'linear-gradient(135deg, #006D5B 0%, #005244 100%)',
                             color: '#ffffff',
                             fontWeight: 900,
                             fontSize: '28px',
@@ -6742,7 +6683,7 @@ export default function App() {
                               </span>
                             </div>
 
-                            <p style={{ margin: '0 0 6px', fontSize: '14.5px', color: '#0d5b61', fontWeight: 700 }}>
+                            <p style={{ margin: '0 0 6px', fontSize: '14.5px', color: '#006D5B', fontWeight: 700 }}>
                               {volunteerUser.headline}
                             </p>
 
@@ -6783,17 +6724,17 @@ export default function App() {
                       {/* STATISTIQUES D'IMPACT CITOYEN */}
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px', marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #f1f5f9' }}>
                         <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center' }}>
-                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#0d5b61', display: 'block' }}>{volunteerUser.hoursVolunteered}h</span>
+                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerUser.hoursVolunteered}h</span>
                           <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Heures de bénévolat validées</small>
                         </div>
 
                         <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center' }}>
-                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#0d5b61', display: 'block' }}>{volunteerUser.completedMissionsCount}</span>
+                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerUser.completedMissionsCount}</span>
                           <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Projets & missions réalisés</small>
                         </div>
 
                         <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center' }}>
-                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#0d5b61', display: 'block' }}>{volunteerCertificates.length}</span>
+                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerCertificates.length}</span>
                           <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Attestations certifiées Athar</small>
                         </div>
                       </div>
@@ -6802,7 +6743,7 @@ export default function App() {
                     {/* SECTION 1 : INFORMATIONS PERSONNELLES & CONTACTS */}
                     <div className="cv-section-card">
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#0d5b61', display: 'grid', placeItems: 'center' }}>
+                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
                           <IconUsers className="w-4 h-4" />
                         </div>
                         <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
@@ -6910,7 +6851,7 @@ export default function App() {
                                 <h4 style={{ margin: 0, fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
                                   {exp.role}
                                 </h4>
-                                <span style={{ fontSize: '13px', color: '#0d5b61', fontWeight: 700 }}>
+                                <span style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700 }}>
                                   {exp.association} · {exp.location}
                                 </span>
                               </div>
@@ -6949,7 +6890,7 @@ export default function App() {
                           {volunteerUser.skills.map((skill, i) => (
                             <span key={i} style={{
                               background: '#f0fdf4',
-                              color: '#0d5b61',
+                              color: '#006D5B',
                               border: '1px solid #bbf7d0',
                               padding: '5px 12px',
                               borderRadius: '999px',
@@ -6963,7 +6904,7 @@ export default function App() {
                               <button
                                 type="button"
                                 onClick={() => handleRemoveVolunteerSkill(skill)}
-                                style={{ background: 'none', border: 'none', color: '#0d5b61', cursor: 'pointer', padding: 0, fontSize: '14px', lineHeight: 1 }}
+                                style={{ background: 'none', border: 'none', color: '#006D5B', cursor: 'pointer', padding: 0, fontSize: '14px', lineHeight: 1 }}
                                 title="Supprimer"
                               >
                                 ×
@@ -7008,7 +6949,7 @@ export default function App() {
                               gap: '8px'
                             }}>
                               <strong style={{ fontSize: '13px', color: '#0f172a' }}>{l.name}</strong>
-                              <span style={{ fontSize: '12px', color: '#0d5b61', fontWeight: 600 }}>({l.level})</span>
+                              <span style={{ fontSize: '12px', color: '#006D5B', fontWeight: 600 }}>({l.level})</span>
                               <button
                                 type="button"
                                 onClick={() => handleRemoveLanguage(l.name)}
@@ -7073,7 +7014,7 @@ export default function App() {
                             borderRadius: '999px',
                             fontSize: '12.5px',
                             fontWeight: 700,
-                            color: '#0d5b61',
+                            color: '#006D5B',
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '6px'
@@ -7089,7 +7030,7 @@ export default function App() {
                     <div className="cv-section-card">
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#0d5b61', display: 'grid', placeItems: 'center' }}>
+                          <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
                             <IconAward className="w-4 h-4" />
                           </div>
                           <div>
@@ -7110,7 +7051,7 @@ export default function App() {
                           <div key={cert.id} style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                             <div>
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                                <span style={{ fontSize: '11px', fontWeight: 800, color: '#0d5b61' }}>{cert.sdg || cert.category || 'Engagement'}</span>
+                                <span style={{ fontSize: '11px', fontWeight: 800, color: '#006D5B' }}>{cert.sdg || cert.category || 'Engagement'}</span>
                                 <small style={{ fontFamily: 'monospace', color: '#94a3b8', fontSize: '11px' }}>{cert.id}</small>
                               </div>
                               <h4 style={{ margin: '0 0 6px', fontSize: '14.5px', fontWeight: 800, color: '#0f172a', lineHeight: '1.3' }}>
@@ -7175,7 +7116,7 @@ export default function App() {
                                 {app.missionTitle}
                               </h3>
 
-                              <div style={{ fontSize: '13px', color: '#0d5b61', fontWeight: 700, marginBottom: '10px' }}>
+                              <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '10px' }}>
                                 {app.associationName} · {app.wilaya}
                               </div>
 
@@ -7250,7 +7191,7 @@ export default function App() {
                               </button>
                             </div>
                             <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                              <strong style={{ fontSize: '12.5px', color: '#0d5b61', marginBottom: '6px' }}>{m.association_name}</strong>
+                              <strong style={{ fontSize: '12.5px', color: '#006D5B', marginBottom: '6px' }}>{m.association_name}</strong>
                               <h4 onClick={() => setSelectedMissionDetail(m)} style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: '#0f172a', lineHeight: '1.4', cursor: 'pointer' }}>
                                 {m.title}
                               </h4>
@@ -7302,7 +7243,7 @@ export default function App() {
                         <div key={cert.id} className="cv-section-card" style={{ padding: '22px', marginBottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                              <span style={{ background: '#f0fdf4', color: '#0d5b61', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                              <span style={{ background: '#f0fdf4', color: '#006D5B', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                                 <IconAward className="w-3.5 h-3.5" />
                                 <span>{cert.sdg || cert.category || 'Engagement'}</span>
                               </span>
@@ -7313,7 +7254,7 @@ export default function App() {
                               {cert.title}
                             </h3>
 
-                            <div style={{ fontSize: '13px', color: '#0d5b61', fontWeight: 700, marginBottom: '6px' }}>
+                            <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '6px' }}>
                               {cert.associationName}
                             </div>
 
@@ -7372,13 +7313,13 @@ export default function App() {
                       ].map((assoc, idx) => (
                         <div key={idx} className="cv-section-card" style={{ padding: '20px', marginBottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                           <div>
-                            <span style={{ fontSize: '11.5px', background: '#f0fdf4', color: '#0d5b61', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontWeight: 700, display: 'inline-block', marginBottom: '8px' }}>
+                            <span style={{ fontSize: '11.5px', background: '#f0fdf4', color: '#006D5B', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontWeight: 700, display: 'inline-block', marginBottom: '8px' }}>
                               {assoc.category}
                             </span>
                             <h3 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>
                               {assoc.name}
                             </h3>
-                            <small style={{ color: '#0d5b61', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
+                            <small style={{ color: '#006D5B', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
                               {assoc.wilaya} · {assoc.missionsCount} opportunités actives
                             </small>
                             <p style={{ margin: 0, fontSize: '13px', color: '#475569', lineHeight: '1.5' }}>
@@ -7407,7 +7348,7 @@ export default function App() {
                 {volunteerPortalTab === 'about' && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '860px', margin: '0 auto' }}>
                     <div className="cv-section-card" style={{ padding: '32px' }}>
-                      <h1 style={{ margin: '0 0 10px', fontSize: '26px', fontWeight: 900, color: '#0d5b61' }}>
+                      <h1 style={{ margin: '0 0 10px', fontSize: '26px', fontWeight: 900, color: '#006D5B' }}>
                         À propos d'Athar (منصة أثر)
                       </h1>
                       <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#334155' }}>
@@ -7540,12 +7481,12 @@ export default function App() {
                 </button>
 
                 {/* ENTÊTE DE L'ATTESTATION */}
-                <div style={{ textAlign: 'center', borderBottom: '2px solid #0d5b61', paddingBottom: '16px', marginBottom: '22px' }}>
+                <div style={{ textAlign: 'center', borderBottom: '2px solid #006D5B', paddingBottom: '16px', marginBottom: '22px' }}>
                   <img src={logoImg} alt="Athar" style={{ height: '60px', margin: '0 auto 8px', display: 'block' }} />
                   <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#64748b', textTransform: 'uppercase' }}>
                     RÉPUBLIQUE ALGÉRIENNE DÉMOCRATIQUE ET POPULAIRE
                   </div>
-                  <h2 style={{ fontSize: '20px', fontWeight: 900, color: '#0d5b61', margin: '4px 0 2px' }}>
+                  <h2 style={{ fontSize: '20px', fontWeight: 900, color: '#006D5B', margin: '4px 0 2px' }}>
                     ATTESTATION OFFICIELLE D'ENGAGEMENT CITOYEN
                   </h2>
                   <div style={{ fontSize: '12px', color: '#64748b' }}>
@@ -7563,7 +7504,7 @@ export default function App() {
                   </h3>
                   <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#334155', margin: '0 0 18px' }}>
                     a accompli avec dévouement et exemplarité une mission d'intérêt général au sein de l'organisation :<br />
-                    <strong style={{ color: '#0d5b61', fontSize: '16px' }}>{selectedCertificateDetail.associationName}</strong>
+                    <strong style={{ color: '#006D5B', fontSize: '16px' }}>{selectedCertificateDetail.associationName}</strong>
                   </p>
 
                   <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '14px 18px', textAlign: 'left', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '13px' }}>
@@ -8045,6 +7986,7 @@ export default function App() {
                   closeSignup();
                 }}
               >
+                <div className="fsec">Informations personnelles</div>
                 <div className="frow">
                   <div>
                     <label>Prénom</label>
@@ -8055,18 +7997,37 @@ export default function App() {
                     <input type="text" required placeholder="Ex. Bellouze" />
                   </div>
                 </div>
-
-                <label>Email</label>
-                <input type="email" required placeholder="vous@exemple.com" />
-
                 <div className="frow">
+                  <div>
+                    <label>Date de naissance</label>
+                    <input type="date" />
+                  </div>
+                  <div>
+                    <label>Genre</label>
+                    <select defaultValue="">
+                      <option value="">Choisir…</option>
+                      <option>Homme</option>
+                      <option>Femme</option>
+                      <option>Préfère ne pas dire</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="frow">
+                  <div>
+                    <label>Email</label>
+                    <input type="email" required placeholder="vous@exemple.com" />
+                  </div>
                   <div>
                     <label>Téléphone</label>
                     <input type="tel" required placeholder="0X XX XX XX XX" />
                   </div>
+                </div>
+
+                <div className="fsec">Localisation</div>
+                <div className="frow">
                   <div>
                     <label>Wilaya</label>
-                    <select defaultValue="Alger">
+                    <select defaultValue="">
                       <option value="">Choisir…</option>
                       {WILAYAS_LIST.map((w) => (
                         <option key={w.code} value={w.name}>
@@ -8075,36 +8036,60 @@ export default function App() {
                       ))}
                     </select>
                   </div>
+                  <div>
+                    <label>Commune</label>
+                    <input type="text" placeholder="Ex. Amizour" />
+                  </div>
                 </div>
+                <label>Adresse <span className="opt">(facultatif)</span></label>
+                <input type="text" placeholder="Quartier, rue…" />
 
+                <div className="fsec">Compétences &amp; profil</div>
+                <label>Compétences</label>
+                <div className="chips">
+                  {['Informatique','Enseignement','Santé / Secourisme','Communication','Logistique','Traduction','Design','Animation','Photographie'].map((c) => (
+                    <label className="chip" key={c}>
+                      <input type="checkbox" />
+                      <span>{c}</span>
+                    </label>
+                  ))}
+                </div>
+                <label>Langues parlées</label>
+                <div className="chips">
+                  {['Arabe','Français','Anglais','Tamazight'].map((l) => (
+                    <label className="chip" key={l}>
+                      <input type="checkbox" />
+                      <span>{l}</span>
+                    </label>
+                  ))}
+                </div>
                 <label>Centres d'intérêt</label>
                 <div className="chips">
-                  <label className="chip">
-                    <input type="checkbox" defaultChecked />
-                    <span>Solidarité</span>
-                  </label>
-                  <label className="chip">
-                    <input type="checkbox" defaultChecked />
-                    <span>Éducation</span>
-                  </label>
-                  <label className="chip">
-                    <input type="checkbox" defaultChecked />
-                    <span>Environnement</span>
-                  </label>
-                  <label className="chip">
-                    <input type="checkbox" defaultChecked />
-                    <span>Santé</span>
-                  </label>
+                  {['Solidarité','Éducation','Environnement','Santé'].map((c) => (
+                    <label className="chip" key={c}>
+                      <input type="checkbox" defaultChecked />
+                      <span>{c}</span>
+                    </label>
+                  ))}
                 </div>
+                <label>Disponibilité</label>
+                <select defaultValue="">
+                  <option value="">Choisir…</option>
+                  <option>En semaine</option>
+                  <option>Week-end</option>
+                  <option>Soirées</option>
+                  <option>Flexible</option>
+                </select>
+                <label>Expérience en bénévolat <span className="opt">(facultatif)</span></label>
+                <textarea placeholder="Missions déjà réalisées, associations…"></textarea>
 
+                <div className="fsec">Sécurité</div>
                 <label>Mot de passe</label>
                 <input type="password" required placeholder="••••••••" />
-
                 <label className="agree">
                   <input type="checkbox" required defaultChecked />
                   <span>J'accepte les conditions d'utilisation d'Athar.</span>
                 </label>
-
                 <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
                   Créer mon compte
                 </button>
@@ -8132,17 +8117,49 @@ export default function App() {
                   closeSignup();
                 }}
               >
-                <label>Nom de l'association</label>
-                <input type="text" required placeholder="Ex. Association El Baraka" />
+                <div className="fsec">Document d'agrément</div>
+                <div className="scanhint">
+                  📄 Importez le scan de votre agrément : les informations (nom, n° d'agrément, wilaya) seront <b>extraites automatiquement</b> et remplies pour vous.
+                </div>
+                <label className={`filebox scan ${assoScan === 'done' ? 'has' : ''}`}>
+                  <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleAgrementScan} />
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <path d="M4 7V5a1 1 0 0 1 1-1h2M20 7V5a1 1 0 0 0-1-1h-2M4 17v2a1 1 0 0 0 1 1h2M20 17v2a1 1 0 0 1-1 1h-2M3 12h18"/>
+                  </svg>
+                  <span className="filetxt">
+                    {assoScanName ? '📎 ' + assoScanName : <>Scanner l'agrément — <b>cliquez pour importer</b> (PDF ou photo)</>}
+                  </span>
+                </label>
+                {assoScan === 'scanning' && (
+                  <div className="scanres"><span className="spin"></span> Analyse du document en cours…</div>
+                )}
+                {assoScan === 'done' && (
+                  <div className="scanres ok">✓ Informations extraites automatiquement — vérifiez puis complétez.</div>
+                )}
 
+                <div className="fsec">Informations de l'association</div>
+                <label>Nom de l'association</label>
+                <input type="text" required placeholder="Ex. Association El Baraka"
+                  value={assoFields.nom} onChange={(e) => setAssoFields((f) => ({ ...f, nom: e.target.value }))} />
                 <div className="frow">
                   <div>
                     <label>N° d'agrément</label>
-                    <input type="text" required placeholder="Registre / RNA" />
+                    <input type="text" required placeholder="Registre / RNA"
+                      value={assoFields.num} onChange={(e) => setAssoFields((f) => ({ ...f, num: e.target.value }))} />
                   </div>
                   <div>
+                    <label>Date de création</label>
+                    <input type="date" />
+                  </div>
+                </div>
+                <label>Nom du responsable / représentant légal</label>
+                <input type="text" placeholder="Ex. Karim Meziane" />
+
+                <div className="fsec">Localisation &amp; contact</div>
+                <div className="frow">
+                  <div>
                     <label>Wilaya</label>
-                    <select defaultValue="Alger">
+                    <select value={assoFields.wilaya} onChange={(e) => setAssoFields((f) => ({ ...f, wilaya: e.target.value }))}>
                       <option value="">Choisir…</option>
                       {WILAYAS_LIST.map((w) => (
                         <option key={w.code} value={w.name}>
@@ -8151,16 +8168,29 @@ export default function App() {
                       ))}
                     </select>
                   </div>
+                  <div>
+                    <label>Commune</label>
+                    <input type="text" placeholder="Ex. El Kseur" />
+                  </div>
                 </div>
+                <label>Adresse du siège</label>
+                <input type="text" placeholder="Rue, quartier…" />
+                <div className="frow">
+                  <div>
+                    <label>Email officiel</label>
+                    <input type="email" required placeholder="contact@association.dz" />
+                  </div>
+                  <div>
+                    <label>Téléphone</label>
+                    <input type="tel" required placeholder="0X XX XX XX XX" />
+                  </div>
+                </div>
+                <label>Site web / page Facebook <span className="opt">(facultatif)</span></label>
+                <input type="text" placeholder="https://facebook.com/..." />
 
-                <label>Email officiel</label>
-                <input type="email" required placeholder="contact@association.dz" />
-
-                <label>Téléphone</label>
-                <input type="tel" required placeholder="0X XX XX XX XX" />
-
+                <div className="fsec">Activité</div>
                 <label>Domaine d'action</label>
-                <select defaultValue="Solidarité">
+                <select defaultValue="">
                   <option value="">Choisir…</option>
                   <option value="Solidarité">Solidarité</option>
                   <option value="Éducation">Éducation</option>
@@ -8168,20 +8198,29 @@ export default function App() {
                   <option value="Santé">Santé</option>
                   <option value="Multi-domaines">Multi-domaines</option>
                 </select>
+                <label>Description de l'association</label>
+                <textarea placeholder="Vos missions, vos actions, votre public…"></textarea>
+                <label>Logo de l'association <span className="opt">(facultatif)</span></label>
+                <label className={`filebox ${assoLogoName ? 'has' : ''}`}>
+                  <input type="file" accept=".jpg,.jpeg,.png,.svg"
+                    onChange={(e) => { const f = e.target.files && e.target.files[0]; if (f) setAssoLogoName(f.name); }} />
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                    <path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/>
+                  </svg>
+                  <span className="filetxt">{assoLogoName ? '🖼️ ' + assoLogoName : 'Importer le logo (image)'}</span>
+                </label>
 
+                <div className="fsec">Sécurité</div>
                 <label>Mot de passe</label>
                 <input type="password" required placeholder="••••••••" />
-
                 <div className="verif">
                   <IconShieldCheck className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                  <span>Votre compte sera vérifié avant validation (document d'agrément demandé).</span>
+                  <span>Votre compte sera vérifié manuellement avant validation, à partir du document d'agrément fourni.</span>
                 </div>
-
                 <label className="agree">
                   <input type="checkbox" required defaultChecked />
                   <span>J'accepte les conditions d'utilisation d'Athar.</span>
                 </label>
-
                 <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
                   Créer le compte
                 </button>
@@ -8255,7 +8294,7 @@ export default function App() {
                   }
                 }}
               />
-              <IconPaperclip className="w-5 h-5 text-[#0d5b61] shrink-0" />
+              <IconPaperclip className="w-5 h-5 text-[#006D5B] shrink-0" />
               <span className="filetxt">
                 {appliedFileName ? (
                   <><b>{appliedFileName}</b></>
