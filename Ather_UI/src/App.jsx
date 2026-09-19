@@ -2617,6 +2617,7 @@ export default function App() {
           openSignup={openSignup}
           showToast={showToast}
           LanguageDropdown={LanguageDropdown}
+          missions={missionsList}
         />
       )}
 
