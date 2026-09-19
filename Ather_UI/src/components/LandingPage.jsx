@@ -414,49 +414,46 @@ export default function LandingPage({
         ? "“Volunteering with Athar has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
         : "“Être bénévole avec Athar m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
       name: "Nadia M.",
-      role: currentLang === 'ar' ? "متطوعة منذ 2023 · الجزائر" : currentLang === 'en' ? "Active Volunteer · Algiers" : "Bénévole active · Alger (depuis 2023)",
+      role: currentLang === 'ar' ? "متطوعة منذ 2023" : currentLang === 'en' ? "Volunteer since 2023" : "Bénévole depuis 2023",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80"
     },
     {
       id: 2,
-      city: currentLang === 'ar' ? 'وهران الباهية' : 'Oran',
       photo: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
-      photoAlt: "Littoral d'Oran et la Méditerranée",
+      photoAlt: "Littoral d'Algérie et la Méditerranée",
       quote: currentLang === 'ar'
-        ? "“بفضل قوافل التضامن عبر أثر، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في الغرب الجزائري. عمل ميداني حقيقي وملموس.”"
+        ? "“بفضل قوافل التضامن عبر أثر، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في القرى. عمل ميداني حقيقي وملموس.”"
         : currentLang === 'en'
-        ? "“Thanks to solidarity caravans organized through Athar, we distributed over 450 food parcels to isolated families across western Algeria.”"
-        : "“Grâce aux caravanes de solidarité coordonnées via Athar, nous avons distribué plus de 450 colis alimentaires aux familles isolées dans l'Ouest algérien.”",
+        ? "“Thanks to solidarity caravans organized through Athar, we distributed over 450 food parcels to isolated families. Real, tangible field impact.”"
+        : "“Grâce aux caravanes de solidarité coordonnées via Athar, nous avons distribué plus de 450 colis alimentaires aux familles isolées. Un impact concret et mesurable.”",
       name: "Amine Benali",
-      role: currentLang === 'ar' ? "منسق قوافل تضامنية · وهران" : currentLang === 'en' ? "Solidarity Coordinator · Oran" : "Coordinateur Solidaire · Oran",
+      role: currentLang === 'ar' ? "منسق مبادرات تضامنية" : currentLang === 'en' ? "Solidarity Coordinator" : "Coordinateur Solidaire",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
     },
     {
       id: 3,
-      city: currentLang === 'ar' ? 'قسنطينة' : 'Constantine',
       photo: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=1200&q=80",
-      photoAlt: "Gorges et ponts de Constantine",
+      photoAlt: "Paysage d'Algérie",
       quote: currentLang === 'ar'
-        ? "“أحدثت منصة أثر فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية بقسنطينة. يستجيب المتبرعون في دقائق معدودة.”"
+        ? "“أحدثت منصة أثر فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية. يستجيب المتبرعون في دقائق معدودة لإنقاذ الأرواح.”"
         : currentLang === 'en'
-        ? "“Athar transformed how we coordinate urgent hospital blood donation calls in Constantine. Citizens respond in minutes to save lives.”"
-        : "“Athar a révolutionné nos appels urgents de don de sang au CHU de Constantine. Les citoyens répondent en quelques minutes pour sauver des vies.”",
+        ? "“Athar transformed how we coordinate urgent hospital blood donation calls. Citizens respond in minutes to save lives.”"
+        : "“Athar a révolutionné nos appels urgents de don de sang aux hôpitaux. Les citoyens répondent en quelques minutes pour sauver des vies.”",
       name: "Dr. Selma Khelifi",
-      role: currentLang === 'ar' ? "طبيبة ومنسقة تبرع بالدم · قسنطينة" : currentLang === 'en' ? "Doctor & Volunteer · Constantine" : "Médecin & Responsable Don du Sang · Constantine",
+      role: currentLang === 'ar' ? "طبيبة ومسؤولة بنك الدم" : currentLang === 'en' ? "Doctor & Blood Drive Lead" : "Médecin & Responsable Don du Sang",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
     },
     {
       id: 4,
-      city: currentLang === 'ar' ? 'البليدة · جبال الشريعة' : 'Blida · Chréa',
       photo: "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1200&q=80",
-      photoAlt: "Forêts de cèdres de Chréa",
+      photoAlt: "Forêts de cèdres et nature d'Algérie",
       quote: currentLang === 'ar'
-        ? "“إعادة تشجير غابات الأطلس البليدي في الشريعة مع أكثر من 120 شاباً متطوعاً بعث فينا فخراً كبيراً بالحفاظ على طبيعة الجزائر وثرواتها.”"
+        ? "“إعادة تشجير الغابات الوطنية مع أكثر من 120 شاباً متطوعاً بعث فينا فخراً كبيراً بالحفاظ على طبيعة الجزائر وثرواتها البيئية.”"
         : currentLang === 'en'
-        ? "“Reforesting the Atlas cedar groves in Chréa with over 120 youth volunteers restored immense pride in protecting Algeria's natural heritage.”"
-        : "“Replanter des cèdres de l'Atlas à Chréa avec plus de 120 jeunes engagés nous a redonné une fierté immense pour notre patrimoine écologique.”",
+        ? "“Reforesting national forests with over 120 youth volunteers restored immense pride in protecting our natural heritage.”"
+        : "“Replanter les forêts nationales avec plus de 120 jeunes engagés nous a redonné une fierté immense pour notre patrimoine écologique.”",
       name: "Yacine Mansouri",
-      role: currentLang === 'ar' ? "متطوع بيئي · البليدة" : currentLang === 'en' ? "Environmental Volunteer · Blida" : "Bénévole Reboisement · Blida",
+      role: currentLang === 'ar' ? "متطوع بيئي" : currentLang === 'en' ? "Environmental Volunteer" : "Bénévole Reboisement",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80"
     }
   ];
@@ -1089,9 +1086,6 @@ export default function LandingPage({
                 loading="lazy"
               />
               <div className="testimonial-panoramic-fade"></div>
-              <div className="testimonial-city-badge">
-                <span>📍 {testimonials[activeSlide].city}</span>
-              </div>
             </div>
 
             {/* Côté droit : Citation agrandie, profil bénévole et contrôles slider */}
