@@ -2,12 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import logoImg from '../assets/logo.png';
 import heroBgImg from '../assets/athar-hero.png';
 import panoramicImg from '../assets/algeria-panoramic.jpg';
-import YouthSolidarityCorps from './YouthSolidarityCorps';
-import ExploreThematicMagazine from './ExploreThematicMagazine';
-import LiveCommunityFeed from './LiveCommunityFeed';
-import BloodDonationCenter from './BloodDonationCenter';
-import TraceabilityLedger from './TraceabilityLedger';
-
 
 function IconSearch({ className = "w-4 h-4" }) {
   return (
@@ -91,7 +85,6 @@ function IconPhone({ className = "w-4 h-4" }) {
     </svg>
   );
 }
-
 
 function MissionCardSkeleton() {
   return (
@@ -236,13 +229,9 @@ export default function LandingPage({
   const defaultTranslations = {
     navHome: currentLang === 'ar' ? 'الرئيسية' : currentLang === 'en' ? 'Home' : 'Accueil',
     navMissions: currentLang === 'ar' ? 'المهمات' : currentLang === 'en' ? 'Missions' : 'Missions',
-    navCorps: currentLang === 'ar' ? 'فيلق التضامن' : currentLang === 'en' ? 'Solidarity Corps' : 'Corps Solidaire',
-    navExplore: currentLang === 'ar' ? 'استكشف' : currentLang === 'en' ? 'Explore' : 'Explorer',
-    navPulse: currentLang === 'ar' ? 'نبض المجتمع' : currentLang === 'en' ? 'Community Pulse' : 'Athar Pulse',
-    navBlood: currentLang === 'ar' ? 'نجدة الدم' : currentLang === 'en' ? 'Blood SOS' : 'SOS Sang',
-    navTrace: currentLang === 'ar' ? 'الشفافية' : currentLang === 'en' ? 'Traceability' : 'Traçabilité',
     navAssociations: currentLang === 'ar' ? 'الجمعيات' : currentLang === 'en' ? 'Associations' : 'Associations',
-    navVolunteers: currentLang === 'ar' ? 'إحصائيات' : currentLang === 'en' ? 'Stats' : 'Statistiques',
+    navAbout: currentLang === 'ar' ? 'من نحن' : currentLang === 'en' ? 'About' : 'À propos',
+    navVolunteers: currentLang === 'ar' ? 'المتطوعون' : currentLang === 'en' ? 'Volunteers' : 'Bénévoles',
     navSearch: currentLang === 'ar' ? 'بحث' : currentLang === 'en' ? 'Search' : 'Rechercher',
     navLogin: currentLang === 'ar' ? 'تسجيل الدخول' : currentLang === 'en' ? 'Log in' : 'Connexion',
     navSignup: currentLang === 'ar' ? 'انضم إلينا' : currentLang === 'en' ? 'Join us' : 'Rejoindre',
@@ -250,9 +239,6 @@ export default function LandingPage({
     statAssocs: currentLang === 'ar' ? 'جمعية شريكة' : currentLang === 'en' ? 'Partner associations' : 'Associations partenaires',
     statMissions: currentLang === 'ar' ? 'مهمة منجزة' : currentLang === 'en' ? 'Missions completed' : 'Missions réalisées',
     statWilayas: currentLang === 'ar' ? 'ولاية مغطاة' : currentLang === 'en' ? 'Wilayas covered' : 'Wilayas couvertes',
-    assocsSectionTitle: currentLang === 'ar' ? 'الجمعيات الرائدة الشريكة' : currentLang === 'en' ? 'Partner Associations' : 'Des associations pionnières nous font confiance',
-    assocsSectionSub: currentLang === 'ar' ? 'جمعيات معتمدة وموثقة تعمل في الميدان عبر كامل التراب الوطني.' : currentLang === 'en' ? 'Certified organizations creating real change across Algeria.' : 'Des structures agréées et vérifiées qui agissent au quotidien sur tout le territoire national.',
-    btnViewAssoc: currentLang === 'ar' ? 'عرض الجمعية' : currentLang === 'en' ? 'View organization' : 'Découvrir la structure',
     causesTitle: currentLang === 'ar' ? 'مجالات العمل التطوعي' : currentLang === 'en' ? 'Volunteer Causes' : 'Des causes variées pour chaque vocation',
     causesSubtitle: currentLang === 'ar' ? 'اختر المجال الذي يتوافق مع مهاراتك وشغفك للمساهمة في الميدان.' : currentLang === 'en' ? 'Choose causes aligned with your passion and make a tangible difference.' : 'Trouvez les actions qui résonnent avec vos convictions et mettez vos compétences à profit.',
     causeSolidarityTitle: currentLang === 'ar' ? 'التضامن والعمل الإنساني' : currentLang === 'en' ? 'Solidarity & Humanitarian' : 'Solidarité & Humanitaire',
@@ -367,113 +353,73 @@ export default function LandingPage({
   });
 
   return (
-        <>
-          {/* HEADER */}
-          <header>
-            <div className="wrap">
-              <nav className="nav">
-                <div className="brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                  <img
-                    src={logoImg}
-                    alt="Athar Platform أثر"
-                    style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
-                  />
-                </div>
+    <>
+      {/* HEADER */}
+      <header>
+        <div className="wrap">
+          <nav className="nav">
+            <div className="brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <img
+                src={logoImg}
+                alt="Athar Platform أثر"
+                style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
+              />
+            </div>
 
-                <div className="menu">
-                  <a
-                    href="#accueil"
-                    className="active"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('accueil');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                      else window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navHome')}
-                  </a>
-                  <a
-                    href="#missions"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('missions');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navMissions')}
-                  </a>
-                  <a
-                    href="#corps-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('corps-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navCorps')}
-                  </a>
-                  <a
-                    href="#explore-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('explore-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navExplore')}
-                  </a>
-                  <a
-                    href="#feed-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('feed-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navPulse')}
-                  </a>
-                  <a
-                    href="#blood-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('blood-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navBlood')}
-                  </a>
-                  <a
-                    href="#traceability-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('traceability-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navTrace')}
-                  </a>
-                  <a
-                    href="#associations-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('associations-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navAssociations')}
-                  </a>
-                  <a
-                    href="#stats-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('stats-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navVolunteers')}
-                  </a>
-                </div>
+            <div className="menu">
+              <a
+                href="#accueil"
+                className="active"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('accueil');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  else window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                {t('navHome')}
+              </a>
+              <a
+                href="#missions"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('missions');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                {t('navMissions')}
+              </a>
+              <a
+                href="#stats-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('stats-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                {t('navAssociations')}
+              </a>
+              <a
+                href="#stats-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('stats-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                {currentLang === 'ar' ? "المتطوعون" : currentLang === 'en' ? "Volunteers" : "Bénévoles"}
+              </a>
+              <a
+                href="#stats-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('stats-section') || document.getElementById('about');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                {t('navAbout')}
+              </a>
+            </div>
 
             <div className="right">
               <div
@@ -732,157 +678,6 @@ export default function LandingPage({
         </div>
       </section>
 
-              {/* 2. LE CORPS SOLIDAIRE NATIONAL DE LA JEUNESSE (Inspiré de youth.europa.eu) */}
-      <section id="corps-section" style={{ padding: '80px 0', background: '#F8FAFC', borderTop: '1px solid #E2E8F0' }}>
-        <div className="wrap">
-          <YouthSolidarityCorps
-            currentLang={currentLang}
-            volunteerUser={volunteerUser}
-            onOpenLogin={() => openLogin('volunteer')}
-            onToast={showToast}
-          />
-        </div>
-      </section>
-
-      {/* 3. LE MAGAZINE THÉMATIQUE — EXPLORE PAGE STYLE SUBSTACK */}
-      <section id="explore-section" style={{ padding: '80px 0 40px', background: '#ffffff', borderTop: '1px solid #E2E8F0' }}>
-        <div className="wrap">
-          <ExploreThematicMagazine
-            currentLang={currentLang}
-            onSelectTheme={(themeKey) => {
-              const el = document.getElementById('missions');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            onActionPledge={() => openLogin('volunteer')}
-          />
-        </div>
-      </section>
-
-      {/* 4. FIL D'IMPACT EN DIRECT — ATHAR PULSE */}
-      <section id="feed-section" style={{ padding: '70px 0', background: 'var(--bg-cream)', borderTop: '1px solid #E2E8F0' }}>
-        <div className="wrap">
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 36px' }}>
-            <div className="eyebrow" style={{ color: 'var(--primary-teal)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '13px', marginBottom: '8px' }}>
-              {currentLang === 'ar' ? 'المجتمع الحي في الميدان' : 'LE RÉSEAU SOCIAL DU BÉNÉVOLAT'}
-            </div>
-            <h2 style={{ fontSize: '32px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 12px' }}>
-              {currentLang === 'ar' ? 'نبض أثر : شارك أفعالك وأثرك الميداني' : "Athar Pulse : L'impact citoyen en direct"}
-            </h2>
-            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.6, margin: 0 }}>
-              {currentLang === 'ar'
-                ? 'قصص يومية، صور من الميدان، وإنجازات حقيقية تصنعها سواعد الشباب والجمعيات في كل ولايات الجزائر.'
-                : 'Stories du jour, photos de terrain, et réussites partagées par les bénévoles et associations à travers l\'Algérie.'}
-            </p>
-          </div>
-          <LiveCommunityFeed
-            currentLang={currentLang}
-            volunteerUser={volunteerUser}
-            onToast={showToast}
-          />
-        </div>
-      </section>
-
-      {/* 5. SOS SANG & ÉCOSYSTÈME HOSPITALIER */}
-      <section id="blood-section" style={{ padding: '70px 0', background: '#ffffff', borderTop: '1px solid #E2E8F0' }}>
-        <div className="wrap">
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 36px' }}>
-            <div className="eyebrow" style={{ color: '#b91c1c', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '13px', marginBottom: '8px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              <IconDroplet className="w-4 h-4 text-rose-600" />
-              <span>URGENCES VITALES & HÔPITAUX</span>
-            </div>
-            <h2 style={{ fontSize: '32px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 12px' }}>
-              {currentLang === 'ar' ? 'نجدة الدم : تبرع بساعة، أنقذ ثلاثة أرواح' : 'SOS Sang : Chaque goutte compte pour nos hôpitaux'}
-            </h2>
-            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.6, margin: 0 }}>
-              {currentLang === 'ar'
-                ? 'ربط مباشر مع مراكز حقن الدم في المستشفيات الجامعية (مصطفى باشا، باب الواد، البليدة، وهران، قسنطينة). احصل على تصريح المتبرع الرقمي.'
-                : 'Connexion directe avec les Centres de Transfusion Sanguine hospitaliers (CHU Mustapha, Bab El Oued, Blida, Oran, Constantine). Générez votre Pass Donneur numérique.'}
-            </p>
-          </div>
-          <BloodDonationCenter
-            currentLang={currentLang}
-            onOpenLogin={() => openLogin('volunteer')}
-            isVolunteer={false}
-            volunteerUser={volunteerUser}
-          />
-        </div>
-      </section>
-
-      {/* 6. REGISTRE PUBLIC DE TRAÇABILITÉ & PREUVES D'IMPACT */}
-      <section id="traceability-section" style={{ padding: '70px 0', background: 'var(--bg-cream)', borderTop: '1px solid #E2E8F0' }}>
-        <div className="wrap">
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 36px' }}>
-            <div className="eyebrow" style={{ color: 'var(--primary-teal)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '13px', marginBottom: '8px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              <IconShieldCheck className="w-4 h-4 text-emerald-700" />
-              <span>TRANSPARENCE CIVIQUE & CONFIANCE</span>
-            </div>
-            <h2 style={{ fontSize: '32px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 12px' }}>
-              {currentLang === 'ar' ? 'سجل توثيق الأثر الشفاف وغير القابل للتزوير' : 'Registre Public de Traçabilité & Preuves de Terrain'}
-            </h2>
-            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.6, margin: 0 }}>
-              {currentLang === 'ar'
-                ? 'كل قفة غذائية، كل كيس دم، وكل شجرة مغروسة مسجلة بختم رقمي وصور توثيقية حقيقية لضمان الثقة والشفافية المطلقة.'
-                : 'Chaque colis d\'aide, poche de sang et arbre planté dispose d\'un hachage numérique certifié et de photos de remise vérifiées.'}
-            </p>
-          </div>
-          <TraceabilityLedger
-            currentLang={currentLang}
-            isAssociation={false}
-            onToast={showToast}
-          />
-        </div>
-      </section>
-
-      {/* 7. ASSOCIATIONS PARTENAIRES & RÉFÉRENCES (id="associations-section") */}
-      <section id="associations-section" style={{ padding: '70px 0', background: '#ffffff', borderTop: '1px solid #E2E8F0' }}>
-        <div className="wrap">
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px' }}>
-            <div className="eyebrow" style={{ color: 'var(--primary-teal)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '13px', marginBottom: '8px' }}>
-              ÉCOSYSTÈME DE CONFIANCE
-            </div>
-            <h2 style={{ fontSize: '32px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 12px' }}>
-              {t('assocsSectionTitle')}
-            </h2>
-            <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.6, margin: 0 }}>
-              {t('assocsSectionSub')}
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: '24px' }}>
-            {[
-              { name: "Croissant Rouge Algérien", tag: "Solidarité & Secourisme", wilaya: "National (69 wilayas)", verified: true, desc: "Aide humanitaire d'urgence, banques alimentaires nationales et secourisme de proximité.", icon: "🚑" },
-              { name: "Association Green Future", tag: "Environnement & Climat", wilaya: "Alger & Oran", verified: true, desc: "Régénération forestière méditerranéenne, protection du littoral et sensibilisation scolaire.", icon: "🌲" },
-              { name: "Association El Chifa Santé", tag: "Santé Publique & Don", wilaya: "Constantine & Blida", verified: true, desc: "Soutien aux urgences hospitalières, don du sang et dépistage préventif pour tous.", icon: "🩸" },
-              { name: "Lire pour Demain", tag: "Éducation & Jeunesse", wilaya: "Alger & Béjaïa", verified: true, desc: "Accès au livre, bibliothèques nomades dans les zones d'ombre et mentorat citoyen.", icon: "📚" }
-            ].map((assoc, i) => (
-              <div key={i} style={{ background: '#ffffff', borderRadius: '16px', padding: '24px', border: '1px solid #E2E8F0', boxShadow: '0 4px 16px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                    <span style={{ fontSize: '32px' }}>{assoc.icon}</span>
-                    <span style={{ fontSize: '11px', fontWeight: 700, padding: '4px 10px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                      ✓ Agréée Officielle
-                    </span>
-                  </div>
-                  <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--primary-navy)', margin: '0 0 6px' }}>{assoc.name}</h3>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--primary-teal)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <IconMapPin className="w-3.5 h-3.5" />
-                    <span>{assoc.wilaya}</span>
-                  </div>
-                  <p style={{ fontSize: '13.5px', color: '#64748B', lineHeight: 1.55, margin: '0 0 16px' }}>{assoc.desc}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => openLogin('volunteer')}
-                  style={{ width: '100%', padding: '10px 16px', borderRadius: '10px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: 'var(--primary-navy)', fontWeight: 700, fontSize: '13px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-                >
-                  <span>{t('btnViewAssoc')}</span>
-                  <IconArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       {/* CAUSES / TYPES DE MISSIONS */}
       <section className="causes" id="causes">
         <div className="wrap">
@@ -1120,7 +915,6 @@ export default function LandingPage({
           </div>
         </div>
       </footer>
-        </>
-
+    </>
   );
 }
