@@ -5115,6 +5115,10 @@ html[dir="rtl"] .hero h1 {
   .corps-title-main {
     font-size: 26px;
   }
+  .volunteer-feed-layout {
+    grid-template-columns: 1fr !important;
+  }
 }
+
 
 

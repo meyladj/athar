@@ -1131,7 +1131,7 @@ export default function App() {
   // ========================================================
   // ESPACE BÉNÉVOLE — PORTAIL OPPORTUNITÉS & CV INTERACTIF (Style AIESEC)
   // ========================================================
-  const [volunteerPortalTab, setVolunteerPortalTab] = useState('missions'); // 'missions' | 'associations' | 'about' | 'profile' | 'applications' | 'favorites' | 'certificates' | 'settings'
+  const [volunteerPortalTab, setVolunteerPortalTab] = useState('feed'); // 'feed' | 'profile' | 'missions' | 'explore' | 'blood' | 'messages' | 'traceability' | 'favorites' | 'settings'
   const [profileSubTab, setProfileSubTab] = useState('overview'); // 'overview' | 'applications' | 'certificates'
   const [selectedMissionDetail, setSelectedMissionDetail] = useState(null);
   const [selectedCertificateDetail, setSelectedCertificateDetail] = useState(null);
@@ -5148,26 +5148,24 @@ export default function App() {
                 className="portal-logo"
                 onClick={() => {
                   setSelectedMissionDetail(null);
-                  setVolunteerPortalTab('missions');
+                  setVolunteerPortalTab('feed');
                 }}
               />
             </div>
 
             {/* CENTRE : LIENS DE NAVIGATION PRINCIPAUX (SIDEBAR) */}
             <nav className="portal-nav">
-              {/* 1. ACCUEIL */}
+              {/* 1. ACCUEIL (Feed des publications associatives) */}
               <button
                 type="button"
-                className="portal-nav-link"
+                className={`portal-nav-link ${(volunteerPortalTab === 'feed' || volunteerPortalTab === 'home') && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => {
                   setSelectedMissionDetail(null);
-                  setCurrentView('landing');
-                  window.location.hash = '#accueil';
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setVolunteerPortalTab('feed');
                 }}
               >
                 <IconHome className="w-4 h-4" />
-                <span>{t('navHome')}</span>
+                <span>{currentLang === 'ar' ? 'الرئيسية' : currentLang === 'en' ? 'Home' : 'Accueil'}</span>
               </button>
 
               {/* 2. MON PROFIL */}
@@ -5234,17 +5232,7 @@ export default function App() {
                 <span>{t('navTrace')}</span>
               </button>
 
-              {/* 8. ASSOCIATIONS */}
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'associations' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('associations'); }}
-              >
-                <IconBuilding className="w-4 h-4" />
-                <span>{t('navAssociations')}</span>
-              </button>
-
-              {/* 9. MES OFFRES SAUVEGARDÉES */}
+              {/* 8. MES OFFRES SAUVEGARDÉES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'favorites' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5254,7 +5242,10 @@ export default function App() {
                 <span>{currentLang === 'ar' ? 'الفرص المحفوظة' : 'Mes offres sauvegardées'}</span>
               </button>
 
-              {/* 10. PARAMÈTRES */}
+              {/* Séparateur élégant */}
+              <div style={{ height: '1px', background: '#E2E8F0', margin: '6px 4px' }}></div>
+
+              {/* 9. PARAMÈTRES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'settings' && !selectedMissionDetail ? 'active' : ''}`}
@@ -7210,23 +7201,28 @@ export default function App() {
                   </div>
                 )}
 
-                {/* 11. PAGE 'FIL D'IMPACT — ATHAR PULSE' */}
-                {volunteerPortalTab === 'feed' && (
-                  <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-                    <div className="cv-section-card" style={{ padding: '20px 26px', marginBottom: '20px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                {/* 1. PAGE ACCUEIL / FEED DES ASSOCIATIONS (Preuves de Traçabilité) */}
+                {(volunteerPortalTab === 'feed' || volunteerPortalTab === 'home') && (
+                  <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
+                    <div className="cv-section-card" style={{ padding: '22px 28px', marginBottom: '22px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
                         <div>
-                          <h1 style={{ margin: '0 0 4px', fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
-                            {currentLang === 'ar' ? 'نبض أثر · مجتمع المتطوعين الحي' : 'Athar Pulse · Fil d\'Impact Citoyen'}
+                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#006D5B', fontWeight: 800, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '4px' }}>
+                            <IconHome className="w-4 h-4" />
+                            <span>{currentLang === 'ar' ? 'صفحة الاستقبال' : currentLang === 'en' ? 'Volunteer Home' : 'Accueil Bénévole'}</span>
+                          </div>
+                          <h1 style={{ margin: '0 0 4px', fontSize: '23px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                            {currentLang === 'ar' ? 'موجز أنشطة الجمعيات · توثيق الأثر والشفافية' : currentLang === 'en' ? 'Associations Feed · Verified Field Traceability' : 'Fil d\'Actualité des Associations · Preuves de Terrain & Traçabilité'}
                           </h1>
                           <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
                             {currentLang === 'ar'
-                              ? 'شارك إنجازاتك، تفاعل مع المبادرات، واطلع على بطولات الشباب في الميدان.'
-                              : 'Partagez vos actions de terrain, célébrez les réussites associatives et gagnez des badges d\'impact.'}
+                              ? 'اكتشف الإنجازات الميدانية الموثقة من طرف الجمعيات المعتمدة، تفاعل مع أدلة الأثر وتابع جمعياتك المفضلة.'
+                              : 'Découvrez les actions certifiées menées par les associations agréées en Algérie, réagissez aux preuves d\'impact et suivez vos organisations favorites.'}
                           </p>
                         </div>
-                        <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0' }}>
-                          Flux en direct
+                        <span style={{ fontSize: '12px', fontWeight: 800, padding: '5px 14px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                          <IconShieldCheck className="w-4 h-4 text-emerald-600" />
+                          <span>Preuves en direct</span>
                         </span>
                       </div>
                     </div>
@@ -7662,6 +7658,8 @@ export default function App() {
               closeLogin();
               if (loginProfile === 'volunteer') {
                 setCurrentView('volunteer');
+                setVolunteerPortalTab('feed');
+                setSelectedMissionDetail(null);
                 window.location.hash = '#volunteer';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 showToast(currentLang === 'ar' ? `مرحباً بك مجدداً ${volunteerUser.name}!` : `Bienvenue dans votre Espace Bénévole, ${volunteerUser.name} !`);
