@@ -3,8 +3,47 @@ import './style.css';
 import logoImg from './assets/logo.png';
 import panoramicImg from './assets/algeria-panoramic.jpg';
 import heroBgImg from './assets/athar-hero.png';
+import BloodDonationCenter from './components/BloodDonationCenter';
+import LiveCommunityFeed from './components/LiveCommunityFeed';
+import ExploreThematicMagazine from './components/ExploreThematicMagazine';
+import TraceabilityLedger from './components/TraceabilityLedger';
+import DirectMessenger from './components/DirectMessenger';
 
 // Clean SVG Icons (zero external library dependency, zero emoji)
+function IconMessageSquare({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  );
+}
+
+function IconHome({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+  );
+}
+
+function IconCompass({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+    </svg>
+  );
+}
+
+function IconDroplet({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+    </svg>
+  );
+}
+
 function IconMapPin({ className = "w-3.5 h-3.5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -570,6 +609,12 @@ const translations = {
   fr: {
     navHome: "Accueil",
     navMissions: "Missions",
+    navExplore: "Explorer",
+    navPulse: "Fil d'Impact",
+    navBlood: "SOS Sang",
+    navTrace: "Traçabilité",
+    navMessages: "Messagerie",
+    navVolunteers: "Bénévoles",
     navAssociations: "Associations",
     navAbout: "À propos",
     navBlog: "Blog",
@@ -664,6 +709,12 @@ const translations = {
   ar: {
     navHome: "الرئيسية",
     navMissions: "الفرص التطوعية",
+    navExplore: "استكشف",
+    navPulse: "نبض أثر",
+    navBlood: "SOS دم",
+    navTrace: "شفافية الأثر",
+    navMessages: "الرسائل",
+    navVolunteers: "المتطوعون",
     navAssociations: "الجمعيات",
     navAbout: "من نحن",
     navBlog: "المدونة",
@@ -758,6 +809,12 @@ const translations = {
   en: {
     navHome: "Home",
     navMissions: "Missions",
+    navExplore: "Explore",
+    navPulse: "Athar Pulse",
+    navBlood: "SOS Blood",
+    navTrace: "Traceability",
+    navMessages: "Messages",
+    navVolunteers: "Volunteers",
     navAssociations: "Associations",
     navAbout: "About Us",
     navBlog: "Blog",
@@ -2582,10 +2639,50 @@ export default function App() {
                     {t('navMissions')}
                   </a>
                   <a
-                    href="#stats-section"
+                    href="#explore-section"
                     onClick={(e) => {
                       e.preventDefault();
-                      const el = document.getElementById('stats-section');
+                      const el = document.getElementById('explore-section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    {t('navExplore')}
+                  </a>
+                  <a
+                    href="#feed-section"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById('feed-section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    {t('navPulse')}
+                  </a>
+                  <a
+                    href="#blood-section"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById('blood-section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    {t('navBlood')}
+                  </a>
+                  <a
+                    href="#traceability-section"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById('traceability-section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    {t('navTrace')}
+                  </a>
+                  <a
+                    href="#associations-section"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById('associations-section');
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
@@ -2599,17 +2696,7 @@ export default function App() {
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    {currentLang === 'ar' ? "المتطوعون" : currentLang === 'en' ? "Volunteers" : "Bénévoles"}
-                  </a>
-                  <a
-                    href="#stats-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('stats-section') || document.getElementById('about');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navAbout')}
+                    {t('navVolunteers')}
                   </a>
                 </div>
 
@@ -2870,6 +2957,20 @@ export default function App() {
         </div>
       </section>
 
+              {/* Déconnexion */}
+              <button
+                type="button"
+                className="portal-logout-btn"
+                onClick={() => {
+                  setCurrentView('landing');
+                  window.location.hash = '#accueil';
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  showToast("Déconnexion réussie. À bientôt Nadia !");
+                }}
+              >
+                <IconLogOut className="w-4 h-4" />
+                <span>Se déconnecter</span>
+              </button>
       {/* CAUSES / TYPES DE MISSIONS */}
       <section className="causes" id="causes">
         <div className="wrap">
@@ -3185,6 +3286,25 @@ export default function App() {
                 <IconHeart className="w-4 h-4" />
                 <span>{currentLang === 'ar' ? 'المتطوعون' : currentLang === 'en' ? 'Volunteers' : 'Bénévoles'}</span>
                 <span className="saas-nav-badge">{activeVolunteersList.length}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`saas-nav-item ${dashActiveTab === 'messages' ? 'active' : ''}`}
+                onClick={() => setDashActiveTab('messages')}
+              >
+                <IconMessageSquare className="w-4 h-4" />
+                <span>{currentLang === 'ar' ? 'الرسائل والمحادثات' : currentLang === 'en' ? 'Direct Messages' : 'Messagerie'}</span>
+                <span className="saas-nav-badge alert">1</span>
+              </button>
+
+              <button
+                type="button"
+                className={`saas-nav-item ${dashActiveTab === 'traceability' ? 'active' : ''}`}
+                onClick={() => setDashActiveTab('traceability')}
+              >
+                <IconShieldCheck className="w-4 h-4" />
+                <span>{currentLang === 'ar' ? 'توثيق الأثر & الشهادات' : currentLang === 'en' ? 'Impact Ledger' : 'Preuves d\'Impact'}</span>
               </button>
 
               <button
@@ -5420,6 +5540,62 @@ export default function App() {
                   )}
                 </div>
               )}
+
+              {/* MESSAGERIE CITOYENNE DIRECTE */}
+              {dashActiveTab === 'messages' && (
+                <div style={{ padding: '4px 0' }}>
+                  <div className="saas-card" style={{ padding: '20px 24px', marginBottom: '20px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div>
+                        <h2 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 4px' }}>
+                          {currentLang === 'ar' ? 'المحادثات المباشرة مع المتطوعين والمستشفيات' : 'Messagerie Citoyenne Active'}
+                        </h2>
+                        <p style={{ fontSize: '13.5px', color: '#64748B', margin: 0 }}>
+                          {currentLang === 'ar'
+                            ? 'تواصل فوري ومنظم لتنسيق المبادرات، الرد على الاستفسارات، وتوجيه المتطوعين.'
+                            : 'Échangez en direct avec vos candidats, bénévoles mobilisés et les services hospitaliers.'}
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0' }}>
+                        Canal Sécurisé Athar
+                      </span>
+                    </div>
+                  </div>
+                  <DirectMessenger
+                    volunteerUser={{ name: "Association El Baraka Algérie", role: "Coordonnateur Projets & Urgences", initials: "EB" }}
+                    currentLang={currentLang}
+                    onToast={showToast}
+                  />
+                </div>
+              )}
+
+              {/* REGISTRE DE TRAÇABILITÉ & CERTIFICATION D'IMPACT */}
+              {dashActiveTab === 'traceability' && (
+                <div style={{ padding: '4px 0' }}>
+                  <div className="saas-card" style={{ padding: '20px 24px', marginBottom: '20px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div>
+                        <h2 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 4px' }}>
+                          {currentLang === 'ar' ? 'سجل توثيق وإثبات الأثر الميداني' : 'Certification & Traçabilité des Actions'}
+                        </h2>
+                        <p style={{ fontSize: '13.5px', color: '#64748B', margin: 0 }}>
+                          {currentLang === 'ar'
+                            ? 'وثّق عمليات التوزيع والمبادرات الميدانية برقم تحقق مشفّر وصور إثبات لتعزيز ثقة المجتمع والممولين.'
+                            : 'Enregistrez vos preuves de livraison, photos de terrain et volumes distribués avec empreinte numérique vérifiée.'}
+                        </p>
+                      </div>
+                      <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#EFF6FF', color: '#1E3A8A', border: '1px solid #BFDBFE' }}>
+                        Registre Infalsifiable
+                      </span>
+                    </div>
+                  </div>
+                  <TraceabilityLedger
+                    currentLang={currentLang}
+                    isAssociation={true}
+                    onToast={showToast}
+                  />
+                </div>
+              )}
             </main>
           </div>
 
@@ -5571,10 +5747,70 @@ export default function App() {
             <nav className="portal-nav">
               <button
                 type="button"
+                className="portal-nav-link"
+                onClick={() => {
+                  setSelectedMissionDetail(null);
+                  setCurrentView('landing');
+                  window.location.hash = '#accueil';
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <IconHome className="w-4 h-4" />
+                <span>{t('navHome')}</span>
+              </button>
+
+              <button
+                type="button"
                 className={`portal-nav-link ${(volunteerPortalTab === 'missions' || selectedMissionDetail) ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('missions'); }}
               >
-                <IconSearch className="w-4 h-4" /><span>Missions</span>
+                <IconSearch className="w-4 h-4" />
+                <span>{t('navMissions')}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'explore' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('explore'); }}
+              >
+                <IconCompass className="w-4 h-4" />
+                <span>{t('navExplore')}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'feed' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('feed'); }}
+              >
+                <IconActivity className="w-4 h-4" />
+                <span>{t('navPulse')}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'blood' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('blood'); }}
+              >
+                <IconDroplet className="w-4 h-4 text-rose-500" />
+                <span>{t('navBlood')}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'messages' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('messages'); }}
+              >
+                <IconMessageSquare className="w-4 h-4" />
+                <span>{t('navMessages')}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'traceability' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('traceability'); }}
+              >
+                <IconShieldCheck className="w-4 h-4" />
+                <span>{t('navTrace')}</span>
               </button>
 
               <button
@@ -5582,7 +5818,8 @@ export default function App() {
                 className={`portal-nav-link ${volunteerPortalTab === 'associations' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('associations'); }}
               >
-                <IconBuilding className="w-4 h-4" /><span>Associations</span>
+                <IconBuilding className="w-4 h-4" />
+                <span>{t('navAssociations')}</span>
               </button>
 
               <button
@@ -5590,7 +5827,8 @@ export default function App() {
                 className={`portal-nav-link ${volunteerPortalTab === 'profile' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('profile'); }}
               >
-                <IconUsers className="w-4 h-4" /><span>Mon profil</span>
+                <IconUsers className="w-4 h-4" />
+                <span>{currentLang === 'ar' ? 'الملف والشهادات' : 'Mon profil'}</span>
               </button>
 
               <button
@@ -5598,7 +5836,8 @@ export default function App() {
                 className={`portal-nav-link ${volunteerPortalTab === 'applications' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('applications'); }}
               >
-                <IconFileText className="w-4 h-4" /><span>Mes candidatures</span>
+                <IconFileText className="w-4 h-4" />
+                <span>Mes candidatures</span>
               </button>
 
               <button
@@ -5606,7 +5845,8 @@ export default function App() {
                 className={`portal-nav-link ${volunteerPortalTab === 'favorites' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('favorites'); }}
               >
-                <IconHeart className="w-4 h-4" /><span>Mes offres sauvegardées</span>
+                <IconHeart className="w-4 h-4" />
+                <span>Mes offres sauvegardées</span>
               </button>
 
               <button
@@ -5614,7 +5854,8 @@ export default function App() {
                 className={`portal-nav-link ${volunteerPortalTab === 'certificates' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('certificates'); }}
               >
-                <IconAward className="w-4 h-4" /><span>Mes certificats &amp; badges</span>
+                <IconAward className="w-4 h-4" />
+                <span>Mes certificats &amp; badges</span>
               </button>
 
               <button
@@ -5622,7 +5863,8 @@ export default function App() {
                 className={`portal-nav-link ${volunteerPortalTab === 'settings' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('settings'); }}
               >
-                <IconSettings className="w-4 h-4" /><span>Paramètres</span>
+                <IconSettings className="w-4 h-4" />
+                <span>Paramètres</span>
               </button>
             </nav>
 
@@ -7465,6 +7707,137 @@ export default function App() {
                         </label>
                       </div>
                     </div>
+                  </div>
+                )}
+
+                {/* 10. PAGE 'EXPLORER — MAGAZINE THÉMATIQUE' */}
+                {volunteerPortalTab === 'explore' && (
+                  <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+                    <ExploreThematicMagazine
+                      currentLang={currentLang}
+                      onSelectTheme={(themeKey) => {
+                        setVolunteerFilterTheme(themeKey);
+                        setVolunteerPortalTab('missions');
+                      }}
+                      onActionPledge={() => setVolunteerPortalTab('blood')}
+                    />
+                  </div>
+                )}
+
+                {/* 11. PAGE 'FIL D'IMPACT — ATHAR PULSE' */}
+                {volunteerPortalTab === 'feed' && (
+                  <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+                    <div className="cv-section-card" style={{ padding: '20px 26px', marginBottom: '20px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div>
+                          <h1 style={{ margin: '0 0 4px', fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                            {currentLang === 'ar' ? 'نبض أثر · مجتمع المتطوعين الحي' : 'Athar Pulse · Fil d\'Impact Citoyen'}
+                          </h1>
+                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
+                            {currentLang === 'ar'
+                              ? 'شارك إنجازاتك، تفاعل مع المبادرات، واطلع على بطولات الشباب في الميدان.'
+                              : 'Partagez vos actions de terrain, célébrez les réussites associatives et gagnez des badges d\'impact.'}
+                          </p>
+                        </div>
+                        <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0' }}>
+                          Flux en direct
+                        </span>
+                      </div>
+                    </div>
+                    <LiveCommunityFeed
+                      currentLang={currentLang}
+                      volunteerUser={volunteerUser}
+                      onToast={showToast}
+                    />
+                  </div>
+                )}
+
+                {/* 12. PAGE 'SOS SANG — URGENCES HOSPITALIÈRES' */}
+                {volunteerPortalTab === 'blood' && (
+                  <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
+                    <div className="cv-section-card" style={{ padding: '20px 26px', marginBottom: '20px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div>
+                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#b91c1c', fontWeight: 800, fontSize: '12px', textTransform: 'uppercase', marginBottom: '4px' }}>
+                            <IconDroplet className="w-4 h-4 text-rose-600" />
+                            <span>Urgence Vitale Nationale</span>
+                          </div>
+                          <h1 style={{ margin: '0 0 4px', fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                            {currentLang === 'ar' ? 'نداءات التبرع بالدم للمستشفيات الجامعية' : 'Centres Hospitaliers & Don du Sang'}
+                          </h1>
+                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
+                            {currentLang === 'ar'
+                              ? 'سجل التزامك بالتبرع واحصل على تصريح المتبرع الرقمي المعتمد في بنوك الدم.'
+                              : 'Engagez-vous auprès des CTS universitaires et téléchargez votre Pass Donneur numérique.'}
+                          </p>
+                        </div>
+                        <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#FEF2F2', color: '#b91c1c', border: '1px solid #FECACA' }}>
+                          Priorité Haute
+                        </span>
+                      </div>
+                    </div>
+                    <BloodDonationCenter
+                      currentLang={currentLang}
+                      onOpenLogin={() => {}}
+                      isVolunteer={true}
+                      volunteerUser={volunteerUser}
+                    />
+                  </div>
+                )}
+
+                {/* 13. PAGE 'MESSAGERIE CITOYENNE' */}
+                {volunteerPortalTab === 'messages' && (
+                  <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
+                    <div className="cv-section-card" style={{ padding: '20px 26px', marginBottom: '20px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div>
+                          <h1 style={{ margin: '0 0 4px', fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                            {currentLang === 'ar' ? 'المحادثات المباشرة مع منسقي المبادرات' : 'Messagerie Directe avec les Coordinateurs'}
+                          </h1>
+                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
+                            {currentLang === 'ar'
+                              ? 'تواصل مباشرة مع الجمعيات والمستشفيات لتأكيد تفاصيل مشاركتك والتوقيت.'
+                              : 'Échangez avec les responsables de missions, posez vos questions et confirmez vos présences.'}
+                          </p>
+                        </div>
+                        <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0' }}>
+                          Canal Sécurisé
+                        </span>
+                      </div>
+                    </div>
+                    <DirectMessenger
+                      volunteerUser={volunteerUser}
+                      currentLang={currentLang}
+                      onToast={showToast}
+                    />
+                  </div>
+                )}
+
+                {/* 14. PAGE 'TRAÇABILITÉ & PREUVES D'IMPACT' */}
+                {volunteerPortalTab === 'traceability' && (
+                  <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
+                    <div className="cv-section-card" style={{ padding: '20px 26px', marginBottom: '20px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div>
+                          <h1 style={{ margin: '0 0 4px', fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                            {currentLang === 'ar' ? 'سجل توثيق الأثر والشفافية الميدانية' : 'Registre Public de Traçabilité & Preuves'}
+                          </h1>
+                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
+                            {currentLang === 'ar'
+                              ? 'تتبع عمليات التوزيع والمساعدات المحققة في الميدان برقم تحقق فريد وتوثيق مصور.'
+                              : 'Consultez les preuves vérifiées et les registres infalsifiables de chaque action bénévole.'}
+                          </p>
+                        </div>
+                        <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#EFF6FF', color: '#1E3A8A', border: '1px solid #BFDBFE' }}>
+                          Preuves Vérifiées
+                        </span>
+                      </div>
+                    </div>
+                    <TraceabilityLedger
+                      currentLang={currentLang}
+                      isAssociation={false}
+                      onToast={showToast}
+                    />
                   </div>
                 )}
               </div>

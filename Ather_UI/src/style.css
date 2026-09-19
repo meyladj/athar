@@ -2963,3 +2963,1385 @@ html[dir="rtl"] .hero h1 {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
 }
+
+/* ========================================================================== */
+/* MODULES INNOVATION HACKATHON ATHAR :                                       */
+/* 1. SOS SANG & HÔPITAUX                                                     */
+/* 2. FIL SOCIAL LIVE & STORIES (ATHAR PULSE)                                 */
+/* 3. EXPLORER THÉMATIQUE STYLE SUBSTACK                                      */
+/* 4. REGISTRE PUBLIC DE TRAÇABILITÉ                                          */
+/* 5. MESSAGERIE DIRECTE CITOYENNE                                            */
+/* ========================================================================== */
+
+/* --- 1. SOS SANG & HÔPITAUX --- */
+.blood-donation-wrapper {
+  margin: 36px 0 60px;
+}
+.blood-alert-banner {
+  background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%);
+  border: 1.5px solid #fecaca;
+  border-radius: 16px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(185, 28, 28, 0.06);
+}
+.blood-alert-pulse {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.blood-pulse-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #dc2626;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  animation: bloodPulse 1.6s infinite;
+}
+@keyframes bloodPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+.blood-alert-badge {
+  background: #dc2626;
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+.blood-alert-text {
+  margin: 0;
+  font-size: 14px;
+  color: #991b1b;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.blood-filters-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  background: #ffffff;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+}
+.blood-filter-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.blood-filter-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+.blood-pills-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.blood-pill-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.blood-pill-btn:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+.blood-pill-btn.active {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+.blood-wilaya-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.blood-select {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  background: #fff;
+  font-weight: 600;
+  color: var(--primary-navy);
+  outline: none;
+}
+.blood-drives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.blood-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  border: 1.5px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.blood-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+.blood-card.critical {
+  border-color: #fca5a5;
+  border-left: 5px solid #dc2626;
+}
+.blood-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.blood-urgency-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.blood-urgency-tag.critical {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.blood-urgency-tag.high {
+  background: #fef3c7;
+  color: #b45309;
+}
+.blood-hospital-title {
+  font-size: 17.5px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin: 0 0 2px;
+  line-height: 1.25;
+}
+.blood-service-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+.blood-wilaya-badge {
+  font-size: 11.5px;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.blood-groups-needed-box {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.blood-box-title {
+  display: block;
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.blood-group-drops {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.blood-drop-tag {
+  background: #ffffff;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 3px 9px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.blood-reason-text {
+  font-size: 13px;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+.blood-progress-container {
+  margin-bottom: 14px;
+}
+.blood-progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+.blood-progress-percent {
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+.blood-progress-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.blood-progress-fill {
+  height: 100%;
+  background: var(--primary-teal);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+.blood-progress-fill.critical {
+  background: #dc2626;
+}
+.blood-card-meta {
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 12px;
+  margin-bottom: 16px;
+}
+.blood-pledges-stat {
+  color: var(--primary-navy);
+}
+.btn-blood-pledge {
+  width: 100%;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+}
+.btn-blood-pledge:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.35);
+}
+.blood-donor-guide-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.blood-guide-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.blood-guide-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eff6ff;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+.blood-guide-header h4 {
+  margin: 0 0 2px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+.blood-guide-header p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #64748b;
+}
+.blood-guide-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: 700;
+  color: #047857;
+}
+
+/* --- 2. FIL SOCIAL LIVE & STORIES (ATHAR PULSE) --- */
+.community-feed-wrapper {
+  margin: 28px 0 54px;
+}
+.stories-bar {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 4px 20px;
+  scrollbar-width: none;
+}
+.stories-bar::-webkit-scrollbar {
+  display: none;
+}
+.story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 78px;
+}
+.story-circle {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: grid;
+  place-items: center;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+}
+.story-circle.unread {
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--primary-teal);
+}
+.story-circle.add {
+  background: var(--primary-teal);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+}
+.story-item:hover .story-circle {
+  transform: scale(1.06);
+}
+.story-avatar-emoji {
+  font-size: 24px;
+}
+.story-label {
+  font-size: 11.5px;
+  color: var(--primary-navy);
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.feed-header-action-row {
+  margin-bottom: 24px;
+}
+.feed-publish-trigger-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+.feed-publish-trigger-box:hover {
+  border-color: var(--primary-teal);
+  box-shadow: 0 4px 18px rgba(0, 109, 91, 0.08);
+}
+.feed-user-avatar-sm {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary-teal);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.feed-trigger-input-fake {
+  font-size: 13.5px;
+  color: #94a3b8;
+  flex-grow: 1;
+}
+.btn-feed-publish {
+  background: var(--primary-teal);
+  color: #ffffff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.feed-theme-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.feed-filter-chip {
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.feed-filter-chip.active {
+  background: var(--primary-navy);
+  color: #ffffff;
+  border-color: var(--primary-navy);
+}
+.feed-posts-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.feed-post-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+.feed-post-author-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.feed-post-author-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.feed-author-avatar-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 15px;
+  background: var(--primary-teal);
+}
+.feed-author-avatar-badge.hospital {
+  background: #dc2626;
+}
+.feed-author-avatar-badge.university_club {
+  background: #2563eb;
+}
+.feed-author-avatar-badge.organization {
+  background: var(--primary-navy);
+}
+.feed-author-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.feed-author-name {
+  font-size: 15px;
+  color: var(--primary-navy);
+}
+.feed-category-pill {
+  font-size: 11px;
+  font-weight: 800;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.feed-author-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+.feed-post-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+.feed-post-text {
+  font-size: 14.5px;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.feed-post-impact-tag {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  color: #065f46;
+  font-size: 13px;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+.feed-post-image-container {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  max-height: 420px;
+  background: #0f172a;
+}
+.feed-post-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.feed-post-engagement-bar {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+.feed-engagement-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12.5px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+.feed-post-action-buttons {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid #f8fafc;
+  padding-top: 8px;
+}
+.feed-action-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+.feed-action-btn:hover {
+  background: #f1f5f9;
+}
+.feed-action-btn.liked {
+  color: #dc2626;
+  background: #fef2f2;
+}
+.feed-comments-section {
+  margin-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+}
+.feed-comment-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.feed-comment-input-row input {
+  flex-grow: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 13.5px;
+  outline: none;
+}
+.btn-send-comment {
+  background: var(--primary-teal);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.feed-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.feed-comment-bubble {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.feed-comment-author {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 2px;
+}
+.feed-comment-time {
+  font-weight: 400;
+  color: #94a3b8;
+}
+.feed-comment-text {
+  font-size: 13px;
+  color: #334155;
+}
+
+/* --- 3. EXPLORER THÉMATIQUE STYLE SUBSTACK --- */
+.explore-magazine-wrapper {
+  margin: 28px 0 60px;
+}
+.explore-hero-editorial {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 36px;
+}
+.explore-hero-tag {
+  color: var(--primary-teal);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.explore-hero-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(28px, 3.8vw, 42px);
+  color: var(--primary-navy);
+  font-weight: 700;
+  margin: 10px 0 14px;
+  line-height: 1.2;
+}
+.explore-hero-subtitle {
+  font-size: 15.5px;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0;
+}
+.explore-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.explore-pillar-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.explore-pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-teal);
+  box-shadow: 0 8px 24px rgba(0, 109, 91, 0.08);
+}
+.explore-pillar-card.active {
+  background: #ffffff;
+  border: 2px solid var(--primary-teal);
+  box-shadow: 0 4px 18px rgba(0, 109, 91, 0.12);
+}
+.explore-pillar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.explore-pillar-emoji {
+  font-size: 22px;
+}
+.explore-pillar-badge {
+  font-size: 10px;
+  font-weight: 800;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.explore-pillar-name {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin: 0 0 6px;
+}
+.explore-pillar-desc {
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
+}
+.explore-articles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.explore-articles-header h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 24px;
+  color: var(--primary-navy);
+  margin: 0;
+}
+.explore-articles-count {
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+.explore-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+.explore-article-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.explore-article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+.explore-article-cover {
+  position: relative;
+  height: 200px;
+  background: #1e293b;
+}
+.explore-article-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.explore-article-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+.explore-article-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.explore-article-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+.explore-article-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+.explore-article-excerpt {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+.explore-article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+.explore-article-author-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.explore-author-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-teal);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+.explore-author-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+.explore-author-role {
+  font-size: 11px;
+  color: #94a3b8;
+}
+.explore-read-link {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--primary-teal);
+}
+
+/* --- 4. REGISTRE PUBLIC DE TRAÇABILITÉ --- */
+.traceability-ledger-wrapper {
+  margin: 28px 0 54px;
+}
+.traceability-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+.traceability-stat-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+.trace-stat-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--primary-navy);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.trace-stat-label {
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+.traceability-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.traceability-badge-certified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #166534;
+  background: #dcfce7;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.traceability-main-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin: 0 0 6px;
+}
+.traceability-main-desc {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+  max-width: 680px;
+}
+.traceability-filter-box {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.traceability-search-input-wrap {
+  flex-grow: 1;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 14px 10px 38px;
+  display: flex;
+  align-items: center;
+}
+.traceability-search-input-wrap .search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+}
+.traceability-search-input-wrap input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13.5px;
+}
+.traceability-wilaya-select {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+}
+.traceability-records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.traceability-record-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+.traceability-record-card:hover {
+  border-color: var(--primary-teal);
+  box-shadow: 0 8px 24px rgba(0, 109, 91, 0.06);
+}
+.trace-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+.trace-id-badge {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary-teal);
+  background: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.trace-date {
+  font-size: 12px;
+  color: #64748b;
+}
+.trace-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #166534;
+  font-weight: 700;
+}
+.trace-dot-verified {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+}
+.trace-org-info h4 {
+  font-size: 17px;
+  color: var(--primary-navy);
+  margin: 0 0 2px;
+}
+.trace-org-type {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+.trace-metrics-box {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 16px;
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.trace-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+.trace-metric-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.trace-metric-value {
+  font-size: 14px;
+  color: var(--primary-teal);
+}
+.trace-metric-benef {
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+}
+.trace-verifier-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: #64748b;
+}
+.trace-hash-code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #475569;
+}
+.trace-record-footer {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-view-proof {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--primary-navy);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+.btn-view-proof:hover {
+  background: #f8fafc;
+  border-color: var(--primary-navy);
+}
+
+/* --- 5. MESSAGERIE DIRECTE CITOYENNE --- */
+.messenger-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #ffffff;
+  overflow: hidden;
+  height: 680px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  margin: 24px 0 50px;
+}
+.messenger-sidebar {
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  background: #fafaf9;
+}
+.messenger-sidebar-header {
+  padding: 20px 18px 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.messenger-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.messenger-title-row h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin: 0;
+}
+.messenger-badge-count {
+  font-size: 11px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.messenger-sub {
+  font-size: 11.5px;
+  color: #64748b;
+  margin: 0;
+}
+.messenger-conversations-list {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+.messenger-conv-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  position: relative;
+}
+.messenger-conv-item:hover {
+  background: #f5f5f4;
+}
+.messenger-conv-item.active {
+  background: #ffffff;
+  border-left: 4px solid var(--primary-teal);
+}
+.messenger-conv-avatar-wrap {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #e2e8f0;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.messenger-conv-avatar-icon {
+  font-size: 20px;
+}
+.messenger-online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #16a34a;
+  border: 2px solid #fff;
+}
+.messenger-conv-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+.messenger-conv-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.messenger-conv-name {
+  font-size: 13.5px;
+  color: var(--primary-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.messenger-conv-time {
+  font-size: 11px;
+  color: #94a3b8;
+}
+.messenger-conv-person {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+.entity-tag {
+  font-weight: 700;
+  color: var(--primary-teal);
+}
+.messenger-conv-last-snippet {
+  font-size: 12px;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.messenger-unread-pill {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.messenger-chat-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.messenger-chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+}
+.messenger-chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.messenger-active-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+.messenger-messages-stream {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fbfbfb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.messenger-encrypted-notice {
+  text-align: center;
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+.messenger-bubble-row {
+  display: flex;
+}
+.messenger-bubble-row.me {
+  justify-content: flex-end;
+}
+.messenger-bubble-row.them {
+  justify-content: flex-start;
+}
+.messenger-bubble {
+  max-width: 65%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  position: relative;
+}
+.messenger-bubble.me {
+  background: var(--primary-teal);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+.messenger-bubble.them {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-bottom-left-radius: 4px;
+}
+.messenger-bubble.typing {
+  font-style: italic;
+  font-size: 12px;
+  color: #64748b;
+  background: #f1f5f9;
+}
+.messenger-bubble-time {
+  font-size: 10.5px;
+  margin-top: 4px;
+  opacity: 0.8;
+  text-align: right;
+}
+.messenger-quick-actions-bar {
+  padding: 8px 16px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+.quick-chip-btn {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+.quick-chip-btn:hover {
+  background: var(--primary-teal);
+  color: #ffffff;
+  border-color: var(--primary-teal);
+}
+.messenger-input-bar {
+  padding: 14px 20px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 10px;
+  background: #ffffff;
+}
+.messenger-input-bar input {
+  flex-grow: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  outline: none;
+}
+.btn-send-message {
+  background: var(--primary-teal);
+  color: #ffffff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* RESPONSIVE HACKATHON MODULES */
+@media (max-width: 900px) {
+  .messenger-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .messenger-sidebar {
+    max-height: 240px;
+  }
+  .trace-metrics-box {
+    grid-template-columns: 1fr;
+  }
+}
+
