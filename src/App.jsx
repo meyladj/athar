@@ -10,6 +10,7 @@ import TraceabilityLedger from './components/TraceabilityLedger';
 import DirectMessenger from './components/DirectMessenger';
 import YouthSolidarityCorps from './components/YouthSolidarityCorps';
 import LandingPage from './components/LandingPage';
+import InteractiveActionMap from './components/InteractiveActionMap';
 
 // Clean SVG Icons (zero external library dependency, zero emoji)
 function IconMessageSquare({ className = "w-3.5 h-3.5" }) {
@@ -1107,7 +1108,7 @@ export default function App() {
       if (window.location.hash === '#association' || window.location.pathname.includes('dashboard_association')) {
         return 'association';
       }
-      if (window.location.hash === '#volunteer' || window.location.pathname.includes('dashboard_benevole')) {
+      if (window.location.hash.startsWith('#volunteer') || window.location.pathname.includes('dashboard_benevole')) {
         return 'volunteer';
       }
     }
@@ -1118,8 +1119,11 @@ export default function App() {
     const handleHash = () => {
       if (window.location.hash === '#association') {
         setCurrentView('association');
-      } else if (window.location.hash === '#volunteer') {
+      } else if (window.location.hash.startsWith('#volunteer')) {
         setCurrentView('volunteer');
+        if (window.location.hash === '#volunteer-map') {
+          setVolunteerPortalTab('map');
+        }
       } else if (window.location.hash === '#accueil' || !window.location.hash) {
         setCurrentView('landing');
       }
@@ -1131,7 +1135,12 @@ export default function App() {
   // ========================================================
   // ESPACE BÉNÉVOLE — PORTAIL OPPORTUNITÉS & CV INTERACTIF (Style AIESEC)
   // ========================================================
-  const [volunteerPortalTab, setVolunteerPortalTab] = useState('feed'); // 'feed' | 'profile' | 'missions' | 'explore' | 'blood' | 'messages' | 'traceability' | 'favorites' | 'settings'
+  const [volunteerPortalTab, setVolunteerPortalTab] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#volunteer-map') {
+      return 'map';
+    }
+    return 'feed';
+  }); // 'feed' | 'profile' | 'missions' | 'explore' | 'blood' | 'messages' | 'traceability' | 'favorites' | 'settings' | 'map'
   const [profileSubTab, setProfileSubTab] = useState('overview'); // 'overview' | 'applications' | 'certificates'
   const [selectedMissionDetail, setSelectedMissionDetail] = useState(null);
   const [selectedCertificateDetail, setSelectedCertificateDetail] = useState(null);
@@ -5192,7 +5201,17 @@ export default function App() {
                 <span>{t('navMissions')}</span>
               </button>
 
-              {/* 4. EXPLORER */}
+              {/* 4. CARTE DES ACTIONS */}
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'map' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('map'); }}
+              >
+                <IconMapPin className="w-4 h-4 text-emerald-600" />
+                <span>{currentLang === 'ar' ? 'خريطة الأنشطة' : currentLang === 'en' ? 'Action Map' : 'Carte des actions'}</span>
+              </button>
+
+              {/* 5. EXPLORER */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'explore' && !selectedMissionDetail ? 'active' : ''}`}
@@ -7195,6 +7214,18 @@ export default function App() {
                       currentLang={currentLang}
                       volunteerUser={volunteerUser}
                       onToast={showToast}
+                    />
+                  </div>
+                )}
+
+                {/* PAGE 'CARTE INTERACTIVE DES ACTIONS BÉNÉVOLES' */}
+                {volunteerPortalTab === 'map' && (
+                  <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                    <InteractiveActionMap
+                      currentLang={currentLang}
+                      volunteerUser={volunteerUser}
+                      onToast={showToast}
+                      onSelectMission={(action) => setSelectedMissionDetail(action)}
                     />
                   </div>
                 )}
