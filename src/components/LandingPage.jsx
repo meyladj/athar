@@ -37,6 +37,32 @@ function IconChevronRight({ className = "w-4 h-4" }) {
   );
 }
 
+function IconBookOpen({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg>
+  );
+}
+
+function IconLeaf({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+    </svg>
+  );
+}
+
+function IconMedicalCross({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 8h-3V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3v3a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3h3a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/>
+    </svg>
+  );
+}
+
 function IconSearch({ className = "w-4 h-4" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -372,44 +398,76 @@ export default function LandingPage({
   const [isMissionsLoading, setIsMissionsLoading] = useState(false);
   const [selectedMission, setSelectedMission] = useState('');
 
-  // Slider des témoignages bénévoles avec photo d'Alger
+  // Slider des témoignages bénévoles avec photos de différentes wilayas d'Algérie
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isSliderPaused, setIsSliderPaused] = useState(false);
 
   const testimonials = [
     {
       id: 1,
+      city: currentLang === 'ar' ? 'الجزائر العاصمة' : 'Alger',
+      photo: algiersCardCrop,
+      photoAlt: "Baie d'Alger et Maqam Echahid",
       quote: currentLang === 'ar'
         ? "“التطوع مع أثر مكنني من لقاء أشخاص رائعين والمساهمة بقدر استطاعتي في جزائر أكثر تضامناً وترابطاً.”"
         : currentLang === 'en'
         ? "“Volunteering with Athar has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
         : "“Être bénévole avec Athar m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
       name: "Nadia M.",
-      role: currentLang === 'ar' ? "متطوعة منذ 2023" : currentLang === 'en' ? "Volunteer since 2023" : "Bénévole depuis 2023",
+      role: currentLang === 'ar' ? "متطوعة منذ 2023 · الجزائر" : currentLang === 'en' ? "Active Volunteer · Algiers" : "Bénévole active · Alger (depuis 2023)",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80"
     },
     {
       id: 2,
+      city: currentLang === 'ar' ? 'وهران الباهية' : 'Oran',
+      photo: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+      photoAlt: "Littoral d'Oran et la Méditerranée",
       quote: currentLang === 'ar'
-        ? "“بفضل أثر، استطعنا حشد أكثر من 60 متطوعاً في أقل من 24 ساعة لقافلتنا الطبية الموجهة لقرى الأوراس. أثر ملموس وفوري.”"
+        ? "“بفضل قوافل التضامن عبر أثر، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في الغرب الجزائري. عمل ميداني حقيقي وملموس.”"
         : currentLang === 'en'
-        ? "“Thanks to Athar, we mobilized over 60 volunteers in under 24 hours for our mobile medical caravan. Tangible, measured impact.”"
-        : "“Grâce à Athar, notre association a mobilisé 60 bénévoles en moins de 24h pour notre caravane médicale dans l'Ouarsenis. Un impact concret et mesurable.”",
-      name: "Dr. Karim S.",
-      role: currentLang === 'ar' ? "منسق قوافل طبية · البليدة" : currentLang === 'en' ? "Medical Coordinator · Blida" : "Coordinateur Médical · Blida",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
+        ? "“Thanks to solidarity caravans organized through Athar, we distributed over 450 food parcels to isolated families across western Algeria.”"
+        : "“Grâce aux caravanes de solidarité coordonnées via Athar, nous avons distribué plus de 450 colis alimentaires aux familles isolées dans l'Ouest algérien.”",
+      name: "Amine Benali",
+      role: currentLang === 'ar' ? "منسق قوافل تضامنية · وهران" : currentLang === 'en' ? "Solidarity Coordinator · Oran" : "Coordinateur Solidaire · Oran",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
     },
     {
       id: 3,
+      city: currentLang === 'ar' ? 'قسنطينة' : 'Constantine',
+      photo: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=1200&q=80",
+      photoAlt: "Gorges et ponts de Constantine",
       quote: currentLang === 'ar'
-        ? "“المشاركة في حملات التشجير وإعادة تأهيل الغابات الوطنية منحتني إحساساً حقيقياً بالمسؤولية المجتمعية. أثر منصة لكل شباب الجزائر.”"
+        ? "“أحدثت منصة أثر فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية بقسنطينة. يستجيب المتبرعون في دقائق معدودة.”"
         : currentLang === 'en'
-        ? "“Taking part in national reforestation campaigns gave me a true sense of purpose. Athar is the platform for active Algerian youth.”"
-        : "“Participer aux campagnes de reboisement national et de nettoyage du littoral m'a donné un réel sentiment d'utilité collective. Athar fédère nos énergies.”",
-      name: "Amine B.",
-      role: currentLang === 'ar' ? "متطوع نشط · وهران" : currentLang === 'en' ? "Active Volunteer · Oran" : "Bénévole actif · Oran",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
+        ? "“Athar transformed how we coordinate urgent hospital blood donation calls in Constantine. Citizens respond in minutes to save lives.”"
+        : "“Athar a révolutionné nos appels urgents de don de sang au CHU de Constantine. Les citoyens répondent en quelques minutes pour sauver des vies.”",
+      name: "Dr. Selma Khelifi",
+      role: currentLang === 'ar' ? "طبيبة ومنسقة تبرع بالدم · قسنطينة" : currentLang === 'en' ? "Doctor & Volunteer · Constantine" : "Médecin & Responsable Don du Sang · Constantine",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
+    },
+    {
+      id: 4,
+      city: currentLang === 'ar' ? 'البليدة · جبال الشريعة' : 'Blida · Chréa',
+      photo: "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1200&q=80",
+      photoAlt: "Forêts de cèdres de Chréa",
+      quote: currentLang === 'ar'
+        ? "“إعادة تشجير غابات الأطلس البليدي في الشريعة مع أكثر من 120 شاباً متطوعاً بعث فينا فخراً كبيراً بالحفاظ على طبيعة الجزائر وثرواتها.”"
+        : currentLang === 'en'
+        ? "“Reforesting the Atlas cedar groves in Chréa with over 120 youth volunteers restored immense pride in protecting Algeria's natural heritage.”"
+        : "“Replanter des cèdres de l'Atlas à Chréa avec plus de 120 jeunes engagés nous a redonné une fierté immense pour notre patrimoine écologique.”",
+      name: "Yacine Mansouri",
+      role: currentLang === 'ar' ? "متطوع بيئي · البليدة" : currentLang === 'en' ? "Environmental Volunteer · Blida" : "Bénévole Reboisement · Blida",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80"
     }
   ];
+
+  useEffect(() => {
+    if (isSliderPaused) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isSliderPaused, testimonials.length]);
 
   const handlePrevSlide = () => {
     setActiveSlide((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
@@ -850,97 +908,195 @@ export default function LandingPage({
         </div>
       </section>
 
-      {/* CAUSES / TYPES DE MISSIONS */}
-      <section className="causes" id="causes">
+      {/* SECTION NOS CAUSES COMPACTE (exactement comme Capture d'écran 200935) */}
+      <section className="causes-compact-section" id="causes">
         <div className="wrap">
-          <div className="chead">
-            <h2>{t('causesTitle')}</h2>
-            <p>
-              {t('causesSubtitle')}
-            </p>
+          <div className="causes-compact-head">
+            <div>
+              <div className="causes-eyebrow">
+                {currentLang === 'ar' ? 'مجالاتنا' : currentLang === 'en' ? 'OUR CAUSES' : 'NOS CAUSES'}
+              </div>
+              <h2 className="causes-compact-title">
+                {currentLang === 'ar' ? 'مجالات تصنع الفارق وتغير الحياة' : currentLang === 'en' ? 'Fields that change lives' : 'Des domaines qui changent des vies'}
+              </h2>
+            </div>
+            <a
+              href="#missions"
+              className="causes-see-all-link"
+              onClick={(e) => {
+                e.preventDefault();
+                setSelectedCategoryFilter('Toutes');
+                const el = document.getElementById('missions');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <span>{currentLang === 'ar' ? 'عرض جميع المجالات' : currentLang === 'en' ? 'See all causes' : 'Voir toutes les causes'}</span>
+              <IconArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
-          <div className="cgrid">
-            <div className="cc">
-              <div className="cc-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80"
-                  alt={t('causeSolidarityTitle')}
-                  className="cc-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="cc-body">
-                <h3>{t('causeSolidarityTitle')}</h3>
-                <p>{t('causeSolidarityDesc')}</p>
-              </div>
-            </div>
-
-            <div className="cc">
-              <div className="cc-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
-                  alt={t('causeEducationTitle')}
-                  className="cc-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="cc-body">
-                <h3>{t('causeEducationTitle')}</h3>
-                <p>{t('causeEducationDesc')}</p>
-              </div>
-            </div>
-
-            <div className="cc">
-              <div className="cc-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80"
-                  alt={t('causeEnvironmentTitle')}
-                  className="cc-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="cc-body">
-                <h3>{t('causeEnvironmentTitle')}</h3>
-                <p>{t('causeEnvironmentDesc')}</p>
+          <div className="causes-compact-grid">
+            {/* 1. Solidarité */}
+            <div
+              className="cause-compact-card"
+              onClick={() => {
+                setSelectedCategoryFilter('Solidarité');
+                const el = document.getElementById('missions');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80"
+                alt="Solidarité"
+                className="cause-compact-bg"
+                loading="lazy"
+              />
+              <div className="cause-compact-overlay"></div>
+              <div className="cause-compact-footer">
+                <div className="cause-compact-pill">
+                  <div className="cause-icon-circle">
+                    <IconHeart className="w-4 h-4 text-emerald-700" />
+                  </div>
+                  <span className="cause-name-text">
+                    {currentLang === 'ar' ? 'التضامن' : currentLang === 'en' ? 'Solidarity' : 'Solidarité'}
+                  </span>
+                </div>
+                <div className="cause-arrow-circle">
+                  <IconArrowRight className="w-3.5 h-3.5 text-emerald-800" />
+                </div>
               </div>
             </div>
 
-            <div className="cc">
-              <div className="cc-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80"
-                  alt={t('causeHealthTitle')}
-                  className="cc-img"
-                  loading="lazy"
-                />
+            {/* 2. Éducation */}
+            <div
+              className="cause-compact-card"
+              onClick={() => {
+                setSelectedCategoryFilter('Éducation');
+                const el = document.getElementById('missions');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
+                alt="Éducation"
+                className="cause-compact-bg"
+                loading="lazy"
+              />
+              <div className="cause-compact-overlay"></div>
+              <div className="cause-compact-footer">
+                <div className="cause-compact-pill">
+                  <div className="cause-icon-circle">
+                    <IconBookOpen className="w-4 h-4 text-emerald-700" />
+                  </div>
+                  <span className="cause-name-text">
+                    {currentLang === 'ar' ? 'التعليم' : currentLang === 'en' ? 'Education' : 'Éducation'}
+                  </span>
+                </div>
+                <div className="cause-arrow-circle">
+                  <IconArrowRight className="w-3.5 h-3.5 text-emerald-800" />
+                </div>
               </div>
-              <div className="cc-body">
-                <h3>{t('causeHealthTitle')}</h3>
-                <p>{t('causeHealthDesc')}</p>
+            </div>
+
+            {/* 3. Environnement */}
+            <div
+              className="cause-compact-card"
+              onClick={() => {
+                setSelectedCategoryFilter('Environnement');
+                const el = document.getElementById('missions');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80"
+                alt="Environnement"
+                className="cause-compact-bg"
+                loading="lazy"
+              />
+              <div className="cause-compact-overlay"></div>
+              <div className="cause-compact-footer">
+                <div className="cause-compact-pill">
+                  <div className="cause-icon-circle">
+                    <IconLeaf className="w-4 h-4 text-emerald-700" />
+                  </div>
+                  <span className="cause-name-text">
+                    {currentLang === 'ar' ? 'البيئة' : currentLang === 'en' ? 'Environment' : 'Environnement'}
+                  </span>
+                </div>
+                <div className="cause-arrow-circle">
+                  <IconArrowRight className="w-3.5 h-3.5 text-emerald-800" />
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Santé */}
+            <div
+              className="cause-compact-card"
+              onClick={() => {
+                setSelectedCategoryFilter('Santé');
+                const el = document.getElementById('missions');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80"
+                alt="Santé"
+                className="cause-compact-bg"
+                loading="lazy"
+              />
+              <div className="cause-compact-overlay"></div>
+              <div className="cause-compact-footer">
+                <div className="cause-compact-pill">
+                  <div className="cause-icon-circle">
+                    <IconMedicalCross className="w-4 h-4 text-emerald-700" />
+                  </div>
+                  <span className="cause-name-text">
+                    {currentLang === 'ar' ? 'الصحة' : currentLang === 'en' ? 'Health' : 'Santé'}
+                  </span>
+                </div>
+                <div className="cause-arrow-circle">
+                  <IconArrowRight className="w-3.5 h-3.5 text-emerald-800" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION TÉMOIGNAGES BÉNÉVOLES AVEC PHOTO D'ALGER & SLIDER */}
+      {/* SECTION TÉMOIGNAGES BÉNÉVOLES AVEC SLIDER D'ALGÉRIE & SANS MARGES */}
       <section className="testimonials-slider-section" id="temoignages">
         <div className="wrap">
-          <div className="testimonial-banner-card">
-            {/* Côté gauche : Panorama d'Alger avec Maqam Echahid & fondu */}
+          <div
+            className="testimonial-banner-card"
+            onMouseEnter={() => setIsSliderPaused(true)}
+            onMouseLeave={() => setIsSliderPaused(false)}
+          >
+            {/* Côté gauche : Photo d'Algérie plein bord qui change avec chaque témoignage */}
             <div className="testimonial-panoramic-left">
               <img
-                src={algiersCardCrop}
-                alt="Baie d'Alger et Maqam Echahid"
+                key={activeSlide}
+                src={testimonials[activeSlide].photo}
+                alt={testimonials[activeSlide].photoAlt}
                 className="testimonial-panoramic-img"
                 loading="lazy"
               />
               <div className="testimonial-panoramic-fade"></div>
+              <div className="testimonial-city-badge">
+                <span>📍 {testimonials[activeSlide].city}</span>
+              </div>
             </div>
 
-            {/* Côté droit : Citation interactive, profil et contrôles slider */}
+            {/* Côté droit : Citation agrandie, profil bénévole et contrôles slider */}
             <div className="testimonial-quote-right">
+              <div className="testimonial-top-quote-mark">“</div>
               <blockquote className="testimonial-quote-text" key={activeSlide}>
                 {testimonials[activeSlide].quote}
               </blockquote>
