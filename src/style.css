@@ -5120,5 +5120,365 @@ html[dir="rtl"] .hero h1 {
   }
 }
 
+/* ========================================================
+   SECTION 1 : COMMENT ÇA MARCHE / ÉTAPES (STYLE ATHAR)
+   ======================================================== */
+.how-it-works-section {
+  padding: 82px 0 74px;
+  background: #fbfdfc;
+  border-top: 1px solid #edf2f7;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.how-grid-layout {
+  display: grid;
+  grid-template-columns: 370px 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.how-left-col .how-eyebrow {
+  font-size: 13px;
+  font-weight: 800;
+  color: #006D5B;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.how-left-col .how-heading {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #0A2540;
+  line-height: 1.16;
+  letter-spacing: -0.6px;
+  margin: 0 0 16px;
+}
+
+.how-left-col .how-subtext {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0 0 28px;
+}
+
+.how-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #006D5B;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px -3px rgba(0, 109, 91, 0.32);
+  transition: all 0.22s ease;
+}
+
+.how-cta-button:hover {
+  background: #005547;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(0, 109, 91, 0.42);
+}
+
+.how-steps-track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.how-step-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.how-circle-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.how-circle-node {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1.8px solid #A7F3D0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 14px -2px rgba(0, 109, 91, 0.08);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.how-step-card:hover .how-circle-node {
+  transform: scale(1.06);
+  border-color: #006D5B;
+}
+
+.how-circle-badge {
+  position: absolute;
+  bottom: 0;
+  left: -2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #006D5B;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.how-step-line {
+  flex: 1;
+  height: 0;
+  border-top: 2px dashed #99F6E4;
+  margin: 0 14px;
+  align-self: center;
+}
+
+.how-step-title {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 17.5px;
+  font-weight: 800;
+  color: #0A2540;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.how-step-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ========================================================
+   SECTION 2 : TÉMOIGNAGES BÉNÉVOLES AVEC PANORAMA D'ALGER
+   ======================================================== */
+.testimonials-slider-section {
+  padding: 68px 0 80px;
+  background: #ffffff;
+}
+
+.testimonial-banner-card {
+  background: #FAFCFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  min-height: 190px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+  position: relative;
+}
+
+.testimonial-panoramic-left {
+  flex: 0 0 46%;
+  position: relative;
+  overflow: hidden;
+  min-height: 190px;
+}
+
+.testimonial-panoramic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.testimonial-panoramic-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(to right, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.85) 60%, #FAFCFC 100%);
+  pointer-events: none;
+}
+
+.testimonial-quote-right {
+  flex: 1;
+  padding: 28px 40px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.testimonial-quote-text {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0A2540;
+  line-height: 1.52;
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.testimonial-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.testimonial-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-user-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-user-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0A2540;
+  line-height: 1.2;
+}
+
+.testimonial-user-role {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.testimonial-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.testimonial-dots-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.testimonial-dot-btn {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #CBD5E1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.testimonial-dot-btn.active {
+  background: #006D5B;
+  width: 10px;
+  height: 10px;
+}
+
+.testimonial-arrows-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.testimonial-arrow-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #0A2540;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  transition: all 0.18s ease;
+}
+
+.testimonial-arrow-btn:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  transform: scale(1.05);
+}
+
+/* RTL Support */
+[dir="rtl"] .how-left-col .how-heading {
+  letter-spacing: 0;
+}
+[dir="rtl"] .how-circle-badge {
+  left: auto;
+  right: -2px;
+}
+[dir="rtl"] .testimonial-panoramic-fade {
+  right: auto;
+  left: 0;
+  background: linear-gradient(to left, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.85) 60%, #FAFCFC 100%);
+}
+
+/* Responsiveness */
+@media (max-width: 980px) {
+  .how-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .how-steps-track {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .how-step-card {
+    max-width: 100%;
+  }
+  .how-step-line {
+    display: none;
+  }
+  .testimonial-banner-card {
+    flex-direction: column;
+  }
+  .testimonial-panoramic-left {
+    width: 100%;
+    min-height: 170px;
+    flex: none;
+  }
+  .testimonial-panoramic-fade {
+    width: 100%;
+    height: 45%;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent, #FAFCFC 100%);
+  }
+  .testimonial-quote-right {
+    padding: 24px 20px;
+  }
+}
+
 
 

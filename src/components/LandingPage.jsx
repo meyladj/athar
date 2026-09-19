@@ -2,6 +2,40 @@ import React, { useState, useEffect, useRef } from 'react';
 import logoImg from '../assets/logo.png';
 import heroBgImg from '../assets/athar-hero.png';
 import panoramicImg from '../assets/algeria-panoramic.jpg';
+import algiersCardCrop from '../assets/algiers-card-crop.png';
+
+function IconUser({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+  );
+}
+
+function IconHeart({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    </svg>
+  );
+}
+
+function IconChevronLeft({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  );
+}
+
+function IconChevronRight({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  );
+}
 
 function IconSearch({ className = "w-4 h-4" }) {
   return (
@@ -338,6 +372,53 @@ export default function LandingPage({
   const [isMissionsLoading, setIsMissionsLoading] = useState(false);
   const [selectedMission, setSelectedMission] = useState('');
 
+  // Slider des témoignages bénévoles avec photo d'Alger
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const testimonials = [
+    {
+      id: 1,
+      quote: currentLang === 'ar'
+        ? "“التطوع مع أثر مكنني من لقاء أشخاص رائعين والمساهمة بقدر استطاعتي في جزائر أكثر تضامناً وترابطاً.”"
+        : currentLang === 'en'
+        ? "“Volunteering with Athar has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
+        : "“Être bénévole avec Athar m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
+      name: "Nadia M.",
+      role: currentLang === 'ar' ? "متطوعة منذ 2023" : currentLang === 'en' ? "Volunteer since 2023" : "Bénévole depuis 2023",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80"
+    },
+    {
+      id: 2,
+      quote: currentLang === 'ar'
+        ? "“بفضل أثر، استطعنا حشد أكثر من 60 متطوعاً في أقل من 24 ساعة لقافلتنا الطبية الموجهة لقرى الأوراس. أثر ملموس وفوري.”"
+        : currentLang === 'en'
+        ? "“Thanks to Athar, we mobilized over 60 volunteers in under 24 hours for our mobile medical caravan. Tangible, measured impact.”"
+        : "“Grâce à Athar, notre association a mobilisé 60 bénévoles en moins de 24h pour notre caravane médicale dans l'Ouarsenis. Un impact concret et mesurable.”",
+      name: "Dr. Karim S.",
+      role: currentLang === 'ar' ? "منسق قوافل طبية · البليدة" : currentLang === 'en' ? "Medical Coordinator · Blida" : "Coordinateur Médical · Blida",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
+    },
+    {
+      id: 3,
+      quote: currentLang === 'ar'
+        ? "“المشاركة في حملات التشجير وإعادة تأهيل الغابات الوطنية منحتني إحساساً حقيقياً بالمسؤولية المجتمعية. أثر منصة لكل شباب الجزائر.”"
+        : currentLang === 'en'
+        ? "“Taking part in national reforestation campaigns gave me a true sense of purpose. Athar is the platform for active Algerian youth.”"
+        : "“Participer aux campagnes de reboisement national et de nettoyage du littoral m'a donné un réel sentiment d'utilité collective. Athar fédère nos énergies.”",
+      name: "Amine B.",
+      role: currentLang === 'ar' ? "متطوع نشط · وهران" : currentLang === 'en' ? "Active Volunteer · Oran" : "Bénévole actif · Oran",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
+    }
+  ];
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
   const handleCategoryChange = (cat) => {
     if (cat === selectedCategoryFilter) return;
     setIsMissionsLoading(true);
@@ -564,6 +645,97 @@ export default function LandingPage({
         </div>
       </section>
 
+      {/* SECTION COMMENT ÇA MARCHE / ÉTAPES */}
+      <section className="how-it-works-section" id="how-it-works">
+        <div className="wrap">
+          <div className="how-grid-layout">
+            {/* Colonne gauche : Présentation & CTA */}
+            <div className="how-left-col">
+              <div className="how-eyebrow">
+                {currentLang === 'ar' ? 'كيف تعمل المنصة؟' : currentLang === 'en' ? 'HOW IT WORKS ?' : 'COMMENT ÇA MARCHE ?'}
+              </div>
+              <h2 className="how-heading">
+                {currentLang === 'ar' ? (
+                  <>التطوع مع أثر<br />في خطوات بسيطة</>
+                ) : currentLang === 'en' ? (
+                  <>Volunteer with Athar<br />in a few steps</>
+                ) : (
+                  <>S'engager avec Athar<br />en quelques étapes</>
+                )}
+              </h2>
+              <p className="how-subtext">
+                {currentLang === 'ar'
+                  ? 'مسار بسيط للانتقال من الرغبة إلى الميدان وصنع الأثر.'
+                  : currentLang === 'en'
+                  ? 'A simple path to turn goodwill into real community impact.'
+                  : 'Une démarche simple pour passer de l\'envie à l\'action.'}
+              </p>
+              <button
+                type="button"
+                className="how-cta-button"
+                onClick={() => (openSignup ? openSignup() : openLogin('signup'))}
+              >
+                <span>{currentLang === 'ar' ? 'إنشاء حساب' : currentLang === 'en' ? 'Create an account' : 'Créer un compte'}</span>
+                <IconArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Colonne droite : Les 3 étapes avec cercles et numéros */}
+            <div className="how-steps-track">
+              {/* Étape 1 */}
+              <div className="how-step-card">
+                <div className="how-circle-wrapper">
+                  <div className="how-circle-node">
+                    <IconUser className="w-6 h-6 text-emerald-700" />
+                    <div className="how-circle-badge">1</div>
+                  </div>
+                  <div className="how-step-line"></div>
+                </div>
+                <h3 className="how-step-title">
+                  {currentLang === 'ar' ? 'سجّل حسابك' : currentLang === 'en' ? 'Sign up' : 'Inscrivez-vous'}
+                </h3>
+                <p className="how-step-desc">
+                  {currentLang === 'ar' ? 'أنشئ ملفك التطوعي في دقائق معدودة.' : currentLang === 'en' ? 'Create your profile in a few minutes.' : 'Créez votre profil en quelques minutes.'}
+                </p>
+              </div>
+
+              {/* Étape 2 */}
+              <div className="how-step-card">
+                <div className="how-circle-wrapper">
+                  <div className="how-circle-node">
+                    <IconSearch className="w-6 h-6 text-emerald-700" />
+                    <div className="how-circle-badge">2</div>
+                  </div>
+                  <div className="how-step-line"></div>
+                </div>
+                <h3 className="how-step-title">
+                  {currentLang === 'ar' ? 'اختر مهمتك' : currentLang === 'en' ? 'Find a mission' : 'Trouvez une mission'}
+                </h3>
+                <p className="how-step-desc">
+                  {currentLang === 'ar' ? 'استكشف الفرص المتاحة بالقرب منك.' : currentLang === 'en' ? 'Browse opportunities close to home.' : 'Parcourez les opportunités près de chez vous.'}
+                </p>
+              </div>
+
+              {/* Étape 3 */}
+              <div className="how-step-card">
+                <div className="how-circle-wrapper">
+                  <div className="how-circle-node">
+                    <IconHeart className="w-6 h-6 text-emerald-700" />
+                    <div className="how-circle-badge">3</div>
+                  </div>
+                </div>
+                <h3 className="how-step-title">
+                  {currentLang === 'ar' ? 'انطلق في الميدان' : currentLang === 'en' ? 'Take action' : 'Passez à l\'action'}
+                </h3>
+                <p className="how-step-desc">
+                  {currentLang === 'ar' ? 'انضم إلى جمعية واصنع فارقاً حقيقياً.' : currentLang === 'en' ? 'Join an association and make a difference.' : 'Rejoignez une association et faites la différence.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* MISSIONS EXPLORER SECTION (exactement comme la capture d'écran) */}
       <section id="missions" className="missions">
         <div className="wrap">
@@ -746,6 +918,82 @@ export default function LandingPage({
               <div className="cc-body">
                 <h3>{t('causeHealthTitle')}</h3>
                 <p>{t('causeHealthDesc')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION TÉMOIGNAGES BÉNÉVOLES AVEC PHOTO D'ALGER & SLIDER */}
+      <section className="testimonials-slider-section" id="temoignages">
+        <div className="wrap">
+          <div className="testimonial-banner-card">
+            {/* Côté gauche : Panorama d'Alger avec Maqam Echahid & fondu */}
+            <div className="testimonial-panoramic-left">
+              <img
+                src={algiersCardCrop}
+                alt="Baie d'Alger et Maqam Echahid"
+                className="testimonial-panoramic-img"
+                loading="lazy"
+              />
+              <div className="testimonial-panoramic-fade"></div>
+            </div>
+
+            {/* Côté droit : Citation interactive, profil et contrôles slider */}
+            <div className="testimonial-quote-right">
+              <blockquote className="testimonial-quote-text" key={activeSlide}>
+                {testimonials[activeSlide].quote}
+              </blockquote>
+
+              <div className="testimonial-bottom-row">
+                {/* Auteur du témoignage */}
+                <div className="testimonial-user-profile">
+                  <img
+                    src={testimonials[activeSlide].avatar}
+                    alt={testimonials[activeSlide].name}
+                    className="testimonial-user-avatar"
+                  />
+                  <div>
+                    <div className="testimonial-user-name">{testimonials[activeSlide].name}</div>
+                    <div className="testimonial-user-role">{testimonials[activeSlide].role}</div>
+                  </div>
+                </div>
+
+                {/* Contrôles interactifs du slider */}
+                <div className="testimonial-nav-controls">
+                  {/* Indicateurs / Dots */}
+                  <div className="testimonial-dots-group">
+                    {testimonials.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        className={`testimonial-dot-btn ${idx === activeSlide ? 'active' : ''}`}
+                        onClick={() => setActiveSlide(idx)}
+                        aria-label={`Témoignage ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Boutons flèches précédent / suivant */}
+                  <div className="testimonial-arrows-group">
+                    <button
+                      type="button"
+                      className="testimonial-arrow-btn"
+                      onClick={handlePrevSlide}
+                      aria-label="Témoignage précédent"
+                    >
+                      <IconChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      className="testimonial-arrow-btn"
+                      onClick={handleNextSlide}
+                      aria-label="Témoignage suivant"
+                    >
+                      <IconChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
