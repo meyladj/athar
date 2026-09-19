@@ -83,119 +83,23 @@ body { font-family: 'Plus Jakarta Sans', system-ui, Arial, sans-serif; color: va
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
 a{text-decoration:none;color:inherit}
 
-/* ===== HEADER & NAVIGATION OFFICIELLE ATHAR ===== */
-header {
-  background: #ffffff;
-  border-bottom: 1px solid var(--gris);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
+/* ===== HEADER ===== */
+header{background:#fff;border-bottom:1px solid var(--gris);position:sticky;top:0;z-index:40}
+.nav{display:flex;align-items:center;gap:30px;height:88px}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.brand img{height:72px;width:auto;object-fit:contain;transition:transform .2s ease}
+.brand:hover img{transform:scale(1.03)}
+.brand .mark{width:42px;height:42px}
+.brand .bt{font-weight:800;color:var(--vert);font-size:15px;line-height:1}
+.brand .bs{font-size:9px;letter-spacing:2px;color:var(--turq);font-weight:600}
+.menu{display:flex;align-items:center;gap:28px;margin-left:28px;flex-shrink:0}
+.menu a{position:relative;color:#5b6472;cursor:pointer;font-size:15px;font-weight:600;transition:color .15s ease;padding:8px 8px;white-space:nowrap;display:inline-block}
+.menu a:hover{color:var(--vert)}
+.menu a.active{color:var(--vert);font-weight:700}
+.menu a.active::after{
+  content:'';position:absolute;bottom:-4px;left:8px;right:8px;height:2.5px;background:var(--vert);border-radius:999px;
 }
-header .wrap {
-  max-width: 1440px;
-  padding: 0 24px;
-}
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  height: 84px;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  flex-shrink: 0 !important;
-  min-width: 170px;
-  z-index: 10;
-}
-.brand img,
-.brand .brand-logo-img {
-  height: 56px !important;
-  max-height: 56px !important;
-  width: auto !important;
-  min-width: 46px !important;
-  object-fit: contain;
-  transition: transform .2s ease;
-  display: block !important;
-  flex-shrink: 0 !important;
-}
-.brand:hover img {
-  transform: scale(1.03);
-}
-.brand-text-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.15;
-}
-.brand-title {
-  font-weight: 900;
-  color: var(--primary-navy);
-  font-size: 19px;
-  letter-spacing: 0.5px;
-}
-.brand-sub {
-  font-size: 9px;
-  letter-spacing: 1.6px;
-  color: var(--primary-teal);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-.menu {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 16px;
-  flex-shrink: 1;
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.menu::-webkit-scrollbar {
-  display: none;
-}
-.menu a {
-  position: relative;
-  color: #475569;
-  cursor: pointer;
-  font-size: 13.5px;
-  font-weight: 700;
-  transition: all .15s ease;
-  padding: 6px 10px;
-  white-space: nowrap;
-  display: inline-block;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-.menu a:hover {
-  color: var(--primary-teal);
-  background: rgba(0, 109, 91, 0.05);
-}
-.menu a.active {
-  color: var(--primary-teal);
-  font-weight: 800;
-}
-.menu a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 8px;
-  right: 8px;
-  height: 2.5px;
-  background: var(--primary-teal);
-  border-radius: 999px;
-}
-.nav .right {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:14px}
 .icon-btn{width:38px;height:38px;border:1px solid var(--gris);border-radius:50%;display:grid;place-items:center;color:#5b6472;cursor:pointer;background:#fff;transition:all .15s}
 .icon-btn:hover{color:var(--vert);border-color:var(--vert)}
 .btn{border:0;border-radius:999px;font-family:inherit;font-weight:700;font-size:14px;padding:11px 22px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;justify-content:center}
