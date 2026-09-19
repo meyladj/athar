@@ -2203,19 +2203,19 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 4px;
-  margin-top: 6px;
+  gap: 2px;
+  margin-top: 4px;
 }
 
 .portal-nav-link {
   background: none;
   border: none;
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 700;
-  color: #5a6472;
+  color: #475569;
   cursor: pointer;
-  padding: 12px 14px;
-  border-radius: 12px;
+  padding: 9.5px 12px;
+  border-radius: 10px;
   transition: all 0.15s ease;
   position: relative;
   font-family: inherit;
@@ -2224,6 +2224,62 @@ textarea {
   align-items: center;
   gap: 10px;
   width: 100%;
+}
+
+/* Profile Sub-navigation Tabs */
+.profile-subnav {
+  display: flex;
+  gap: 8px;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 14px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-subnav-btn {
+  background: transparent;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #64748B;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.profile-subnav-btn:hover {
+  color: var(--primary-teal);
+  background: rgba(0, 109, 91, 0.05);
+}
+
+.profile-subnav-btn.active {
+  background: var(--primary-teal);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 109, 91, 0.25);
+}
+
+.profile-subnav-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #E2E8F0;
+  color: #475569;
+  transition: all 0.18s ease;
+}
+
+.profile-subnav-btn.active .profile-subnav-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 .portal-nav-link:hover {

@@ -1131,6 +1131,7 @@ export default function App() {
   // ESPACE BÉNÉVOLE — PORTAIL OPPORTUNITÉS & CV INTERACTIF (Style AIESEC)
   // ========================================================
   const [volunteerPortalTab, setVolunteerPortalTab] = useState('missions'); // 'missions' | 'associations' | 'about' | 'profile' | 'applications' | 'favorites' | 'certificates' | 'settings'
+  const [profileSubTab, setProfileSubTab] = useState('overview'); // 'overview' | 'applications' | 'certificates'
   const [selectedMissionDetail, setSelectedMissionDetail] = useState(null);
   const [selectedCertificateDetail, setSelectedCertificateDetail] = useState(null);
   const [missionMapType, setMissionMapType] = useState('osm'); // 'osm' | 'google'
@@ -5896,6 +5897,7 @@ export default function App() {
 
             {/* CENTRE : LIENS DE NAVIGATION PRINCIPAUX (SIDEBAR) */}
             <nav className="portal-nav">
+              {/* 1. ACCUEIL */}
               <button
                 type="button"
                 className="portal-nav-link"
@@ -5910,6 +5912,21 @@ export default function App() {
                 <span>{t('navHome')}</span>
               </button>
 
+              {/* 2. MON PROFIL */}
+              <button
+                type="button"
+                className={`portal-nav-link ${(volunteerPortalTab === 'profile' || volunteerPortalTab === 'applications' || volunteerPortalTab === 'certificates') && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedMissionDetail(null);
+                  setVolunteerPortalTab('profile');
+                  setProfileSubTab('overview');
+                }}
+              >
+                <IconUsers className="w-4 h-4" />
+                <span>{currentLang === 'ar' ? 'الملف الشخصي' : 'Mon profil'}</span>
+              </button>
+
+              {/* 3. MISSIONS */}
               <button
                 type="button"
                 className={`portal-nav-link ${(volunteerPortalTab === 'missions' || selectedMissionDetail) ? 'active' : ''}`}
@@ -5919,15 +5936,7 @@ export default function App() {
                 <span>{t('navMissions')}</span>
               </button>
 
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'corps' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('corps'); }}
-              >
-                <IconShieldCheck className="w-4 h-4" />
-                <span>{t('navCorps')}</span>
-              </button>
-
+              {/* 4. EXPLORER */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'explore' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5937,15 +5946,7 @@ export default function App() {
                 <span>{t('navExplore')}</span>
               </button>
 
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'feed' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('feed'); }}
-              >
-                <IconActivity className="w-4 h-4" />
-                <span>{t('navPulse')}</span>
-              </button>
-
+              {/* 5. SOS SANG */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'blood' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5955,6 +5956,7 @@ export default function App() {
                 <span>{t('navBlood')}</span>
               </button>
 
+              {/* 6. MESSAGERIE */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'messages' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5964,6 +5966,7 @@ export default function App() {
                 <span>{t('navMessages')}</span>
               </button>
 
+              {/* 7. TRAÇABILITÉ */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'traceability' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5973,6 +5976,7 @@ export default function App() {
                 <span>{t('navTrace')}</span>
               </button>
 
+              {/* 8. ASSOCIATIONS */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'associations' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5982,49 +5986,24 @@ export default function App() {
                 <span>{t('navAssociations')}</span>
               </button>
 
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'profile' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('profile'); }}
-              >
-                <IconUsers className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الملف والشهادات' : 'Mon profil'}</span>
-              </button>
-
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'applications' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('applications'); }}
-              >
-                <IconFileText className="w-4 h-4" />
-                <span>Mes candidatures</span>
-              </button>
-
+              {/* 9. MES OFFRES SAUVEGARDÉES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'favorites' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('favorites'); }}
               >
                 <IconHeart className="w-4 h-4" />
-                <span>Mes offres sauvegardées</span>
+                <span>{currentLang === 'ar' ? 'الفرص المحفوظة' : 'Mes offres sauvegardées'}</span>
               </button>
 
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'certificates' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('certificates'); }}
-              >
-                <IconAward className="w-4 h-4" />
-                <span>Mes certificats &amp; badges</span>
-              </button>
-
+              {/* 10. PARAMÈTRES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'settings' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('settings'); }}
               >
                 <IconSettings className="w-4 h-4" />
-                <span>Paramètres</span>
+                <span>{currentLang === 'ar' ? 'الإعدادات' : 'Paramètres'}</span>
               </button>
             </nav>
 
@@ -7052,10 +7031,10 @@ export default function App() {
                 )}
 
                 {/* 2. PAGE 'MON PROFIL BÉNÉVOLE' (Style CV / Portfolio Interactif AIESEC) */}
-                {volunteerPortalTab === 'profile' && (
+                {/* 2. PAGE 'MON PROFIL BÉNÉVOLE' (AVEC CANDIDATURES ET CERTIFICATS INTÉGRÉS) */}
+                {(volunteerPortalTab === 'profile' || volunteerPortalTab === 'applications' || volunteerPortalTab === 'certificates') && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '960px', margin: '0 auto' }}>
-                    {/* EN-TÊTE PROFIL : PHOTO, NOM, WILAYA, HEADLINE, BOUTON ÉDITER */}
-                    <div className="cv-section-card" style={{ padding: '32px' }}>
+<div className="cv-section-card" style={{ padding: '32px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '20px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '22px' }}>
                           <div style={{
@@ -7125,24 +7104,83 @@ export default function App() {
 
                       {/* STATISTIQUES D'IMPACT CITOYEN */}
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px', marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #f1f5f9' }}>
-                        <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center' }}>
+                        <div
+                          style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.15s ease' }}
+                          onClick={() => setProfileSubTab('certificates')}
+                          title="Voir mes attestations et heures certifiées"
+                        >
                           <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerUser.hoursVolunteered}h</span>
                           <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Heures de bénévolat validées</small>
                         </div>
 
-                        <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center' }}>
+                        <div
+                          style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.15s ease' }}
+                          onClick={() => setProfileSubTab('applications')}
+                          title="Voir mes candidatures en cours"
+                        >
                           <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerUser.completedMissionsCount}</span>
                           <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Projets & missions réalisés</small>
                         </div>
 
-                        <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center' }}>
+                        <div
+                          style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.15s ease' }}
+                          onClick={() => setProfileSubTab('certificates')}
+                          title="Voir mes certificats officiels"
+                        >
                           <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerCertificates.length}</span>
                           <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Attestations certifiées Athar</small>
                         </div>
                       </div>
                     </div>
+                    {/* BARRE D'ONGLETS DU PROFIL (INFORMATIONS, CANDIDATURES, CERTIFICATS) */}
+                    <div className="profile-subnav">
+                      <button
+                        type="button"
+                        className={`profile-subnav-btn ${(profileSubTab === 'overview' && volunteerPortalTab !== 'applications' && volunteerPortalTab !== 'certificates') ? 'active' : ''}`}
+                        onClick={() => {
+                          setVolunteerPortalTab('profile');
+                          setProfileSubTab('overview');
+                        }}
+                      >
+                        <IconUsers className="w-4 h-4" />
+                        <span>{currentLang === 'ar' ? 'المعلومات والسيرة الذاتية' : 'Informations & CV Citoyen'}</span>
+                      </button>
 
-                    {/* SECTION 1 : INFORMATIONS PERSONNELLES & CONTACTS */}
+                      <button
+                        type="button"
+                        className={`profile-subnav-btn ${(profileSubTab === 'applications' || volunteerPortalTab === 'applications') ? 'active' : ''}`}
+                        onClick={() => {
+                          setVolunteerPortalTab('profile');
+                          setProfileSubTab('applications');
+                        }}
+                      >
+                        <IconFileText className="w-4 h-4" />
+                        <span>{currentLang === 'ar' ? 'ترشحاتي' : 'Mes Candidatures'}</span>
+                        <span className="profile-subnav-badge">
+                          {volunteerApplications.length}
+                        </span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={`profile-subnav-btn ${(profileSubTab === 'certificates' || volunteerPortalTab === 'certificates') ? 'active' : ''}`}
+                        onClick={() => {
+                          setVolunteerPortalTab('profile');
+                          setProfileSubTab('certificates');
+                        }}
+                      >
+                        <IconAward className="w-4 h-4" />
+                        <span>{currentLang === 'ar' ? 'شهاداتي وأوسمتي' : 'Mes Certificats & Badges'}</span>
+                        <span className="profile-subnav-badge">
+                          {volunteerCertificates.length}
+                        </span>
+                      </button>
+                    </div>
+
+                    {/* ONGLET 1 : INFORMATIONS & CV CITOYEN */}
+                    {(profileSubTab === 'overview' && volunteerPortalTab !== 'applications' && volunteerPortalTab !== 'certificates') && (
+                      <>
+{/* SECTION 1 : INFORMATIONS PERSONNELLES & CONTACTS */}
                     <div className="cv-section-card">
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
                         <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
@@ -7477,75 +7515,170 @@ export default function App() {
                         ))}
                       </div>
                     </div>
-                  </div>
-                )}
+                      </>
+                    )}
 
-                {/* 3. PAGE 'MES CANDIDATURES' */}
-                {volunteerPortalTab === 'applications' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '960px', margin: '0 auto' }}>
-                    <div className="cv-section-card" style={{ padding: '24px 28px' }}>
-                      <h1 style={{ margin: '0 0 4px', fontSize: '24px', fontWeight: 900, color: '#0f172a' }}>
-                        Mes Candidatures
-                      </h1>
-                      <p style={{ margin: 0, fontSize: '14px', color: '#64748b' }}>
-                        Suivez l'état d'examen de vos candidatures soumises aux associations partenaires.
-                      </p>
-                    </div>
+                    {/* ONGLET 2 : SUIVI DES CANDIDATURES DU BÉNÉVOLE */}
+                    {(profileSubTab === 'applications' || volunteerPortalTab === 'applications') && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
+                          <h2 style={{ margin: '0 0 4px', fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                            {currentLang === 'ar' ? 'سجل ترشحاتي للمهمات' : 'Suivi de mes Candidatures'}
+                          </h2>
+                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
+                            {currentLang === 'ar'
+                              ? 'تابع حالة دراسة طلباتك من طرف المنظمات والجمعيات الشريكة في الوقت الفعلي.'
+                              : 'Consultez l\'état d\'examen de vos candidatures soumises aux organisations partenaires.'}
+                          </p>
+                        </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                      {volunteerApplications.map(app => (
-                        <div key={app.id} className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '14px' }}>
-                            <div>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                                <span style={{
-                                  background: app.status === 'accepted' ? '#f0fdf4' : app.status === 'pending' ? '#fef3c7' : '#fee2e2',
-                                  color: app.status === 'accepted' ? '#166534' : app.status === 'pending' ? '#92400e' : '#991b1b',
-                                  border: app.status === 'accepted' ? '1px solid #bbf7d0' : app.status === 'pending' ? '1px solid #fde68a' : '1px solid #fecaca',
-                                  padding: '2px 10px',
-                                  borderRadius: '999px',
-                                  fontSize: '11.5px',
-                                  fontWeight: 700
-                                }}>
-                                  {app.status === 'accepted' ? 'Candidature Acceptée' : app.status === 'pending' ? "En cours d'examen" : 'Refusée'}
-                                </span>
-                                <span style={{ fontSize: '12.5px', color: '#64748b' }}>
-                                  Déposée le {app.appliedDate}
-                                </span>
-                              </div>
+                        {volunteerApplications.length === 0 ? (
+                          <div className="cv-section-card" style={{ padding: '40px 20px', textAlign: 'center' }}>
+                            <IconFileText className="w-10 h-10 text-slate-300" style={{ margin: '0 auto 10px' }} />
+                            <h3 style={{ margin: '0 0 6px', fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>
+                              Aucune candidature pour le moment
+                            </h3>
+                            <p style={{ margin: '0 0 14px', fontSize: '13px', color: '#64748b' }}>
+                              Parcourez le catalogue des opportunités pour trouver votre prochaine mission d'impact.
+                            </p>
+                            <button
+                              type="button"
+                              className="btn btn-green"
+                              onClick={() => setVolunteerPortalTab('missions')}
+                              style={{ padding: '8px 18px', fontSize: '13px', fontWeight: 700 }}
+                            >
+                              Explorer les missions
+                            </button>
+                          </div>
+                        ) : (
+                          volunteerApplications.map(app => (
+                            <div key={app.id} className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '14px' }}>
+                                <div>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                                    <span style={{
+                                      background: app.status === 'accepted' ? '#f0fdf4' : app.status === 'pending' ? '#fef3c7' : '#fee2e2',
+                                      color: app.status === 'accepted' ? '#166534' : app.status === 'pending' ? '#92400e' : '#991b1b',
+                                      border: app.status === 'accepted' ? '1px solid #bbf7d0' : app.status === 'pending' ? '1px solid #fde68a' : '1px solid #fecaca',
+                                      padding: '2px 10px',
+                                      borderRadius: '999px',
+                                      fontSize: '11.5px',
+                                      fontWeight: 700
+                                    }}>
+                                      {app.status === 'accepted' ? 'Candidature Acceptée' : app.status === 'pending' ? "En cours d'examen" : 'Refusée'}
+                                    </span>
+                                    <span style={{ fontSize: '12.5px', color: '#64748b' }}>
+                                      Déposée le {app.appliedDate}
+                                    </span>
+                                  </div>
 
-                              <h3 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>
-                                {app.missionTitle}
-                              </h3>
+                                  <h3 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>
+                                    {app.missionTitle}
+                                  </h3>
 
-                              <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '10px' }}>
-                                {app.associationName} · {app.wilaya}
-                              </div>
+                                  <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '10px' }}>
+                                    {app.associationName} · {app.wilaya}
+                                  </div>
 
-                              <div style={{ background: '#f8fafc', padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px', color: '#334155' }}>
-                                <strong>Retour organisation :</strong> {app.notes}
+                                  <div style={{ background: '#f8fafc', padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px', color: '#334155' }}>
+                                    <strong>Retour organisation :</strong> {app.notes}
+                                  </div>
+                                </div>
+
+                                {app.status === 'pending' && (
+                                  <button
+                                    type="button"
+                                    className="btn btn-ghost"
+                                    onClick={() => handleCancelApplication(app.id)}
+                                    style={{ border: '1px solid #fca5a5', color: '#dc2626', background: '#fef2f2', fontSize: '12.5px', fontWeight: 700, padding: '7px 14px' }}
+                                  >
+                                    Retirer la candidature
+                                  </button>
+                                )}
                               </div>
                             </div>
+                          ))
+                        )}
+                      </div>
+                    )}
 
-                            {app.status === 'pending' && (
-                              <button
-                                type="button"
-                                className="btn btn-ghost"
-                                onClick={() => handleCancelApplication(app.id)}
-                                style={{ border: '1px solid #fca5a5', color: '#dc2626', background: '#fef2f2', fontSize: '12.5px', fontWeight: 700, padding: '7px 14px' }}
-                              >
-                                Retirer la candidature
-                              </button>
-                            )}
+                    {/* ONGLET 3 : MES CERTIFICATS, BADGES & ATTESTATIONS OFFICIELLES */}
+                    {(profileSubTab === 'certificates' || volunteerPortalTab === 'certificates') && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                        <div className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                            <div>
+                              <h2 style={{ margin: '0 0 4px', fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)' }}>
+                                {currentLang === 'ar' ? 'الشهادات الرسمية والأثر الميداني' : 'Attestations & Badges Certifiés Athar'}
+                              </h2>
+                              <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
+                                {currentLang === 'ar'
+                                  ? 'سجل ساعات التطوع المعتمدة، الشارات المكتسبة وشهادات المشاركة الصادرة عن المنظمات الشريكة.'
+                                  : 'Attestations vérifiées avec QR code officiel et exportables en PDF pour vos démarches.'}
+                              </p>
+                            </div>
+                            <span style={{ fontSize: '12px', color: '#166534', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '4px 12px', borderRadius: '999px', fontWeight: 800 }}>
+                              ✓ {volunteerCertificates.length} Attestations vérifiées
+                            </span>
                           </div>
                         </div>
-                      ))}
-                    </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+                          {volunteerCertificates.map(cert => (
+                            <div key={cert.id} className="cv-section-card" style={{ padding: '22px', marginBottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                              <div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                                  <span style={{ background: '#f0fdf4', color: '#006D5B', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                    <IconAward className="w-3.5 h-3.5" />
+                                    <span>{cert.sdg || cert.category || 'Engagement'}</span>
+                                  </span>
+                                  <small style={{ color: '#94a3b8', fontSize: '11px', fontFamily: 'monospace' }}>{cert.id}</small>
+                                </div>
+
+                                <h3 style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: '#0f172a', lineHeight: '1.35' }}>
+                                  {cert.title}
+                                </h3>
+
+                                <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '6px' }}>
+                                  {cert.associationName}
+                                </div>
+
+                                <div style={{ display: 'flex', gap: '14px', fontSize: '12px', color: '#64748b', marginBottom: '16px' }}>
+                                  <span>{cert.date}</span>
+                                  <span>·</span>
+                                  <span>{cert.hours} heures certifiées</span>
+                                </div>
+                              </div>
+
+                              <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #f1f5f9', paddingTop: '14px' }}>
+                                <button
+                                  type="button"
+                                  className="btn btn-green"
+                                  onClick={() => setSelectedCertificateDetail(cert)}
+                                  style={{ flex: 1, padding: '9px 12px', fontSize: '12.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+                                >
+                                  <IconEye className="w-3.5 h-3.5" />
+                                  <span>Aperçu officiel</span>
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-ghost"
+                                  onClick={() => showToast(`Attestation ${cert.id} téléchargée au format PDF.`)}
+                                  style={{ padding: '9px 14px', fontSize: '12.5px', fontWeight: 700, border: '1px solid #cbd5e1' }}
+                                  title="Télécharger"
+                                >
+                                  <IconDownload className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
-                {/* 4. PAGE 'MES OFFRES SAUVEGARDÉES' */}
-                {volunteerPortalTab === 'favorites' && (
+{volunteerPortalTab === 'favorites' && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '1020px', margin: '0 auto' }}>
                     <div className="cv-section-card" style={{ padding: '24px 28px' }}>
                       <h1 style={{ margin: '0 0 4px', fontSize: '24px', fontWeight: 900, color: '#0f172a' }}>
@@ -7629,71 +7762,6 @@ export default function App() {
                 )}
 
                 {/* 5. PAGE 'MES CERTIFICATS & BADGES' */}
-                {volunteerPortalTab === 'certificates' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '960px', margin: '0 auto' }}>
-                    <div className="cv-section-card" style={{ padding: '24px 28px' }}>
-                      <h1 style={{ margin: '0 0 4px', fontSize: '24px', fontWeight: 900, color: '#0f172a' }}>
-                        Mes Certificats & Badges d'Impact
-                      </h1>
-                      <p style={{ margin: 0, fontSize: '14px', color: '#64748b' }}>
-                        Attestations officielles d'engagement citoyen et heures validées sur la plateforme nationale Athar.
-                      </p>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
-                      {volunteerCertificates.map(cert => (
-                        <div key={cert.id} className="cv-section-card" style={{ padding: '22px', marginBottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                          <div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                              <span style={{ background: '#f0fdf4', color: '#006D5B', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                <IconAward className="w-3.5 h-3.5" />
-                                <span>{cert.sdg || cert.category || 'Engagement'}</span>
-                              </span>
-                              <small style={{ color: '#94a3b8', fontSize: '11px', fontFamily: 'monospace' }}>{cert.id}</small>
-                            </div>
-
-                            <h3 style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: '#0f172a', lineHeight: '1.35' }}>
-                              {cert.title}
-                            </h3>
-
-                            <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '6px' }}>
-                              {cert.associationName}
-                            </div>
-
-                            <div style={{ display: 'flex', gap: '14px', fontSize: '12px', color: '#64748b', marginBottom: '16px' }}>
-                              <span>{cert.date}</span>
-                              <span>·</span>
-                              <span>{cert.hours} heures certifiées</span>
-                            </div>
-                          </div>
-
-                          <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #f1f5f9', paddingTop: '14px' }}>
-                            <button
-                              type="button"
-                              className="btn btn-green"
-                              onClick={() => setSelectedCertificateDetail(cert)}
-                              style={{ flex: 1, padding: '9px 12px', fontSize: '12.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-                            >
-                              <IconEye className="w-3.5 h-3.5" />
-                              <span>Aperçu officiel</span>
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-ghost"
-                              onClick={() => showToast(`Attestation ${cert.id} téléchargée au format PDF.`)}
-                              style={{ padding: '9px 14px', fontSize: '12.5px', fontWeight: 700, border: '1px solid #cbd5e1' }}
-                              title="Télécharger"
-                            >
-                              <IconDownload className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* 6. PAGE 'ASSOCIATIONS PARTENAIRES' */}
                 {volunteerPortalTab === 'associations' && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '1020px', margin: '0 auto' }}>
                     <div className="cv-section-card" style={{ padding: '24px 28px' }}>
