@@ -11,6 +11,13 @@ import DirectMessenger from './components/DirectMessenger';
 import YouthSolidarityCorps from './components/YouthSolidarityCorps';
 import LandingPage from './components/LandingPage';
 import InteractiveActionMap from './components/InteractiveActionMap';
+import atharLogoClean from './assets/athar-logo-clean.png';
+import profileBannerImg from './assets/profile-banner-algiers.png';
+import profileAvatarImg from './assets/profile-nadia-avatar.png';
+import profileSidebarImg from './assets/profile-sidebar-algeria.png';
+import candReboisementImg from './assets/candidature-reboisement.png';
+import candLectureImg from './assets/candidature-lecture.png';
+import candSangImg from './assets/candidature-sang.png';
 
 // Clean SVG Icons (zero external library dependency, zero emoji)
 function IconMessageSquare({ className = "w-3.5 h-3.5" }) {
@@ -263,6 +270,24 @@ function IconEdit({ className = "w-4 h-4" }) {
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
       <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg>
+  );
+}
+
+function IconCamera({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+      <circle cx="12" cy="13" r="3"/>
+    </svg>
+  );
+}
+
+function IconSun({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
     </svg>
   );
 }
@@ -5147,24 +5172,31 @@ export default function App() {
       {/* ======================================================== */}
       {currentView === 'volunteer' && (
         <div className="portal-root">
-          {/* HEADER / TOPBAR SUPÉRIEURE PLEINE LARGEUR (FIXE) */}
+          {/* HEADER / SIDEBAR GAUCHE (Conforme à profile benev .png) */}
           <header className="portal-header">
-            {/* GAUCHE : LOGO ATHAR CLIQUABLE */}
-            <div className="portal-header-left">
+            {/* GAUCHE : LOGO ATHAR AVEC SOUS-TITRE */}
+            <div
+              className="portal-header-left"
+              onClick={() => {
+                setSelectedMissionDetail(null);
+                setVolunteerPortalTab('feed');
+              }}
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
+            >
               <img
-                src={logoImg}
+                src={atharLogoClean}
                 alt="Athar Platform منصة أثر"
-                className="portal-logo"
-                onClick={() => {
-                  setSelectedMissionDetail(null);
-                  setVolunteerPortalTab('feed');
-                }}
+                style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
               />
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '18px', fontWeight: 900, color: '#006D5B', lineHeight: 1.1 }}>Athar</span>
+                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>Le bénévolat a un sens</span>
+              </div>
             </div>
 
-            {/* CENTRE : LIENS DE NAVIGATION PRINCIPAUX (SIDEBAR) */}
+            {/* LIENS DE NAVIGATION PRINCIPAUX (SIDEBAR) */}
             <nav className="portal-nav">
-              {/* 1. ACCUEIL (Feed des publications associatives) */}
+              {/* 1. ACCUEIL */}
               <button
                 type="button"
                 className={`portal-nav-link ${(volunteerPortalTab === 'feed' || volunteerPortalTab === 'home') && !selectedMissionDetail ? 'active' : ''}`}
@@ -5174,13 +5206,13 @@ export default function App() {
                 }}
               >
                 <IconHome className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الرئيسية' : currentLang === 'en' ? 'Home' : 'Accueil'}</span>
+                <span>Accueil</span>
               </button>
 
               {/* 2. MON PROFIL */}
               <button
                 type="button"
-                className={`portal-nav-link ${(volunteerPortalTab === 'profile' || volunteerPortalTab === 'applications' || volunteerPortalTab === 'certificates') && !selectedMissionDetail ? 'active' : ''}`}
+                className={`portal-nav-link ${volunteerPortalTab === 'profile' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => {
                   setSelectedMissionDetail(null);
                   setVolunteerPortalTab('profile');
@@ -5188,7 +5220,7 @@ export default function App() {
                 }}
               >
                 <IconUsers className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الملف الشخصي' : 'Mon profil'}</span>
+                <span>Mon profil</span>
               </button>
 
               {/* 3. MISSIONS */}
@@ -5198,145 +5230,226 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('missions'); }}
               >
                 <IconSearch className="w-4 h-4" />
-                <span>{t('navMissions')}</span>
+                <span>Missions</span>
               </button>
 
-              {/* 4. CARTE DES ACTIONS */}
+              {/* 4. ASSOCIATIONS */}
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'associations' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('associations'); }}
+              >
+                <IconBuilding className="w-4 h-4" />
+                <span>Associations</span>
+              </button>
+
+              {/* 5. CARTE DES ACTIONS */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'map' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('map'); }}
               >
                 <IconMapPin className="w-4 h-4 text-emerald-600" />
-                <span>{currentLang === 'ar' ? 'خريطة الأنشطة' : currentLang === 'en' ? 'Action Map' : 'Carte des actions'}</span>
+                <span>Action Map</span>
               </button>
 
-              {/* 5. EXPLORER */}
+              {/* 6. ARTICLES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'explore' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('explore'); }}
               >
-                <IconCompass className="w-4 h-4" />
-                <span>{t('navExplore')}</span>
+                <IconFileText className="w-4 h-4" />
+                <span>Articles</span>
               </button>
 
-              {/* 5. SOS SANG */}
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'blood' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('blood'); }}
-              >
-                <IconDroplet className="w-4 h-4 text-rose-500" />
-                <span>{t('navBlood')}</span>
-              </button>
-
-              {/* 6. MESSAGERIE */}
+              {/* 7. MESSAGES AVEC POINT ROUGE */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'messages' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('messages'); }}
               >
                 <IconMessageSquare className="w-4 h-4" />
-                <span>{t('navMessages')}</span>
+                <span>Messages</span>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ef4444', marginLeft: 'auto' }}></span>
               </button>
 
-              {/* 7. MES OFFRES SAUVEGARDÉES */}
+              {/* 8. NOTIFICATIONS */}
               <button
                 type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'favorites' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('favorites'); }}
+                className="portal-nav-link"
+                onClick={() => {
+                  setIsVolunteerNotifOpen(!isVolunteerNotifOpen);
+                  setIsVolunteerProfileOpen(false);
+                }}
               >
-                <IconHeart className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الفرص المحفوظة' : 'Mes offres sauvegardées'}</span>
+                <IconBell className="w-4 h-4" />
+                <span>Notifications</span>
               </button>
 
-              {/* Séparateur élégant */}
-              <div style={{ height: '1px', background: '#E2E8F0', margin: '6px 4px' }}></div>
-
-              {/* 8. PARAMÈTRES */}
+              {/* 9. PARAMÈTRES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'settings' && !selectedMissionDetail ? 'active' : ''}`}
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('settings'); }}
               >
                 <IconSettings className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الإعدادات' : 'Paramètres'}</span>
+                <span>Paramètres</span>
               </button>
             </nav>
 
-            {/* DROITE : NOTIFICATIONS, LANGUE, PROFIL */}
-            <div className="portal-header-right">
-              {/* Notifications */}
-              <div style={{ position: 'relative' }}>
+            {/* CARTE PROMO EN BAS DE LA SIDEBAR (profile benev .png) */}
+            <div className="portal-sidebar-promo">
+              <div className="portal-sidebar-promo-top">
+                <h5>Une Algérie plus solidaire est possible</h5>
                 <button
                   type="button"
-                  className="saas-notif-btn"
-                  onClick={() => {
-                    setIsVolunteerNotifOpen(!isVolunteerNotifOpen);
-                    setIsVolunteerProfileOpen(false);
-                  }}
-                  title="Notifications"
+                  className="portal-sidebar-promo-btn"
+                  onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('missions'); }}
+                  title="Explorer les opportunités"
                 >
-                  <IconBell className="w-4 h-4" />
-                  {volunteerNotifications.some(n => n.unread) && (
-                    <span className="saas-notif-badge"></span>
-                  )}
+                  <IconArrowRight className="w-4 h-4" />
                 </button>
-
-                {isVolunteerNotifOpen && (
-                  <div className="saas-notif-dropdown">
-                    <div className="saas-notif-header">
-                      <strong>Notifications</strong>
-                      <button
-                        type="button"
-                        style={{ background: 'none', border: 'none', color: '#006D5B', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
-                        onClick={() => {
-                          setVolunteerNotifications(prev => prev.map(n => ({ ...n, unread: false })));
-                          showToast("Toutes les notifications marquées comme lues.");
-                        }}
-                      >
-                        Tout marquer comme lu
-                      </button>
-                    </div>
-                    {volunteerNotifications.map(notif => (
-                      <div key={notif.id} className="saas-notif-item">
-                        <div className="saas-notif-avatar" style={{ background: '#f0fdf4', color: '#006D5B' }}>
-                          <IconCheck className="w-3.5 h-3.5" />
-                        </div>
-                        <div>
-                          <strong style={{ fontSize: '13px', display: 'block' }}>{notif.title}</strong>
-                          <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>{notif.text}</p>
-                          <small style={{ fontSize: '11px', color: '#94a3b8' }}>{notif.time}</small>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
-
-              {/* Sélecteur de langue */}
-              <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
-
-              {/* Déconnexion (les autres entrées sont désormais dans la navbar) */}
-              <button
-                type="button"
-                className="portal-logout-btn"
-                onClick={() => {
-                  setCurrentView('landing');
-                  window.location.hash = '#accueil';
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                  showToast("Déconnexion réussie. À bientôt Nadia !");
-                }}
-              >
-                <IconLogOut className="w-4 h-4" />
-                <span>Se déconnecter</span>
-              </button>
+              <img
+                src={profileSidebarImg}
+                alt="Une Algérie plus solidaire"
+                className="portal-sidebar-promo-img"
+              />
             </div>
           </header>
 
-          {/* CONTENU PRINCIPAL DU PORTAIL (PLEINE LARGEUR SANS SIDEBAR) */}
+          {/* CONTENU PRINCIPAL DU PORTAIL */}
           <main className="portal-container">
+            {/* TOPBAR SUPÉRIEURE DE RECHERCHE ET PROFIL */}
+            <div className="portal-topbar">
+              <div className="portal-topbar-search">
+                <IconSearch className="w-4 h-4 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Rechercher des associations, des missions, des lieux..."
+                  value={volunteerSearchQuery}
+                  onChange={(e) => {
+                    setVolunteerSearchQuery(e.target.value);
+                    if (volunteerPortalTab !== 'missions' && e.target.value.trim().length > 0) {
+                      setVolunteerPortalTab('missions');
+                    }
+                  }}
+                />
+              </div>
+
+              <div className="portal-topbar-right">
+                {/* Notifications cloche */}
+                <div style={{ position: 'relative' }}>
+                  <button
+                    type="button"
+                    className="portal-notif-btn"
+                    onClick={() => {
+                      setIsVolunteerNotifOpen(!isVolunteerNotifOpen);
+                      setIsVolunteerProfileOpen(false);
+                    }}
+                    title="Notifications"
+                  >
+                    <IconBell className="w-4 h-4" />
+                    <span className="portal-notif-badge-dot"></span>
+                  </button>
+
+                  {isVolunteerNotifOpen && (
+                    <div className="saas-notif-dropdown" style={{ right: 0 }}>
+                      <div className="saas-notif-header">
+                        <strong>Notifications</strong>
+                        <button
+                          type="button"
+                          style={{ background: 'none', border: 'none', color: '#006D5B', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
+                          onClick={() => {
+                            setVolunteerNotifications(prev => prev.map(n => ({ ...n, unread: false })));
+                            showToast("Toutes les notifications marquées comme lues.");
+                          }}
+                        >
+                          Tout marquer comme lu
+                        </button>
+                      </div>
+                      {volunteerNotifications.map(notif => (
+                        <div key={notif.id} className="saas-notif-item">
+                          <div className="saas-notif-avatar" style={{ background: '#f0fdf4', color: '#006D5B' }}>
+                            <IconCheck className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <strong style={{ fontSize: '13px', display: 'block' }}>{notif.title}</strong>
+                            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>{notif.text}</p>
+                            <small style={{ fontSize: '11px', color: '#94a3b8' }}>{notif.time}</small>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Profil dropdown Nadia Mansouri */}
+                <div style={{ position: 'relative' }}>
+                  <div
+                    className="portal-user-pill"
+                    onClick={() => {
+                      setIsVolunteerProfileOpen(!isVolunteerProfileOpen);
+                      setIsVolunteerNotifOpen(false);
+                    }}
+                  >
+                    <img src={profileAvatarImg} alt={volunteerUser.name} className="portal-user-pill-avatar" />
+                    <span className="portal-user-pill-name">{volunteerUser.name}</span>
+                    <IconChevronDown className="w-3.5 h-3.5 text-slate-500" />
+                  </div>
+
+                  {isVolunteerProfileOpen && (
+                    <div className="saas-notif-dropdown" style={{ minWidth: '220px', right: 0 }}>
+                      <div style={{ padding: '12px 16px', borderBottom: '1px solid #f1f5f9' }}>
+                        <strong style={{ fontSize: '14px', display: 'block', color: '#0f172a' }}>{volunteerUser.name}</strong>
+                        <small style={{ color: '#64748b' }}>{volunteerUser.email}</small>
+                      </div>
+                      <button
+                        type="button"
+                        className="portal-nav-link"
+                        style={{ padding: '10px 16px', borderRadius: 0 }}
+                        onClick={() => {
+                          setIsVolunteerProfileOpen(false);
+                          setVolunteerPortalTab('profile');
+                        }}
+                      >
+                        <IconUsers className="w-4 h-4" />
+                        <span>Mon profil</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="portal-nav-link"
+                        style={{ padding: '10px 16px', borderRadius: 0 }}
+                        onClick={() => {
+                          setIsVolunteerProfileOpen(false);
+                          setVolunteerPortalTab('settings');
+                        }}
+                      >
+                        <IconSettings className="w-4 h-4" />
+                        <span>Paramètres</span>
+                      </button>
+                      <div style={{ height: '1px', background: '#f1f5f9', margin: '4px 0' }}></div>
+                      <button
+                        type="button"
+                        className="portal-nav-link"
+                        style={{ padding: '10px 16px', color: '#e11d48', borderRadius: 0 }}
+                        onClick={() => {
+                          setIsVolunteerProfileOpen(false);
+                          setCurrentView('landing');
+                          window.location.hash = '#accueil';
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                          showToast("Déconnexion réussie. À bientôt Nadia !");
+                        }}
+                      >
+                        <IconLogOut className="w-4 h-4" />
+                        <span>Se déconnecter</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
             {/* ======================================================== */}
             {/* VUE : DÉTAILS DE L'OPPORTUNITÉ (Style AIESEC Detail)     */}
             {/* ======================================================== */}
@@ -6263,651 +6376,592 @@ export default function App() {
                   </div>
                 )}
 
-                {/* 2. PAGE 'MON PROFIL BÉNÉVOLE' (Style CV / Portfolio Interactif AIESEC) */}
-                {/* 2. PAGE 'MON PROFIL BÉNÉVOLE' (AVEC CANDIDATURES ET CERTIFICATS INTÉGRÉS) */}
-                {(volunteerPortalTab === 'profile' || volunteerPortalTab === 'applications' || volunteerPortalTab === 'certificates') && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '960px', margin: '0 auto' }}>
-<div className="cv-section-card" style={{ padding: '32px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '20px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '22px' }}>
-                          <div style={{
-                            width: '84px',
-                            height: '84px',
-                            borderRadius: '50%',
-                            background: 'linear-gradient(135deg, #006D5B 0%, #005244 100%)',
-                            color: '#ffffff',
-                            fontWeight: 900,
-                            fontSize: '28px',
-                            display: 'grid',
-                            placeItems: 'center',
-                            boxShadow: '0 6px 18px rgba(13,91,97,0.35)',
-                            position: 'relative'
-                          }}>
-                            {volunteerUser.initials}
-                            <div style={{ position: 'absolute', bottom: 0, right: 0, width: '18px', height: '18px', borderRadius: '50%', background: '#22c55e', border: '3px solid #ffffff' }} title="En ligne"></div>
+                {/* ======================================================== */}
+                {/* 2. PAGE 'MON PROFIL BÉNÉVOLE' (Conforme à profile benev .png) */}
+                {/* ======================================================== */}
+                {volunteerPortalTab === 'profile' && (
+                  <div className="benev-profile-page">
+                    {/* 1. HERO COVER BANNER */}
+                    <div className="benev-cover-banner">
+                      <img src={profileBannerImg} alt="Alger la blanche et Baie d'Alger" className="benev-cover-img" />
+                      <div className="benev-cover-overlay">
+                        <button
+                          type="button"
+                          className="benev-cover-btn"
+                          onClick={() => showToast("Changement de couverture : fonctionnalité bientôt disponible.")}
+                        >
+                          <IconCamera className="w-4 h-4" />
+                          <span>Changer la couverture</span>
+                        </button>
+
+                        <div className="benev-cover-calligraphy">
+                          <span className="benev-script-line1">Des citoyens,</span>
+                          <span className="benev-script-line2">Un impact réel.</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 2. CARTE PROFIL PRINCIPALE & STATS */}
+                    <div className="benev-profile-card">
+                      <div className="benev-profile-header-row">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '22px', flexWrap: 'wrap' }}>
+                          <div className="benev-avatar-col">
+                            <img src={profileAvatarImg} alt={volunteerUser.name} className="benev-avatar-large" />
+                            <span className="benev-avatar-status" title="En ligne"></span>
                           </div>
 
-                          <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                              <h1 style={{ margin: 0, fontSize: '26px', fontWeight: 900, color: '#0f172a' }}>
-                                {volunteerUser.name}
-                              </h1>
-                              <span style={{ background: '#f0fdf4', color: '#166534', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', fontWeight: 700 }}>
-                                ✓ Bénévole Vérifiée
+                          <div className="benev-profile-info">
+                            <div className="benev-name-row">
+                              <h1 className="benev-name">{volunteerUser.name}</h1>
+                              <span className="benev-verified-badge">
+                                <IconCheck className="w-3.5 h-3.5" />
+                                <span>Bénévole Vérifiée</span>
                               </span>
                             </div>
 
-                            <p style={{ margin: '0 0 6px', fontSize: '14.5px', color: '#006D5B', fontWeight: 700 }}>
-                              {volunteerUser.headline}
+                            <p className="benev-headline">
+                              {isEditingProfile ? (
+                                <input
+                                  type="text"
+                                  value={volunteerUser.headline}
+                                  onChange={(e) => setVolunteerUser({ ...volunteerUser, headline: e.target.value })}
+                                  style={{ width: '100%', maxWidth: '480px', padding: '6px 10px', fontSize: '13.5px' }}
+                                />
+                              ) : (
+                                "Engagée pour un impact citoyen durable"
+                              )}
                             </p>
 
-                            <div style={{ display: 'flex', gap: '14px', fontSize: '13px', color: '#64748b' }}>
-                              <span>Wilaya : <strong>{volunteerUser.wilaya}</strong></span>
+                            <div className="benev-meta-row">
+                              <span className="benev-meta-item">
+                                <IconMapPin className="w-4 h-4 text-emerald-600" />
+                                <span>Alger, Algérie</span>
+                              </span>
                               <span>·</span>
-                              <span>Âge : <strong>{volunteerUser.age} ans</strong></span>
+                              <span className="benev-meta-item">
+                                <IconUsers className="w-4 h-4 text-slate-500" />
+                                <span>{volunteerUser.age} ans</span>
+                              </span>
                               <span>·</span>
-                              <span>Disponibilité : <strong>{volunteerUser.availability}</strong></span>
+                              <span className="benev-meta-item">
+                                <IconCalendar className="w-4 h-4 text-emerald-600" />
+                                <span>Week-ends & Samedis</span>
+                              </span>
                             </div>
                           </div>
                         </div>
 
                         <button
                           type="button"
-                          className={`btn ${isEditingProfile ? 'btn-green' : 'btn-ghost'}`}
+                          className="benev-edit-btn"
                           onClick={() => {
                             if (isEditingProfile) {
-                              showToast("Profil et CV mis à jour avec succès !");
+                              showToast("Profil mis à jour avec succès !");
                             }
                             setIsEditingProfile(!isEditingProfile);
                           }}
-                          style={{
-                            padding: '10px 18px',
-                            fontSize: '13.5px',
-                            fontWeight: 800,
-                            border: '1px solid #cbd5e1',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '6px'
-                          }}
                         >
-                          <IconEdit className="w-4 h-4" />
-                          <span>{isEditingProfile ? "Enregistrer mon profil" : "Éditer mon profil"}</span>
+                          <IconEdit className="w-4 h-4 text-slate-600" />
+                          <span>{isEditingProfile ? "Enregistrer" : "Éditer mon profil"}</span>
                         </button>
                       </div>
 
-                      {/* STATISTIQUES D'IMPACT CITOYEN */}
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px', marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #f1f5f9' }}>
-                        <div
-                          style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.15s ease' }}
-                          onClick={() => setProfileSubTab('certificates')}
-                          title="Voir mes attestations et heures certifiées"
-                        >
-                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerUser.hoursVolunteered}h</span>
-                          <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Heures de bénévolat validées</small>
-                        </div>
-
-                        <div
-                          style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.15s ease' }}
-                          onClick={() => setProfileSubTab('applications')}
-                          title="Voir mes candidatures en cours"
-                        >
-                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerUser.completedMissionsCount}</span>
-                          <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Projets & missions réalisés</small>
-                        </div>
-
-                        <div
-                          style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '12px 16px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.15s ease' }}
-                          onClick={() => setProfileSubTab('certificates')}
-                          title="Voir mes certificats officiels"
-                        >
-                          <span style={{ fontSize: '24px', fontWeight: 900, color: '#006D5B', display: 'block' }}>{volunteerCertificates.length}</span>
-                          <small style={{ color: '#64748b', fontSize: '12px', fontWeight: 600 }}>Attestations certifiées Athar</small>
-                        </div>
-                      </div>
-                    </div>
-                    {/* BARRE D'ONGLETS DU PROFIL (INFORMATIONS, CANDIDATURES, CERTIFICATS) */}
-                    <div className="profile-subnav">
-                      <button
-                        type="button"
-                        className={`profile-subnav-btn ${(profileSubTab === 'overview' && volunteerPortalTab !== 'applications' && volunteerPortalTab !== 'certificates') ? 'active' : ''}`}
-                        onClick={() => {
-                          setVolunteerPortalTab('profile');
-                          setProfileSubTab('overview');
-                        }}
-                      >
-                        <IconUsers className="w-4 h-4" />
-                        <span>{currentLang === 'ar' ? 'المعلومات والسيرة الذاتية' : 'Informations & CV Citoyen'}</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        className={`profile-subnav-btn ${(profileSubTab === 'applications' || volunteerPortalTab === 'applications') ? 'active' : ''}`}
-                        onClick={() => {
-                          setVolunteerPortalTab('profile');
-                          setProfileSubTab('applications');
-                        }}
-                      >
-                        <IconFileText className="w-4 h-4" />
-                        <span>{currentLang === 'ar' ? 'ترشحاتي' : 'Mes Candidatures'}</span>
-                        <span className="profile-subnav-badge">
-                          {volunteerApplications.length}
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        className={`profile-subnav-btn ${(profileSubTab === 'certificates' || volunteerPortalTab === 'certificates') ? 'active' : ''}`}
-                        onClick={() => {
-                          setVolunteerPortalTab('profile');
-                          setProfileSubTab('certificates');
-                        }}
-                      >
-                        <IconAward className="w-4 h-4" />
-                        <span>{currentLang === 'ar' ? 'شهاداتي وأوسمتي' : 'Mes Certificats & Badges'}</span>
-                        <span className="profile-subnav-badge">
-                          {volunteerCertificates.length}
-                        </span>
-                      </button>
-                    </div>
-
-                    {/* ONGLET 1 : INFORMATIONS & CV CITOYEN */}
-                    {(profileSubTab === 'overview' && volunteerPortalTab !== 'applications' && volunteerPortalTab !== 'certificates') && (
-                      <>
-{/* SECTION 1 : INFORMATIONS PERSONNELLES & CONTACTS */}
-                    <div className="cv-section-card">
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
-                          <IconUsers className="w-4 h-4" />
-                        </div>
-                        <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-                          Informations Personnelles & Contacts
-                        </h3>
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '5px' }}>Nom complet</label>
-                          {isEditingProfile ? (
-                            <input
-                              type="text"
-                              value={volunteerUser.name}
-                              onChange={(e) => setVolunteerUser({ ...volunteerUser, name: e.target.value })}
-                              style={{ width: '100%' }}
-                            />
-                          ) : (
-                            <strong style={{ fontSize: '14px', color: '#0f172a' }}>{volunteerUser.name}</strong>
-                          )}
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '5px' }}>Adresse Email</label>
-                          {isEditingProfile ? (
-                            <input
-                              type="email"
-                              value={volunteerUser.email}
-                              onChange={(e) => setVolunteerUser({ ...volunteerUser, email: e.target.value })}
-                              style={{ width: '100%' }}
-                            />
-                          ) : (
-                            <strong style={{ fontSize: '14px', color: '#0f172a' }}>{volunteerUser.email}</strong>
-                          )}
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '5px' }}>Téléphone</label>
-                          {isEditingProfile ? (
-                            <input
-                              type="tel"
-                              value={volunteerUser.phone}
-                              onChange={(e) => setVolunteerUser({ ...volunteerUser, phone: e.target.value })}
-                              style={{ width: '100%' }}
-                            />
-                          ) : (
-                            <strong style={{ fontSize: '14px', color: '#0f172a' }}>{volunteerUser.phone}</strong>
-                          )}
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '5px' }}>Wilaya de résidence (69)</label>
-                          {isEditingProfile ? (
-                            <select
-                              value={volunteerUser.wilaya}
-                              onChange={(e) => setVolunteerUser({ ...volunteerUser, wilaya: e.target.value })}
-                              style={{ width: '100%' }}
-                            >
-                              {WILAYAS_LIST.map(w => (
-                                <option key={w.code} value={`${w.code} - ${w.name}`}>
-                                  {w.code} - {w.name}
-                                </option>
-                              ))}
-                            </select>
-                          ) : (
-                            <strong style={{ fontSize: '14px', color: '#0f172a' }}>{volunteerUser.wilaya} ({volunteerUser.commune})</strong>
-                          )}
-                        </div>
-                      </div>
-
-                      <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #f1f5f9' }}>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '5px' }}>Bio & Citation d'engagement</label>
-                        {isEditingProfile ? (
-                          <textarea
-                            rows={3}
-                            value={volunteerUser.bio}
-                            onChange={(e) => setVolunteerUser({ ...volunteerUser, bio: e.target.value })}
-                            style={{ width: '100%' }}
-                          />
-                        ) : (
-                          <p style={{ margin: 0, fontSize: '14px', color: '#334155', lineHeight: '1.6' }}>{volunteerUser.bio}</p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* SECTION 2 : EXPÉRIENCES & BÉNÉVOLAT PASSÉ (TIMELINE) */}
-                    <div className="cv-section-card">
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '22px' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#e0f2fe', color: '#0284c7', display: 'grid', placeItems: 'center' }}>
-                          <IconBriefcase className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-                            Expériences & Bénévolat Passé
-                          </h3>
-                          <small style={{ color: '#64748b', fontSize: '12.5px' }}>Historique vérifié de vos missions sur le terrain</small>
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        {volunteerUser.pastExperiences.map(exp => (
-                          <div key={exp.id} className="cv-timeline-item">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
-                              <div>
-                                <h4 style={{ margin: 0, fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
-                                  {exp.role}
-                                </h4>
-                                <span style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700 }}>
-                                  {exp.association} · {exp.location}
-                                </span>
-                              </div>
-                              <span style={{ background: '#f1f5f9', border: '1px solid #cbd5e1', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', color: '#475569', fontWeight: 600 }}>
-                                {exp.period} · {exp.hours}h
-                              </span>
-                            </div>
-                            <p style={{ margin: '6px 0 0', fontSize: '13px', color: '#475569', lineHeight: '1.5' }}>
-                              {exp.description}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* SECTION 3 : COMPÉTENCES & LANGUES (BADGES MODIFIABLES) */}
-                    <div className="cv-section-card">
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#fef3c7', color: '#d97706', display: 'grid', placeItems: 'center' }}>
-                          <IconAward className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-                            Compétences & Langues
-                          </h3>
-                          <small style={{ color: '#64748b', fontSize: '12.5px' }}>Atouts linguistiques et savoir-faire validés</small>
-                        </div>
-                      </div>
-
-                      {/* COMPÉTENCES */}
-                      <div style={{ marginBottom: '20px' }}>
-                        <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a', marginBottom: '8px' }}>
-                          Compétences pratiques :
-                        </strong>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
-                          {volunteerUser.skills.map((skill, i) => (
-                            <span key={i} style={{
-                              background: '#f0fdf4',
-                              color: '#006D5B',
-                              border: '1px solid #bbf7d0',
-                              padding: '5px 12px',
-                              borderRadius: '999px',
-                              fontSize: '12.5px',
-                              fontWeight: 700,
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '6px'
-                            }}>
-                              <span>{skill}</span>
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveVolunteerSkill(skill)}
-                                style={{ background: 'none', border: 'none', color: '#006D5B', cursor: 'pointer', padding: 0, fontSize: '14px', lineHeight: 1 }}
-                                title="Supprimer"
-                              >
-                                ×
-                              </button>
-                            </span>
-                          ))}
-                        </div>
-
-                        <div style={{ display: 'flex', gap: '8px', maxWidth: '420px' }}>
-                          <input
-                            type="text"
-                            placeholder="Ajouter une compétence (ex: Animation, Secourisme...)"
-                            value={newSkillInput}
-                            onChange={(e) => setNewSkillInput(e.target.value)}
-                            style={{ flex: 1 }}
-                          />
-                          <button
-                            type="button"
-                            className="btn btn-ghost"
-                            onClick={handleAddVolunteerSkill}
-                            style={{ border: '1px solid #cbd5e1', fontWeight: 700, padding: '8px 14px' }}
-                          >
-                            Ajouter
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* LANGUES */}
-                      <div style={{ paddingTop: '16px', borderTop: '1px solid #f1f5f9' }}>
-                        <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a', marginBottom: '8px' }}>
-                          Langues maîtrisées :
-                        </strong>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
-                          {volunteerUser.languages.map((l, i) => (
-                            <div key={i} style={{
-                              background: '#f8fafc',
-                              border: '1px solid #cbd5e1',
-                              borderRadius: '10px',
-                              padding: '8px 14px',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '8px'
-                            }}>
-                              <strong style={{ fontSize: '13px', color: '#0f172a' }}>{l.name}</strong>
-                              <span style={{ fontSize: '12px', color: '#006D5B', fontWeight: 600 }}>({l.level})</span>
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveLanguage(l.name)}
-                                style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 0, fontSize: '14px', marginLeft: '4px' }}
-                              >
-                                ×
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div style={{ display: 'flex', gap: '8px', maxWidth: '420px' }}>
-                          <input
-                            type="text"
-                            placeholder="Autre langue (ex: Tamazight, Espagnol...)"
-                            value={newLangName}
-                            onChange={(e) => setNewLangName(e.target.value)}
-                            style={{ flex: 1 }}
-                          />
-                          <select
-                            value={newLangLevel}
-                            onChange={(e) => setNewLangLevel(e.target.value)}
-                            style={{ width: '130px' }}
-                          >
-                            <option value="Courant">Courant</option>
-                            <option value="Intermédiaire">Intermédiaire</option>
-                            <option value="Bilingue">Bilingue</option>
-                            <option value="Débutant">Débutant</option>
-                          </select>
-                          <button
-                            type="button"
-                            className="btn btn-ghost"
-                            onClick={handleAddLanguage}
-                            style={{ border: '1px solid #cbd5e1', fontWeight: 700, padding: '8px 14px' }}
-                          >
-                            Ajouter
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* SECTION 4 : MOTIVATIONS & CAUSES D'ENGAGEMENT */}
-                    <div className="cv-section-card">
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#ede9fe', color: '#7c3aed', display: 'grid', placeItems: 'center' }}>
-                          <IconHeart className="w-4 h-4" filled={true} />
-                        </div>
-                        <div>
-                          <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-                            Motivations & Causes d'engagement
-                          </h3>
-                          <small style={{ color: '#64748b', fontSize: '12.5px' }}>Causes prioritaires qui animent votre engagement citoyen</small>
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                        {volunteerUser.interests.map((int, i) => (
-                          <span key={i} style={{
-                            background: '#f8fafc',
-                            border: '1px solid #cbd5e1',
-                            padding: '6px 14px',
-                            borderRadius: '999px',
-                            fontSize: '12.5px',
-                            fontWeight: 700,
-                            color: '#006D5B',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '6px'
-                          }}>
-                            <IconCheck className="w-3.5 h-3.5" />
-                            <span>{int}</span>
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* SECTION 5 : MES CERTIFICATS & BADGES D'IMPACT */}
-                    <div className="cv-section-card">
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#f0fdf4', color: '#006D5B', display: 'grid', placeItems: 'center' }}>
-                            <IconAward className="w-4 h-4" />
+                      {/* STATS ROW (3 CARTES) */}
+                      <div className="benev-stats-grid">
+                        <div className="benev-stat-card">
+                          <div className="benev-stat-icon mint">
+                            <IconClock className="w-5 h-5" />
                           </div>
                           <div>
-                            <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-                              Mes Certificats & Badges Officiels
-                            </h3>
-                            <small style={{ color: '#64748b', fontSize: '12.5px' }}>Attestations certifiées délivrées par les associations partenaires</small>
+                            <span className="benev-stat-number">{volunteerUser.hoursVolunteered}h</span>
+                            <span className="benev-stat-label">Heures de bénévolat</span>
                           </div>
                         </div>
 
-                        <span style={{ fontSize: '12px', color: '#166534', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontWeight: 700 }}>
-                          {volunteerCertificates.length} attestations vérifiées
-                        </span>
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
-                        {volunteerCertificates.map(cert => (
-                          <div key={cert.id} style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                            <div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                                <span style={{ fontSize: '11px', fontWeight: 800, color: '#006D5B' }}>{cert.sdg || cert.category || 'Engagement'}</span>
-                                <small style={{ fontFamily: 'monospace', color: '#94a3b8', fontSize: '11px' }}>{cert.id}</small>
-                              </div>
-                              <h4 style={{ margin: '0 0 6px', fontSize: '14.5px', fontWeight: 800, color: '#0f172a', lineHeight: '1.3' }}>
-                                {cert.title}
-                              </h4>
-                              <span style={{ fontSize: '12.5px', color: '#64748b', display: 'block', marginBottom: '8px' }}>
-                                {cert.associationName} · {cert.hours} heures
-                              </span>
-                            </div>
-
-                            <button
-                              type="button"
-                              className="btn btn-ghost"
-                              onClick={() => setSelectedCertificateDetail(cert)}
-                              style={{ width: '100%', border: '1px solid #cbd5e1', fontSize: '12.5px', fontWeight: 700, padding: '7px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-                            >
-                              <IconEye className="w-3.5 h-3.5" />
-                              <span>Aperçu de l'attestation</span>
-                            </button>
+                        <div className="benev-stat-card">
+                          <div className="benev-stat-icon rose">
+                            <IconHeart className="w-5 h-5 text-rose-500" filled={true} />
                           </div>
-                        ))}
+                          <div>
+                            <span className="benev-stat-number">{volunteerUser.completedMissionsCount}</span>
+                            <span className="benev-stat-label">Projets réalisés</span>
+                          </div>
+                        </div>
+
+                        <div className="benev-stat-card">
+                          <div className="benev-stat-icon mint">
+                            <IconAward className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <span className="benev-stat-number">3</span>
+                            <span className="benev-stat-label">Certificats Ather</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                      </>
-                    )}
 
-                    {/* ONGLET 2 : SUIVI DES CANDIDATURES DU BÉNÉVOLE */}
-                    {(profileSubTab === 'applications' || volunteerPortalTab === 'applications') && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                        <div className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
-                          <h2 style={{ margin: '0 0 4px', fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)' }}>
-                            {currentLang === 'ar' ? 'سجل ترشحاتي للمهمات' : 'Suivi de mes Candidatures'}
-                          </h2>
-                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
-                            {currentLang === 'ar'
-                              ? 'تابع حالة دراسة طلباتك من طرف المنظمات والجمعيات الشريكة في الوقت الفعلي.'
-                              : 'Consultez l\'état d\'examen de vos candidatures soumises aux organisations partenaires.'}
-                          </p>
+                    {/* 3. GRILLE PRINCIPALE 2 COLONNES */}
+                    <div className="benev-main-grid">
+                      {/* COLONNE GAUCHE (65%) */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                        {/* CARTE 1 : INFORMATIONS PERSONNELLES */}
+                        <div className="benev-card">
+                          <div className="benev-card-header">
+                            <div className="benev-card-header-left">
+                              <div className="benev-card-icon-badge">
+                                <IconUsers className="w-4 h-4" />
+                              </div>
+                              <h3 className="benev-card-title">Informations personnelles</h3>
+                            </div>
+                          </div>
+
+                          <div className="benev-info-grid">
+                            <div className="benev-info-field">
+                              <label>Nom complet</label>
+                              {isEditingProfile ? (
+                                <input
+                                  type="text"
+                                  value={volunteerUser.name}
+                                  onChange={(e) => setVolunteerUser({ ...volunteerUser, name: e.target.value })}
+                                  style={{ width: '100%' }}
+                                />
+                              ) : (
+                                <strong>{volunteerUser.name}</strong>
+                              )}
+                            </div>
+
+                            <div className="benev-info-field">
+                              <label>Email</label>
+                              {isEditingProfile ? (
+                                <input
+                                  type="email"
+                                  value={volunteerUser.email}
+                                  onChange={(e) => setVolunteerUser({ ...volunteerUser, email: e.target.value })}
+                                  style={{ width: '100%' }}
+                                />
+                              ) : (
+                                <strong>{volunteerUser.email}</strong>
+                              )}
+                            </div>
+
+                            <div className="benev-info-field">
+                              <label>Téléphone</label>
+                              {isEditingProfile ? (
+                                <input
+                                  type="tel"
+                                  value={volunteerUser.phone}
+                                  onChange={(e) => setVolunteerUser({ ...volunteerUser, phone: e.target.value })}
+                                  style={{ width: '100%' }}
+                                />
+                              ) : (
+                                <strong>{volunteerUser.phone}</strong>
+                              )}
+                            </div>
+
+                            <div className="benev-info-field">
+                              <label>Wilaya de résidence</label>
+                              {isEditingProfile ? (
+                                <select
+                                  value={volunteerUser.wilaya}
+                                  onChange={(e) => setVolunteerUser({ ...volunteerUser, wilaya: e.target.value })}
+                                  style={{ width: '100%' }}
+                                >
+                                  {WILAYAS_LIST.map(w => (
+                                    <option key={w.code} value={`${w.code} - ${w.name}`}>
+                                      {w.code} - {w.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              ) : (
+                                <strong>16 - Alger (Bab El Oued)</strong>
+                              )}
+                            </div>
+                          </div>
                         </div>
 
-                        {volunteerApplications.length === 0 ? (
-                          <div className="cv-section-card" style={{ padding: '40px 20px', textAlign: 'center' }}>
-                            <IconFileText className="w-10 h-10 text-slate-300" style={{ margin: '0 auto 10px' }} />
-                            <h3 style={{ margin: '0 0 6px', fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>
-                              Aucune candidature pour le moment
-                            </h3>
-                            <p style={{ margin: '0 0 14px', fontSize: '13px', color: '#64748b' }}>
-                              Parcourez le catalogue des opportunités pour trouver votre prochaine mission d'impact.
-                            </p>
+                        {/* CARTE 2 : À PROPOS DE MOI */}
+                        <div className="benev-card">
+                          <div className="benev-card-header">
+                            <div className="benev-card-header-left">
+                              <div className="benev-card-icon-badge">
+                                <IconFileText className="w-4 h-4" />
+                              </div>
+                              <h3 className="benev-card-title">À propos de moi</h3>
+                            </div>
                             <button
                               type="button"
-                              className="btn btn-green"
-                              onClick={() => setVolunteerPortalTab('missions')}
-                              style={{ padding: '8px 18px', fontSize: '13px', fontWeight: 700 }}
+                              className="benev-card-action-link"
+                              onClick={() => setIsEditingProfile(!isEditingProfile)}
                             >
-                              Explorer les missions
+                              <IconEdit className="w-3.5 h-3.5" />
+                              <span>Éditer</span>
                             </button>
                           </div>
-                        ) : (
-                          volunteerApplications.map(app => (
-                            <div key={app.id} className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '14px' }}>
-                                <div>
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                                    <span style={{
-                                      background: app.status === 'accepted' ? '#f0fdf4' : app.status === 'pending' ? '#fef3c7' : '#fee2e2',
-                                      color: app.status === 'accepted' ? '#166534' : app.status === 'pending' ? '#92400e' : '#991b1b',
-                                      border: app.status === 'accepted' ? '1px solid #bbf7d0' : app.status === 'pending' ? '1px solid #fde68a' : '1px solid #fecaca',
-                                      padding: '2px 10px',
-                                      borderRadius: '999px',
-                                      fontSize: '11.5px',
-                                      fontWeight: 700
-                                    }}>
-                                      {app.status === 'accepted' ? 'Candidature Acceptée' : app.status === 'pending' ? "En cours d'examen" : 'Refusée'}
-                                    </span>
-                                    <span style={{ fontSize: '12.5px', color: '#64748b' }}>
-                                      Déposée le {app.appliedDate}
-                                    </span>
-                                  </div>
 
-                                  <h3 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>
-                                    {app.missionTitle}
-                                  </h3>
+                          {isEditingProfile ? (
+                            <textarea
+                              rows={4}
+                              value={volunteerUser.bio}
+                              onChange={(e) => setVolunteerUser({ ...volunteerUser, bio: e.target.value })}
+                              style={{ width: '100%' }}
+                            />
+                          ) : (
+                            <p className="benev-bio-text">
+                              {volunteerUser.bio}
+                            </p>
+                          )}
+                        </div>
 
-                                  <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '10px' }}>
-                                    {app.associationName} · {app.wilaya}
-                                  </div>
-
-                                  <div style={{ background: '#f8fafc', padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px', color: '#334155' }}>
-                                    <strong>Retour organisation :</strong> {app.notes}
-                                  </div>
-                                </div>
-
-                                {app.status === 'pending' && (
-                                  <button
-                                    type="button"
-                                    className="btn btn-ghost"
-                                    onClick={() => handleCancelApplication(app.id)}
-                                    style={{ border: '1px solid #fca5a5', color: '#dc2626', background: '#fef2f2', fontSize: '12.5px', fontWeight: 700, padding: '7px 14px' }}
-                                  >
-                                    Retirer la candidature
-                                  </button>
-                                )}
+                        {/* CARTE 3 : CENTRES D'INTÉRÊT & COMPÉTENCES */}
+                        <div className="benev-card">
+                          <div className="benev-card-header">
+                            <div className="benev-card-header-left">
+                              <div className="benev-card-icon-badge">
+                                <IconSettings className="w-4 h-4" />
                               </div>
+                              <h3 className="benev-card-title">Centres d'intérêt & compétences</h3>
                             </div>
-                          ))
-                        )}
-                      </div>
-                    )}
+                            <button
+                              type="button"
+                              className="benev-card-action-link"
+                              onClick={() => setIsEditingProfile(!isEditingProfile)}
+                            >
+                              <IconEdit className="w-3.5 h-3.5" />
+                              <span>Éditer</span>
+                            </button>
+                          </div>
 
-                    {/* ONGLET 3 : MES CERTIFICATS, BADGES & ATTESTATIONS OFFICIELLES */}
-                    {(profileSubTab === 'certificates' || volunteerPortalTab === 'certificates') && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                        <div className="cv-section-card" style={{ padding: '20px 24px', marginBottom: 0 }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                            <div>
-                              <h2 style={{ margin: '0 0 4px', fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)' }}>
-                                {currentLang === 'ar' ? 'الشهادات الرسمية والأثر الميداني' : 'Attestations & Badges Certifiés Athar'}
-                              </h2>
-                              <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
-                                {currentLang === 'ar'
-                                  ? 'سجل ساعات التطوع المعتمدة، الشارات المكتسبة وشهادات المشاركة الصادرة عن المنظمات الشريكة.'
-                                  : 'Attestations vérifiées avec QR code officiel et exportables en PDF pour vos démarches.'}
-                              </p>
-                            </div>
-                            <span style={{ fontSize: '12px', color: '#166534', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '4px 12px', borderRadius: '999px', fontWeight: 800 }}>
-                              ✓ {volunteerCertificates.length} Attestations vérifiées
-                            </span>
+                          <div className="benev-skills-wrap">
+                            {["Éducation", "Environnement", "Solidarité", "Animation", "Travail en équipe", "Communication", "Sens de l'écoute"].map((pill, idx) => (
+                              <span key={idx} className="benev-skill-pill">
+                                {pill}
+                              </span>
+                            ))}
                           </div>
                         </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
-                          {volunteerCertificates.map(cert => (
-                            <div key={cert.id} className="cv-section-card" style={{ padding: '22px', marginBottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                              <div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                                  <span style={{ background: '#f0fdf4', color: '#006D5B', border: '1px solid #bbf7d0', padding: '3px 10px', borderRadius: '999px', fontSize: '11.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                    <IconAward className="w-3.5 h-3.5" />
-                                    <span>{cert.sdg || cert.category || 'Engagement'}</span>
-                                  </span>
-                                  <small style={{ color: '#94a3b8', fontSize: '11px', fontFamily: 'monospace' }}>{cert.id}</small>
-                                </div>
-
-                                <h3 style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: '#0f172a', lineHeight: '1.35' }}>
-                                  {cert.title}
-                                </h3>
-
-                                <div style={{ fontSize: '13px', color: '#006D5B', fontWeight: 700, marginBottom: '6px' }}>
-                                  {cert.associationName}
-                                </div>
-
-                                <div style={{ display: 'flex', gap: '14px', fontSize: '12px', color: '#64748b', marginBottom: '16px' }}>
-                                  <span>{cert.date}</span>
-                                  <span>·</span>
-                                  <span>{cert.hours} heures certifiées</span>
-                                </div>
+                        {/* CARTE 4 : DISPONIBILITÉS */}
+                        <div className="benev-card">
+                          <div className="benev-card-header">
+                            <div className="benev-card-header-left">
+                              <div className="benev-card-icon-badge">
+                                <IconCalendar className="w-4 h-4" />
                               </div>
+                              <h3 className="benev-card-title">Disponibilités</h3>
+                            </div>
+                            <button
+                              type="button"
+                              className="benev-card-action-link"
+                              onClick={() => setIsEditingProfile(!isEditingProfile)}
+                            >
+                              <IconEdit className="w-3.5 h-3.5" />
+                              <span>Éditer</span>
+                            </button>
+                          </div>
 
-                              <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #f1f5f9', paddingTop: '14px' }}>
-                                <button
-                                  type="button"
-                                  className="btn btn-green"
-                                  onClick={() => setSelectedCertificateDetail(cert)}
-                                  style={{ flex: 1, padding: '9px 12px', fontSize: '12.5px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-                                >
-                                  <IconEye className="w-3.5 h-3.5" />
-                                  <span>Aperçu officiel</span>
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-ghost"
-                                  onClick={() => showToast(`Attestation ${cert.id} téléchargée au format PDF.`)}
-                                  style={{ padding: '9px 14px', fontSize: '12.5px', fontWeight: 700, border: '1px solid #cbd5e1' }}
-                                  title="Télécharger"
-                                >
-                                  <IconDownload className="w-3.5 h-3.5" />
-                                </button>
+                          <div className="benev-avail-grid">
+                            <div className="benev-avail-card">
+                              <div className="benev-avail-icon green">
+                                <IconCalendar className="w-4 h-4 text-emerald-600" />
+                              </div>
+                              <div>
+                                <h4 className="benev-avail-title">Week-ends</h4>
+                                <span className="benev-avail-status">Disponible</span>
                               </div>
                             </div>
-                          ))}
+
+                            <div className="benev-avail-card">
+                              <div className="benev-avail-icon orange">
+                                <IconSun className="w-4 h-4 text-amber-500" />
+                              </div>
+                              <div>
+                                <h4 className="benev-avail-title">Samedis</h4>
+                                <span className="benev-avail-status">Disponible</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )}
+
+                      {/* COLONNE DROITE (35%) */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                        {/* CARTE 1 : BADGES */}
+                        <div className="benev-card">
+                          <div className="benev-card-header">
+                            <div className="benev-card-header-left">
+                              <div className="benev-card-icon-badge">
+                                <IconAward className="w-4 h-4" />
+                              </div>
+                              <h3 className="benev-card-title">Badges</h3>
+                            </div>
+                            <button
+                              type="button"
+                              className="benev-card-action-link"
+                              onClick={() => showToast("Affichage de tous les badges obtenus.")}
+                            >
+                              <span>Voir tout</span>
+                            </button>
+                          </div>
+
+                          <div className="benev-badges-list">
+                            <div className="benev-badge-item">
+                              <div className="benev-badge-circle green">
+                                <IconLeaf className="w-5 h-5 text-white" />
+                              </div>
+                              <div>
+                                <h4 className="benev-badge-name">Citoyen Vert</h4>
+                                <p className="benev-badge-desc">Environnement</p>
+                              </div>
+                            </div>
+
+                            <div className="benev-badge-item">
+                              <div className="benev-badge-circle purple">
+                                <IconUsers className="w-5 h-5 text-white" />
+                              </div>
+                              <div>
+                                <h4 className="benev-badge-name">Acteur Solidaire</h4>
+                                <p className="benev-badge-desc">Communauté</p>
+                              </div>
+                            </div>
+
+                            <div className="benev-badge-item">
+                              <div className="benev-badge-circle gold">
+                                <IconStar className="w-5 h-5 text-white" fill="white" />
+                              </div>
+                              <div>
+                                <h4 className="benev-badge-name">Bénévole Actif</h4>
+                                <p className="benev-badge-desc">Engagement</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* CARTE 2 : MES CERTIFICATS */}
+                        <div className="benev-card">
+                          <div className="benev-card-header">
+                            <div className="benev-card-header-left">
+                              <div className="benev-card-icon-badge">
+                                <IconFileText className="w-4 h-4" />
+                              </div>
+                              <h3 className="benev-card-title">Mes certificats</h3>
+                            </div>
+                            <button
+                              type="button"
+                              className="benev-card-action-link"
+                              onClick={() => {
+                                if (volunteerCertificates.length > 0) {
+                                  setSelectedCertificateDetail(volunteerCertificates[0]);
+                                }
+                              }}
+                            >
+                              <span>Voir tout</span>
+                            </button>
+                          </div>
+
+                          <div className="benev-certs-list">
+                            <div
+                              className="benev-cert-item"
+                              onClick={() => {
+                                setSelectedCertificateDetail({
+                                  title: "Premiers secours",
+                                  associationName: "Croissant Rouge Algérien",
+                                  date: "Mars 2024",
+                                  hours: 18,
+                                  wilaya: "16 - Alger",
+                                  hash: "ATHAR-CRA-SEC-0914"
+                                });
+                              }}
+                            >
+                              <div className="benev-cert-left">
+                                <div className="benev-cert-icon-sq">
+                                  <IconFileText className="w-4 h-4" />
+                                </div>
+                                <div>
+                                  <h4 className="benev-cert-title">Premiers secours</h4>
+                                  <p className="benev-cert-meta">Croissant Rouge Algérien · Mars 2024</p>
+                                </div>
+                              </div>
+                              <IconChevronRight className="w-4 h-4 text-slate-400" />
+                            </div>
+
+                            <div
+                              className="benev-cert-item"
+                              onClick={() => {
+                                setSelectedCertificateDetail({
+                                  title: "Sensibilisation environnement",
+                                  associationName: "Green Future",
+                                  date: "Jan 2024",
+                                  hours: 12,
+                                  wilaya: "16 - Alger",
+                                  hash: "ATHAR-GF-ENV-4421"
+                                });
+                              }}
+                            >
+                              <div className="benev-cert-left">
+                                <div className="benev-cert-icon-sq">
+                                  <IconFileText className="w-4 h-4" />
+                                </div>
+                                <div>
+                                  <h4 className="benev-cert-title">Sensibilisation environnement</h4>
+                                  <p className="benev-cert-meta">Green Future · Jan 2024</p>
+                                </div>
+                              </div>
+                              <IconChevronRight className="w-4 h-4 text-slate-400" />
+                            </div>
+
+                            <div
+                              className="benev-cert-item"
+                              onClick={() => {
+                                setSelectedCertificateDetail({
+                                  title: "Animation avec les enfants",
+                                  associationName: "Lire pour Demain",
+                                  date: "Oct 2023",
+                                  hours: 18,
+                                  wilaya: "16 - Alger",
+                                  hash: "ATHAR-LPD-EDU-7811"
+                                });
+                              }}
+                            >
+                              <div className="benev-cert-left">
+                                <div className="benev-cert-icon-sq">
+                                  <IconFileText className="w-4 h-4" />
+                                </div>
+                                <div>
+                                  <h4 className="benev-cert-title">Animation avec les enfants</h4>
+                                  <p className="benev-cert-meta">Lire pour Demain · Oct 2023</p>
+                                </div>
+                              </div>
+                              <IconChevronRight className="w-4 h-4 text-slate-400" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 4. SECTION PLEINE LARGEUR : MES CANDIDATURES RÉCENTES */}
+                    <div className="benev-candidatures-card">
+                      <div className="benev-card-header">
+                        <div className="benev-card-header-left">
+                          <div className="benev-card-icon-badge">
+                            <IconFileText className="w-4 h-4" />
+                          </div>
+                          <h3 className="benev-card-title">Mes candidatures récentes</h3>
+                        </div>
+                        <button
+                          type="button"
+                          className="benev-card-action-link"
+                          onClick={() => setVolunteerPortalTab('missions')}
+                        >
+                          <span>Voir tout</span>
+                        </button>
+                      </div>
+
+                      <div className="benev-candidatures-list">
+                        {/* ROW 1: Reboisement à Zéralda */}
+                        <div
+                          className="benev-cand-item"
+                          onClick={() => {
+                            const found = missionsData.find(m => m.id === 1);
+                            if (found) setSelectedMissionDetail(found);
+                          }}
+                        >
+                          <div className="benev-cand-main">
+                            <img src={candReboisementImg} alt="Reboisement à Zéralda" className="benev-cand-thumb" />
+                            <div className="benev-cand-logo" style={{ background: '#059669', color: '#ffffff' }}>
+                              <IconLeaf className="w-4 h-4 text-white" />
+                            </div>
+                            <div className="benev-cand-info">
+                              <h4 className="benev-cand-title">Reboisement à Zéralda</h4>
+                              <p className="benev-cand-org">Green Future</p>
+                            </div>
+                          </div>
+
+                          <div className="benev-cand-right">
+                            <span className="benev-status-pill accepted">
+                              <IconCheck className="w-3.5 h-3.5" />
+                              <span>Candidature acceptée</span>
+                            </span>
+                            <IconChevronRight className="w-4 h-4 text-slate-400" />
+                          </div>
+                        </div>
+
+                        {/* ROW 2: Ateliers lecture pour enfants */}
+                        <div
+                          className="benev-cand-item"
+                          onClick={() => {
+                            const found = missionsData.find(m => m.id === 3);
+                            if (found) setSelectedMissionDetail(found);
+                          }}
+                        >
+                          <div className="benev-cand-main">
+                            <img src={candLectureImg} alt="Ateliers lecture pour enfants" className="benev-cand-thumb" />
+                            <div className="benev-cand-logo" style={{ background: '#ffffff', border: '1px solid #e2e8f0', color: '#2563eb' }}>
+                              <IconBook className="w-4 h-4 text-sky-600" />
+                            </div>
+                            <div className="benev-cand-info">
+                              <h4 className="benev-cand-title">Ateliers lecture pour enfants</h4>
+                              <p className="benev-cand-org">Lire pour Demain</p>
+                            </div>
+                          </div>
+
+                          <div className="benev-cand-right">
+                            <span className="benev-status-pill review">
+                              <IconClock className="w-3.5 h-3.5" />
+                              <span>En cours d'examen</span>
+                            </span>
+                            <IconChevronRight className="w-4 h-4 text-slate-400" />
+                          </div>
+                        </div>
+
+                        {/* ROW 3: Collecte de sang */}
+                        <div
+                          className="benev-cand-item"
+                          onClick={() => setVolunteerPortalTab('blood')}
+                        >
+                          <div className="benev-cand-main">
+                            <img src={candSangImg} alt="Collecte de sang" className="benev-cand-thumb" />
+                            <div className="benev-cand-logo" style={{ background: '#0284c7', color: '#ffffff' }}>
+                              CHU
+                            </div>
+                            <div className="benev-cand-info">
+                              <h4 className="benev-cand-title">Collecte de sang</h4>
+                              <p className="benev-cand-org">CHU Mustapha</p>
+                            </div>
+                          </div>
+
+                          <div className="benev-cand-right">
+                            <span className="benev-status-pill sent">
+                              <IconClock className="w-3.5 h-3.5" />
+                              <span>Candidature envoyée</span>
+                            </span>
+                            <IconChevronRight className="w-4 h-4 text-slate-400" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 5. FOOTER DE BAS DE PAGE */}
+                    <footer className="benev-portal-footer">
+                      <div className="benev-footer-left">
+                        <img src={atharLogoClean} alt="Athar" style={{ height: '26px', width: 'auto' }} />
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <strong style={{ fontSize: '13px', color: '#006D5B', lineHeight: 1.1 }}>Athar</strong>
+                          <small style={{ fontSize: '10.5px', color: '#94a3b8' }}>Le bénévolat a un sens</small>
+                        </div>
+                      </div>
+
+                      <div className="benev-footer-links">
+                        <a href="#aide" onClick={(e) => { e.preventDefault(); showToast("Centre d'aide et FAQ en ligne"); }}>Aide</a>
+                        <a href="#confidentialite" onClick={(e) => { e.preventDefault(); showToast("Politique de confidentialité Athar"); }}>Confidentialité</a>
+                        <a href="#conditions" onClick={(e) => { e.preventDefault(); showToast("Conditions Générales d'Utilisation"); }}>Conditions</a>
+                        <a href="#contact" onClick={(e) => { e.preventDefault(); showToast("Support bénévole disponible 7j/7"); }}>Contact</a>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', cursor: 'pointer', fontWeight: 600, color: '#475569' }}>
+                          <span style={{ fontSize: '14px' }}>🌐</span>
+                          <span>FR</span>
+                          <IconChevronDown className="w-3 h-3 text-slate-400" />
+                        </div>
+                      </div>
+                    </footer>
                   </div>
                 )}
 
