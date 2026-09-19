@@ -2616,8 +2616,12 @@ export default function App() {
                   <img
                     src={logoImg}
                     alt="Athar Platform أثر"
-                    style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
+                    className="brand-logo-img"
                   />
+                  <div className="brand-text-block">
+                    <span className="brand-title">ATHAR</span>
+                    <span className="brand-sub">أَثَــر · SOLIDARITÉ</span>
+                  </div>
                 </div>
 
                 <div className="menu">
@@ -2703,16 +2707,6 @@ export default function App() {
                   >
                     {t('navAssociations')}
                   </a>
-                  <a
-                    href="#stats-section"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById('stats-section');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    {t('navVolunteers')}
-                  </a>
                 </div>
 
             <div className="right">
@@ -2750,6 +2744,12 @@ export default function App() {
       >
         <div className="wrap">
           <div className="herotext">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '9px', background: 'rgba(255, 255, 255, 0.94)', padding: '7px 16px', borderRadius: '999px', border: '1px solid rgba(0, 109, 91, 0.25)', marginBottom: '16px', boxShadow: '0 4px 14px rgba(0,0,0,0.06)' }}>
+              <img src={logoImg} alt="Athar" style={{ height: '26px', width: 'auto', objectFit: 'contain' }} />
+              <span style={{ color: 'var(--primary-teal)', fontWeight: 800, fontSize: '12px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                {currentLang === 'ar' ? 'المنصة الوطنية للعمل التطوعي' : 'Plateforme Nationale du Bénévolat'}
+              </span>
+            </div>
             <div className="eyebrow">
               {currentLang === 'ar'
                 ? 'العمل التطوعي في خدمة جزائر متضامنة'
