@@ -5222,17 +5222,7 @@ export default function App() {
                 <span>{t('navMessages')}</span>
               </button>
 
-              {/* 7. TRAÇABILITÉ */}
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'traceability' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('traceability'); }}
-              >
-                <IconShieldCheck className="w-4 h-4" />
-                <span>{t('navTrace')}</span>
-              </button>
-
-              {/* 8. MES OFFRES SAUVEGARDÉES */}
+              {/* 7. MES OFFRES SAUVEGARDÉES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'favorites' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5245,7 +5235,7 @@ export default function App() {
               {/* Séparateur élégant */}
               <div style={{ height: '1px', background: '#E2E8F0', margin: '6px 4px' }}></div>
 
-              {/* 9. PARAMÈTRES */}
+              {/* 8. PARAMÈTRES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'settings' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5256,33 +5246,8 @@ export default function App() {
               </button>
             </nav>
 
-            {/* DROITE : RECHERCHE COMPACTE, NOTIFICATIONS, LANGUE, PROFIL */}
+            {/* DROITE : NOTIFICATIONS, LANGUE, PROFIL */}
             <div className="portal-header-right">
-              {/* Barre de recherche compacte */}
-              <div className="portal-search-bar">
-                <IconSearch className="w-4 h-4 text-slate-400" />
-                <input
-                  type="text"
-                  placeholder="Rechercher une mission..."
-                  value={volunteerSearchQuery}
-                  onChange={(e) => {
-                    setVolunteerSearchQuery(e.target.value);
-                    if (volunteerPortalTab !== 'missions' && !selectedMissionDetail) {
-                      setVolunteerPortalTab('missions');
-                    }
-                  }}
-                />
-                {volunteerSearchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => setVolunteerSearchQuery('')}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: 0 }}
-                  >
-                    <IconX className="w-3.5 h-3.5" />
-                  </button>
-                )}
-              </div>
-
               {/* Notifications */}
               <div style={{ position: 'relative' }}>
                 <button
