@@ -3,6 +3,15 @@ import logoImg from '../assets/logo.png';
 import heroBgImg from '../assets/athar-hero.png';
 import panoramicImg from '../assets/algeria-panoramic.jpg';
 import algiersCardCrop from '../assets/algiers-card-crop.png';
+import feedCraImg from '../assets/feed-cra-distribution.png';
+import bloodHeroDoctor from '../assets/blood-hero-doctor.png';
+import missionPlantationForet from '../assets/mission-reboisement-foret.png';
+import candLectureImg from '../assets/candidature-lecture.png';
+import candSangImg from '../assets/candidature-sang.png';
+import candAvatar1 from '../assets/cand-avatar-1.png';
+import candAvatar2 from '../assets/cand-avatar-2.png';
+import candAvatar3 from '../assets/cand-avatar-3.png';
+import candAvatar6 from '../assets/cand-avatar-6.png';
 
 function IconUser({ className = "w-4 h-4" }) {
   return (
@@ -249,7 +258,7 @@ const defaultMissions = [
     date_str: "Sam. 12 avr. 2025",
     dateStrAr: "السبت 12 أفريل 2025",
     spots_remaining: 15,
-    image_url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
+    image_url: missionPlantationForet,
     description: "Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Ensemble, contribuons à restaurer la canopée méditerranéenne et à sensibiliser les familles à la biodiversité locale.",
     descriptionAr: "شارك في حملتنا الكبرى لإعادة التشجير في غابة زرالدة الترفيهية. نساهم معاً في ترميم الغطاء النباتي المتوسطي والتوعية بحماية التنوع البيولوجي."
   },
@@ -267,7 +276,7 @@ const defaultMissions = [
     date_str: "Sam. 19 avr. 2025",
     dateStrAr: "السبت 19 أفريل 2025",
     spots_remaining: 20,
-    image_url: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
+    image_url: feedCraImg,
     description: "Tri, conditionnement méticuleux et acheminement de colis alimentaires solidaires destinés à 300 familles nécessiteuses recensées. Une action humanitaire directe au service des personnes les plus vulnérables.",
     descriptionAr: "فرز وتوضيب ونقل الطرود الغذائية التضامنية الموجهة لـ 300 عائلة معوزة مسجلة. عمل إنساني مباشر في خدمة الفئات الأكثر احتياجاً."
   },
@@ -285,7 +294,7 @@ const defaultMissions = [
     date_str: "Mer. 16 avr. 2025",
     dateStrAr: "الأربعاء 16 أفريل 2025",
     spots_remaining: 8,
-    image_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
+    image_url: candLectureImg,
     description: "Animation de contes bilingues, jeux de rôles créatifs et éveil au plaisir de lire pour un groupe de 25 enfants de 6 à 11 ans au centre culturel communautaire.",
     descriptionAr: "تنشيط حكايات وقصص ثنائية اللغة، وألعاب أدوار إبداعية وغرس حب المطالعة لدى مجموعة من 25 طفلاً تتراوح أعمارهم بين 6 و11 سنة بالمركز الثقافي."
   }
@@ -547,54 +556,57 @@ export default function LandingPage({
       id: 1,
       city: currentLang === 'ar' ? 'الجزائر العاصمة' : 'Alger',
       photo: algiersCardCrop,
-      photoAlt: "Baie d'Alger et Maqam Echahid",
+      photoAlt: currentLang === 'ar' ? "خليج الجزائر ومقام الشهيد" : "Baie d'Alger et Maqam Echahid",
       quote: currentLang === 'ar'
         ? "“التطوع مع أثر مكنني من لقاء أشخاص رائعين والمساهمة بقدر استطاعتي في جزائر أكثر تضامناً وترابطاً.”"
         : currentLang === 'en'
         ? "“Volunteering with Athar has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
         : "“Être bénévole avec Athar m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
       name: "Nadia M.",
-      role: currentLang === 'ar' ? "متطوعة منذ 2023" : currentLang === 'en' ? "Volunteer since 2023" : "Bénévole depuis 2023",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80"
+      role: currentLang === 'ar' ? "متطوعة منذ 2023 · الجزائر" : currentLang === 'en' ? "Volunteer since 2023 · Algiers" : "Bénévole depuis 2023 · Alger",
+      avatar: candAvatar1
     },
     {
       id: 2,
-      photo: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
-      photoAlt: "Littoral d'Algérie et la Méditerranée",
+      city: currentLang === 'ar' ? 'البليدة' : 'Blida',
+      photo: feedCraImg,
+      photoAlt: currentLang === 'ar' ? "توزيع طرود تضامنية مع الهلال الأحمر الجزائري" : "Distribution de colis solidaires avec le Croissant-Rouge Algérien",
       quote: currentLang === 'ar'
         ? "“بفضل قوافل التضامن عبر أثر، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في القرى. عمل ميداني حقيقي وملموس.”"
         : currentLang === 'en'
         ? "“Thanks to solidarity caravans organized through Athar, we distributed over 450 food parcels to isolated families. Real, tangible field impact.”"
         : "“Grâce aux caravanes de solidarité coordonnées via Athar, nous avons distribué plus de 450 colis alimentaires aux familles isolées. Un impact concret et mesurable.”",
       name: "Amine Benali",
-      role: currentLang === 'ar' ? "منسق مبادرات تضامنية" : currentLang === 'en' ? "Solidarity Coordinator" : "Coordinateur Solidaire",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
+      role: currentLang === 'ar' ? "منسق قوافل التضامن · الهلال الأحمر" : currentLang === 'en' ? "Solidarity Coordinator · Algerian Red Crescent" : "Coordinateur Solidaire · Croissant-Rouge Algérien",
+      avatar: candAvatar2
     },
     {
       id: 3,
-      photo: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=1200&q=80",
-      photoAlt: "Paysage d'Algérie",
+      city: currentLang === 'ar' ? 'الجزائر العاصمة' : 'Alger',
+      photo: bloodHeroDoctor,
+      photoAlt: currentLang === 'ar' ? "طبيبة جزائرية في حملة التبرع بالدم بالمستشفى الجامعي" : "Médecin algérienne lors d'une collecte de sang au CHU",
       quote: currentLang === 'ar'
         ? "“أحدثت منصة أثر فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية. يستجيب المتبرعون في دقائق معدودة لإنقاذ الأرواح.”"
         : currentLang === 'en'
         ? "“Athar transformed how we coordinate urgent hospital blood donation calls. Citizens respond in minutes to save lives.”"
         : "“Athar a révolutionné nos appels urgents de don de sang aux hôpitaux. Les citoyens répondent en quelques minutes pour sauver des vies.”",
       name: "Dr. Selma Khelifi",
-      role: currentLang === 'ar' ? "طبيبة ومسؤولة بنك الدم" : currentLang === 'en' ? "Doctor & Blood Drive Lead" : "Médecin & Responsable Don du Sang",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
+      role: currentLang === 'ar' ? "طبيبة ومسؤولة بنك الدم · CHU الجزائر" : currentLang === 'en' ? "Doctor & Blood Bank Lead · CHU Algiers" : "Médecin & Responsable Don du Sang · CHU Alger",
+      avatar: candAvatar6
     },
     {
       id: 4,
-      photo: "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1200&q=80",
-      photoAlt: "Forêts de cèdres et nature d'Algérie",
+      city: currentLang === 'ar' ? 'زرالدة، الجزائر' : 'Zéralda, Alger',
+      photo: missionPlantationForet,
+      photoAlt: currentLang === 'ar' ? "إعادة تشجير الغابات وحملة تطوع بيئي في الجزائر" : "Reboisement des forêts et action écocitoyenne en Algérie",
       quote: currentLang === 'ar'
         ? "“إعادة تشجير الغابات الوطنية مع أكثر من 120 شاباً متطوعاً بعث فينا فخراً كبيراً بالحفاظ على طبيعة الجزائر وثرواتها البيئية.”"
         : currentLang === 'en'
         ? "“Reforesting national forests with over 120 youth volunteers restored immense pride in protecting our natural heritage.”"
         : "“Replanter les forêts nationales avec plus de 120 jeunes engagés nous a redonné une fierté immense pour notre patrimoine écologique.”",
       name: "Yacine Mansouri",
-      role: currentLang === 'ar' ? "متطوع بيئي" : currentLang === 'en' ? "Environmental Volunteer" : "Bénévole Reboisement",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80"
+      role: currentLang === 'ar' ? "متطوع بيئي وتشجير · جمعية المستقبل الأخضر" : currentLang === 'en' ? "Environmental Volunteer · Green Future" : "Bénévole Reboisement · Green Future",
+      avatar: candAvatar3
     }
   ];
 
@@ -1112,7 +1124,7 @@ export default function LandingPage({
               tabIndex={0}
             >
               <img
-                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80"
+                src={feedCraImg}
                 alt="Solidarité"
                 className="cause-compact-bg"
                 loading="lazy"
@@ -1145,7 +1157,7 @@ export default function LandingPage({
               tabIndex={0}
             >
               <img
-                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
+                src={candLectureImg}
                 alt="Éducation"
                 className="cause-compact-bg"
                 loading="lazy"
@@ -1178,7 +1190,7 @@ export default function LandingPage({
               tabIndex={0}
             >
               <img
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80"
+                src={missionPlantationForet}
                 alt="Environnement"
                 className="cause-compact-bg"
                 loading="lazy"
@@ -1211,7 +1223,7 @@ export default function LandingPage({
               tabIndex={0}
             >
               <img
-                src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80"
+                src={bloodHeroDoctor}
                 alt="Santé"
                 className="cause-compact-bg"
                 loading="lazy"
