@@ -199,7 +199,8 @@ function DefaultLanguageDropdown({ currentLang = 'fr', setCurrentLang }) {
   const languages = [
     { code: 'fr', label: 'Français', badge: 'FR' },
     { code: 'ar', label: 'العربية', badge: 'AR' },
-    { code: 'en', label: 'English', badge: 'EN' }
+    { code: 'en', label: 'English', badge: 'EN' },
+    { code: 'ber', label: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', badge: 'BER' }
   ];
 
   return (
@@ -351,7 +352,114 @@ const ARABIC_MISSION_OVERRIDES = {
   }
 };
 
+const AMAZIGH_MISSION_OVERRIDES = {
+  1: {
+    title: "ⴰⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ ⴷ ⵓⵙⴻⴳⴳⴻⵎ ⵏ ⵜⵥⴻⴳⵡⴰ ⴷⴻⴳ ⵣⵉⵔⴰⵍⴷⴰ",
+    association_name: "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵉⵎⴰⵍ ⴰⵣⴻⴳⵣⴰⵡ",
+    category: "ⵜⴰⵡⴻⵏⵏⴰⴹⵜ ⴷ ⵓⵥⵥⵓ",
+    location: "ⵣⵉⵔⴰⵍⴷⴰ, ⴷⵣⴰⵢⴻⵔ",
+    date_str: "ⵙⴻⴱⵜ 12 ⵢⴻⴱⵔⵉⵔ 2025",
+    description: "ⵜⵜⴻⴽⴽⵉ ⴷⴻⴳ ⵜⵉⴳⴰⵡⵜ ⵜⴰⵎⴻⵇⵇⵔⴰⵏⵜ ⵏ ⵓⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ ⴷⴻⴳ ⵜⵥⴻⴳⵡⴰ ⵏ ⵣⵉⵔⴰⵍⴷⴰ. ⴰⴷⴷⴰⴷ ⵢⵉⴷ-ⵏⵖ ⵉ ⵓⵃⵔⴰⵣ ⵏ ⵓⴳⴰⵎⴰ."
+  },
+  2: {
+    title: "ⴰⴱⵟⵟⵓ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵡⵓⵜⵛⵉ ⵉ ⵜⵡⴰⵛⵓⵍⵉⵏ",
+    association_name: "ⴰⵢⵢⵓⵔ ⴰⵣⴻⴳⴳⵯⴰⵖ ⴰⴷⵣⴰⵢⵔⵉ",
+    category: "ⵜⴰⵡⵉⵣⴰ ⴷ ⵓⵎⵢⴰⵡⴰⵙ",
+    location: "ⴱⴰⴱ ⵣⵡⴰⵕ, ⴷⵣⴰⵢⴻⵔ",
+    date_str: "ⵙⴻⴱⵜ 19 ⵢⴻⴱⵔⵉⵔ 2025",
+    description: "ⴰⴼⵔⴰⵏ, ⴰⵙⵓⴷⴷⴻⵙ ⴷ ⵓⵚⵉⵡⴻⴹ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵡⵓⵜⵛⵉ ⵉ 300 ⵏ ⵜⵡⴰⵛⵓⵍⵉⵏ ⵢⴻⵃⵡⴰⵊⴻⵏ. ⵜⴰⵡⵉⵣⴰ ⵜⴰⵏⴼⵓⴳⴰⵏⵜ ⴷⴻⴳ ⵓⵏⵏⴰⵔ."
+  },
+  3: {
+    title: "ⵜⵉⴷⵉⵡⴰⵏⵉⵏ ⵏ ⵜⵖⵓⵔⵉ ⴷ ⵓⵥⴰⵡⴰⵏ ⵉ ⵢⵉⴳⴻⵔⴷⴰⵏ",
+    association_name: "ⵖⴻⵔ ⵉ ⵢⵉⵎⴰⵍ",
+    category: "ⴰⵙⴻⵍⵎⴻⴷ ⴷ ⵓⵙⵉⵍⴻⵖ",
+    location: "ⵃⵉⴷⵔⴰ, ⴷⵣⴰⵢⴻⵔ",
+    date_str: "ⴰⵔⴱⵄⴰ 16 ⵢⴻⴱⵔⵉⵔ 2025",
+    description: "ⴰⵙⵓⴷⴷⴻⵙ ⵏ ⵜⵎⴰⵛⴰⵀⵉⵏ, ⵓⵔⴰⵔⴻⵏ ⵉⵏⵓⵍⴼⴰⵏⴻⵏ ⴷ ⵓⵃⴻⵎⵎⴻⵍ ⵏ ⵜⵖⵓⵔⵉ ⵉ 25 ⵏ ⵢⵉⴳⴻⵔⴷⴰⵏ ⴷⴻⴳ ⵡⴰⵎⵎⴰⵙ ⴰⴷⴻⵍⵙⴰⵏ."
+  },
+  4: {
+    title: "ⴰⵙⵉⵣⴷⴻⴳ ⵏ ⵢⵉⴼⵜⵉⵙⴻⵏ ⴷ ⵓⵃⵔⴰⵣ ⵏ ⵓⴼⵜⴰⵙ",
+    association_name: "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵍⴱⴰⵔⴰⴽⴰ",
+    category: "ⵜⴰⵡⴻⵏⵏⴰⴹⵜ ⴷ ⵓⵥⵥⵓ",
+    location: "ⵄⵉⵏ ⵟⴰⵢⴰ, ⴷⵣⴰⵢⴻⵔ",
+    date_str: "ⵍⵊⴻⵎⵄⴰ 2 ⵎⴰⵢⵢⵓ 2025",
+    description: "ⵜⴰⵙⵏⵜⴰⵢⵜ ⵏ ⵜⵡⴻⵏⵏⴰⴹⵜ ⵉ ⵓⵍَقّاط ⵏ ⵡⵉⵔⵔⴰⵏ ⴷ ⵓⵙⵉⵣⴷⴻⴳ ⵏ ⵓⴼⵜⴰⵙ ⵉ ⵓⵃⵔⴰⵣ ⵏ ⵢⵉⵍⴻⵍ."
+  },
+  5: {
+    title: "ⴰⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ ⵉ ⵢⵉⵙⴻⴳⵏⴰⴼ",
+    association_name: "ⴰⵙⴻⴳⵏⴰⴼ ⴰⵙⴷⴰⵡⴰⵏ ⵎⵓⵙⵟⴰⴼⴰ ⴱⴰⵛⴰ",
+    category: "ⵜⴰⴷⴰⵡⵙⴰ ⴷ ⵓⵙⴻⵍⵍⴻⴽ",
+    location: "ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ",
+    date_str: "ⵍⵅⴻⵎⵉⵙ 8 ⵎⴰⵢⵢⵓ 2025",
+    description: "ⴰⴷⵀⴰⵍ ⴷ ⵓⵙⵏⵓⴱⴳ ⵏ ⵢⵉⵎⴻⴼⴽⴰⵢⴻⵏ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ ⴷⴻⴳ ⵡⴰⵎⵎⴰⵙ ⵏ ⵓⵙⴻⴳⵏⴰⴼ ⵉ ⵓⵙⴻⵍⵍⴻⴽ ⵏ ⵜⵓⴷⴻⵔⵜ."
+  },
+  6: {
+    title: "ⴰⵙⴻⴳⴳⴻⵎ ⴷ ⵓⵃⵔⴰⵣ ⵏ ⵓⴱⵔⵉⴷ ⴰⵎⴻⵣⵔⵓⵢ ⴳ ⵜⵉⴱⴰⵣⴰ",
+    association_name: "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵉⵍⵎⴻⵣⵢⵉⵏ ⴷ ⵢⵉⴷⵍⴻⵙ",
+    category: "ⴰⵢⴷⴰ ⴷ ⵢⵉⴷⵍⴻⵙ",
+    location: "ⵜⵉⴱⴰⵣⴰ",
+    date_str: "ⵙⴻⴱⵜ 10 ⵎⴰⵢⵢⵓ 2025",
+    description: "ⴰⵙⵙ ⵏ ⵜⵡⵉⵣⴰ ⵉ ⵓⵙⵉⵣⴷⴻⴳ ⴷ ⵓⵙⴻⴳⴳⴻⵎ ⵏ ⵡⴰⵏⵙⴰⵜⴻⵏ ⵉⵇⴱⵓⵔⴻⵏ ⴳ ⵜⵉⴱⴰⵣⴰ, ⴰⵢⴷⴰ ⴰⵎⴰⴹⵍⴰⵏ ⵏ ⵢⵓⵏⴻⵙⴽⵓ."
+  }
+};
+
 function getMissionField(m, field, lang) {
+  if (lang === 'ber') {
+    const override = AMAZIGH_MISSION_OVERRIDES[m.id];
+    if (field === 'title') {
+      if (override?.title) return override.title;
+      const t = m.title || '';
+      if (t.includes('arbre') || t.includes('Plantation')) return "ⴰⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ ⴷ ⵓⵙⴻⴳⴳⴻⵎ ⵏ ⵜⵥⴻⴳⵡⴰ ⴷⴻⴳ ⵣⵉⵔⴰⵍⴷⴰ";
+      if (t.includes('colis') || t.includes('alimentaire')) return "ⴰⴱⵟⵟⵓ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵡⵓⵜⵛⵉ ⵉ ⵜⵡⴰⵛⵓⵍⵉⵏ";
+      if (t.includes('lecture')) return "ⵜⵉⴷⵉⵡⴰⵏⵉⵏ ⵏ ⵜⵖⵓⵔⵉ ⴷ ⵓⵥⴰⵡⴰⵏ ⵉ ⵢⵉⴳⴻⵔⴷⴰⵏ";
+      if (t.includes('plage')) return "ⴰⵙⵉⵣⴷⴻⴳ ⵏ ⵢⵉⴼⵜⵉⵙⴻⵏ ⴷ ⵓⵃⵔⴰⵣ ⵏ ⵓⴼⵜⴰⵙ";
+      if (t.includes('sang')) return "ⴰⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ ⵉ ⵢⵉⵙⴻⴳⵏⴰⴼ";
+      if (t.includes('Tipaza')) return "ⴰⵙⴻⴳⴳⴻⵎ ⴷ ⵓⵃⵔⴰⵣ ⵏ ⵓⴱⵔⵉⴷ ⴰⵎⴻⵣⵔⵓⵢ ⴳ ⵜⵉⴱⴰⵣⴰ";
+    }
+    if (field === 'association') {
+      if (override?.association_name) return override.association_name;
+      const a = m.association_name || '';
+      if (a.includes('Green Future')) return "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵉⵎⴰⵍ ⴰⵣⴻⴳⵣⴰⵡ";
+      if (a.includes('Croissant Rouge')) return "ⴰⵢⵢⵓⵔ ⴰⵣⴻⴳⴳⵯⴰⵖ ⴰⴷⵣⴰⵢⵔⵉ";
+      if (a.includes('Lire pour Demain')) return "ⵖⴻⵔ ⵉ ⵢⵉⵎⴰⵍ";
+      if (a.includes('Baraka')) return "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵍⴱⴰⵔⴰⴽⴰ";
+      if (a.includes('CHU') || a.includes('Mustapha')) return "ⴰⵙⴻⴳⵏⴰⴼ ⴰⵙⴷⴰⵡⴰⵏ ⵎⵓⵙⵟⴰⴼⴰ ⴱⴰⵛⴰ";
+      if (a.includes('Patrimoine') || a.includes('Jeunesse')) return "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵉⵍⵎⴻⵣⵢⵉⵏ ⴷ ⵢⵉⴷⵍⴻⵙ";
+    }
+    if (field === 'category') {
+      if (override?.category) return override.category;
+      const c = (m.category || '').toLowerCase();
+      if (c.includes('climat') || c.includes('env')) return "ⵜⴰⵡⴻⵏⵏⴰⴹⵜ ⴷ ⵓⵥⵥⵓ";
+      if (c.includes('solid')) return "ⵜⴰⵡⵉⵣⴰ ⴷ ⵓⵎⵢⴰⵡⴰⵙ";
+      if (c.includes('éduc') || c.includes('educ')) return "ⴰⵙⴻⵍⵎⴻⴷ ⴷ ⵓⵙⵉⵍⴻⵖ";
+      if (c.includes('sant')) return "ⵜⴰⴷⴰⵡⵙⴰ ⴷ ⵓⵙⴻⵍⵍⴻⴽ";
+      if (c.includes('urg')) return "ⵜⴰⵍⵍⴰⵍⵜ ⵜⵓⵣⵔⵉⴱⵜ";
+      if (c.includes('patri')) return "ⴰⵢⴷⴰ ⴷ ⵢⵉⴷⵍⴻⵙ";
+    }
+    if (field === 'location') {
+      if (override?.location) return override.location;
+      const l = m.location || '';
+      if (l.includes('Zéralda') || l.includes('Zeralda')) return "ⵣⵉⵔⴰⵍⴷⴰ, ⴷⵣⴰⵢⴻⵔ";
+      if (l.includes('Bab Ezzouar')) return "ⴱⴰⴱ ⵣⵡⴰⵕ, ⴷⵣⴰⵢⴻⵔ";
+      if (l.includes('Hydra')) return "ⵃⵉⴷⵔⴰ, ⴷⵣⴰⵢⴻⵔ";
+      if (l.includes('Aïn Taya') || l.includes('Ain Taya')) return "ⵄⵉⵏ ⵟⴰⵢⴰ, ⴷⵣⴰⵢⴻⵔ";
+      if (l.includes('Tipaza')) return "ⵜⵉⴱⴰⵣⴰ";
+      if (l.includes('Alger')) return "ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ";
+    }
+    if (field === 'date') {
+      if (override?.date_str) return override.date_str;
+      const d = m.date_str || '';
+      if (d.includes('12 avr')) return "ⵙⴻⴱⵜ 12 ⵢⴻⴱⵔⵉⵔ 2025";
+      if (d.includes('19 avr')) return "ⵙⴻⴱⵜ 19 ⵢⴻⴱⵔⵉⵔ 2025";
+      if (d.includes('16 avr')) return "ⴰⵔⴱⵄⴰ 16 ⵢⴻⴱⵔⵉⵔ 2025";
+      if (d.includes('2 mai')) return "ⵍⵊⴻⵎⵄⴰ 2 ⵎⴰⵢⵢⵓ 2025";
+      if (d.includes('8 mai')) return "ⵍⵅⴻⵎⵉⵙ 8 ⵎⴰⵢⵢⵓ 2025";
+      if (d.includes('10 mai')) return "ⵙⴻⴱⵜ 10 ⵎⴰⵢⵢⵓ 2025";
+    }
+    if (field === 'description') {
+      if (override?.description) return override.description;
+    }
+  }
   if (lang === 'ar') {
     const override = ARABIC_MISSION_OVERRIDES[m.id];
     if (field === 'title') {
@@ -437,28 +545,28 @@ export default function LandingPage({
   const LanguageDropdown = LanguageDropdownProp || DefaultLanguageDropdown;
 
   const defaultTranslations = {
-    navHome: currentLang === 'ar' ? 'الرئيسية' : currentLang === 'en' ? 'Home' : 'Accueil',
-    navMissions: currentLang === 'ar' ? 'المهمات' : currentLang === 'en' ? 'Missions' : 'Missions',
-    navAssociations: currentLang === 'ar' ? 'الجمعيات' : currentLang === 'en' ? 'Associations' : 'Associations',
-    navAbout: currentLang === 'ar' ? 'من نحن' : currentLang === 'en' ? 'About' : 'À propos',
-    navVolunteers: currentLang === 'ar' ? 'المتطوعون' : currentLang === 'en' ? 'Volunteers' : 'Bénévoles',
-    navSearch: currentLang === 'ar' ? 'بحث' : currentLang === 'en' ? 'Search' : 'Rechercher',
-    navLogin: currentLang === 'ar' ? 'تسجيل الدخول' : currentLang === 'en' ? 'Log in' : 'Connexion',
-    navSignup: currentLang === 'ar' ? 'انضم إلينا' : currentLang === 'en' ? 'Join us' : 'Rejoindre',
-    statVolunteers: currentLang === 'ar' ? 'متطوع مسجل' : currentLang === 'en' ? 'Active volunteers' : 'Bénévoles engagés',
-    statAssocs: currentLang === 'ar' ? 'جمعية شريكة' : currentLang === 'en' ? 'Partner associations' : 'Associations partenaires',
-    statMissions: currentLang === 'ar' ? 'مهمة منجزة' : currentLang === 'en' ? 'Missions completed' : 'Missions réalisées',
-    statWilayas: currentLang === 'ar' ? 'ولاية مغطاة' : currentLang === 'en' ? 'Wilayas covered' : 'Wilayas couvertes',
-    causesTitle: currentLang === 'ar' ? 'مجالات العمل التطوعي' : currentLang === 'en' ? 'Volunteer Causes' : 'Des causes variées pour chaque vocation',
-    causesSubtitle: currentLang === 'ar' ? 'اختر المجال الذي يتوافق مع مهاراتك وشغفك للمساهمة في الميدان.' : currentLang === 'en' ? 'Choose causes aligned with your passion and make a tangible difference.' : 'Trouvez les actions qui résonnent avec vos convictions et mettez vos compétences à profit.',
-    causeSolidarityTitle: currentLang === 'ar' ? 'التضامن والعمل الإنساني' : currentLang === 'en' ? 'Solidarity & Humanitarian' : 'Solidarité & Humanitaire',
-    causeSolidarityDesc: currentLang === 'ar' ? 'قوافل تضامنية، طرود غذائية، ومرافقة العائلات في المناطق المعزولة.' : currentLang === 'en' ? 'Food drives, winter aid packages and direct support for underserved families.' : 'Distribution de colis de première nécessité, aides hivernales et assistance directe aux familles isolées.',
-    causeEducationTitle: currentLang === 'ar' ? 'التعليم ودعم الطفولة' : currentLang === 'en' ? 'Education & Youth' : 'Éducation & Jeunesse',
-    causeEducationDesc: currentLang === 'ar' ? 'دروس دعم، ورشات قراءة، ومرافقة أكاديمية لأطفال المدارس.' : currentLang === 'en' ? 'Tutoring, book reading clubs, and digital literacy workshops for children.' : 'Soutien scolaire gratuit, ateliers de lecture et accompagnement méthodologique des jeunes écoliers.',
-    causeEnvironmentTitle: currentLang === 'ar' ? 'البيئة والتشجير' : currentLang === 'en' ? 'Environment & Reforestation' : 'Environnement & Climat',
-    causeEnvironmentDesc: currentLang === 'ar' ? 'حملات تشجير كبرى، تنظيف الشواطئ والمحميات الطبيعية.' : currentLang === 'en' ? 'Tree planting initiatives, coastal cleanups and environmental awareness.' : 'Reboisement forestier, nettoyage citoyen du littoral et sensibilisation aux éco-gestes durables.',
-    causeHealthTitle: currentLang === 'ar' ? 'الصحة والتبرع بالدم' : currentLang === 'en' ? 'Health & Blood Donation' : 'Santé & Don de Sang',
-    causeHealthDesc: currentLang === 'ar' ? 'حملات دورية للتبرع بالدم، دعم المستشفيات، وقوافل طبية متنقلة.' : currentLang === 'en' ? 'Blood donation drives, hospital assistance and preventive healthcare days.' : 'Campagnes de don de sang, soutien logistique aux CHU et sensibilisation au dépistage précoce.'
+    navHome: currentLang === 'ar' ? 'الرئيسية' : currentLang === 'ber' ? 'ⴰⵙⵏⵓⴱⴳ' : currentLang === 'en' ? 'Home' : 'Accueil',
+    navMissions: currentLang === 'ar' ? 'المهمات' : currentLang === 'ber' ? 'ⵜⵉⵡⵓⵔⵉⵡⵉⵏ' : currentLang === 'en' ? 'Missions' : 'Missions',
+    navAssociations: currentLang === 'ar' ? 'الجمعيات' : currentLang === 'ber' ? 'ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ' : currentLang === 'en' ? 'Associations' : 'Associations',
+    navAbout: currentLang === 'ar' ? 'من نحن' : currentLang === 'ber' ? 'ⵖⴻⴼ-ⵏⵖ' : currentLang === 'en' ? 'About' : 'À propos',
+    navVolunteers: currentLang === 'ar' ? 'المتطوعون' : currentLang === 'ber' ? 'ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ' : currentLang === 'en' ? 'Volunteers' : 'Bénévoles',
+    navSearch: currentLang === 'ar' ? 'بحث' : currentLang === 'ber' ? 'ⴰⵔⵣⵣⵓ' : currentLang === 'en' ? 'Search' : 'Rechercher',
+    navLogin: currentLang === 'ar' ? 'تسجيل الدخول' : currentLang === 'ber' ? 'ⴽⵛⴻⵎ' : currentLang === 'en' ? 'Log in' : 'Connexion',
+    navSignup: currentLang === 'ar' ? 'انضم إلينا' : currentLang === 'ber' ? 'ⵊⴻⵔⵔⴻⴷ' : currentLang === 'en' ? 'Join us' : 'Rejoindre',
+    statVolunteers: currentLang === 'ar' ? 'متطوع مسجل' : currentLang === 'ber' ? 'ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ ⵢⴻⵜⵜⵡⴰⵊⴻⵔⴷⴻⵏ' : currentLang === 'en' ? 'Active volunteers' : 'Bénévoles engagés',
+    statAssocs: currentLang === 'ar' ? 'جمعية شريكة' : currentLang === 'ber' ? 'ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ ⵜⵉⵎⵛⵉⵔⴽⵉⵏ' : currentLang === 'en' ? 'Partner associations' : 'Associations partenaires',
+    statMissions: currentLang === 'ar' ? 'مهمة منجزة' : currentLang === 'ber' ? 'ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵢⴻⵜⵜⵡⴰⵙⵙⵓⴼⵖⴻⵏ' : currentLang === 'en' ? 'Missions completed' : 'Missions réalisées',
+    statWilayas: currentLang === 'ar' ? 'ولاية مغطاة' : currentLang === 'ber' ? 'ⵜⵉⵡⵉⵍⴰⵢⵉⵏ ⵉⵍⵍⴰⵏ' : currentLang === 'en' ? 'Wilayas covered' : 'Wilayas couvertes',
+    causesTitle: currentLang === 'ar' ? 'مجالات العمل التطوعي' : currentLang === 'ber' ? 'ⵜⵉⵎⵙⴰⵍ ⵉ ⵢⴻⵃⵡⴰⵊⴻⵏ ⵜⴰⵡⵉⵣⴰ-ⵏⵡⴻⵏ' : currentLang === 'en' ? 'Volunteer Causes' : 'Des causes variées pour chaque vocation',
+    causesSubtitle: currentLang === 'ar' ? 'اختر المجال الذي يتوافق مع مهاراتك وشغفك للمساهمة في الميدان.' : currentLang === 'ber' ? 'ⴰⵢⴻⵏ ⵢⴻⴱⵖⵓⵏ ⵢⵉⵍⵉ ⵡⴰⵢⴻⵏ ⵉⴽ-ⵢⴻⵄⵊⴱⴻⵏ, ⵜⴻⵍⵍⴰ ⵜⵡⵓⵔⵉ ⵉ ⴽⴻⵛⵛ.' : currentLang === 'en' ? 'Choose causes aligned with your passion and make a tangible difference.' : 'Trouvez les actions qui résonnent avec vos convictions et mettez vos compétences à profit.',
+    causeSolidarityTitle: currentLang === 'ar' ? 'التضامن والعمل الإنساني' : currentLang === 'ber' ? 'ⵜⴰⵡⵉⵣⴰ ⴷ ⵓⵎⵢⴰⵡⴰⵙ' : currentLang === 'en' ? 'Solidarity & Humanitarian' : 'Solidarité & Humanitaire',
+    causeSolidarityDesc: currentLang === 'ar' ? 'قوافل تضامنية، طرود غذائية، ومرافقة العائلات في المناطق المعزولة.' : currentLang === 'ber' ? 'ⴰⵍⵍⴰⵍ ⵏ ⵜⵡⴰⵛⵓⵍⵉⵏ ⵢⴻⵃⵡⴰⵊⴻⵏ, ⴰⵙⵓⴷⴷⴻⵙ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⴷ ⵓⴷⵀⴰⵍ.' : currentLang === 'en' ? 'Food drives, winter aid packages and direct support for underserved families.' : 'Distribution de colis de première nécessité, aides hivernales et assistance directe aux familles isolées.',
+    causeEducationTitle: currentLang === 'ar' ? 'التعليم ودعم الطفولة' : currentLang === 'ber' ? 'ⴰⵙⴻⵍⵎⴻⴷ ⴷ ⵓⵙⵉⵍⴻⵖ' : currentLang === 'en' ? 'Education & Youth' : 'Éducation & Jeunesse',
+    causeEducationDesc: currentLang === 'ar' ? 'دروس دعم، ورشات قراءة، ومرافقة أكاديمية لأطفال المدارس.' : currentLang === 'ber' ? 'ⴰⴹⴼⴰⵔ ⵏ ⵢⵉⴳⴻⵔⴷⴰⵏ, ⴰⵙⵏⵓⵍⴼⵓ ⵏ ⵜⴷⵉⵡⴰⵏⵉⵏ ⴷ ⵓⵍⴷⴰⵢ ⵏ ⵜⵎⵓⵙⵏⵉ.' : currentLang === 'en' ? 'Tutoring, book reading clubs, and digital literacy workshops for children.' : 'Soutien scolaire gratuit, ateliers de lecture et accompagnement méthodologique des jeunes écoliers.',
+    causeEnvironmentTitle: currentLang === 'ar' ? 'البيئة والتشجير' : currentLang === 'ber' ? 'ⵜⴰⵡⴻⵏⵏⴰⴹⵜ ⴷ ⵓⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ' : currentLang === 'en' ? 'Environment & Reforestation' : 'Environnement & Climat',
+    causeEnvironmentDesc: currentLang === 'ar' ? 'حملات تشجير كبرى، تنظيف الشواطئ والمحميات الطبيعية.' : currentLang === 'ber' ? 'ⴰⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ, ⴰⵙⵉⵣⴷⴻⴳ ⵏ ⵢⵉⴼⵜⵉⵙⴻⵏ ⴷ ⵢⵉⵖⴻⵔⵎⴰⵏ ⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ.' : currentLang === 'en' ? 'Tree planting initiatives, coastal cleanups and environmental awareness.' : 'Reboisement forestier, nettoyage citoyen du littoral et sensibilisation aux éco-gestes durables.',
+    causeHealthTitle: currentLang === 'ar' ? 'الصحة والتبرع بالدم' : currentLang === 'ber' ? 'ⵜⴰⴷⴰⵡⵙⴰ ⴷ ⵓⵙⴻⵍⵍⴻⴽ' : currentLang === 'en' ? 'Health & Blood Donation' : 'Santé & Don de Sang',
+    causeHealthDesc: currentLang === 'ar' ? 'حملات دورية للتبرع بالدم، دعم المستشفيات، وقوافل طبية متنقلة.' : currentLang === 'ber' ? 'ⴰⵎⵜⵜⴻⴽⴽⵉ ⴷⴻⴳ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ, ⵉⵙⴰⴼⴰⵔⴻⵏ ⴷ ⵓⵙⴻⵃⴱⵉⴱⴻⵔ ⵖⴻⴼ ⵜⴷⴰⵡⵙⴰ.' : currentLang === 'en' ? 'Blood donation drives, hospital assistance and preventive healthcare days.' : 'Campagnes de don de sang, soutien logistique aux CHU et sensibilisation au dépistage précoce.'
   };
 
   const t = (key) => {
@@ -534,13 +642,13 @@ export default function LandingPage({
   }, []);
 
   const categoriesList = [
-    { key: 'Toutes', labelFr: 'Toutes', labelAr: 'الكل', labelEn: 'All' },
-    { key: 'Environnement', labelFr: 'Environnement', labelAr: 'البيئة والتشجير', labelEn: 'Environment' },
-    { key: 'Solidarité', labelFr: 'Solidarité', labelAr: 'التضامن والإغاثة', labelEn: 'Solidarity' },
-    { key: 'Éducation', labelFr: 'Éducation', labelAr: 'التعليم والتكوين', labelEn: 'Education' },
-    { key: 'Santé', labelFr: 'Santé', labelAr: 'الصحة والتبرع بالدم', labelEn: 'Health' },
-    { key: 'Aide d\'urgence', labelFr: "Aide d'urgence", labelAr: 'إغاثة عاجلة', labelEn: 'Emergency Aid' },
-    { key: 'Patrimoine', labelFr: 'Patrimoine', labelAr: 'التراث والثقافة', labelEn: 'Heritage' }
+    { key: 'Toutes', labelFr: 'Toutes', labelAr: 'الكل', labelEn: 'All', labelBer: 'ⴰⴽⴽ' },
+    { key: 'Environnement', labelFr: 'Environnement', labelAr: 'البيئة والتشجير', labelEn: 'Environment', labelBer: 'ⵜⴰⵡⴻⵏⵏⴰⴹⵜ' },
+    { key: 'Solidarité', labelFr: 'Solidarité', labelAr: 'التضامن والإغاثة', labelEn: 'Solidarity', labelBer: 'ⵜⴰⵡⵉⵣⴰ' },
+    { key: 'Éducation', labelFr: 'Éducation', labelAr: 'التعليم والتكوين', labelEn: 'Education', labelBer: 'ⴰⵙⴻⵍⵎⴻⴷ' },
+    { key: 'Santé', labelFr: 'Santé', labelAr: 'الصحة والتبرع بالدم', labelEn: 'Health', labelBer: 'ⵜⴰⴷⴰⵡⵙⴰ' },
+    { key: 'Aide d\'urgence', labelFr: "Aide d'urgence", labelAr: 'إغاثة عاجلة', labelEn: 'Emergency Aid', labelBer: 'ⵜⴰⵍⵍⴰⵍⵜ ⵜⵓⵣⵔⵉⴱⵜ' },
+    { key: 'Patrimoine', labelFr: 'Patrimoine', labelAr: 'التراث والثقافة', labelEn: 'Heritage', labelBer: 'ⴰⵢⴷⴰ ⴷ ⵢⵉⴷⵍⴻⵙ' }
   ];
 
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
@@ -554,58 +662,66 @@ export default function LandingPage({
   const testimonials = [
     {
       id: 1,
-      city: currentLang === 'ar' ? 'الجزائر العاصمة' : 'Alger',
+      city: currentLang === 'ar' ? 'الجزائر العاصمة' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ' : 'Alger',
       photo: algiersCardCrop,
-      photoAlt: currentLang === 'ar' ? "خليج الجزائر ومقام الشهيد" : "Baie d'Alger et Maqam Echahid",
+      photoAlt: currentLang === 'ar' ? "خليج الجزائر ومقام الشهيد" : currentLang === 'ber' ? "ⴰⵎⴷⴰ ⵏ ⴷⵣⴰⵢⴻⵔ ⴷ ⵎⴰⵇⴰⵎ ⵛⵛⴰⵀⵉⴷ" : "Baie d'Alger et Maqam Echahid",
       quote: currentLang === 'ar'
         ? "“التطوع مع أثر مكنني من لقاء أشخاص رائعين والمساهمة بقدر استطاعتي في جزائر أكثر تضامناً وترابطاً.”"
+        : currentLang === 'ber'
+        ? "“ⴰⴷⴷⴰⴷ ⴷ ⵓⵎⵙⴻⴷⵔⵓⵢ ⴳ ⵡⴰⵜⵜⴰⵔ ⵢⴻⴼⴽⴰ-ⵢⵉ ⵜⴰⴳⵏⵉⵜ ⴰⴷ ⵎⵢⴰⵡⴰⴹⴻⵖ ⴷ ⵢⵉⵎⴷⴰⵏⴻⵏ ⵉⵍⴰⵍⵉⵢⴻⵏ ⴷ ⵓⴷⵀⴰⵍ ⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.”"
         : currentLang === 'en'
         ? "“Volunteering with Athar has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
         : "“Être bénévole avec Athar m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
       name: "Nadia M.",
-      role: currentLang === 'ar' ? "متطوعة منذ 2023 · الجزائر" : currentLang === 'en' ? "Volunteer since 2023 · Algiers" : "Bénévole depuis 2023 · Alger",
+      role: currentLang === 'ar' ? "متطوعة منذ 2023 · الجزائر" : currentLang === 'ber' ? "ⵜⴰⵎⵙⴻⴷⵔⵓⵢⵜ ⵙⴻⴳ 2023 · ⴷⵣⴰⵢⴻⵔ" : currentLang === 'en' ? "Volunteer since 2023 · Algiers" : "Bénévole depuis 2023 · Alger",
       avatar: candAvatar1
     },
     {
       id: 2,
-      city: currentLang === 'ar' ? 'البليدة' : 'Blida',
+      city: currentLang === 'ar' ? 'البليدة' : currentLang === 'ber' ? 'ⴱⵍⵉⴷⴰ' : 'Blida',
       photo: feedCraImg,
-      photoAlt: currentLang === 'ar' ? "توزيع طرود تضامنية مع الهلال الأحمر الجزائري" : "Distribution de colis solidaires avec le Croissant-Rouge Algérien",
+      photoAlt: currentLang === 'ar' ? "توزيع طرود تضامنية مع الهلال الأحمر الجزائري" : currentLang === 'ber' ? "ⴰⴱⵟⵟⵓ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⴷ ⵓⵢⵢⵓⵔ ⴰⵣⴻⴳⴳⵯⴰⵖ" : "Distribution de colis solidaires avec le Croissant-Rouge Algérien",
       quote: currentLang === 'ar'
         ? "“بفضل قوافل التضامن عبر أثر، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في القرى. عمل ميداني حقيقي وملموس.”"
+        : currentLang === 'ber'
+        ? "“ⵙ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⴳ ⵡⴰⵜⵜⴰⵔ, ⵏⴱⴻⵟⵟⵓ ⵓⴳⴰⵔ ⵏ 450 ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵡⵓⵜⵛⵉ ⵉ ⵜⵡⴰⵛⵓⵍⵉⵏ. ⴰⵎⴰⵀⵉⵍ ⴷⴻⴳ ⵓⵏⵏⴰⵔ ⵢⴻⵜⵜⵡⴰⵥⵔⴰⵏ.”"
         : currentLang === 'en'
         ? "“Thanks to solidarity caravans organized through Athar, we distributed over 450 food parcels to isolated families. Real, tangible field impact.”"
         : "“Grâce aux caravanes de solidarité coordonnées via Athar, nous avons distribué plus de 450 colis alimentaires aux familles isolées. Un impact concret et mesurable.”",
       name: "Amine Benali",
-      role: currentLang === 'ar' ? "منسق قوافل التضامن · الهلال الأحمر" : currentLang === 'en' ? "Solidarity Coordinator · Algerian Red Crescent" : "Coordinateur Solidaire · Croissant-Rouge Algérien",
+      role: currentLang === 'ar' ? "منسق قوافل التضامن · الهلال الأحمر" : currentLang === 'ber' ? "ⴰⵎⵙⴻⵎⵢⵓⴷⴷⴻⵙ ⵏ ⵜⵡⵉⵣⴰ · ⴰⵢⵢⵓⵔ ⴰⵣⴻⴳⴳⵯⴰⵖ" : currentLang === 'en' ? "Solidarity Coordinator · Algerian Red Crescent" : "Coordinateur Solidaire · Croissant-Rouge Algérien",
       avatar: candAvatar2
     },
     {
       id: 3,
-      city: currentLang === 'ar' ? 'الجزائر العاصمة' : 'Alger',
+      city: currentLang === 'ar' ? 'الجزائر العاصمة' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ' : 'Alger',
       photo: bloodHeroDoctor,
-      photoAlt: currentLang === 'ar' ? "طبيبة جزائرية في حملة التبرع بالدم بالمستشفى الجامعي" : "Médecin algérienne lors d'une collecte de sang au CHU",
+      photoAlt: currentLang === 'ar' ? "طبيبة جزائرية في حملة التبرع بالدم بالمستشفى الجامعي" : currentLang === 'ber' ? "ⵜⴰⴹⴱⵉⴱⵜ ⵜⴰⴷⵣⴰⵢⵔⵉⵜ ⴷⴻⴳ ⵜⵉⴳⴰⵡⵜ ⵏ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ" : "Médecin algérienne lors d'une collecte de sang au CHU",
       quote: currentLang === 'ar'
         ? "“أحدثت منصة أثر فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية. يستجيب المتبرعون في دقائق معدودة لإنقاذ الأرواح.”"
+        : currentLang === 'ber'
+        ? "“ⴰⵜⵜⴰⵔ ⵢⴻⴱⴷⴻⵍ ⵜⵉⵖⴰⵡⵙⵉⵡⵉⵏ ⴷⴻⴳ ⵓⵙⵓⴷⴷⴻⵙ ⵏ ⵜⵎⵓⵍⵉⵡⵉⵏ ⵏ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ. ⵉⵏⴰⵔⴰⵎⴻⵏ ⵜⵜⴰⵔⵔⴰⵏ-ⴷ ⴷⴻⴳ ⵢⵉⵎⵉⵔⴻⵏ ⵉ ⵓⵙⴻⵍⵍⴻⴽ ⵏ ⵜⵓⴷⴻⵔⵜ.”"
         : currentLang === 'en'
         ? "“Athar transformed how we coordinate urgent hospital blood donation calls. Citizens respond in minutes to save lives.”"
         : "“Athar a révolutionné nos appels urgents de don de sang aux hôpitaux. Les citoyens répondent en quelques minutes pour sauver des vies.”",
       name: "Dr. Selma Khelifi",
-      role: currentLang === 'ar' ? "طبيبة ومسؤولة بنك الدم · CHU الجزائر" : currentLang === 'en' ? "Doctor & Blood Bank Lead · CHU Algiers" : "Médecin & Responsable Don du Sang · CHU Alger",
+      role: currentLang === 'ar' ? "طبيبة ومسؤولة بنك الدم · CHU الجزائر" : currentLang === 'ber' ? "ⵜⴰⴹⴱⵉⴱⵜ ⴷ ⵜⵎⴻⵙⴼⵔⴻⴽⵜ · ⴰⵙⴻⴳⵏⴰⴼ ⴰⵙⴷⴰⵡⴰⵏ ⴷⵣⴰⵢⴻⵔ" : currentLang === 'en' ? "Doctor & Blood Bank Lead · CHU Algiers" : "Médecin & Responsable Don du Sang · CHU Alger",
       avatar: candAvatar6
     },
     {
       id: 4,
-      city: currentLang === 'ar' ? 'زرالدة، الجزائر' : 'Zéralda, Alger',
+      city: currentLang === 'ar' ? 'زرالدة، الجزائر' : currentLang === 'ber' ? 'ⵣⵉⵔⴰⵍⴷⴰ, ⴷⵣⴰⵢⴻⵔ' : 'Zéralda, Alger',
       photo: missionPlantationForet,
-      photoAlt: currentLang === 'ar' ? "إعادة تشجير الغابات وحملة تطوع بيئي في الجزائر" : "Reboisement des forêts et action écocitoyenne en Algérie",
+      photoAlt: currentLang === 'ar' ? "إعادة تشجير الغابات وحملة تطوع بيئي في الجزائر" : currentLang === 'ber' ? "ⴰⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ ⴷ ⵜⵡⴻⵏⵏⴰⴹⵜ ⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ" : "Reboisement des forêts et action écocitoyenne en Algérie",
       quote: currentLang === 'ar'
         ? "“إعادة تشجير الغابات الوطنية مع أكثر من 120 شاباً متطوعاً بعث فينا فخراً كبيراً بالحفاظ على طبيعة الجزائر وثرواتها البيئية.”"
+        : currentLang === 'ber'
+        ? "“ⴰⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ ⴳ ⵜⵥⴻⴳⵡⴰ ⵏ ⵜⵎⵓⵔⵜ ⵢⵉⴷ ⵏ 120 ⵏ ⵢⵉⵍⵎⴻⵣⵢⵉⵏ ⵢⴻⴼⴽⴰ-ⵢⴰⵖ ⵍⵃⵉⵔⵎⴰ ⴷ ⵜⵎⴻⵖⵔⴰ ⵉ ⵓⵃⵔⴰⵣ ⵏ ⵓⴳⴰⵎⴰ-ⵏⵖ.”"
         : currentLang === 'en'
         ? "“Reforesting national forests with over 120 youth volunteers restored immense pride in protecting our natural heritage.”"
         : "“Replanter les forêts nationales avec plus de 120 jeunes engagés nous a redonné une fierté immense pour notre patrimoine écologique.”",
       name: "Yacine Mansouri",
-      role: currentLang === 'ar' ? "متطوع بيئي وتشجير · جمعية المستقبل الأخضر" : currentLang === 'en' ? "Environmental Volunteer · Green Future" : "Bénévole Reboisement · Green Future",
+      role: currentLang === 'ar' ? "متطوع بيئي وتشجير · جمعية المستقبل الأخضر" : currentLang === 'ber' ? "ⴰⵎⵙⴻⴷⵔⵓⵢ ⵏ ⵜⵡⴻⵏⵏⴰⴹⵜ · ⵜⴰⴷⴷⵓⴽⵍⴰ ⵉⵎⴰⵍ ⴰⵣⴻⴳⵣⴰⵡ" : currentLang === 'en' ? "Environmental Volunteer · Green Future" : "Bénévole Reboisement · Green Future",
       avatar: candAvatar3
     }
   ];
@@ -699,7 +815,7 @@ export default function LandingPage({
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                {currentLang === 'ar' ? "المتطوعون" : currentLang === 'en' ? "Volunteers" : "Bénévoles"}
+                {currentLang === 'ar' ? "المتطوعون" : currentLang === 'ber' ? "ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ" : currentLang === 'en' ? "Volunteers" : "Bénévoles"}
               </a>
               <a
                 href="#stats-section"
@@ -717,7 +833,7 @@ export default function LandingPage({
               <div
                 className="icon-btn"
                 title={t('navSearch')}
-                onClick={() => showToast(currentLang === 'ar' ? "البحث سيكون متاحاً قريباً!" : "Recherche bientôt disponible !")}
+                onClick={() => showToast(currentLang === 'ar' ? "البحث سيكون متاحاً قريباً!" : currentLang === 'ber' ? "ⴰⵔⵣⵣⵓ ⴰⴷ ⵢⵉⵍⵉ ⵇⵔⵉⴱ !" : "Recherche bientôt disponible !")}
               >
                 <IconSearch className="w-4 h-4" />
               </div>
@@ -751,6 +867,8 @@ export default function LandingPage({
             <div className="eyebrow">
               {currentLang === 'ar'
                 ? 'العمل التطوعي في خدمة جزائر متضامنة'
+                : currentLang === 'ber'
+                ? 'ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵓⵎⴰⵀⵉⵍ ⵏ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ'
                 : currentLang === 'en'
                 ? 'Volunteering in service of a united Algeria'
                 : "Le bénévolat au service d'une Algérie solidaire"}
@@ -759,6 +877,8 @@ export default function LandingPage({
               <span className="blue">
                 {currentLang === 'ar'
                   ? 'امنح من وقتك.'
+                  : currentLang === 'ber'
+                  ? 'ⴼⴽ ⵙⴻⴳ ⵡⴰⴽⵓⴷ-ⵉⴽ.'
                   : currentLang === 'en'
                   ? 'Give your time.'
                   : 'Donnez de votre temps.'}
@@ -767,6 +887,8 @@ export default function LandingPage({
               <span className="green">
                 {currentLang === 'ar'
                   ? 'اصنع فرقاً.'
+                  : currentLang === 'ber'
+                  ? 'ⵙⵏⵓⵍⴼⵓ-ⴷ ⴰⴷⵔⵉⵣ.'
                   : currentLang === 'en'
                   ? 'Create impact.'
                   : "Créez de l'impact."}
@@ -781,6 +903,8 @@ export default function LandingPage({
                 <span>
                   {currentLang === 'ar'
                     ? 'إنشاء حساب ←'
+                    : currentLang === 'ber'
+                    ? 'ⵙⵏⵓⵍⴼⵓ-ⴷ ⴰⵎⴹⴰⵏ →'
                     : currentLang === 'en'
                     ? 'Create an account →'
                     : 'Créer un compte →'}
@@ -797,6 +921,8 @@ export default function LandingPage({
                 <span>
                   {currentLang === 'ar'
                     ? 'اكتشف المهام'
+                    : currentLang === 'ber'
+                    ? 'ⵙⵏⵉⵔⵎ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ'
                     : currentLang === 'en'
                     ? 'Discover missions'
                     : 'Découvrir les missions'}
@@ -815,6 +941,9 @@ export default function LandingPage({
               {currentLang === 'ar' ? (
                 <>اختيار أثر يعني مضاعفة<br />الأثر الإيجابي،<br />
                 <span className="or">وليس مجرد تقديم مساعدة.</span></>
+              ) : currentLang === 'ber' ? (
+                <>ⴰⴼⵔⴰⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⵢⴻⵙⵙⵉⵎⵖⵓⵔ<br />ⴰⴷⵔⵉⵣ ⵏ ⵜⵡⵉⵣⴰ,<br />
+                <span className="or">ⵎⴰⵛⵉ ⴽⴰⵏ ⴷ ⵜⴰⵍⵍⴰⵍⵜ.</span></>
               ) : currentLang === 'en' ? (
                 <>Choosing Athar means<br />growing the impact,<br />
                 <span className="or">not just helping.</span></>
@@ -827,6 +956,8 @@ export default function LandingPage({
               <p>
                 {currentLang === 'ar' ? (
                   <>أثر هي المنصة الوطنية التي تربط بين <b>المتطوعين</b> و<b>الهيئات والجمعيات</b> في الجزائر، لمضاعفة الأثر الميداني معاً. نقرب المخلصين في الميدان من القضايا الإنسانية والمجتمعية التي تحتاج إليهم في جميع أنحاء الوطن.</>
+                ) : currentLang === 'ber' ? (
+                  <>ⴰⵜⵜⴰⵔ ⴷ ⵜⴰⵙⴰⵖⵓⵔⵜ ⵜⴰⵖⴻⵍⵏⴰⵡⵜ ⵉ ⵢⴻⵙⵙⴻⵎⵍⵉⵍⵉⵢⴻⵏ <b>ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ</b> ⴷ <b>ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ</b> ⴷⴻⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ, ⵉ ⵓⵙⵙⵉⵎⵖⴻⵔ ⵏ ⵓⴷⵔⵉⵣ ⴳ ⵓⵏⵏⴰⵔ. ⵏⴻⵙⵙⴻⵇⵔⴰⴱ ⵉⵎⴷⴰⵏⴻⵏ ⵖⴻⵔ ⵜⵎⴻⵙⵍⴰⵢⵉⵏ ⵉ ⵜⴻⵏ-ⵢⴻⵃⵡⴰⵊⴻⵏ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ.</>
                 ) : (
                   <>Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie, pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain des causes qui ont besoin d'eux, partout dans le pays.</>
                 )}
@@ -834,6 +965,8 @@ export default function LandingPage({
               <p className="anote">
                 {currentLang === 'ar'
                   ? 'انضم إلى مجتمع نشط وتطوع في مبادرات هادفة بالقرب منك.'
+                  : currentLang === 'ber'
+                  ? 'ⴷⴷⵓ-ⴷ ⵖⴻⵔ ⵜⵎⴻⵜⵜⵉ ⵏ ⵜⵡⵉⵣⴰ ⴷ ⵜⴻⴷⵔⵓ ⴷⴻⴳ ⵜⵡⵓⵔⵉⵡⵉⵏ ⵇⵔⵉⴱ ⵖⵓⵔ-ⴽ.'
                   : 'Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.'}
               </p>
             </div>
@@ -875,11 +1008,13 @@ export default function LandingPage({
             {/* Colonne gauche : Présentation & CTA */}
             <div className="how-left-col">
               <div className="how-eyebrow">
-                {currentLang === 'ar' ? 'كيف تعمل المنصة؟' : currentLang === 'en' ? 'HOW IT WORKS ?' : 'COMMENT ÇA MARCHE ?'}
+                {currentLang === 'ar' ? 'كيف تعمل المنصة؟' : currentLang === 'ber' ? 'ⴰⵎⴻⴽ ⵉ ⵜⴻⴷⴷⵓ ?' : currentLang === 'en' ? 'HOW IT WORKS ?' : 'COMMENT ÇA MARCHE ?'}
               </div>
               <h2 className="how-heading">
                 {currentLang === 'ar' ? (
                   <>التطوع مع أثر<br />في خطوات بسيطة</>
+                ) : currentLang === 'ber' ? (
+                  <>ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵡⴰⵜⵜⴰⵔ<br />ⵙ ⵢⵉⵙⵓⵔⵉⴼⴻⵏ ⵉⴼⴻⵙⵙⴰⵙⴻⵏ</>
                 ) : currentLang === 'en' ? (
                   <>Volunteer with Athar<br />in a few steps</>
                 ) : (
@@ -889,6 +1024,8 @@ export default function LandingPage({
               <p className="how-subtext">
                 {currentLang === 'ar'
                   ? 'مسار بسيط للانتقال من الرغبة إلى الميدان وصنع الأثر.'
+                  : currentLang === 'ber'
+                  ? 'ⴰⴱⵔⵉⴷ ⴰⴼⴻⵙⵙⴰⵙ ⵉ ⵓⴽⵛⵓⵎ ⵖⴻⵔ ⵓⵏⵏⴰⵔ ⴷ ⵓⵙⵏⵓⵍⴼⵓ ⵏ ⵓⴷⵔⵉⵣ.'
                   : currentLang === 'en'
                   ? 'A simple path to turn goodwill into real community impact.'
                   : 'Une démarche simple pour passer de l\'envie à l\'action.'}
@@ -898,7 +1035,7 @@ export default function LandingPage({
                 className="how-cta-button"
                 onClick={() => (openSignup ? openSignup() : openLogin('signup'))}
               >
-                <span>{currentLang === 'ar' ? 'إنشاء حساب' : currentLang === 'en' ? 'Create an account' : 'Créer un compte'}</span>
+                <span>{currentLang === 'ar' ? 'إنشاء حساب' : currentLang === 'ber' ? 'ⵙⵏⵓⵍⴼⵓ-ⴷ ⴰⵎⴹⴰⵏ' : currentLang === 'en' ? 'Create an account' : 'Créer un compte'}</span>
                 <IconArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -915,10 +1052,10 @@ export default function LandingPage({
                   <div className="how-step-line"></div>
                 </div>
                 <h3 className="how-step-title">
-                  {currentLang === 'ar' ? 'سجّل حسابك' : currentLang === 'en' ? 'Sign up' : 'Inscrivez-vous'}
+                  {currentLang === 'ar' ? 'سجّل حسابك' : currentLang === 'ber' ? 'ⵊⴻⵔⵔⴻⴷ ⴰⵎⴹⴰⵏ-ⵉⴽ' : currentLang === 'en' ? 'Sign up' : 'Inscrivez-vous'}
                 </h3>
                 <p className="how-step-desc">
-                  {currentLang === 'ar' ? 'أنشئ ملفك التطوعي في دقائق معدودة.' : currentLang === 'en' ? 'Create your profile in a few minutes.' : 'Créez votre profil en quelques minutes.'}
+                  {currentLang === 'ar' ? 'أنشئ ملفك التطوعي في دقائق معدودة.' : currentLang === 'ber' ? 'ⵙⵏⵓⵍⴼⵓ-ⴷ ⴰⵎⴰⴳⵔⴰⴷ-ⵉⴽ ⴷⴻⴳ ⴽⵔⴰ ⵏ ⵢⵉⵎⵉⵔⴻⵏ.' : currentLang === 'en' ? 'Create your profile in a few minutes.' : 'Créez votre profil en quelques minutes.'}
                 </p>
               </div>
 
@@ -932,10 +1069,10 @@ export default function LandingPage({
                   <div className="how-step-line"></div>
                 </div>
                 <h3 className="how-step-title">
-                  {currentLang === 'ar' ? 'اختر مهمتك' : currentLang === 'en' ? 'Find a mission' : 'Trouvez une mission'}
+                  {currentLang === 'ar' ? 'اختر مهمتك' : currentLang === 'ber' ? 'ⴼⵔⴻⵏ ⵜⴰⵡⵓⵔⵉ-ⵉⴽ' : currentLang === 'en' ? 'Find a mission' : 'Trouvez une mission'}
                 </h3>
                 <p className="how-step-desc">
-                  {currentLang === 'ar' ? 'استكشف الفرص المتاحة بالقرب منك.' : currentLang === 'en' ? 'Browse opportunities close to home.' : 'Parcourez les opportunités près de chez vous.'}
+                  {currentLang === 'ar' ? 'استكشف الفرص المتاحة بالقرب منك.' : currentLang === 'ber' ? 'ⵙⵏⵉⵔⵎ ⵜⵉⴳⵏⴰⵜⵉⵏ ⵉⵍⵍⴰⵏ ⵇⵔⵉⴱ ⵖⵓⵔ-ⴽ.' : currentLang === 'en' ? 'Browse opportunities close to home.' : 'Parcourez les opportunités près de chez vous.'}
                 </p>
               </div>
 
@@ -948,10 +1085,10 @@ export default function LandingPage({
                   </div>
                 </div>
                 <h3 className="how-step-title">
-                  {currentLang === 'ar' ? 'انطلق في الميدان' : currentLang === 'en' ? 'Take action' : 'Passez à l\'action'}
+                  {currentLang === 'ar' ? 'انطلق في الميدان' : currentLang === 'ber' ? 'ⴽⵛⴻⵎ ⵖⴻⵔ ⵓⵏⵏⴰⵔ' : currentLang === 'en' ? 'Take action' : 'Passez à l\'action'}
                 </h3>
                 <p className="how-step-desc">
-                  {currentLang === 'ar' ? 'انضم إلى جمعية واصنع فارقاً حقيقياً.' : currentLang === 'en' ? 'Join an association and make a difference.' : 'Rejoignez une association et faites la différence.'}
+                  {currentLang === 'ar' ? 'انضم إلى جمعية واصنع فارقاً حقيقياً.' : currentLang === 'ber' ? 'ⴷⴷⵓ ⴷ ⵜⴰⴷⴷⵓⴽⵍⴰ ⴷ ⵜⴻⵙⵏⵓⵍⴼⵓⴹ ⴰⴷⵔⵉⵣ.' : currentLang === 'en' ? 'Join an association and make a difference.' : 'Rejoignez une association et faites la différence.'}
                 </p>
               </div>
             </div>
@@ -964,9 +1101,9 @@ export default function LandingPage({
         <div className="wrap">
           <div className="missions-head-row">
             <div className="missions-head-left">
-              <div className="eyebrow">{currentLang === 'ar' ? 'في الميدان' : 'SUR LE TERRAIN'}</div>
-              <h2>{currentLang === 'ar' ? 'مبادرات تطوعية قريبة منك' : 'Missions engagées près de chez vous'}</h2>
-              <p>{currentLang === 'ar' ? 'استكشف مبادرات معتمدة وموثوقة عبر مختلف الولايات والمجالات.' : 'Explorez des missions vérifiées dans différentes wilayas et thématiques.'}</p>
+              <div className="eyebrow">{currentLang === 'ar' ? 'في الميدان' : currentLang === 'ber' ? 'ⴷⴻⴳ ⵓⵏⵏⴰⵔ' : 'SUR LE TERRAIN'}</div>
+              <h2>{currentLang === 'ar' ? 'مبادرات تطوعية قريبة منك' : currentLang === 'ber' ? 'ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⵇⵔⵉⴱ ⵖⵓⵔ-ⴽ' : 'Missions engagées près de chez vous'}</h2>
+              <p>{currentLang === 'ar' ? 'استكشف مبادرات معتمدة وموثوقة عبر مختلف الولايات والمجالات.' : currentLang === 'ber' ? 'ⵙⵏⵉⵔⵎ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵢⴻⵜⵜⵡⴰⵙⵙⴻⵏ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ ⵏ ⵜⵎⵓⵔⵜ.' : 'Explorez des missions vérifiées dans différentes wilayas et thématiques.'}</p>
             </div>
 
             {/* Filtres thématiques alignés à droite */}
@@ -977,7 +1114,7 @@ export default function LandingPage({
                   onClick={() => handleCategoryChange(catItem.key)}
                   className={`filter-btn ${selectedCategoryFilter === catItem.key ? 'active' : ''}`}
                 >
-                  {currentLang === 'ar' ? catItem.labelAr : currentLang === 'en' ? catItem.labelEn : catItem.labelFr}
+                  {currentLang === 'ar' ? catItem.labelAr : currentLang === 'ber' ? catItem.labelBer : currentLang === 'en' ? catItem.labelEn : catItem.labelFr}
                 </button>
               ))}
             </div>
@@ -990,7 +1127,7 @@ export default function LandingPage({
             ) : filteredMissions.length === 0 ? (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '48px 16px', color: '#64748B' }}>
                 <p style={{ fontSize: '18px', fontWeight: 600 }}>
-                  {currentLang === 'ar' ? 'لم يتم العثور على أي مبادرة في هذا المجال.' : 'Aucune mission trouvée pour cette catégorie.'}
+                  {currentLang === 'ar' ? 'لم يتم العثور على أي مبادرة في هذا المجال.' : currentLang === 'ber' ? 'ⵓⵍⴰⵛ ⵜⴰⵡⵓⵔⵉ ⵢⴻⵜⵜⵡⴰⴼⴻⵏ ⴷⴻⴳ ⵓⵃⵔⵉⵛ-ⴰ.' : 'Aucune mission trouvée pour cette catégorie.'}
                 </p>
               </div>
             ) : (
@@ -1031,7 +1168,7 @@ export default function LandingPage({
                           </div>
                           <div className="mission-detail-row spots">
                             <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
-                            <span>{m.spots_remaining} {currentLang === 'ar' ? 'مقاعد متاحة' : 'places disponibles'}</span>
+                            <span>{m.spots_remaining} {currentLang === 'ar' ? 'مقاعد متاحة' : currentLang === 'ber' ? 'ⵉⵎⵓⴽⴰⵏ ⵉ ⴷ-ⵢⴻⵇⵇⵉⵎⴻⵏ' : 'places disponibles'}</span>
                           </div>
                         </div>
                       </div>
@@ -1045,7 +1182,7 @@ export default function LandingPage({
                         }}
                         className="mission-btn"
                       >
-                        <span>{currentLang === 'ar' ? 'المشاركة في هذه المهمة' : 'Je participe à cette mission'}</span>
+                        <span>{currentLang === 'ar' ? 'المشاركة في هذه المهمة' : currentLang === 'ber' ? 'ⵜⵜⴻⴽⴽⵉ ⴷⴻⴳ ⵜⵡⵓⵔⵉ-ⴰ' : 'Je participe à cette mission'}</span>
                         <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
                       </button>
                     </div>
@@ -1077,7 +1214,7 @@ export default function LandingPage({
                 transition: 'all 0.2s ease'
               }}
             >
-              <span>{currentLang === 'ar' ? 'عرض المزيد من المبادرات' : 'Voir plus'}</span>
+              <span>{currentLang === 'ar' ? 'عرض المزيد من المبادرات' : currentLang === 'ber' ? 'ⵥⴻⵔ ⵓⴳⴰⵔ ⵏ ⵜⵡⵓⵔⵉⵡⵉⵏ' : 'Voir plus'}</span>
               <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
             </button>
           </div>
@@ -1090,10 +1227,10 @@ export default function LandingPage({
           <div className="causes-compact-head">
             <div>
               <div className="causes-eyebrow">
-                {currentLang === 'ar' ? 'مجالاتنا' : currentLang === 'en' ? 'OUR CAUSES' : 'NOS CAUSES'}
+                {currentLang === 'ar' ? 'مجالاتنا' : currentLang === 'ber' ? 'ⵉⵃⵔⵉⵛⴻⵏ-ⵏⵖ' : currentLang === 'en' ? 'OUR CAUSES' : 'NOS CAUSES'}
               </div>
               <h2 className="causes-compact-title">
-                {currentLang === 'ar' ? 'مجالات تصنع الفارق وتغير الحياة' : currentLang === 'en' ? 'Fields that change lives' : 'Des domaines qui changent des vies'}
+                {currentLang === 'ar' ? 'مجالات تصنع الفارق وتغير الحياة' : currentLang === 'ber' ? 'ⵉⵃⵔⵉⵛⴻⵏ ⵉ ⵢⴻⵜⵜⴱⴻⴷⴷⵉⵍⴻⵏ ⵜⵓⴷⴻⵔⵜ' : currentLang === 'en' ? 'Fields that change lives' : 'Des domaines qui changent des vies'}
               </h2>
             </div>
             <a
@@ -1106,7 +1243,7 @@ export default function LandingPage({
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              <span>{currentLang === 'ar' ? 'عرض جميع المجالات' : currentLang === 'en' ? 'See all causes' : 'Voir toutes les causes'}</span>
+              <span>{currentLang === 'ar' ? 'عرض جميع المجالات' : currentLang === 'ber' ? 'ⵥⴻⵔ ⴰⴽⴽ ⵉⵃⵔⵉⵛⴻⵏ' : currentLang === 'en' ? 'See all causes' : 'Voir toutes les causes'}</span>
               <IconArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -1136,7 +1273,7 @@ export default function LandingPage({
                     <IconHeart className="w-4 h-4 text-emerald-700" />
                   </div>
                   <span className="cause-name-text">
-                    {currentLang === 'ar' ? 'التضامن' : currentLang === 'en' ? 'Solidarity' : 'Solidarité'}
+                    {currentLang === 'ar' ? 'التضامن' : currentLang === 'ber' ? 'ⵜⴰⵡⵉⵣⴰ' : currentLang === 'en' ? 'Solidarity' : 'Solidarité'}
                   </span>
                 </div>
                 <div className="cause-arrow-circle">
@@ -1169,7 +1306,7 @@ export default function LandingPage({
                     <IconBookOpen className="w-4 h-4 text-emerald-700" />
                   </div>
                   <span className="cause-name-text">
-                    {currentLang === 'ar' ? 'التعليم' : currentLang === 'en' ? 'Education' : 'Éducation'}
+                    {currentLang === 'ar' ? 'التعليم' : currentLang === 'ber' ? 'ⴰⵙⴻⵍⵎⴻⴷ' : currentLang === 'en' ? 'Education' : 'Éducation'}
                   </span>
                 </div>
                 <div className="cause-arrow-circle">
@@ -1202,7 +1339,7 @@ export default function LandingPage({
                     <IconLeaf className="w-4 h-4 text-emerald-700" />
                   </div>
                   <span className="cause-name-text">
-                    {currentLang === 'ar' ? 'البيئة' : currentLang === 'en' ? 'Environment' : 'Environnement'}
+                    {currentLang === 'ar' ? 'البيئة' : currentLang === 'ber' ? 'ⵜⴰⵡⴻⵏⵏⴰⴹⵜ' : currentLang === 'en' ? 'Environment' : 'Environnement'}
                   </span>
                 </div>
                 <div className="cause-arrow-circle">
@@ -1235,7 +1372,7 @@ export default function LandingPage({
                     <IconMedicalCross className="w-4 h-4 text-emerald-700" />
                   </div>
                   <span className="cause-name-text">
-                    {currentLang === 'ar' ? 'الصحة' : currentLang === 'en' ? 'Health' : 'Santé'}
+                    {currentLang === 'ar' ? 'الصحة' : currentLang === 'ber' ? 'ⵜⴰⴷⴰⵡⵙⴰ' : currentLang === 'en' ? 'Health' : 'Santé'}
                   </span>
                 </div>
                 <div className="cause-arrow-circle">
@@ -1334,10 +1471,12 @@ export default function LandingPage({
         <div className="wrap">
           <div className="ccard2">
             <div className="cleft">
-              <h2>{currentLang === 'ar' ? 'تواصل معنا' : 'Contactez-nous'}</h2>
+              <h2>{currentLang === 'ar' ? 'تواصل معنا' : currentLang === 'ber' ? 'ⵎⵢⴰⵡⴰⴹ ⵢⵉⴷ-ⵏⵖ' : 'Contactez-nous'}</h2>
               <p className="clead">
                 {currentLang === 'ar'
                   ? 'لديك استفسار، فكرة شراكة، أو ترغب في الانضمام إلينا؟ يسعدنا جداً التواصل والتعاون معك.'
+                  : currentLang === 'ber'
+                  ? 'ⵜⴻⵙⵄⵉⴹ ⴰⵙⵜⴻⵇⵙⵉ, ⵜⴰⵏⴷⵉⵜ ⵏ ⵓⵎⵛⵉⵔⴻⴽ, ⵏⴻⵖ ⵜⴻⴱⵖⵉⴹ ⴰⴷ ⵜⵎⴻⵙⵍⴰⵢⴻⴹ ⵢⵉⴷ-ⵏⵖ ? ⵏⴼⴻⵕⵕⴻⵃ ⵙ ⵓⵎⵢⴰⵡⴰⴹ ⵢⵉⴷ-ⴽ.'
                   : "Une question, une idée de partenariat, ou juste envie de dire bonjour ? Nous serions ravis d'échanger avec vous."}
               </p>
               <div className="cinfo">
@@ -1357,24 +1496,24 @@ export default function LandingPage({
                   <span className="cico">
                     <IconMapPin className="w-4 h-4" />
                   </span>
-                  <span>{currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : 'Alger, Algérie'}</span>
+                  <span>{currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ, ⴷⵣⴰⵢⴻⵔ' : 'Alger, Algérie'}</span>
                 </div>
               </div>
 
-              <div className="creach">{currentLang === 'ar' ? 'تابعونا على المنصات' : 'Suivez-nous'}</div>
+              <div className="creach">{currentLang === 'ar' ? 'تابعونا على المنصات' : currentLang === 'ber' ? 'ⴹⴼⴻⵔ-ⵏⵖ ⴷⴻⴳ ⵢⵉⵥⴻⴹⵡⴰⵏ' : 'Suivez-nous'}</div>
               <div className="csoc">
-                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : "Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Athar bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <circle cx="12" cy="12" r="9"/>
                     <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/>
                   </svg>
                 </a>
-                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : "Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Athar bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <path d="M22 3 11 14M22 3l-7 18-4-7-7-4 18-7Z"/>
                   </svg>
                 </a>
-                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : "Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Athar bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <circle cx="6" cy="12" r="2.4"/>
                     <circle cx="18" cy="6" r="2.4"/>
@@ -1389,21 +1528,21 @@ export default function LandingPage({
               className="cform"
               onSubmit={(e) => {
                 e.preventDefault();
-                showToast(currentLang === 'ar' ? "تم إرسال رسالتكم بنجاح! سيجيبكم فريقنا في أقرب وقت." : "Message envoyé avec succès ! Notre équipe vous répondra sous peu.");
+                showToast(currentLang === 'ar' ? "تم إرسال رسالتكم بنجاح! سيجيبكم فريقنا في أقرب وقت." : currentLang === 'ber' ? "ⵉⵣⴻⵏ-ⵉⴽ ⵢⴻⵜⵜⵡⴰⵡⵣⴻⵏ ⵙ ⵓⵔⴱⴰⵃ ! ⵜⴰⵔⴱⵉⵄⵜ-ⵏⵖ ⴰⴷ ⴰⴽ-ⴷ-ⵜⴰⵔⵔ." : "Message envoyé avec succès ! Notre équipe vous répondra sous peu.");
                 e.target.reset();
               }}
             >
-              <label>{currentLang === 'ar' ? 'الاسم الكامل' : 'Nom complet'}</label>
-              <input type="text" required placeholder={currentLang === 'ar' ? "اسمكم الكريم" : "Votre nom"} />
+              <label>{currentLang === 'ar' ? 'الاسم الكامل' : currentLang === 'ber' ? 'ⵉⵙⴻⵎ ⴰⴽⵎⴰⵎ' : 'Nom complet'}</label>
+              <input type="text" required placeholder={currentLang === 'ar' ? "اسمكم الكريم" : currentLang === 'ber' ? "ⵉⵙⴻⵎ-ⵉⴽ" : "Votre nom"} />
 
-              <label>{currentLang === 'ar' ? 'البريد الإلكتروني' : 'Email'}</label>
-              <input type="email" required placeholder={currentLang === 'ar' ? "example@email.com" : "vous@exemple.com"} />
+              <label>{currentLang === 'ar' ? 'البريد الإلكتروني' : currentLang === 'ber' ? 'ⵜⴰⵏⵙⴰ ⵏ ⵢⵉⵎⴰⵢⵍ' : 'Email'}</label>
+              <input type="email" required placeholder={currentLang === 'ar' ? "example@email.com" : currentLang === 'ber' ? "imayl@amedya.dz" : "vous@exemple.com"} />
 
-              <label>{currentLang === 'ar' ? 'الرسالة' : 'Message'}</label>
-              <textarea required placeholder={currentLang === 'ar' ? "كيف يمكننا مساعدتكم والتعاون معكم؟" : "Comment pouvons-nous vous aider ?"}></textarea>
+              <label>{currentLang === 'ar' ? 'الرسالة' : currentLang === 'ber' ? 'ⵉⵣⴻⵏ' : 'Message'}</label>
+              <textarea required placeholder={currentLang === 'ar' ? "كيف يمكننا مساعدتكم والتعاون معكم؟" : currentLang === 'ber' ? "ⴰⵎⴻⴽ ⵉ ⵏⴻⵣⵎⴻⵔ ⴰⴷ ⴽⵡⴻⵏ-ⵏⵄⵉⵡⴻⵏ ?" : "Comment pouvons-nous vous aider ?"}></textarea>
 
               <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
-                {currentLang === 'ar' ? 'إرسال الرسالة' : 'Envoyer le message'}
+                {currentLang === 'ar' ? 'إرسال الرسالة' : currentLang === 'ber' ? 'ⴰⵣⴻⵏ ⵉⵣⴻⵏ' : 'Envoyer le message'}
               </button>
             </form>
           </div>
@@ -1425,57 +1564,59 @@ export default function LandingPage({
               <p className="footer-lead">
                 {currentLang === 'ar'
                   ? 'المنصة الوطنية الجزائرية المكرسة للعمل التطوعي والتضامن الميداني الفاعل. كل عمل يترك أثراً طيباً.'
+                  : currentLang === 'ber'
+                  ? 'ⵜⴰⵙⴰⵖⵓⵔⵜ ⵜⴰⵖⴻⵍⵏⴰⵡⵜ ⵜⴰⴷⵣⴰⵢⵔⵉⵜ ⵉ ⵜⵡⵉⵣⴰ ⴷ ⵓⵎⵢⴰⵡⴰⵙ ⴳ ⵓⵏⵏⴰⵔ. ⵢⴰⵍ ⵜⵉⴳⴰⵡⵜ ⵜⴻⵜⵜⴰⵊⵊⴰ ⴰⴷⵔⵉⵣ.'
                   : "Plateforme nationale algérienne dédiée à l'engagement bénévole et à la solidarité active. Chaque action laisse une empreinte."}
               </p>
               <div className="footer-tagline">
-                {currentLang === 'ar' ? 'طُوِّر بكل فخر لأجل الجزائر' : "Fièrement développé pour l'Algérie"}
+                {currentLang === 'ar' ? 'طُوِّر بكل فخر لأجل الجزائر' : currentLang === 'ber' ? 'ⵢⴻⵜⵜⵡⴰⵙⵏⵓⵍⴼⴰ ⵙ ⵍⵃⵉⵔⵎⴰ ⵉ ⵍⴻⵣⵣⴰⵢⴻⵔ' : "Fièrement développé pour l'Algérie"}
               </div>
             </div>
 
             {/* Col 2 */}
             <div>
               <h4 className="footer-col-title">
-                {currentLang === 'ar' ? 'التنقل' : 'Navigation'}
+                {currentLang === 'ar' ? 'التنقل' : currentLang === 'ber' ? 'ⴰⵙⴻⵏⵢⵉⵔ' : 'Navigation'}
               </h4>
               <ul className="footer-links">
-                <li><a href="#accueil">{currentLang === 'ar' ? 'الرئيسية' : 'Accueil'}</a></li>
-                <li><a href="#missions">{currentLang === 'ar' ? 'المهمات' : 'Missions'}</a></li>
-                <li><a href="#causes">{currentLang === 'ar' ? 'المجالات' : 'Causes'}</a></li>
-                <li><a href="#about">{currentLang === 'ar' ? 'من نحن' : 'À propos'}</a></li>
+                <li><a href="#accueil">{currentLang === 'ar' ? 'الرئيسية' : currentLang === 'ber' ? 'ⴰⵙⵏⵓⴱⴳ' : 'Accueil'}</a></li>
+                <li><a href="#missions">{currentLang === 'ar' ? 'المهمات' : currentLang === 'ber' ? 'ⵜⵉⵡⵓⵔⵉⵡⵉⵏ' : 'Missions'}</a></li>
+                <li><a href="#causes">{currentLang === 'ar' ? 'المجالات' : currentLang === 'ber' ? 'ⵉⵃⵔⵉⵛⴻⵏ' : 'Causes'}</a></li>
+                <li><a href="#about">{currentLang === 'ar' ? 'من نحن' : currentLang === 'ber' ? 'ⵖⴻⴼ-ⵏⵖ' : 'À propos'}</a></li>
               </ul>
             </div>
 
             {/* Col 3 */}
             <div>
               <h4 className="footer-col-title">
-                {currentLang === 'ar' ? 'الفضاءات' : 'Espaces'}
+                {currentLang === 'ar' ? 'الفضاءات' : currentLang === 'ber' ? 'ⵜⵉⵍⵍⵓⵏⵉⵏ' : 'Espaces'}
               </h4>
               <ul className="footer-links">
                 <li>
                   <button onClick={() => openLogin('volunteer')}>
-                    {currentLang === 'ar' ? 'فضاء المتطوع' : 'Espace Bénévole'}
+                    {currentLang === 'ar' ? 'فضاء المتطوع' : currentLang === 'ber' ? 'ⵜⴰⵍⵍⵓⵏⵜ ⵏ ⵓⵎⵙⴻⴷⵔⵓⵢ' : 'Espace Bénévole'}
                   </button>
                 </li>
                 <li>
                   <button onClick={() => openLogin('association')}>
-                    {currentLang === 'ar' ? 'فضاء الهيئة' : 'Espace Association'}
+                    {currentLang === 'ar' ? 'فضاء الهيئة' : currentLang === 'ber' ? 'ⵜⴰⵍⵍⵓⵏⵜ ⵏ ⵜⴷⴷⵓⴽⵍⴰ' : 'Espace Association'}
                   </button>
                 </li>
-                <li><a href="#missions">{currentLang === 'ar' ? '69 ولاية' : '69 Wilayas'}</a></li>
+                <li><a href="#missions">{currentLang === 'ar' ? '69 ولاية' : currentLang === 'ber' ? '69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ' : '69 Wilayas'}</a></li>
               </ul>
             </div>
 
             {/* Col 4 */}
             <div>
               <h4 className="footer-col-title">
-                {currentLang === 'ar' ? 'الاتصال' : 'Contact'}
+                {currentLang === 'ar' ? 'الاتصال' : currentLang === 'ber' ? 'ⴰⵎⵢⴰⵡⴰⴹ' : 'Contact'}
               </h4>
               <p className="footer-contact-info">
-                {currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : 'Alger, Algérie'}<br />
+                {currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ, ⴷⵣⴰⵢⴻⵔ' : 'Alger, Algérie'}<br />
                 contact@athar.dz
               </p>
               <div className="footer-contact-copy">
-                {currentLang === 'ar' ? '© 2025 منصة أثر. جميع الحقوق محفوظة.' : '© 2025 Plateforme Athar. Tous droits réservés.'}
+                {currentLang === 'ar' ? '© 2025 منصة أثر. جميع الحقوق محفوظة.' : currentLang === 'ber' ? '© 2025 ⵜⴰⵙⴰⵖⵓⵔⵜ ⴰⵜⵜⴰⵔ. ⴰⴽⴽ ⵉⵣⴻⵔⴼⴰⵏ ⵜⵜⵡⴰⵃⴻⵔⵣⴻⵏ.' : '© 2025 Plateforme Athar. Tous droits réservés.'}
               </div>
             </div>
           </div>
@@ -1484,16 +1625,18 @@ export default function LandingPage({
             <div>
               {currentLang === 'ar'
                 ? 'أثر – العمل التطوعي في خدمة جزائر متضامنة.'
+                : currentLang === 'ber'
+                ? 'ⴰⵜⵜⴰⵔ – ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵓⵎⴰⵀⵉⵍ ⵏ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.'
                 : "Athar – Le bénévolat au service d'une Algérie solidaire."}
             </div>
             <div className="footer-cities">
-              <span>{currentLang === 'ar' ? 'الجزائر' : 'Alger'}</span>
+              <span>{currentLang === 'ar' ? 'الجزائر' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ' : 'Alger'}</span>
               <span>•</span>
-              <span>{currentLang === 'ar' ? 'وهران' : 'Oran'}</span>
+              <span>{currentLang === 'ar' ? 'وهران' : currentLang === 'ber' ? 'ⵡⴻⵀⵔⴰⵏ' : 'Oran'}</span>
               <span>•</span>
-              <span>{currentLang === 'ar' ? 'قسنطينة' : 'Constantine'}</span>
+              <span>{currentLang === 'ar' ? 'قسنطينة' : currentLang === 'ber' ? 'ⵇⵙⴻⵏⵟⵉⵏⴰ' : 'Constantine'}</span>
               <span>•</span>
-              <span>{currentLang === 'ar' ? '69 ولاية' : '69 Wilayas'}</span>
+              <span>{currentLang === 'ar' ? '69 ولاية' : currentLang === 'ber' ? '69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ' : '69 Wilayas'}</span>
             </div>
           </div>
         </div>

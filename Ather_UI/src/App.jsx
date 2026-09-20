@@ -991,6 +991,107 @@ const translations = {
     btnConnect: "Sign In",
     noAccount: "Don't have an account?",
     signupFree: "Sign up for free"
+  },
+  ber: {
+    navHome: "ⴰⵙⵏⵓⴱⴳ",
+    navMissions: "ⵜⵉⵡⵓⵔⵉⵡⵉⵏ",
+    navCorps: "ⵜⴰⵔⴱⵉⵄⵜ ⵏ ⵜⵡⵉⵣⴰ",
+    navExplore: "ⵙⵏⵉⵔⵎ",
+    navPulse: "ⴰⵏⴼⵓⴼⴻⴷ ⵏ ⵡⴰⵜⵜⴰⵔ",
+    navBlood: "SOS ⵉⴷⴰⵎⵎⴻⵏ",
+    navTrace: "ⵜⴰⴼⵔⴰⵡⴰⵏⵜ",
+    navMessages: "ⵉⵣⵏⴰⵏ",
+    navVolunteers: "ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ",
+    navAssociations: "ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ",
+    navAbout: "ⵖⴻⴼ-ⵏⵖ",
+    navBlog: "ⴰⵎⴰⴳⵔⴰⴷ",
+    navSearch: "ⴰⵔⵣⵣⵓ",
+    navLogin: "ⴽⵛⴻⵎ",
+    navSignup: "ⵊⴻⵔⵔⴻⴷ",
+    navBackToPublic: "← ⵓⵖⴰⵍ ⵖⴻⵔ ⵓⵙⵉⵜ",
+    
+    heroBadge: "ⵜⴰⵙⵏⵜⴰⵢⵜ ⵜⴰⵖⴻⵍⵏⴰⵡⵜ ⵏ ⵜⵡⵉⵣⴰ",
+    heroTitle: "ⴽⵓ ⵜⵉⴳⴰⵡⵜ ⵜⴻⵜⵜⴰⵊⵊⴰ ⴰⴷⵔⵉⵣ.",
+    heroSubtitle: "ⵖⴰⵙ ⵜⴻⴱⵖⵉⴹ ⴰⴷ ⵜⴻⴼⴽⴻⴹ kra ⵏ ⵢⵉⵎⵉⵔⴻⵏ ⵏⴻⵖ ⵜⴻⵍⵍⵉⴹ ⴷ ⵜⴰⴷⴷⵓⴽⵍⴰ, ⴰⵜⵜⴰⵔ ⵢⴻⵍⵍⴰ ⵢⵉⴷ-ⵡⴻⵏ.",
+    heroExplore: "ⵙⵏⵉⵔⵎ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ",
+    heroJoin: "ⴷⴷⵓ-ⴷ ⵖⵓⵔ-ⵏⵖ",
+    heroAssocSpace: "ⵜⴰⵍⵍⵓⵏⵜ ⵏ ⵜⴷⴷⵓⴽⵍⴰ",
+    
+    statVolunteers: "ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ ⵢⴻⵜⵜⵡⴰⵊⴻⵔⴷⴻⵏ",
+    statAssocs: "ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ ⵜⵉⵎⵛⵉⵔⴽⵉⵏ",
+    statMissions: "ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵢⴻⵜⵜⵡⴰⵙⵙⵓⴼⵖⴻⵏ",
+    statWilayas: "ⵜⵉⵡⵉⵍⴰⵢⵉⵏ ⵉⵍⵍⴰⵏ",
+    
+    causesTitle: "ⵜⵉⵎⵙⴰⵍ ⵉ ⵢⴻⵃⵡⴰⵊⴻⵏ ⵜⴰⵡⵉⵣⴰ-ⵏⵡⴻⵏ",
+    causesSubtitle: "ⴰⵢⴻⵏ ⵢⴻⴱⵖⵓⵏ ⵢⵉⵍⵉ ⵡⴰⵢⴻⵏ ⵉⴽ-ⵢⴻⵄⵊⴱⴻⵏ, ⵜⴻⵍⵍⴰ ⵜⵡⵓⵔⵉ ⵉ ⴽⴻⵛⵛ. ⵙⵏⵉⵔⵎ ⵉⵃⵔⵉⵛⴻⵏ ⵏ ⵓⵎⴰⵀⵉⵍ-ⵏⵖ.",
+    causeSolidarityTitle: "ⵜⴰⵡⵉⵣⴰ ⴷ ⵓⵎⵢⴰⵡⴰⵙ",
+    causeSolidarityDesc: "ⴰⵍⵍⴰⵍ ⵏ ⵜⵡⴰⵛⵓⵍⵉⵏ ⵢⴻⵃⵡⴰⵊⴻⵏ, ⴰⵙⵓⴷⴷⴻⵙ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⴷ ⵓⴷⵀⴰⵍ ⴳ ⵢⵉⵎⵉⵔⴻⵏ ⵉⵡⴻⵄⵕⴰⵏ.",
+    causeEducationTitle: "ⴰⵙⴻⵍⵎⴻⴷ ⴷ ⵓⵙⵉⵍⴻⵖ",
+    causeEducationDesc: "ⴰⴹⴼⴰⵔ ⵏ ⵢⵉⴳⴻⵔⴷⴰⵏ, ⴰⵙⵏⵓⵍⴼⵓ ⵏ ⵜⴷⵉⵡⴰⵏⵉⵏ ⴷ ⵓⵍⴷⴰⵢ ⵏ ⵜⵡⵓⵔⵉⵡⵉⵏ ⵏ ⵜⵎⵓⵙⵏⵉ ⵉ ⵢⴰⵍ ⴰⵎⴷⴰⵏ.",
+    causeEnvironmentTitle: "ⵜⴰⵡⴻⵏⵏⴰⴹⵜ ⴷ ⵓⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ",
+    causeEnvironmentDesc: "ⴰⵥⵥⵓ ⵏ ⵢⵉⵙⴻⴽⵍⴰ, ⴰⵙⵉⵣⴷⴻⴳ ⵏ ⵢⵉⴼⵜⵉⵙⴻⵏ ⴷ ⵢⵉⵖⴻⵔⵎⴰⵏ, ⴷ ⵓⵃⵔⴰⵣ ⵏ ⵓⴳⴰⵎⴰ ⵏ ⵍⴻⵣⵣⴰⵢⴻⵔ.",
+    causeHealthTitle: "ⵜⴰⴷⴰⵡⵙⴰ ⴷ ⵓⵙⴻⵍⵍⴻⴽ",
+    causeHealthDesc: "ⴰⵎⵜⵜⴻⴽⴽⵉ ⴷⴻⴳ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ, ⵉⵙⴰⴼⴰⵔⴻⵏ ⴷ ⵓⵙⴻⵃⴱⵉⴱⴻⵔ ⵖⴻⴼ ⵜⴷⴰⵡⵙⴰ ⵏ ⵢⵉⵎⴻⵣⴷⴰⵖ.",
+    
+    missionsEyebrow: "ⴷⴻⴳ ⵓⵏⵏⴰⵔ",
+    missionsSectionTitle: "ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⵇⵔⵉⴱ ⵖⵓⵔ-ⴽ",
+    missionsSectionSub: "ⵙⵏⵉⵔⵎ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵢⴻⵜⵜⵡⴰⵙⵙⴻⵏ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ ⵏ ⵜⵎⵓⵔⵜ.",
+    filterAll: "ⴰⴽⴽ",
+    filterSolidarity: "ⵜⴰⵡⵉⵣⴰ",
+    filterEducation: "ⴰⵙⴻⵍⵎⴻⴷ",
+    filterEnvironment: "ⵜⴰⵡⴻⵏⵏⴰⴹⵜ",
+    filterHealth: "ⵜⴰⴷⴰⵡⵙⴰ",
+    spotsLeft: "ⵉⵎⵓⴽⴰⵏ ⵉ ⴷ-ⵢⴻⵇⵇⵉⵎⴻⵏ",
+    btnParticipate: "ⵜⵜⴻⴽⴽⵉ",
+    btnFull: "ⵢⴻⵜⵜⵡⴰⵜⵜⵛⴰⵕ",
+    
+    assocsSectionTitle: "ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ ⵉ ⵢⴻⵙⵎⵓⵙⵙⵓⵢⴻⵏ ⵍⴻⵣⵣⴰⵢⴻⵔ",
+    assocsSectionSub: "ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ ⵢⴻⵜⵜⵡⴰⵇⴱⴻⵍ ⴳ ⵓⵏⵏⴰⵔ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ.",
+    btnViewAssoc: "ⵥⴻⵔ ⵜⴰⴷⴷⵓⴽⵍⴰ",
+    
+    contactTitle: "ⵎⵢⴰⵡⴰⴹ ⵢⵉⴷ-ⵏⵖ",
+    contactLead: "ⵜⴻⵙⵄⵉⴹ ⴰⵙⵜⴻⵇⵙⵉ, ⵜⴰⵏⴷⵉⵜ ⵏ ⵓⵎⵛⵉⵔⴻⴽ, ⵏⴻⵖ ⵜⴻⴱⵖⵉⴹ ⴰⴷ ⵜⵎⴻⵙⵍⴰⵢⴻⴹ ⵢⵉⴷ-ⵏⵖ ? ⵏⴼⴻⵕⵕⴻⵃ ⵙ ⵓⵎⵢⴰⵡⴰⴹ ⵢⵉⴷ-ⴽ.",
+    contactBtn: "ⴰⵣⴻⵏ ⵉⵣⴻⵏ",
+    
+    footerTagline: "ⵉⵎⴷⴰⵏⴻⵏ ⵢⴻⵜⵜⴻⴽⴽⴰⵏ. ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.",
+    footerRights: "ⴰⴽⴽ ⵉⵣⴻⵔⴼⴰⵏ ⵜⵜⵡⴰⵃⴻⵔⵣⴻⵏ.",
+    footerWilayas: "ⵏⴻⵍⵍⴰ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ",
+    
+    dashTitle: "ⵜⴰⴼⵍⵡⵉⵜ ⵏ ⵓⵙⵡⵉⵔ",
+    dashNavOverview: "ⵜⴰⵎⵓⵖⵍⵉ ⵜⴰⵎⴰⵜⵓⵜ",
+    dashNavMissions: "ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⴷ ⵜⵎⵓⵍⵉⵡⵉⵏ",
+    dashNavCandidates: "ⵜⵉⵎⵙⵓⵜⵔⵉⵡⵉⵏ",
+    dashNavProfile: "ⴰⵎⴰⴳⵔⴰⴷ ⵏ ⵜⴷⴷⵓⴽⵍⴰ",
+    dashNavMembers: "ⵉⵎⴰⵙⵍⴰⴹⴻⵏ ⴷ ⵜⴻⵔⴱⵉⵄⵜ",
+    dashNavSettings: "ⵉⵖⴻⵡⵡⴰⵕⴻⵏ",
+    dashNavLogout: "ⴼⴼⴻⵖ",
+    dashWelcomeTitle: "ⴰⵏⵙⵓⴼ, ⵜⴰⴷⴷⵓⴽⵍⴰ ⵍⴱⴰⵔⴰⴽⴰ",
+    dashWelcomeBadge: "ⵜⴰⴷⴷⵓⴽⵍⴰ ⵢⴻⵜⵜⵡⴰⵙⵙⴻⵏ",
+    dashWelcomeSub: "ⵙⴼⵔⴻⴽ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ-ⵉⴽ, ⵙⵙⴻⴷⵔⴻⵢ ⵉⵎⴻⵜⵜⴻⴽⴽⵉⵢⴻⵏ, ⴹⴼⴻⵔ ⴰⴷⵔⵉⵣ ⵏ ⵜⵡⵉⵣⴰ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ.",
+    dashBtnNewMission: "+ ⵔⵏⵓ ⵜⴰⵡⵓⵔⵉ",
+    dashStatActiveMissions: "ⵜⵉⵎⵓⵍⵉⵡⵉⵏ",
+    dashStatVolunteers: "ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ",
+    dashStatPending: "ⵜⵉⵎⵙⵓⵜⵔⵉⵡⵉⵏ ⵉ ⴷ-ⵢⴻⵇⵇⵉⵎⴻⵏ",
+    dashStatWilayas: "ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵉⵍⵍⴰⵏ",
+    dashSearchPlaceholder: "ⵏⴰⴷⵉ ⵜⴰⵡⵓⵔⵉ (ⴰⵣⵡⴻⵍ, ⴰⵎⴽⴰⵏ...)",
+    dashFilterTheme: "ⴰⴽⴽ ⵉⵃⵔⵉⵛⴻⵏ",
+    dashFilterDate: "ⴰⴽⴽ ⵉⵣⵎⴰⵣ",
+    dashFilterStatus: "ⴰⴽⴽ ⵜⵉⴳⵏⴰⵜⵉⵏ",
+    dashStatusOpen: "ⵜⴻⵍⴷⵉ",
+    dashStatusClosed: "ⵜⴻⵎⴷⴻⵍ (ⵜⴻⵜⵜⵡⴰⵜⵜⵛⴰⵕ)",
+    dashCandidatesTitle: "ⵜⵉⵎⵙⵓⵜⵔⵉⵡⵉⵏ ⵉ ⴷ-ⵢⴻⵡⴹⴻⵏ",
+    dashBtnAccept: "ⵇⴱⴻⵍ",
+    dashBtnRefuse: "ⴰⴳⵉ",
+    dashBtnContact: "ⵎⵢⴰⵡⴰⴹ",
+    
+    modalLoginTitle: "ⴰⴽⵛⵓⵎ ⵖⴻⵔ ⵓⵎⴹⵉⵇ-ⵉⴽ",
+    tabVolunteer: "ⴰⵎⵙⴻⴷⵔⵓⵢ",
+    tabAssoc: "ⵜⴰⴷⴷⵓⴽⵍⴰ",
+    labelEmail: "ⵜⴰⵏⵙⴰ ⵏ ⵢⵉⵎⴰⵢⵍ",
+    labelPassword: "ⴰⵡⴰⵍ ⵏ ⵓⵄⴻⴷⴷⵉ",
+    btnConnect: "ⴽⵛⴻⵎ",
+    noAccount: "ⵓⵔ ⵜⴻⵙⵄⵉⴹ ⴰⵔⴰ ⴰⵎⴹⴰⵏ ?",
+    signupFree: "ⵊⴻⵔⵔⴻⴷ ⴱⴰⵟⴻⵍ"
   }
 };
 
@@ -1012,7 +1113,8 @@ function LanguageDropdown({ currentLang, setCurrentLang }) {
   const languages = [
     { code: 'fr', label: 'Français', badge: 'FR' },
     { code: 'ar', label: 'العربية', badge: 'AR' },
-    { code: 'en', label: 'English', badge: 'EN' }
+    { code: 'en', label: 'English', badge: 'EN' },
+    { code: 'ber', label: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', badge: 'BER' }
   ];
 
   return (
@@ -6992,9 +7094,9 @@ export default function App() {
             <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '-8px 0 14px' }}>
               <a
                 style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--vert)', cursor: 'pointer' }}
-                onClick={() => showToast(currentLang === 'ar' ? "سيتم إرسال رابط التعيين إلى بريدك الإلكتروني." : "Un lien de réinitialisation vous sera envoyé par email.")}
+                onClick={() => showToast(currentLang === 'ar' ? "سيتم إرسال رابط التعيين إلى بريدك الإلكتروني." : currentLang === 'ber' ? "ⴰⵙⵖⴻⵏ ⵏ ⵓⵙⵎⴰⵢⵏⵓ ⴰⴷ ⵢⵉⵍⵉ ⴷⴻⴳ ⵢⵉⵎⴰⵢⵍ-ⵉⴽ." : "Un lien de réinitialisation vous sera envoyé par email.")}
               >
-                {currentLang === 'ar' ? "نسيت كلمة المرور؟" : currentLang === 'en' ? "Forgot password?" : "Mot de passe oublié ?"}
+                {currentLang === 'ar' ? "نسيت كلمة المرور؟" : currentLang === 'ber' ? "ⵜⴻⵜⵜⵓⴹ ⴰⵡⴰⵍ ⵏ ⵓⵄⴻⴷⴷⵉ ?" : currentLang === 'en' ? "Forgot password?" : "Mot de passe oublié ?"}
               </a>
             </div>
             <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%' }}>
@@ -7108,8 +7210,8 @@ export default function App() {
           {signupView === 'choice' && (
             <div className="mview">
               <div className="modal-head">
-                <h3>{currentLang === 'ar' ? 'إنشاء حساب جديد' : 'Créer un compte'}</h3>
-                <p>{currentLang === 'ar' ? 'انضم إلى منصة أثر. اختر نوع الحساب الذي يناسبك.' : 'Rejoignez Athar. Choisissez le type de compte qui vous correspond.'}</p>
+                <h3>{currentLang === 'ar' ? 'إنشاء حساب جديد' : currentLang === 'ber' ? 'ⵙⵏⵓⵍⴼⵓ-ⴷ ⴰⵎⴹⴰⵏ ⴰⵎⴰⵢⵏⵓ' : 'Créer un compte'}</h3>
+                <p>{currentLang === 'ar' ? 'انضم إلى منصة أثر. اختر نوع الحساب الذي يناسبك.' : currentLang === 'ber' ? 'ⴷⴷⵓ-ⴷ ⵖⴻⵔ ⵡⴰⵜⵜⴰⵔ. ⴼⵔⴻⵏ ⴰⵏⴰⵡ ⵏ ⵓⵎⴹⴰⵏ ⵉⴽ-ⵢⴻⵍⵀⴰⵏ.' : 'Rejoignez Athar. Choisissez le type de compte qui vous correspond.'}</p>
               </div>
               <div className="choices">
                 <div className="choice ben" onClick={() => setSignupView('ben')}>
@@ -7120,8 +7222,8 @@ export default function App() {
                     </svg>
                   </div>
                   <div className="choice-txt">
-                    <h4>{currentLang === 'ar' ? 'متطوع' : 'Bénévole'}</h4>
-                    <p>{currentLang === 'ar' ? 'أرغب في التطوع بوقتي والمشاركة في مبادرات قريبة مني.' : 'Je veux donner de mon temps et rejoindre des missions près de chez moi.'}</p>
+                    <h4>{currentLang === 'ar' ? 'متطوع' : currentLang === 'ber' ? 'ⴰⵎⵙⴻⴷⵔⵓⵢ' : 'Bénévole'}</h4>
+                    <p>{currentLang === 'ar' ? 'أرغب في التطوع بوقتي والمشاركة في مبادرات قريبة مني.' : currentLang === 'ber' ? 'ⴱⵖⵉⵖ ⴰⴷ ⴼⴽⴻⵖ ⵙⴻⴳ ⵡⴰⴽⵓⴷ-ⵉⵡ ⴷ ⵓⵎⵜⵜⴻⴽⴽⵉ ⴷⴻⴳ ⵜⵡⵓⵔⵉⵡⵉⵏ ⵇⵔⵉⴱ ⵖⵓⵔ-ⵉ.' : 'Je veux donner de mon temps et rejoindre des missions près de chez moi.'}</p>
                   </div>
                 </div>
 
@@ -7130,14 +7232,14 @@ export default function App() {
                     <IconBuilding className="w-7 h-7" />
                   </div>
                   <div className="choice-txt">
-                    <h4>{currentLang === 'ar' ? 'هيئة' : 'Association'}</h4>
-                    <p>{currentLang === 'ar' ? 'أمثل هيئة أو جمعية وأرغب في نشر مبادرات واستقطاب متطوعين.' : 'Je représente une association et je veux publier des missions et trouver des bénévoles.'}</p>
+                    <h4>{currentLang === 'ar' ? 'هيئة' : currentLang === 'ber' ? 'ⵜⴰⴷⴷⵓⴽⵍⴰ' : 'Association'}</h4>
+                    <p>{currentLang === 'ar' ? 'أمثل هيئة أو جمعية وأرغب في نشر مبادرات واستقطاب متطوعين.' : currentLang === 'ber' ? 'ⵎⵜⵜⵍⴻⵖ ⵜⴰⴷⴷⵓⴽⵍⴰ ⴱⵖⵉⵖ ⴰⴷ ⵙⵙⵓⴼⵖⴻⵖ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⴷ ⵓⴼⵔⴰⵏ ⵏ ⵢⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ.' : 'Je représente une association et je veux publier des missions et trouver des bénévoles.'}</p>
                   </div>
                 </div>
               </div>
               <div className="modal-foot">
-                {currentLang === 'ar' ? 'لديك حساب بالفعل؟ ' : 'Déjà un compte ? '}
-                <a onClick={() => openLogin('volunteer')}>{currentLang === 'ar' ? 'تسجيل الدخول' : 'Se connecter'}</a>
+                {currentLang === 'ar' ? 'لديك حساب بالفعل؟ ' : currentLang === 'ber' ? 'ⵜⴻⵙⵄⵉⴹ ⵢⴰⴽⴰⵏ ⴰⵎⴹⴰⵏ ? ' : 'Déjà un compte ? '}
+                <a onClick={() => openLogin('volunteer')}>{currentLang === 'ar' ? 'تسجيل الدخول' : currentLang === 'ber' ? 'ⴽⵛⴻⵎ' : 'Se connecter'}</a>
               </div>
             </div>
           )}
