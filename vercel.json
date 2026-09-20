@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd Ather_UI && npm install && npm run build",
+  "outputDirectory": "Ather_UI/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
