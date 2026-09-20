@@ -2314,20 +2314,30 @@ export default function App() {
     {
       id: 1,
       title: "Plantation d'arbres à Zéralda",
+      titleAr: "غرس الأشجار وإعادة التشجير في زرالدة",
       association_name: "Green Future",
-      category: "Climat",
+      associationNameAr: "جمعية المستقبل الأخضر",
+      category: "Environnement",
+      categoryAr: "البيئة والتشجير",
       badge: "Climat",
+      badgeAr: "البيئة والتشجير",
       badgeBg: "#e6f7f3",
       badgeColor: "#006D5B",
       location: "Zéralda, Alger",
+      locationAr: "زرالدة، الجزائر",
       wilaya: "Alger",
+      wilayaAr: "الجزائر",
       date_str: "Sam. 12 avr. 2025",
+      dateStrAr: "السبت 12 أفريل 2025",
       time_str: "9h00 – 15h00",
+      timeStrAr: "9:00 – 15:00",
       duration: "1 jour",
+      durationAr: "يوم واحد",
       spots_remaining: 12,
       spots_total: 24,
       image_url: missionPlantationZeralda,
       description: "Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Ensemble, contribuons à restaurer la canopée méditerranéenne et à sensibiliser les familles à la biodiversité locale.",
+      descriptionAr: "شارك في حملتنا الكبرى لإعادة التشجير في غابة زرالدة الترفيهية. نساهم معاً في ترميم الغطاء النباتي المتوسطي والتوعية بحماية التنوع البيولوجي.",
       what_you_will_do: [
         "Accueil et orientation des équipes de bénévoles au point de ralliement",
         "Plantation assistée de jeunes plants d'arbres adaptés au climat local (pins, caroubiers, oliviers)",
@@ -2354,20 +2364,30 @@ export default function App() {
     {
       id: 2,
       title: "Distribution de colis alimentaires",
+      titleAr: "حملة توزيع الطرود والقفف الغذائية التضامنية",
       association_name: "Croissant Rouge Algérien",
+      associationNameAr: "الهلال الأحمر الجزائري",
       category: "Solidarité",
+      categoryAr: "التضامن والإغاثة",
       badge: "Solidarité",
+      badgeAr: "التضامن والإغاثة",
       badgeBg: "#fef3c7",
       badgeColor: "#b45309",
       location: "Bab Ezzouar, Alger",
+      locationAr: "باب الزوار، الجزائر",
       wilaya: "Alger",
+      wilayaAr: "الجزائر",
       date_str: "Sam. 19 avr. 2025",
+      dateStrAr: "السبت 19 أفريل 2025",
       time_str: "9h00 – 16h00",
+      timeStrAr: "9:00 – 16:00",
       duration: "1 jour",
+      durationAr: "يوم واحد",
       spots_remaining: 20,
       spots_total: 40,
       image_url: feedCraImg,
       description: "Tri, conditionnement et distribution de colis de denrées alimentaires essentielles pour les familles dans le besoin à travers Alger.",
+      descriptionAr: "فرز وتوضيب ونقل الطرود الغذائية التضامنية الموجهة لـ 300 عائلة معوزة مسجلة. عمل إنساني مباشر في خدمة الفئات الأكثر احتياجاً.",
       what_you_will_do: [
         "Réception et contrôle des denrées non périssables",
         "Confection méticuleuse des colis alimentaires",
@@ -2393,20 +2413,30 @@ export default function App() {
     {
       id: 3,
       title: "Ateliers de lecture pour enfants",
+      titleAr: "ورشات القراءة والتنشيط الفني للأطفال",
       association_name: "Lire pour Demain",
+      associationNameAr: "اقرأ للغد",
       category: "Éducation",
+      categoryAr: "التعليم والتكوين",
       badge: "Éducation",
+      badgeAr: "التعليم والتكوين",
       badgeBg: "#dbeafe",
       badgeColor: "#1d4ed8",
       location: "Hydra, Alger",
+      locationAr: "حيدرة، الجزائر",
       wilaya: "Alger",
+      wilayaAr: "الجزائر",
       date_str: "Mer. 16 avr. 2025",
+      dateStrAr: "الأربعاء 16 أفريل 2025",
       time_str: "14h00 – 17h00",
+      timeStrAr: "14:00 – 17:00",
       duration: "1 demi-journée",
+      durationAr: "نصف يوم",
       spots_remaining: 8,
       spots_total: 16,
       image_url: candLectureImg,
       description: "Ateliers ludiques de lecture bilingue, jeux créatifs et contes animés pour stimuler l'imagination et l'éveil artistique des enfants.",
+      descriptionAr: "تنشيط حكايات وقصص ثنائية اللغة، وألعاب أدوار إبداعية وغرس حب المطالعة لدى مجموعة من 25 طفلاً تتراوح أعمارهم بين 6 و11 سنة بالمركز الثقافي.",
       what_you_will_do: [
         "Animation de séances de contes vivants en petit groupe",
         "Accompagnement des enfants dans l'expression orale et le dessin",
@@ -2432,20 +2462,30 @@ export default function App() {
     {
       id: 4,
       title: "Nettoyage des plages",
+      titleAr: "تنظيف الشواطئ وحماية الساحل",
       association_name: "Association El Baraka",
+      associationNameAr: "جمعية البركة",
       category: "Environnement",
+      categoryAr: "البيئة والتشجير",
       badge: "Environnement",
+      badgeAr: "البيئة والتشجير",
       badgeBg: "#dcfce7",
       badgeColor: "#15803d",
       location: "Aïn Taya, Alger",
+      locationAr: "عين طاية، الجزائر",
       wilaya: "Alger",
+      wilayaAr: "الجزائر",
       date_str: "Ven. 2 mai 2025",
+      dateStrAr: "الجمعة 2 ماي 2025",
       time_str: "8h30 – 14h00",
+      timeStrAr: "8:30 – 14:00",
       duration: "1 jour",
+      durationAr: "يوم واحد",
       spots_remaining: 15,
       spots_total: 30,
       image_url: missionPlage,
       description: "Opération éco-citoyenne de nettoyage et ramassage des déchets le long du littoral pour préserver notre écosystème marin.",
+      descriptionAr: "مبادرة بيئية ومواطنية لجمع النفايات وتنظيف الشريط الساحلي للحفاظ على النظام البيئي البحري.",
       what_you_will_do: [
         "Ramassage et tri sélectif des plastiques sur le littoral",
         "Sensibilisation des visiteurs de la plage à la préservation marine"
@@ -2470,20 +2510,30 @@ export default function App() {
     {
       id: 5,
       title: "Collecte de sang",
+      titleAr: "حملة التبرع بالدم للمستشفيات",
       association_name: "CHU Mustapha",
+      associationNameAr: "المستشفى الجامعي مصطفى باشا",
       category: "Santé",
+      categoryAr: "الصحة والتبرع بالدم",
       badge: "Santé",
+      badgeAr: "الصحة والتبرع بالدم",
       badgeBg: "#ffe4e6",
       badgeColor: "#be123c",
       location: "Alger",
+      locationAr: "الجزائر العاصمة",
       wilaya: "Alger",
+      wilayaAr: "الجزائر",
       date_str: "Jeu. 8 mai 2025",
+      dateStrAr: "الخميس 8 ماي 2025",
       time_str: "9h00 – 13h00",
+      timeStrAr: "9:00 – 13:00",
       duration: "1 demi-journée",
+      durationAr: "نصف يوم",
       spots_remaining: 10,
       spots_total: 20,
       image_url: candSangImg,
       description: "Appui logistique et accueil des donneurs de sang au Centre de Transfusion Sanguine du CHU Mustapha pour sécuriser les réserves hospitalières.",
+      descriptionAr: "دعم لوجستي واستقبال المتبرعين بالدم في مركز حقن الدم بالمستشفى الجامعي لتأمين الاحتياطي الطبي لإنقاذ الأرواح.",
       what_you_will_do: [
         "Accueil bienveillant et orientation des donneurs",
         "Distribution des collations et collation de repos post-don"
@@ -2508,20 +2558,30 @@ export default function App() {
     {
       id: 6,
       title: "Nettoyage du site de Tipaza",
+      titleAr: "حماية وتهيئة المسار الأثري بتيبازة",
       association_name: "Jeunesse & Patrimoine",
+      associationNameAr: "جمعية شباب وتراث",
       category: "Patrimoine",
+      categoryAr: "التراث والثقافة",
       badge: "Patrimoine",
+      badgeAr: "التراث والثقافة",
       badgeBg: "#ede9fe",
       badgeColor: "#6d28d9",
       location: "Tipaza",
+      locationAr: "تيبازة",
       wilaya: "Tipaza",
+      wilayaAr: "تيبازة",
       date_str: "Sam. 10 mai 2025",
+      dateStrAr: "السبت 10 ماي 2025",
       time_str: "9h00 – 16h00",
+      timeStrAr: "9:00 – 16:00",
       duration: "1 jour",
+      durationAr: "يوم واحد",
       spots_remaining: 12,
       spots_total: 24,
       image_url: missionTipaza,
       description: "Journée de valorisation et nettoyage respectueux des sentiers du parc archéologique romain de Tipaza, joyau classé UNESCO.",
+      descriptionAr: "يوم تطوعي لتهيئة وتنظيف مسالك الحظيرة الأثرية الرومانية بتيبازة، المصنفة ضمن التراث العالمي لليونسكو.",
       what_you_will_do: [
         "Dépollution minutieuse des abords des ruines antiques",
         "Pose de panneaux de sensibilisation au respect des monuments historiques"
@@ -4799,7 +4859,7 @@ export default function App() {
                         textTransform: 'uppercase',
                         letterSpacing: '0.04em'
                       }}>
-                        {getCategoryBadgeTheme(selectedMissionDetail.category).label}
+                        {currentLang === 'ar' && selectedMissionDetail.categoryAr ? selectedMissionDetail.categoryAr : getCategoryBadgeTheme(selectedMissionDetail.category).label}
                       </span>
                       <span style={{
                         background: 'rgba(255, 255, 255, 0.22)',
@@ -4810,7 +4870,7 @@ export default function App() {
                         fontSize: '12px',
                         fontWeight: 600
                       }}>
-                        Durée : {selectedMissionDetail.duration || '6 semaines'}
+                        {currentLang === 'ar' ? `المدة : ${selectedMissionDetail.durationAr || 'يوم واحد'}` : `Durée : ${selectedMissionDetail.duration || '6 semaines'}`}
                       </span>
                       <span style={{
                         background: 'rgba(255, 255, 255, 0.22)',
@@ -4821,20 +4881,20 @@ export default function App() {
                         fontSize: '12px',
                         fontWeight: 600
                       }}>
-                        Lieu : {selectedMissionDetail.location || selectedMissionDetail.wilaya}
+                        {currentLang === 'ar' ? `المكان : ${selectedMissionDetail.locationAr || selectedMissionDetail.wilayaAr || selectedMissionDetail.wilaya}` : `Lieu : ${selectedMissionDetail.location || selectedMissionDetail.wilaya}`}
                       </span>
                     </div>
 
                     <h1 style={{ color: '#ffffff', fontSize: '30px', fontWeight: 800, margin: '0 0 10px', lineHeight: '1.25' }}>
-                      {selectedMissionDetail.title}
+                      {currentLang === 'ar' && selectedMissionDetail.titleAr ? selectedMissionDetail.titleAr : selectedMissionDetail.title}
                     </h1>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#cbd5e1', fontSize: '13.5px' }}>
-                      <span>{currentLang === 'ar' ? 'الجمعية : ' : 'Organisation : '}<strong>{selectedMissionDetail.association_name}</strong></span>
+                      <span>{currentLang === 'ar' ? 'الهيئة / الجمعية : ' : 'Organisation : '}<strong>{currentLang === 'ar' && selectedMissionDetail.associationNameAr ? selectedMissionDetail.associationNameAr : selectedMissionDetail.association_name}</strong></span>
                       <span>·</span>
                       <span style={{ color: '#86efac', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                         <IconCheck className="w-3.5 h-3.5 text-emerald-300" />
-                        <span>{currentLang === 'ar' ? 'جمعية شريكة معتمدة' : 'Association Partenaire Agréée'}</span>
+                        <span>{currentLang === 'ar' ? 'هيئة شريكة معتمدة' : 'Association Partenaire Agréée'}</span>
                       </span>
                     </div>
                   </div>
@@ -4852,26 +4912,34 @@ export default function App() {
                         </div>
                         <div>
                           <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-                            Projet & Thématique d'action
+                            {currentLang === 'ar' ? 'المشروع ومجال العمل التطوعي' : "Projet & Thématique d'action"}
                           </h3>
-                          <small style={{ color: '#64748b', fontSize: '12.5px' }}>Engagement citoyen et solidaire sur le terrain</small>
+                          <small style={{ color: '#64748b', fontSize: '12.5px' }}>
+                            {currentLang === 'ar' ? 'عمل تطوعي وتضامني في الميدان' : 'Engagement citoyen et solidaire sur le terrain'}
+                          </small>
                         </div>
                       </div>
 
                       <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '14px 18px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <span style={{ background: '#006D5B', color: '#ffffff', padding: '6px 12px', borderRadius: '8px', fontWeight: 900, fontSize: '14px' }}>
-                          {selectedMissionDetail.category}
+                          {currentLang === 'ar' && selectedMissionDetail.categoryAr ? selectedMissionDetail.categoryAr : selectedMissionDetail.category}
                         </span>
                         <div>
                           <strong style={{ fontSize: '14px', color: '#166534', display: 'block' }}>
-                            {selectedMissionDetail.category === 'Environnement' ? 'Action Climatique & Préservation des Forêts' : selectedMissionDetail.category === 'Éducation' ? 'Éducation & Égalité des Chances' : selectedMissionDetail.category === 'Santé' ? 'Santé & Bien-être pour tous' : 'Solidarité & Entraide Citoyenne'}
+                            {currentLang === 'ar'
+                              ? (selectedMissionDetail.category === 'Environnement' ? 'العمل البيئي وحماية الطبيعة والتشجير' : selectedMissionDetail.category === 'Éducation' ? 'التعليم وتكافؤ الفرص' : selectedMissionDetail.category === 'Santé' ? 'الصحة والسلامة للجميع' : 'التضامن والتكافل الاجتماعي')
+                              : (selectedMissionDetail.category === 'Environnement' ? 'Action Climatique & Préservation des Forêts' : selectedMissionDetail.category === 'Éducation' ? 'Éducation & Égalité des Chances' : selectedMissionDetail.category === 'Santé' ? 'Santé & Bien-être pour tous' : 'Solidarité & Entraide Citoyenne')}
                           </strong>
-                          <span style={{ fontSize: '12.5px', color: '#166534' }}>Projet d'impact communautaire en Algérie piloté par {selectedMissionDetail.association_name}.</span>
+                          <span style={{ fontSize: '12.5px', color: '#166534' }}>
+                            {currentLang === 'ar'
+                              ? `مبادرة مجتمعية في الجزائر بتأطير من ${selectedMissionDetail.associationNameAr || selectedMissionDetail.association_name}.`
+                              : `Projet d'impact communautaire en Algérie piloté par ${selectedMissionDetail.association_name}.`}
+                          </span>
                         </div>
                       </div>
 
                       <p style={{ fontSize: '14.5px', lineHeight: '1.7', color: '#334155', margin: 0 }}>
-                        {selectedMissionDetail.description}
+                        {currentLang === 'ar' && selectedMissionDetail.descriptionAr ? selectedMissionDetail.descriptionAr : selectedMissionDetail.description}
                       </p>
                     </div>
 
@@ -5518,7 +5586,8 @@ export default function App() {
                                     style={{
                                       position: 'absolute',
                                       top: '14px',
-                                      left: '14px',
+                                      left: currentLang === 'ar' ? 'auto' : '14px',
+                                      right: currentLang === 'ar' ? '14px' : 'auto',
                                       padding: '5px 14px',
                                       borderRadius: '20px',
                                       fontSize: '12px',
@@ -5528,7 +5597,7 @@ export default function App() {
                                       boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
                                     }}
                                   >
-                                    {m.badge || m.category}
+                                    {currentLang === 'ar' && m.badgeAr ? m.badgeAr : (m.badge || m.category)}
                                   </span>
 
                                   {/* BOUTON COEUR FAVORIS */}
@@ -5538,7 +5607,8 @@ export default function App() {
                                     style={{
                                       position: 'absolute',
                                       top: '14px',
-                                      right: '14px',
+                                      right: currentLang === 'ar' ? 'auto' : '14px',
+                                      left: currentLang === 'ar' ? '14px' : 'auto',
                                       width: '36px',
                                       height: '36px',
                                       borderRadius: '50%',
@@ -5561,7 +5631,7 @@ export default function App() {
                                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
                                     <IconCheckVerified className="w-4 h-4" />
                                     <span style={{ fontSize: '13px', fontWeight: 800, color: '#006D5B' }}>
-                                      {m.association_name}
+                                      {currentLang === 'ar' && m.associationNameAr ? m.associationNameAr : m.association_name}
                                     </span>
                                   </div>
 
@@ -5570,18 +5640,18 @@ export default function App() {
                                     onClick={() => setSelectedMissionDetail(m)}
                                     style={{ margin: '0 0 10px', fontSize: '18px', fontWeight: 800, color: '#0f172a', lineHeight: 1.3, cursor: 'pointer' }}
                                   >
-                                    {m.title}
+                                    {currentLang === 'ar' && m.titleAr ? m.titleAr : m.title}
                                   </h3>
 
                                   {/* MÉTADONNÉES LOCALISATION & DURÉE */}
                                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '13px', color: '#64748b', marginBottom: '16px' }}>
                                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                                       <IconMapPin className="w-3.5 h-3.5 text-slate-400" />
-                                      <span>{m.location}</span>
+                                      <span>{currentLang === 'ar' && m.locationAr ? m.locationAr : m.location}</span>
                                     </span>
                                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                                       <IconClock className="w-3.5 h-3.5 text-slate-400" />
-                                      <span>{m.duration}</span>
+                                      <span>{currentLang === 'ar' && m.durationAr ? m.durationAr : m.duration}</span>
                                     </span>
                                   </div>
 
@@ -5589,7 +5659,7 @@ export default function App() {
                                   <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', paddingTop: '10px' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                       <span style={{ fontSize: '13px', fontWeight: 700, color: '#334155' }}>
-                                        {m.spots_remaining} places
+                                        {m.spots_remaining} {currentLang === 'ar' ? 'مقاعد متاحة' : 'places'}
                                       </span>
                                       <div style={{ width: '80px', height: '6px', background: '#e2e8f0', borderRadius: '10px', overflow: 'hidden' }}>
                                         <div style={{ width: '50%', height: '100%', background: '#006D5B', borderRadius: '10px' }} />
@@ -5614,8 +5684,8 @@ export default function App() {
                                         transition: 'all 0.15s ease'
                                       }}
                                     >
-                                      <span>Participer</span>
-                                      <IconArrowRight className="w-3.5 h-3.5" />
+                                      <span>{currentLang === 'ar' ? 'مشاركة' : 'Participer'}</span>
+                                      <IconArrowRight className={`w-3.5 h-3.5 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
                                     </button>
                                   </div>
                                 </div>

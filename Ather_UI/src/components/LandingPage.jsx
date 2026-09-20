@@ -291,6 +291,129 @@ const defaultMissions = [
   }
 ];
 
+const ARABIC_MISSION_OVERRIDES = {
+  1: {
+    title: "غرس الأشجار وإعادة التشجير في زرالدة",
+    association_name: "جمعية المستقبل الأخضر",
+    category: "البيئة والتشجير",
+    location: "زرالدة، الجزائر",
+    date_str: "السبت 12 أفريل 2025",
+    description: "شارك في حملتنا الكبرى لإعادة التشجير في غابة زرالدة الترفيهية. نساهم معاً في ترميم الغطاء النباتي المتوسطي والتوعية بحماية التنوع البيولوجي."
+  },
+  2: {
+    title: "حملة توزيع الطرود والقفف الغذائية التضامنية",
+    association_name: "الهلال الأحمر الجزائري",
+    category: "التضامن والإغاثة",
+    location: "باب الزوار، الجزائر",
+    date_str: "السبت 19 أفريل 2025",
+    description: "فرز وتوضيب ونقل الطرود الغذائية التضامنية الموجهة لـ 300 عائلة معوزة مسجلة. عمل إنساني مباشر في خدمة الفئات الأكثر احتياجاً."
+  },
+  3: {
+    title: "ورشات القراءة والتنشيط الفني للأطفال",
+    association_name: "اقرأ للغد",
+    category: "التعليم والتكوين",
+    location: "حيدرة، الجزائر",
+    date_str: "الأربعاء 16 أفريل 2025",
+    description: "تنشيط حكايات وقصص ثنائية اللغة، وألعاب أدوار إبداعية وغرس حب المطالعة لدى مجموعة من 25 طفلاً تتراوح أعمارهم بين 6 و11 سنة بالمركز الثقافي."
+  },
+  4: {
+    title: "تنظيف الشواطئ وحماية الساحل",
+    association_name: "جمعية البركة",
+    category: "البيئة والتشجير",
+    location: "عين طاية، الجزائر",
+    date_str: "الجمعة 2 ماي 2025",
+    description: "مبادرة بيئية ومواطنية لجمع النفايات وتنظيف الشريط الساحلي للحفاظ على النظام البيئي البحري."
+  },
+  5: {
+    title: "حملة التبرع بالدم للمستشفيات",
+    association_name: "المستشفى الجامعي مصطفى باشا",
+    category: "الصحة والتبرع بالدم",
+    location: "الجزائر العاصمة",
+    date_str: "الخميس 8 ماي 2025",
+    description: "دعم لوجستي واستقبال المتبرعين بالدم في مركز حقن الدم بالمستشفى الجامعي لتأمين الاحتياطي الطبي لإنقاذ الأرواح."
+  },
+  6: {
+    title: "حماية وتهيئة المسار الأثري بتيبازة",
+    association_name: "جمعية شباب وتراث",
+    category: "التراث والثقافة",
+    location: "تيبازة",
+    date_str: "السبت 10 ماي 2025",
+    description: "يوم تطوعي لتهيئة وتنظيف مسالك الحظيرة الأثرية الرومانية بتيبازة، المصنفة ضمن التراث العالمي لليونسكو."
+  }
+};
+
+function getMissionField(m, field, lang) {
+  if (lang === 'ar') {
+    const override = ARABIC_MISSION_OVERRIDES[m.id];
+    if (field === 'title') {
+      if (m.titleAr) return m.titleAr;
+      if (override?.title) return override.title;
+      const t = m.title || '';
+      if (t.includes('arbre') || t.includes('Plantation')) return "غرس الأشجار وإعادة التشجير في زرالدة";
+      if (t.includes('colis') || t.includes('alimentaire')) return "حملة توزيع الطرود والقفف الغذائية التضامنية";
+      if (t.includes('lecture')) return "ورشات القراءة والتنشيط الفني للأطفال";
+      if (t.includes('plage')) return "تنظيف الشواطئ وحماية الساحل";
+      if (t.includes('sang')) return "حملة التبرع بالدم للمستشفيات";
+      if (t.includes('Tipaza')) return "حماية وتهيئة المسار الأثري بتيبازة";
+    }
+    if (field === 'association') {
+      if (m.associationNameAr) return m.associationNameAr;
+      if (override?.association_name) return override.association_name;
+      const a = m.association_name || '';
+      if (a.includes('Green Future')) return "جمعية المستقبل الأخضر";
+      if (a.includes('Croissant Rouge')) return "الهلال الأحمر الجزائري";
+      if (a.includes('Lire pour Demain')) return "اقرأ للغد";
+      if (a.includes('Baraka')) return "جمعية البركة";
+      if (a.includes('CHU') || a.includes('Mustapha')) return "المستشفى الجامعي مصطفى باشا";
+      if (a.includes('Patrimoine') || a.includes('Jeunesse')) return "جمعية شباب وتراث";
+    }
+    if (field === 'category') {
+      if (m.categoryAr) return m.categoryAr;
+      if (override?.category) return override.category;
+      const c = (m.category || '').toLowerCase();
+      if (c.includes('climat') || c.includes('env')) return "البيئة والتشجير";
+      if (c.includes('solid')) return "التضامن والإغاثة";
+      if (c.includes('éduc') || c.includes('educ')) return "التعليم والتكوين";
+      if (c.includes('sant')) return "الصحة والتبرع بالدم";
+      if (c.includes('urg')) return "إغاثة عاجلة";
+      if (c.includes('patri')) return "التراث والثقافة";
+    }
+    if (field === 'location') {
+      if (m.locationAr) return m.locationAr;
+      if (override?.location) return override.location;
+      const l = m.location || '';
+      if (l.includes('Zéralda') || l.includes('Zeralda')) return "زرالدة، الجزائر";
+      if (l.includes('Bab Ezzouar')) return "باب الزوار، الجزائر";
+      if (l.includes('Hydra')) return "حيدرة، الجزائر";
+      if (l.includes('Aïn Taya') || l.includes('Ain Taya')) return "عين طاية، الجزائر";
+      if (l.includes('Tipaza')) return "تيبازة";
+      if (l.includes('Alger')) return "الجزائر العاصمة";
+    }
+    if (field === 'date') {
+      if (m.dateStrAr) return m.dateStrAr;
+      if (override?.date_str) return override.date_str;
+      const d = m.date_str || '';
+      if (d.includes('12 avr')) return "السبت 12 أفريل 2025";
+      if (d.includes('19 avr')) return "السبت 19 أفريل 2025";
+      if (d.includes('16 avr')) return "الأربعاء 16 أفريل 2025";
+      if (d.includes('2 mai')) return "الجمعة 2 ماي 2025";
+      if (d.includes('8 mai')) return "الخميس 8 ماي 2025";
+      if (d.includes('10 mai')) return "السبت 10 ماي 2025";
+    }
+    if (field === 'description') {
+      if (m.descriptionAr) return m.descriptionAr;
+      if (override?.description) return override.description;
+    }
+  }
+  if (field === 'title') return m.title;
+  if (field === 'association') return m.association_name;
+  if (field === 'category') return m.category;
+  if (field === 'location') return m.location;
+  if (field === 'date') return m.date_str;
+  if (field === 'description') return m.description;
+  return '';
+}
+
 export default function LandingPage({
   currentLang = 'fr',
   setCurrentLang,
@@ -502,7 +625,11 @@ export default function LandingPage({
 
   const filteredMissions = missionsToDisplay.filter((m) => {
     if (selectedCategoryFilter === 'Toutes') return true;
-    return m.category === selectedCategoryFilter;
+    const cat = (m.category || '').toLowerCase();
+    const sel = selectedCategoryFilter.toLowerCase();
+    if (cat === sel) return true;
+    if ((cat === 'climat' || cat === 'environnement') && (sel === 'environnement' || sel === 'climat')) return true;
+    return false;
   });
 
   return (
@@ -855,55 +982,64 @@ export default function LandingPage({
                 </p>
               </div>
             ) : (
-              filteredMissions.slice(0, 3).map((m) => (
-                <div key={m.id} className="mission-card">
-                  <div>
-                    <div className="mission-img-wrap">
-                      <img src={m.image_url} alt={m.title} />
-                      <span className="mission-tag">{currentLang === 'ar' && m.categoryAr ? m.categoryAr : m.category}</span>
-                    </div>
+              filteredMissions.slice(0, 3).map((m) => {
+                const titleText = getMissionField(m, 'title', currentLang);
+                const assocText = getMissionField(m, 'association', currentLang);
+                const catText = getMissionField(m, 'category', currentLang);
+                const locText = getMissionField(m, 'location', currentLang);
+                const dateText = getMissionField(m, 'date', currentLang);
+                const descText = getMissionField(m, 'description', currentLang);
 
-                    <div className="mission-content">
-                      <div className="mission-asso">
-                        <IconShieldCheck className="w-4 h-4 shrink-0" />
-                        <span>{currentLang === 'ar' && m.associationNameAr ? m.associationNameAr : m.association_name}</span>
+                return (
+                  <div key={m.id} className="mission-card">
+                    <div>
+                      <div className="mission-img-wrap">
+                        <img src={m.image_url} alt={titleText} />
+                        <span className="mission-tag">{catText}</span>
                       </div>
 
-                      <h3 className="mission-title">{currentLang === 'ar' && m.titleAr ? m.titleAr : m.title}</h3>
-
-                      <p className="mission-desc">{currentLang === 'ar' && m.descriptionAr ? m.descriptionAr : m.description}</p>
-
-                      <div className="mission-details">
-                        <div className="mission-detail-row">
-                          <IconMapPin className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>{currentLang === 'ar' && m.locationAr ? m.locationAr : m.location}</span>
+                      <div className="mission-content">
+                        <div className="mission-asso">
+                          <IconShieldCheck className="w-4 h-4 shrink-0" />
+                          <span>{assocText}</span>
                         </div>
-                        <div className="mission-detail-row">
-                          <IconCalendar className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>{currentLang === 'ar' && m.dateStrAr ? m.dateStrAr : m.date_str}</span>
-                        </div>
-                        <div className="mission-detail-row spots">
-                          <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
-                          <span>{m.spots_remaining} {currentLang === 'ar' ? 'مقاعد متاحة' : 'places disponibles'}</span>
+
+                        <h3 className="mission-title">{titleText}</h3>
+
+                        <p className="mission-desc">{descText}</p>
+
+                        <div className="mission-details">
+                          <div className="mission-detail-row">
+                            <IconMapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                            <span>{locText}</span>
+                          </div>
+                          <div className="mission-detail-row">
+                            <IconCalendar className="w-4 h-4 text-slate-400 shrink-0" />
+                            <span>{dateText}</span>
+                          </div>
+                          <div className="mission-detail-row spots">
+                            <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
+                            <span>{m.spots_remaining} {currentLang === 'ar' ? 'مقاعد متاحة' : 'places disponibles'}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="mission-action">
-                    <button
-                      onClick={() => {
-                        setSelectedMission(m.title);
-                        openLogin('volunteer');
-                      }}
-                      className="mission-btn"
-                    >
-                      <span>{currentLang === 'ar' ? 'المشاركة في هذه المهمة' : 'Je participe à cette mission'}</span>
-                      <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
-                    </button>
+                    <div className="mission-action">
+                      <button
+                        onClick={() => {
+                          setSelectedMission(titleText);
+                          openLogin('volunteer');
+                        }}
+                        className="mission-btn"
+                      >
+                        <span>{currentLang === 'ar' ? 'المشاركة في هذه المهمة' : 'Je participe à cette mission'}</span>
+                        <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
 
