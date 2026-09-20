@@ -695,7 +695,7 @@ const translations = {
     navCorps: "Corps Solidaire",
     navExplore: "Explorer",
     navPulse: "Fil d'Impact",
-    navBlood: "SOS Sang",
+    navBlood: "SOS Urgences",
     navTrace: "Traçabilité",
     navMessages: "Messagerie",
     navVolunteers: "Bénévoles",
@@ -796,7 +796,7 @@ const translations = {
     navCorps: "فيلق التضامن",
     navExplore: "استكشف",
     navPulse: "نبض غيث",
-    navBlood: "SOS دم",
+    navBlood: "نداء طوارئ SOS",
     navTrace: "شفافية الأثر",
     navMessages: "الرسائل",
     navVolunteers: "المتطوعون",
@@ -4639,7 +4639,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('blood'); }}
               >
                 <IconDroplet className="w-4 h-4 text-rose-500" />
-                <span>{currentLang === 'ar' ? 'نداءات الدم SOS' : 'SOS Blood'}</span>
+                <span>{currentLang === 'ar' ? 'نداء طوارئ SOS' : 'SOS Urgences'}</span>
               </button>
 
               {/* 7. MESSAGES AVEC POINT ROUGE */}
