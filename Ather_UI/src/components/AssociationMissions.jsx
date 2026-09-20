@@ -6,7 +6,7 @@ import missionReboisement from '../assets/mission-reboisement-foret.png';
 import missionPatrimoineAntique from '../assets/mission-patrimoine-antique.png';
 import missionEducation from '../assets/mission-education-enfants.png';
 import missionTipazaRuines from '../assets/mission-tipaza-ruines.png';
-import assocMissionDjanet from '../assets/assoc-mission-djanet.png';
+import missionCaravaneSud from '../assets/mission-caravane-sud.png';
 
 // Clean SVG Icons (zero emojis)
 function IconCalendar({ className = "w-3.5 h-3.5" }) {
@@ -191,7 +191,7 @@ const MISSIONS_DATA = [
     volunteersTotal: 40,
     volunteersJoined: 28,
     percent: 70,
-    image: assocMissionDjanet,
+    image: missionCaravaneSud,
     color: '#16a34a'
   }
 ];

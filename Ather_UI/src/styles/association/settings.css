@@ -1,0 +1,335 @@
+/* ==========================================================================
+   ATHAR ASSOCIATION PLATFORM - MODULE PARAMÈTRES & CONFIGURATION
+   src/styles/association/settings.css
+   Charte graphique : Aéré, 0 emojis, typographie soignée, moderne
+   ========================================================================== */
+
+.assoc-settings-root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* 1. EN-TÊTE DE LA SECTION PARAMÈTRES */
+.assoc-settings-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+}
+
+.assoc-settings-header-left h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.assoc-settings-header-left p {
+  font-size: 14px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+/* 2. ONGLETS DE CONFIGURATION */
+.assoc-settings-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--assoc-border);
+  padding-bottom: 12px;
+  overflow-x: auto;
+}
+
+.assoc-settings-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--assoc-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.assoc-settings-tab-btn:hover {
+  color: var(--assoc-navy);
+  background-color: var(--assoc-bg-subtle);
+}
+
+.assoc-settings-tab-btn.active {
+  color: var(--assoc-emerald);
+  background-color: var(--assoc-emerald-light);
+  border-color: var(--assoc-emerald-border);
+  font-weight: 700;
+}
+
+/* 3. CARTES DE PARAMÈTRES */
+.assoc-settings-card {
+  background-color: #ffffff;
+  border: 1px solid var(--assoc-border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.assoc-settings-card-header {
+  border-bottom: 1px solid var(--assoc-border);
+  padding-bottom: 16px;
+}
+
+.assoc-settings-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 4px 0;
+}
+
+.assoc-settings-card-desc {
+  font-size: 13px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+}
+
+/* 4. FORMULAIRES & INPUTS */
+.assoc-settings-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .assoc-settings-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assoc-settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.assoc-settings-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.assoc-settings-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--assoc-navy);
+}
+
+.assoc-settings-hint {
+  font-size: 11.5px;
+  color: var(--assoc-text-muted);
+  margin-top: 2px;
+}
+
+.assoc-settings-input,
+.assoc-settings-select,
+.assoc-settings-textarea {
+  border: 1px solid var(--assoc-border);
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-size: 13.5px;
+  color: var(--assoc-navy);
+  background-color: #ffffff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.assoc-settings-input:focus,
+.assoc-settings-select:focus,
+.assoc-settings-textarea:focus {
+  border-color: var(--assoc-emerald);
+  box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.1);
+}
+
+/* 5. SWITCHES DE NOTIFICATION */
+.assoc-settings-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--assoc-border);
+}
+
+.assoc-settings-toggle-row:last-child {
+  border-bottom: none;
+}
+
+.assoc-settings-toggle-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--assoc-navy);
+  margin: 0 0 3px 0;
+}
+
+.assoc-settings-toggle-info p {
+  font-size: 12.5px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+}
+
+/* Switch styling */
+.assoc-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.assoc-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.assoc-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #cbd5e1;
+  transition: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 24px;
+}
+
+.assoc-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+input:checked + .assoc-slider {
+  background-color: var(--assoc-emerald);
+}
+
+input:checked + .assoc-slider:before {
+  transform: translateX(20px);
+}
+
+/* 6. LISTE DE MEMBRES DU BUREAU */
+.assoc-members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assoc-member-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background-color: var(--assoc-bg-subtle);
+  border: 1px solid var(--assoc-border);
+}
+
+.assoc-member-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assoc-member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+  font-weight: 800;
+  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assoc-member-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--assoc-navy);
+}
+
+.assoc-member-role {
+  font-size: 12px;
+  color: var(--assoc-text-muted);
+}
+
+.assoc-member-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+/* 7. BARRE DE SAUVEGARDE */
+.assoc-settings-save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--assoc-border);
+}
+
+.assoc-settings-alert-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  animation: assocFadeIn 0.2s ease;
+}
+
+.assoc-btn-save {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  padding: 11px 24px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--assoc-shadow-sm);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assoc-btn-save:hover {
+  background-color: var(--assoc-emerald-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--assoc-shadow-md);
+}

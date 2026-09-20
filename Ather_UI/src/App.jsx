@@ -27,14 +27,26 @@ import missionPlantationForet from './assets/mission-reboisement-foret.png';
 import missionEducationEnfants from './assets/mission-education-enfants.png';
 import missionTipazaRuines from './assets/mission-tipaza-ruines.png';
 import missionPatrimoineAntique from './assets/mission-patrimoine-antique.png';
+import missionCaravaneSud from './assets/mission-caravane-sud.png';
 import AssociationProfileFeed from './components/AssociationProfileFeed';
 import AssociationPostProof from './components/AssociationPostProof';
 import AssociationMessenger from './components/AssociationMessenger';
 import AssociationMissions from './components/AssociationMissions';
+import AssociationArticles from './components/AssociationArticles';
+import AssociationSettings from './components/AssociationSettings';
 import AssociationCalendar from './components/AssociationCalendar';
 import AssociationCandidatures from './components/AssociationCandidatures';
 import SavedOffers from './components/SavedOffers';
 import assocCraLogo from './assets/assoc-cra-logo.png';
+
+function IconUser({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+  );
+}
 
 function IconCheckVerified({ className = "w-4 h-4" }) {
   return (
@@ -2605,16 +2617,16 @@ export default function App() {
               />
             </div>
 
-            {/* Navigation verticale Espace Association : 7 onglets conformes aux maquettes */}
+            {/* Navigation verticale Espace Association : Profil en haut, Publications, Articles, Missions, Candidatures, Messages, Calendrier, Paramètres */}
             <nav className="saas-sidebar-nav">
-              {/* 1. ACCUEIL / FEED PROFIL */}
+              {/* 1. PROFIL EN HAUT */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'profile' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('profile')}
               >
-                <IconHome className="w-4 h-4" />
-                <span>Accueil</span>
+                <IconUser className="w-4 h-4" />
+                <span>Profil</span>
               </button>
 
               {/* 2. PUBLICATIONS / PREUVES */}
@@ -2627,7 +2639,17 @@ export default function App() {
                 <span>Publications</span>
               </button>
 
-              {/* 3. MISSIONS */}
+              {/* 3. ARTICLES */}
+              <button
+                type="button"
+                className={`saas-nav-item ${dashActiveTab === 'articles' ? 'active' : ''}`}
+                onClick={() => setDashActiveTab('articles')}
+              >
+                <IconFileText className="w-4 h-4" />
+                <span>Articles</span>
+              </button>
+
+              {/* 4. MISSIONS */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'missions' ? 'active' : ''}`}
@@ -2638,7 +2660,7 @@ export default function App() {
                 <span className="saas-nav-badge">24</span>
               </button>
 
-              {/* 4. CANDIDATURES */}
+              {/* 5. CANDIDATURES */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'candidatures' ? 'active' : ''}`}
@@ -2649,7 +2671,7 @@ export default function App() {
                 <span className="saas-nav-badge alert">24</span>
               </button>
 
-              {/* 5. MESSAGES AVEC POINT ROUGE */}
+              {/* 6. MESSAGES AVEC POINT ROUGE */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'messages' ? 'active' : ''}`}
@@ -2660,7 +2682,7 @@ export default function App() {
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ef4444', marginLeft: 'auto' }}></span>
               </button>
 
-              {/* 6. CALENDRIER */}
+              {/* 7. CALENDRIER */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'calendrier' ? 'active' : ''}`}
@@ -2670,14 +2692,14 @@ export default function App() {
                 <span>Calendrier</span>
               </button>
 
-              {/* 7. PROFIL */}
+              {/* 8. PARAMÈTRES */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'parametres' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('profile')}
+                onClick={() => setDashActiveTab('parametres')}
               >
-                <IconUsers className="w-4 h-4" />
-                <span>Profil</span>
+                <IconSettings className="w-4 h-4" />
+                <span>Paramètres</span>
               </button>
             </nav>
 
@@ -2896,11 +2918,20 @@ export default function App() {
             {/* CONTENU PRINCIPAL SELON dashActiveTab */}
             <main className="saas-content-body">
               {/* ======================================================== */}
-              {/* VUE PROFIL / FEED COMME INSTA (feed.png)                 */}
+              {/* VUE PROFIL / FEED (AssociationProfileFeed)               */}
               {/* ======================================================== */}
-              {(dashActiveTab === 'profile' || dashActiveTab === 'parametres') && (
+              {dashActiveTab === 'profile' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
                   <AssociationProfileFeed onNavigateNewPost={() => setDashActiveTab('traceability')} />
+                </div>
+              )}
+
+              {/* ======================================================== */}
+              {/* VUE ARTICLES & RÉCITS DE TERRAIN (AssociationArticles)   */}
+              {/* ======================================================== */}
+              {dashActiveTab === 'articles' && (
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationArticles />
                 </div>
               )}
 
@@ -4044,325 +4075,8 @@ export default function App() {
               {/* VUE 8 : PARAMÈTRES (AVEC 69 WILAYAS & SÉCURITÉ)         */}
               {/* ======================================================== */}
               {dashActiveTab === 'parametres' && (
-                <div>
-                  <div className="saas-card-header">
-                    <div>
-                      <h2>Paramètres & Profil de l'Association</h2>
-                      <p>Mise à jour des informations officielles, coordonnées de contact et sécurité</p>
-                    </div>
-                  </div>
-
-                  {/* Sous-onglets de configuration */}
-                  <div className="saas-card" style={{ padding: '12px 18px', marginBottom: '20px' }}>
-                    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                      {[
-                        { id: 'general', label: 'Informations générales' },
-                        { id: 'contact', label: 'Contact & Localisation (69 Wilayas)' },
-                        { id: 'securite', label: 'Sécurité & Mot de passe' },
-                        { id: 'notifications', label: 'Préférences & Notifications' }
-                      ].map(tab => (
-                        <button
-                          key={tab.id}
-                          type="button"
-                          className={`saas-quick-btn ${settingsSubTab === tab.id ? 'primary' : 'outline'}`}
-                          style={{ padding: '7px 16px', fontSize: '13px' }}
-                          onClick={() => setSettingsSubTab(tab.id)}
-                        >
-                          {tab.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Formulaire Informations Générales */}
-                  {settingsSubTab === 'general' && (
-                    <div className="saas-card">
-                      <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 800 }}>Fiche officielle de l'association</h3>
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          showToast("Informations de l'association enregistrées avec succès !");
-                        }}
-                        style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
-                      >
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Nom de l'association
-                            </label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={assocProfile.name}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, name: e.target.value })}
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Numéro d'agrément officiel
-                            </label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={assocProfile.agrement}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, agrement: e.target.value })}
-                            />
-                          </div>
-                        </div>
-
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Slogan ou devise
-                            </label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={assocProfile.tagline}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, tagline: e.target.value })}
-                            />
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Année de fondation
-                            </label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={assocProfile.creationYear}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, creationYear: e.target.value })}
-                            />
-                          </div>
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Domaines d'intervention
-                          </label>
-                          <input
-                            type="text"
-                            className="inp"
-                            value={assocProfile.domain}
-                            onChange={(e) => setAssocProfile({ ...assocProfile, domain: e.target.value })}
-                          />
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Présentation institutionnelle
-                          </label>
-                          <textarea
-                            className="inp"
-                            rows={4}
-                            value={assocProfile.description}
-                            onChange={(e) => setAssocProfile({ ...assocProfile, description: e.target.value })}
-                          />
-                        </div>
-
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                          <button type="submit" className="saas-quick-btn primary">
-                            Enregistrer les modifications
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  )}
-
-                  {/* Formulaire Contact & 69 Wilayas */}
-                  {settingsSubTab === 'contact' && (
-                    <div className="saas-card">
-                      <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 800 }}>Coordonnées officielles & Siège</h3>
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          showToast("Coordonnées de l'association mises à jour !");
-                        }}
-                        style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
-                      >
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Wilaya du siège (69 Wilayas)
-                            </label>
-                            <select
-                              className="inp"
-                              value={assocProfile.wilaya}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, wilaya: e.target.value })}
-                            >
-                              {WILAYAS_LIST.map(w => (
-                                <option key={w.code} value={`${w.code} - ${w.name}`}>
-                                  {w.code} - {w.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Commune
-                            </label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={assocProfile.commune}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, commune: e.target.value })}
-                            />
-                          </div>
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Adresse exacte
-                          </label>
-                          <input
-                            type="text"
-                            className="inp"
-                            value={assocProfile.address}
-                            onChange={(e) => setAssocProfile({ ...assocProfile, address: e.target.value })}
-                          />
-                        </div>
-
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Email de contact
-                            </label>
-                            <input
-                              type="email"
-                              className="inp"
-                              value={assocProfile.email}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, email: e.target.value })}
-                            />
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                              Numéro de téléphone
-                            </label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={assocProfile.phone}
-                              onChange={(e) => setAssocProfile({ ...assocProfile, phone: e.target.value })}
-                            />
-                          </div>
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Responsable légal
-                          </label>
-                          <input
-                            type="text"
-                            className="inp"
-                            value={assocProfile.responsable}
-                            onChange={(e) => setAssocProfile({ ...assocProfile, responsable: e.target.value })}
-                          />
-                        </div>
-
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                          <button type="submit" className="saas-quick-btn primary">
-                            Enregistrer les coordonnées
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  )}
-
-                  {/* Formulaire Sécurité */}
-                  {settingsSubTab === 'securite' && (
-                    <div className="saas-card" style={{ maxWidth: '540px' }}>
-                      <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 800 }}>Changement de mot de passe</h3>
-                      <form onSubmit={handleUpdateAssocPassword} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Mot de passe actuel
-                          </label>
-                          <input
-                            type="password"
-                            className="inp"
-                            placeholder="••••••••"
-                            value={assocPasswordForm.current}
-                            onChange={(e) => setAssocPasswordForm({ ...assocPasswordForm, current: e.target.value })}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Nouveau mot de passe
-                          </label>
-                          <input
-                            type="password"
-                            className="inp"
-                            placeholder="Au moins 8 caractères"
-                            value={assocPasswordForm.newPass}
-                            onChange={(e) => setAssocPasswordForm({ ...assocPasswordForm, newPass: e.target.value })}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '5px' }}>
-                            Confirmer le nouveau mot de passe
-                          </label>
-                          <input
-                            type="password"
-                            className="inp"
-                            placeholder="••••••••"
-                            value={assocPasswordForm.confirmPass}
-                            onChange={(e) => setAssocPasswordForm({ ...assocPasswordForm, confirmPass: e.target.value })}
-                            required
-                          />
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                          <button type="submit" className="saas-quick-btn primary">
-                            Mettre à jour le mot de passe
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  )}
-
-                  {/* Formulaire Notifications */}
-                  {settingsSubTab === 'notifications' && (
-                    <div className="saas-card" style={{ maxWidth: '600px' }}>
-                      <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 800 }}>Préférences de notification</h3>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                        {[
-                          { title: 'Nouvelle candidature', desc: 'Recevoir un email dès qu’un bénévole postule à une mission' },
-                          { title: 'Rappel avant mission (48h)', desc: 'Envoyer une synthèse des effectifs confirmés deux jours avant l’événement' },
-                          { title: 'Rapport mensuel d’impact', desc: 'Recevoir un récapitulatif des heures bénévoles et dons collectés' }
-                        ].map((notif, idx) => (
-                          <label
-                            key={idx}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'flex-start',
-                              gap: '12px',
-                              padding: '12px',
-                              background: '#f8fafc',
-                              border: '1px solid #e2e8f0',
-                              borderRadius: '10px',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            <input type="checkbox" defaultChecked style={{ marginTop: '3px', accentColor: 'var(--emerald-main)' }} />
-                            <div>
-                              <strong style={{ fontSize: '13px', color: '#0f172a', display: 'block' }}>{notif.title}</strong>
-                              <small style={{ fontSize: '11.5px', color: '#64748b' }}>{notif.desc}</small>
-                            </div>
-                          </label>
-                        ))}
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                          <button
-                            type="button"
-                            className="saas-quick-btn primary"
-                            onClick={() => showToast("Préférences de notification enregistrées !")}
-                          >
-                            Enregistrer les préférences
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationSettings />
                 </div>
               )}
 
