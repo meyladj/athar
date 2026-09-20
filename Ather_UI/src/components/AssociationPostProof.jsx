@@ -3,10 +3,10 @@ import '../styles/association/post-proof.css';
 
 // Assets
 import assocCraLogo from '../assets/assoc-cra-logo.png';
-import assocPubHero from '../assets/assoc-pub-hero.png';
-import assocPubTh1 from '../assets/assoc-pub-th1.png';
-import assocPubTh2 from '../assets/assoc-pub-th2.png';
-import assocPubTh3 from '../assets/assoc-pub-th3.png';
+import proofDistribution from '../assets/assoc-proof-distribution.png';
+import proofCaravane from '../assets/assoc-proof-caravane.png';
+import proofReboisement from '../assets/assoc-proof-reboisement.png';
+import proofCasbah from '../assets/assoc-proof-casbah.png';
 
 // Clean SVG Icons (zero emojis)
 function IconArrowLeft({ className = "w-4 h-4" }) {
@@ -90,14 +90,47 @@ function IconShare({ className = "w-4 h-4" }) {
   );
 }
 
+const PROOF_PRESETS = [
+  {
+    id: 'distribution',
+    label: 'Aide alimentaire',
+    img: proofDistribution,
+    defaultLocation: "Tizi Ouzou, Wilaya de Tizi Ouzou",
+    defaultCategory: "solidarite",
+    defaultCaption: "Distribution de plus de 350 colis alimentaires de première nécessité auprès des familles dans les villages de Kabylie.\n\nUne organisation rigoureuse menée par nos bénévoles pour garantir la dignité et le réconfort de chaque foyer.\n\n#Solidarité #CroissantRouge #Athar #EntraideCitoyenne"
+  },
+  {
+    id: 'caravane',
+    label: 'Caravane humanitaire',
+    img: proofCaravane,
+    defaultLocation: "Biskra & Oasis du Sud",
+    defaultCategory: "solidarite",
+    defaultCaption: "Arrivée de la grande caravane solidaire du Croissant-Rouge Algérien dans les zones enclavées.\n\nDistribution de couvertures thermiques, vêtements d'hiver et denrées de première nécessité pour plus de 200 familles.\n\n#CaravaneSolidaire #GrandSud #CroissantRouge"
+  },
+  {
+    id: 'reboisement',
+    label: 'Campagne de reboisement',
+    img: proofReboisement,
+    defaultLocation: "Forêt de Zéralda, Alger",
+    defaultCategory: "environnement",
+    defaultCaption: "Mobilisation citoyenne pour reverdir notre littoral : 800 jeunes plants d'arbres mis en terre avec l'aide de 60 bénévoles enthousiastes.\n\nChaque arbre planté est un souffle d'espoir pour nos générations futures et un rempart contre l'érosion.\n\n#Environnement #Reboisement #AlgérieVerte"
+  },
+  {
+    id: 'casbah',
+    label: 'Rénovation & Casbah',
+    img: proofCasbah,
+    defaultLocation: "Casbah d'Alger, Alger",
+    defaultCategory: "culture",
+    defaultCaption: "Chantier citoyen et solidaire au cœur de la Casbah historique d'Alger.\n\nNettoyage, réfection des ruelles anciennes et valorisation de notre mémoire commune aux côtés des artisans et riverains.\n\n#Casbah #Patrimoine #CroissantRouge #Solidarité"
+  }
+];
+
 export default function AssociationPostProof({ onBackToFeed, onPublished }) {
   const [selectedThumb, setSelectedThumb] = useState(0);
-  const [caption, setCaption] = useState(
-    "Nettoyage de la plage de Sidi Fredj avec nos bénévoles.\n\nUne belle mobilisation citoyenne aujourd'hui pour un littoral préservé. Merci à toutes et tous pour votre engagement rigoureux sur le terrain !\n\n#Environnement #Bénévolat #AlgériePlusBelle"
-  );
-  const [location, setLocation] = useState("Plage de Sidi Fredj, Alger");
-  const [date, setDate] = useState("2025-04-27");
-  const [category, setCategory] = useState("environnement");
+  const [caption, setCaption] = useState(PROOF_PRESETS[0].defaultCaption);
+  const [location, setLocation] = useState(PROOF_PRESETS[0].defaultLocation);
+  const [date, setDate] = useState("2025-05-18");
+  const [category, setCategory] = useState(PROOF_PRESETS[0].defaultCategory);
   const [proofType, setProofType] = useState("tracabilite");
   const [visibility, setVisibility] = useState("publique"); // 'publique' | 'communaute' | 'privee'
 
@@ -135,8 +168,6 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
       else if (onBackToFeed) onBackToFeed();
     }, 1800);
   };
-
-  const thumbs = [assocPubTh1, assocPubTh2, assocPubTh3];
 
   return (
     <div className="assoc-proof-root">
@@ -197,44 +228,37 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
               <span>Photos de terrain</span>
             </h2>
 
-            {/* Photo principale */}
-            <div style={{ height: '220px', borderRadius: '14px', overflow: 'hidden', position: 'relative', border: '1px solid var(--assoc-border)' }}>
+            {/* Photo principale sélectionnée */}
+            <div style={{ height: '230px', borderRadius: '14px', overflow: 'hidden', position: 'relative', border: '1px solid var(--assoc-border)', backgroundColor: '#0f172a' }}>
               <img
-                src={assocPubHero}
-                alt="Action terrain"
+                src={PROOF_PRESETS[selectedThumb].img}
+                alt={PROOF_PRESETS[selectedThumb].label}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
+              <div style={{ position: 'absolute', bottom: '12px', left: '14px' }}>
+                <span style={{ fontSize: '11.5px', fontWeight: 800, padding: '4px 12px', borderRadius: '20px', background: 'rgba(0, 109, 91, 0.9)', color: '#ffffff', backdropFilter: 'blur(4px)' }}>
+                  {PROOF_PRESETS[selectedThumb].label}
+                </span>
+              </div>
             </div>
 
-            {/* Vignettes */}
+            {/* Vignettes des 4 photos fournies */}
             <div className="assoc-proof-thumbs-row">
-              {thumbs.map((th, idx) => (
+              {PROOF_PRESETS.map((item, idx) => (
                 <div
-                  key={idx}
-                  onClick={() => setSelectedThumb(idx)}
+                  key={item.id}
+                  onClick={() => {
+                    setSelectedThumb(idx);
+                    setCaption(item.defaultCaption);
+                    setLocation(item.defaultLocation);
+                    setCategory(item.defaultCategory);
+                  }}
                   className={`assoc-proof-thumb-item ${selectedThumb === idx ? 'active' : ''}`}
+                  title={item.label}
                 >
-                  <img src={th} alt={`Vignette ${idx + 1}`} />
+                  <img src={item.img} alt={item.label} />
                 </div>
               ))}
-              <div
-                style={{
-                  borderRadius: '12px',
-                  border: '2px dashed var(--assoc-emerald-border)',
-                  background: 'var(--assoc-emerald-tint)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  color: 'var(--assoc-emerald)'
-                }}
-              >
-                <span style={{ fontSize: '18px' }}>+</span>
-                <span>Ajouter</span>
-              </div>
             </div>
           </div>
 
@@ -401,7 +425,7 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
             </div>
 
             <div className="assoc-proof-preview-img-wrap">
-              <img src={assocPubHero} alt="Aperçu héro" />
+              <img src={PROOF_PRESETS[selectedThumb].img} alt={PROOF_PRESETS[selectedThumb].label} />
             </div>
 
             <div className="assoc-proof-preview-body">
