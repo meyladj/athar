@@ -23,6 +23,10 @@ import feedCraImg from './assets/feed-cra-distribution.png';
 import missionPlantationZeralda from './assets/mission-plantation-zeralda.png';
 import missionPlage from './assets/mission-plage.png';
 import missionTipaza from './assets/mission-tipaza.png';
+import missionPlantationForet from './assets/mission-reboisement-foret.png';
+import missionEducationEnfants from './assets/mission-education-enfants.png';
+import missionTipazaRuines from './assets/mission-tipaza-ruines.png';
+import missionPatrimoineAntique from './assets/mission-patrimoine-antique.png';
 import AssociationProfileFeed from './components/AssociationProfileFeed';
 import AssociationPostProof from './components/AssociationPostProof';
 import AssociationMessenger from './components/AssociationMessenger';
@@ -1628,55 +1632,55 @@ export default function App() {
   const [associationMissions, setAssociationMissions] = useState([
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80',
-      title: "Distribution de repas — Ramadan",
-      category: "Solidarité",
-      location: "Alger",
-      wilaya: "Alger",
-      date: "12 avr. 2025",
-      dateISO: "2025-04-12",
-      spots_registered: 18,
-      spots_total: 20,
-      description: "Préparation et distribution de 300 repas chauds chaque soir pour les jeûneurs et familles démunies."
+      image: missionTipazaRuines,
+      title: "Nettoyage du site antique de Tipaza",
+      category: "Patrimoine & Environnement",
+      location: "Tipaza",
+      wilaya: "Tipaza",
+      date: "3 mai 2025",
+      dateISO: "2025-05-03",
+      spots_registered: 34,
+      spots_total: 40,
+      description: "Préservation des vestiges historiques face à la mer et ramassage éco-responsable des déchets."
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
-      title: "Soutien scolaire pour enfants défavorisés",
+      image: missionEducationEnfants,
+      title: "Soutien scolaire & éveil pour enfants",
       category: "Éducation",
-      location: "Béjaïa",
-      wilaya: "Béjaïa",
-      date: "19 avr. 2025",
-      dateISO: "2025-04-19",
-      spots_registered: 5,
-      spots_total: 5,
-      description: "Cours de remise à niveau en mathématiques et langues pour 35 collégiens préparant le BEM."
+      location: "Constantine",
+      wilaya: "Constantine",
+      date: "21 mai 2025",
+      dateISO: "2025-05-21",
+      spots_registered: 18,
+      spots_total: 30,
+      description: "Séance de lecture, contes et accompagnement éducatif pour les écoliers de la wilaya."
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-      title: "Campagne de reboisement à Tizi Ouzou",
+      image: missionPlantationForet,
+      title: "Campagne de reboisement des forêts",
       category: "Environnement",
       location: "Tizi Ouzou",
       wilaya: "Tizi Ouzou",
       date: "26 avr. 2025",
       dateISO: "2025-04-26",
-      spots_registered: 22,
-      spots_total: 30,
-      description: "Plantation de 1000 arbustes pour la régénération du couvert forestier du massif du Djurdjura."
+      spots_registered: 32,
+      spots_total: 45,
+      description: "Plantation de 1 000 arbustes pour la régénération du couvert forestier du massif du Djurdjura."
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?auto=format&fit=crop&w=800&q=80',
-      title: "Collecte et tri de vêtements d'hiver",
-      category: "Solidarité",
-      location: "Béjaïa",
-      wilaya: "Béjaïa",
-      date: "2 mars 2025",
-      dateISO: "2025-03-02",
-      spots_registered: 15,
-      spots_total: 15,
-      description: "Conditionnement de colis de vêtements chauds et couvertures acheminés vers les villages isolés."
+      image: missionPatrimoineAntique,
+      title: "Sauvegarde du littoral & vestiges antiques",
+      category: "Patrimoine",
+      location: "Tipaza Littoral",
+      wilaya: "Tipaza",
+      date: "17 mai 2025",
+      dateISO: "2025-05-17",
+      spots_registered: 35,
+      spots_total: 50,
+      description: "Opération de dépollution et valorisation citoyenne du site archéologique méditerranéen."
     }
   ]);
 
@@ -1687,14 +1691,14 @@ export default function App() {
       name: "Amine Bellouze",
       initials: "AB",
       missionId: 1,
-      missionTitle: "Distribution de repas — Ramadan",
-      wilaya: "Béjaïa",
+      missionTitle: "Nettoyage du site antique de Tipaza",
+      wilaya: "Tipaza",
       age: 24,
       email: "amine.bellouze@example.com",
       phone: "05 50 12 34 56",
       skills: ["Logistique", "Secourisme", "Informatique"],
       languages: ["Arabe", "Français", "Tamazight"],
-      motivation: "Je souhaite consacrer mes week-ends à aider les familles dans le besoin durant ce mois sacré. J'ai déjà participé à des distributions lors des deux précédentes années et je connais bien le terrain.",
+      motivation: "Je souhaite consacrer mes week-ends à aider à préserver le patrimoine historique et environnemental de Tipaza.",
       appliedDate: "14 avr. 2025",
       status: "pending" // 'pending' | 'accepted' | 'rejected'
     },
@@ -1703,14 +1707,14 @@ export default function App() {
       name: "Sara Louni",
       initials: "SL",
       missionId: 2,
-      missionTitle: "Soutien scolaire pour enfants défavorisés",
-      wilaya: "Béjaïa",
+      missionTitle: "Soutien scolaire & éveil pour enfants",
+      wilaya: "Constantine",
       age: 22,
       email: "sara.louni@example.com",
       phone: "06 61 78 90 12",
       skills: ["Enseignement", "Français", "Mathématiques"],
       languages: ["Arabe", "Français", "Anglais"],
-      motivation: "Étudiante en Master de langues, je souhaite donner des cours de soutien aux collégiens et enfants défavorisés pour les préparer aux examens du BEM.",
+      motivation: "Étudiante en Master de langues, je souhaite donner des cours de soutien aux collégiens et enfants pour les préparer aux examens.",
       appliedDate: "15 avr. 2025",
       status: "pending"
     },
@@ -1719,14 +1723,14 @@ export default function App() {
       name: "Yacine Kaci",
       initials: "YK",
       missionId: 1,
-      missionTitle: "Distribution de repas — Ramadan",
-      wilaya: "Alger",
+      missionTitle: "Nettoyage du site antique de Tipaza",
+      wilaya: "Tipaza",
       age: 28,
       email: "yacine.kaci@example.com",
       phone: "07 72 45 67 89",
       skills: ["Chauffeur / Véhicule", "Logistique", "Coordination"],
       languages: ["Arabe", "Français"],
-      motivation: "Je dispose d'un utilitaire et je peux assurer le transport des paniers alimentaires depuis le centre de stockage jusqu'aux points de distribution.",
+      motivation: "Je dispose d'un utilitaire et je peux assurer le transport des équipements d'entretien et de collecte des déchets sur le site.",
       appliedDate: "16 avr. 2025",
       status: "pending"
     },
@@ -1735,7 +1739,7 @@ export default function App() {
       name: "Meriem Hadj",
       initials: "MH",
       missionId: 3,
-      missionTitle: "Campagne de reboisement à Tizi Ouzou",
+      missionTitle: "Campagne de reboisement des forêts",
       wilaya: "Tizi Ouzou",
       age: 26,
       email: "meriem.hadj@example.com",

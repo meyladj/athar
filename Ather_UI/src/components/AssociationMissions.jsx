@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import '../styles/association/missions.css';
 
 // Assets
-import assocMissionKabylie from '../assets/assoc-mission-kabylie.png';
-import assocMissionMadagh from '../assets/assoc-mission-madagh.png';
-import assocMissionConstantine from '../assets/assoc-mission-constantine.png';
+import missionReboisement from '../assets/mission-reboisement-foret.png';
+import missionPatrimoineAntique from '../assets/mission-patrimoine-antique.png';
+import missionEducation from '../assets/mission-education-enfants.png';
+import missionTipazaRuines from '../assets/mission-tipaza-ruines.png';
 import assocMissionDjanet from '../assets/assoc-mission-djanet.png';
-import assocMissionTipaza from '../assets/assoc-mission-tipaza.png';
 
 // Clean SVG Icons (zero emojis)
 function IconCalendar({ className = "w-3.5 h-3.5" }) {
@@ -135,63 +135,63 @@ const MISSIONS_DATA = [
     volunteersTotal: 45,
     volunteersJoined: 32,
     percent: 71,
-    image: assocMissionKabylie,
+    image: missionReboisement,
     color: '#16a34a'
   },
   {
     id: 'm-2',
-    title: 'Nettoyage de la plage de Madagh',
+    title: 'Sauvegarde du littoral et ruines antiques',
     status: 'upcoming',
     statusLabel: 'À venir',
-    description: 'Mobilisation citoyenne pour une côte plus propre et un littoral préservé.',
+    description: 'Mobilisation citoyenne et dépollution du littoral bordant le patrimoine antique méditerranéen.',
     date: 'Sam. 17 mai 2025',
-    location: 'Aïn El Turk, Oran',
-    volunteersTotal: 60,
-    volunteersJoined: 18,
-    percent: 30,
-    image: assocMissionMadagh,
+    location: 'Tipaza Littoral',
+    volunteersTotal: 50,
+    volunteersJoined: 28,
+    percent: 56,
+    image: missionPatrimoineAntique,
     color: '#2563eb'
   },
   {
     id: 'm-3',
-    title: 'Atelier éducatif pour les jeunes',
+    title: 'Atelier éducatif & lecture pour les jeunes',
     status: 'upcoming',
     statusLabel: 'À venir',
-    description: 'Sensibilisation, soutien scolaire et orientation pour les collégiens et lycéens.',
+    description: 'Sensibilisation, éveil à la lecture et orientation pédagogique pour les écoliers et collégiens.',
     date: 'Mer. 21 mai 2025',
     location: 'Constantine',
     volunteersTotal: 30,
-    volunteersJoined: 12,
-    percent: 40,
-    image: assocMissionConstantine,
+    volunteersJoined: 18,
+    percent: 60,
+    image: missionEducation,
     color: '#2563eb'
   },
   {
     id: 'm-4',
-    title: 'Caravane médicale dans le Sud',
+    title: 'Nettoyage du site antique de Tipaza',
     status: 'active',
     statusLabel: 'Active',
-    description: 'Consultations médicales et sensibilisation au profit des populations locales.',
+    description: 'Préservons notre patrimoine historique et culturel pour les générations futures face à la mer.',
+    date: 'Sam. 3 mai 2025',
+    location: 'Tipaza',
+    volunteersTotal: 40,
+    volunteersJoined: 34,
+    percent: 85,
+    image: missionTipazaRuines,
+    color: '#16a34a'
+  },
+  {
+    id: 'm-5',
+    title: 'Caravane médicale et de secours du Sud',
+    status: 'active',
+    statusLabel: 'Active',
+    description: 'Consultations médicales gratuites et sensibilisation au profit des populations locales.',
     date: 'Ven. 9 mai 2025',
     location: 'Djanet, Illizi',
     volunteersTotal: 40,
     volunteersJoined: 28,
     percent: 70,
     image: assocMissionDjanet,
-    color: '#16a34a'
-  },
-  {
-    id: 'm-5',
-    title: 'Nettoyage du site antique de Tipaza',
-    status: 'active',
-    statusLabel: 'Active',
-    description: 'Préservons notre patrimoine historique et culturel pour les générations futures.',
-    date: 'Sam. 3 mai 2025',
-    location: 'Tipaza',
-    volunteersTotal: 25,
-    volunteersJoined: 20,
-    percent: 80,
-    image: assocMissionTipaza,
     color: '#16a34a'
   }
 ];
