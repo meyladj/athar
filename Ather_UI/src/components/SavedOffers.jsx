@@ -103,46 +103,91 @@ function IconArrowRight({ className = "w-4 h-4", color = "currentColor" }) {
   );
 }
 
+function IconGlobe({ className = "w-4 h-4", color = "currentColor" }) {
+  return (
+    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
+function IconHeartGreen({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="#00897b" stroke="#00897b" strokeWidth="1">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+    </svg>
+  );
+}
+
+function IconSortArrows({ className = "w-3.5 h-3.5" }) {
+  return (
+    <svg className={className} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m7 15 5 5 5-5" />
+      <path d="m7 9 5-5 5-5" />
+    </svg>
+  );
+}
+
 // 3 Saved items strictly matching offres sauvgardés.png
 const INITIAL_SAVED_ITEMS = [
   {
     id: 1,
     type: 'mission',
     title: "Plantation d'arbres et reboisement à Zéralda",
+    titleAr: "غرس الأشجار والتشجير في زرالدة",
     category: "Environnement",
+    categoryAr: "بيئة",
     categoryBg: "#dcfce7",
     categoryColor: "#15803d",
     location: "Zéralda, Alger",
+    locationAr: "زرالدة، الجزائر العاصمة",
     date: "Sam. 12 avril",
+    dateAr: "السبت 12 أفريل",
     duration: "6 heures",
+    durationAr: "6 ساعات",
     image: candReboisementImg,
-    association_name: "Association Green Future"
+    association_name: "Association Green Future",
+    association_nameAr: "جمعية المستقبل الأخضر"
   },
   {
     id: 2,
     type: 'mission',
     title: "Ateliers de lecture et éveil artistique",
+    titleAr: "ورشات القراءة والتفتح الفني للأطفال",
     category: "Éducation",
+    categoryAr: "تعليم",
     categoryBg: "#e0f2fe",
     categoryColor: "#0369a1",
     location: "Hydra, Alger",
+    locationAr: "حيدرة، الجزائر العاصمة",
     date: "Mer. 16 avril",
+    dateAr: "الأربعاء 16 أفريل",
     duration: "3 heures",
+    durationAr: "3 ساعات",
     image: candLectureImg,
-    association_name: "Lire pour Demain"
+    association_name: "Lire pour Demain",
+    association_nameAr: "جمعية اقرأ للغد"
   },
   {
     id: 3,
     type: 'event',
     title: "Caravane de don du sang et dépistage préventif",
+    titleAr: "قافلة التبرع بالدم والفحص الوقائي",
     category: "Santé",
+    categoryAr: "صحة",
     categoryBg: "#fee2e2",
     categoryColor: "#b91c1c",
     location: "CHU Benbadis, Constantine",
+    locationAr: "المستشفى الجامعي ابن باديس، قسنطينة",
     date: "Sam. 20 avril",
+    dateAr: "السبت 20 أفريل",
     duration: "7h30",
+    durationAr: "7 ساعات و30 د",
     image: candSangImg,
-    association_name: "Croissant Rouge Algérien"
+    association_name: "Croissant Rouge Algérien",
+    association_nameAr: "الهلال الأحمر الجزائري"
   }
 ];
 
@@ -152,40 +197,58 @@ const INITIAL_RECOMMENDED_ITEMS = [
     id: 4,
     type: 'mission',
     title: "Nettoyage des plages d'El Marsa",
+    titleAr: "تنظيف شواطئ المرسى الساحلية",
     category: "Environnement",
+    categoryAr: "بيئة",
     categoryBg: "#dcfce7",
     categoryColor: "#15803d",
     location: "Aïn Taya, Alger",
+    locationAr: "عين طاية، الجزائر العاصمة",
     date: "Sam. 27 avril",
+    dateAr: "السبت 27 أفريل",
     duration: "5 heures",
+    durationAr: "5 ساعات",
     image: missionPlage,
-    association_name: "Association Green Future"
+    association_name: "Association Green Future",
+    association_nameAr: "جمعية المستقبل الأخضر"
   },
   {
     id: 5,
     type: 'mission',
     title: "Soutien scolaire pour enfants défavorisés",
+    titleAr: "دروس دعم مدرسي للأطفال المعوزين",
     category: "Éducation",
+    categoryAr: "تعليم",
     categoryBg: "#e0f2fe",
     categoryColor: "#0369a1",
     location: "Bab El Oued, Alger",
+    locationAr: "باب الوادي، الجزائر العاصمة",
     date: "Lun. 29 avril",
+    dateAr: "الإثنين 29 أفريل",
     duration: "4 heures",
+    durationAr: "4 ساعات",
     image: articleHeroEducation,
-    association_name: "Lire pour Demain"
+    association_name: "Lire pour Demain",
+    association_nameAr: "جمعية اقرأ للغد"
   },
   {
     id: 6,
     type: 'mission',
     title: "Distribution de colis alimentaires",
+    titleAr: "توزيع الطرود والقفف الغذائية التضامنية",
     category: "Solidarité",
+    categoryAr: "تضامن",
     categoryBg: "#ffedd5",
     categoryColor: "#c2410c",
     location: "Sidi M'hamed, Alger",
+    locationAr: "سيدي امحمد، الجزائر العاصمة",
     date: "Sam. 4 mai",
+    dateAr: "السبت 4 ماي",
     duration: "6 heures",
+    durationAr: "6 ساعات",
     image: feedCraImg,
-    association_name: "Croissant Rouge Algérien"
+    association_name: "Croissant Rouge Algérien",
+    association_nameAr: "الهلال الأحمر الجزائري"
   }
 ];
 
@@ -194,8 +257,10 @@ export default function SavedOffers({
   onNavigateToMissions,
   onToast,
   volunteerFavorites = [],
-  onToggleFavorite
+  onToggleFavorite,
+  currentLang = 'fr'
 }) {
+  const isAr = currentLang === 'ar';
   const [savedItems, setSavedItems] = useState(INITIAL_SAVED_ITEMS);
   const [recommendedItems, setRecommendedItems] = useState(INITIAL_RECOMMENDED_ITEMS);
   const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'mission' | 'event'
@@ -208,7 +273,7 @@ export default function SavedOffers({
     if (onToggleFavorite) onToggleFavorite(item.id, e);
     setSavedItems(prev => prev.filter(i => i.id !== item.id));
     setRecommendedItems(prev => [{ ...item }, ...prev]);
-    onToast && onToast(`« ${item.title} » retirée des offres sauvegardées.`);
+    onToast && onToast(isAr ? `تمت إزالة « ${item.titleAr || item.title} » من المحفوظات.` : `« ${item.title} » retirée des offres sauvegardées.`);
   };
 
   const handleAddSaved = (item, e) => {
@@ -216,7 +281,7 @@ export default function SavedOffers({
     if (onToggleFavorite) onToggleFavorite(item.id, e);
     setRecommendedItems(prev => prev.filter(i => i.id !== item.id));
     setSavedItems(prev => [{ ...item }, ...prev]);
-    onToast && onToast(`« ${item.title} » ajoutée à vos offres sauvegardées !`);
+    onToast && onToast(isAr ? `تمت إضافة « ${item.titleAr || item.title} » إلى عروضك المحفوظة!` : `« ${item.title} » ajoutée à vos offres sauvegardées !`);
   };
 
   const filteredSaved = savedItems.filter(item => {
@@ -250,14 +315,14 @@ export default function SavedOffers({
         {/* Left Copy */}
         <div style={{ flex: '1 1 55%', zIndex: 2 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '14.5px', fontWeight: 800, color: '#00897b', marginBottom: '6px' }}>
-            <span>Vos engagements comptent</span>
-            <span>💚</span>
+            <span>{isAr ? 'مشاركاتكم تصنع الأثر' : 'Vos engagements comptent'}</span>
+            <IconHeartGreen />
           </div>
           <h1 style={{ fontSize: '26px', fontWeight: 900, color: '#0f172a', margin: '0 0 8px', lineHeight: 1.25 }}>
-            Des opportunités qui changent des vies
+            {isAr ? 'فرص تطوعية تغيّر حياة الكثيرين' : 'Des opportunités qui changent des vies'}
           </h1>
           <p style={{ fontSize: '14px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
-            Retrouvez ici les missions et événements que vous avez sauvegardés.
+            {isAr ? 'تجد هنا جميع المبادرات والفعاليات التي قمت بحفظها للرجوع إليها لاحقاً.' : 'Retrouvez ici les missions et événements que vous avez sauvegardés.'}
           </p>
         </div>
 
@@ -276,24 +341,33 @@ export default function SavedOffers({
           <div
             style={{
               position: 'absolute',
-              right: '12px',
+              right: isAr ? 'auto' : '12px',
+              left: isAr ? '12px' : 'auto',
               top: '50%',
               transform: 'translateY(-50%)',
-              textAlign: 'right',
+              textAlign: isAr ? 'left' : 'right',
               color: '#1e3a8a',
               textShadow: '0 1px 4px rgba(255,255,255,0.95)',
               userSelect: 'none'
             }}
           >
-            <div style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '22px', fontWeight: 700, color: '#1e3a8a', lineHeight: 1.15 }}>
-              Ensemble
-            </div>
-            <div style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '22px', fontWeight: 700, color: '#1e3a8a', lineHeight: 1.15 }}>
-              pour une Algérie
-            </div>
-            <div style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '22px', fontWeight: 700, color: '#1e3a8a', lineHeight: 1.15, textDecoration: 'underline' }}>
-              plus solidaire !
-            </div>
+            {isAr ? (
+              <div style={{ fontFamily: "'Cairo', sans-serif", fontSize: '20px', fontWeight: 800, color: '#1e3a8a', lineHeight: 1.3 }}>
+                معاً لجزائر أكثر تضامناً !
+              </div>
+            ) : (
+              <>
+                <div style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '22px', fontWeight: 700, color: '#1e3a8a', lineHeight: 1.15 }}>
+                  Ensemble
+                </div>
+                <div style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '22px', fontWeight: 700, color: '#1e3a8a', lineHeight: 1.15 }}>
+                  pour une Algérie
+                </div>
+                <div style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '22px', fontWeight: 700, color: '#1e3a8a', lineHeight: 1.15, textDecoration: 'underline' }}>
+                  plus solidaire !
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -322,7 +396,7 @@ export default function SavedOffers({
             }}
           >
             <IconGrid />
-            <span>Toutes ({savedItems.length})</span>
+            <span>{isAr ? `الكل (${savedItems.length})` : `Toutes (${savedItems.length})`}</span>
           </button>
 
           <button
@@ -345,7 +419,7 @@ export default function SavedOffers({
             }}
           >
             <IconLeaf color={activeFilter === 'mission' ? '#ffffff' : '#16a34a'} />
-            <span>Missions ({missionsCount})</span>
+            <span>{isAr ? `المبادرات (${missionsCount})` : `Missions (${missionsCount})`}</span>
           </button>
 
           <button
@@ -368,13 +442,13 @@ export default function SavedOffers({
             }}
           >
             <IconCalendar color={activeFilter === 'event' ? '#ffffff' : '#64748b'} />
-            <span>Événements ({eventsCount})</span>
+            <span>{isAr ? `الفعاليات (${eventsCount})` : `Événements (${eventsCount})`}</span>
           </button>
         </div>
 
         {/* Right sort dropdown */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '12.5px', color: '#94a3b8', fontWeight: 600 }}>Trier par</span>
+          <span style={{ fontSize: '12.5px', color: '#94a3b8', fontWeight: 600 }}>{isAr ? 'ترتيب حسب' : 'Trier par'}</span>
           <div style={{ position: 'relative' }}>
             <button
               type="button"
@@ -394,8 +468,14 @@ export default function SavedOffers({
                 boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
               }}
             >
-              <span>⇅</span>
-              <span>{sortBy === 'recent' ? 'Plus récents' : sortBy === 'oldest' ? 'Plus anciens' : 'Plus proches'}</span>
+              <IconSortArrows />
+              <span>
+                {sortBy === 'recent'
+                  ? (isAr ? 'الأحدث حفظاً' : 'Plus récents')
+                  : sortBy === 'oldest'
+                  ? (isAr ? 'الأقدم حفظاً' : 'Plus anciens')
+                  : (isAr ? 'الأقرب تاريخاً' : 'Plus proches')}
+              </span>
               <IconChevronDown />
             </button>
 
@@ -403,7 +483,8 @@ export default function SavedOffers({
               <div
                 style={{
                   position: 'absolute',
-                  right: 0,
+                  right: isAr ? 'auto' : 0,
+                  left: isAr ? 0 : 'auto',
                   top: '100%',
                   marginTop: '4px',
                   width: '160px',
@@ -422,7 +503,7 @@ export default function SavedOffers({
                     onClick={() => { setSortBy(opt); setIsSortOpen(false); }}
                     style={{
                       width: '100%',
-                      textAlign: 'left',
+                      textAlign: isAr ? 'right' : 'left',
                       padding: '8px 12px',
                       borderRadius: '8px',
                       border: 'none',
@@ -433,7 +514,11 @@ export default function SavedOffers({
                       cursor: 'pointer'
                     }}
                   >
-                    {opt === 'recent' ? 'Plus récents' : opt === 'oldest' ? 'Plus anciens' : 'Plus proches'}
+                    {opt === 'recent'
+                      ? (isAr ? 'الأحدث حفظاً' : 'Plus récents')
+                      : opt === 'oldest'
+                      ? (isAr ? 'الأقدم حفظاً' : 'Plus anciens')
+                      : (isAr ? 'الأقرب تاريخاً' : 'Plus proches')}
                   </button>
                 ))}
               </div>
@@ -445,18 +530,20 @@ export default function SavedOffers({
       {/* 3. SECTION: MES OFFRES SAUVEGARDÉES (3) */}
       <div style={{ marginBottom: '32px' }}>
         <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', margin: '0 0 16px', letterSpacing: '-0.3px' }}>
-          Mes offres sauvegardées ({filteredSaved.length})
+          {isAr ? `عروضي المحفوظة (${filteredSaved.length})` : `Mes offres sauvegardées (${filteredSaved.length})`}
         </h2>
 
         {filteredSaved.length === 0 ? (
           <div style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #e2e8f0', padding: '48px 24px', textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-            <p style={{ fontSize: '14px', color: '#64748b', margin: '0 0 16px' }}>Aucune offre sauvegardée dans ce filtre.</p>
+            <p style={{ fontSize: '14px', color: '#64748b', margin: '0 0 16px' }}>
+              {isAr ? 'لا توجد أي عروض محفوظة في هذا التصنيف حالياً.' : 'Aucune offre sauvegardée dans ce filtre.'}
+            </p>
             <button
               type="button"
               onClick={onNavigateToMissions}
               style={{ background: '#006D5B', color: '#ffffff', border: 'none', borderRadius: '10px', padding: '10px 22px', fontWeight: 700, fontSize: '13px', cursor: 'pointer' }}
             >
-              Explorer les opportunités
+              {isAr ? 'استكشاف الفرص التطوعية' : 'Explorer les opportunités'}
             </button>
           </div>
         ) : (
@@ -479,7 +566,7 @@ export default function SavedOffers({
                 <div style={{ position: 'relative', width: '100%', height: '190px', background: '#f1f5f9', overflow: 'hidden' }}>
                   <img
                     src={item.image}
-                    alt={item.title}
+                    alt={isAr ? (item.titleAr || item.title) : item.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
 
@@ -487,11 +574,12 @@ export default function SavedOffers({
                   <button
                     type="button"
                     onClick={(e) => handleRemoveSaved(item, e)}
-                    title="Retirer des offres sauvegardées"
+                    title={isAr ? 'إزالة من المحفوظات' : 'Retirer des offres sauvegardées'}
                     style={{
                       position: 'absolute',
                       top: '12px',
-                      right: '12px',
+                      right: isAr ? 'auto' : '12px',
+                      left: isAr ? '12px' : 'auto',
                       width: '38px',
                       height: '38px',
                       borderRadius: '50%',
@@ -524,7 +612,7 @@ export default function SavedOffers({
                         color: item.categoryColor
                       }}
                     >
-                      {item.category}
+                      {isAr ? (item.categoryAr || item.category) : item.category}
                     </span>
                   </div>
 
@@ -541,22 +629,22 @@ export default function SavedOffers({
                       minHeight: '44px'
                     }}
                   >
-                    {item.title}
+                    {isAr ? (item.titleAr || item.title) : item.title}
                   </h3>
 
                   {/* 3 Detail rows */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '18px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#64748b' }}>
                       <IconMapPin />
-                      <span>{item.location}</span>
+                      <span>{isAr ? (item.locationAr || item.location) : item.location}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#64748b' }}>
                       <IconCalendar color="#94a3b8" />
-                      <span>{item.date}</span>
+                      <span>{isAr ? (item.dateAr || item.date) : item.date}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#64748b' }}>
                       <IconClock />
-                      <span>{item.duration}</span>
+                      <span>{isAr ? (item.durationAr || item.duration) : item.duration}</span>
                     </div>
                   </div>
 
@@ -579,7 +667,7 @@ export default function SavedOffers({
                         boxShadow: '0 2px 6px rgba(0, 109, 91, 0.2)'
                       }}
                     >
-                      Voir les détails
+                      {isAr ? 'عرض التفاصيل' : 'Voir les détails'}
                     </button>
 
                     {/* Options button */}
@@ -607,7 +695,8 @@ export default function SavedOffers({
                         <div
                           style={{
                             position: 'absolute',
-                            right: 0,
+                            right: isAr ? 'auto' : 0,
+                            left: isAr ? 0 : 'auto',
                             bottom: '100%',
                             marginBottom: '6px',
                             width: '180px',
@@ -623,19 +712,19 @@ export default function SavedOffers({
                             type="button"
                             onClick={() => {
                               navigator.clipboard?.writeText(window.location.href);
-                              onToast && onToast("Lien de l'opportunité copié !");
+                              onToast && onToast(isAr ? 'تم نسخ رابط الفرصة بنجاح!' : "Lien de l'opportunité copié !");
                               setOpenMenuId(null);
                             }}
-                            style={{ width: '100%', textAlign: 'left', padding: '8px 12px', border: 'none', background: 'transparent', fontSize: '12px', fontWeight: 600, color: '#334155', cursor: 'pointer', borderRadius: '6px' }}
+                            style={{ width: '100%', textAlign: isAr ? 'right' : 'left', padding: '8px 12px', border: 'none', background: 'transparent', fontSize: '12px', fontWeight: 600, color: '#334155', cursor: 'pointer', borderRadius: '6px' }}
                           >
-                            Partager l'opportunité
+                            {isAr ? 'مشاركة الفرصة' : "Partager l'opportunité"}
                           </button>
                           <button
                             type="button"
                             onClick={(e) => { handleRemoveSaved(item, e); setOpenMenuId(null); }}
-                            style={{ width: '100%', textAlign: 'left', padding: '8px 12px', border: 'none', background: 'transparent', fontSize: '12px', fontWeight: 600, color: '#ef4444', cursor: 'pointer', borderRadius: '6px' }}
+                            style={{ width: '100%', textAlign: isAr ? 'right' : 'left', padding: '8px 12px', border: 'none', background: 'transparent', fontSize: '12px', fontWeight: 600, color: '#ef4444', cursor: 'pointer', borderRadius: '6px' }}
                           >
-                            Retirer des sauvegardes
+                            {isAr ? 'إزالة من المحفوظات' : 'Retirer des sauvegardes'}
                           </button>
                         </div>
                       )}
@@ -679,10 +768,10 @@ export default function SavedOffers({
 
           <div>
             <h3 style={{ margin: '0 0 4px', fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-              Merci de croire en un avenir meilleur !
+              {isAr ? 'شكراً لإيمانكم بمستقبل أفضل!' : 'Merci de croire en un avenir meilleur !'}
             </h3>
             <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>
-              Chaque action, petite ou grande, fait la différence.
+              {isAr ? 'كل مبادرة، صغيرة كانت أو كبيرة، تصنع أثراً حقيقياً وملموساً.' : 'Chaque action, petite ou grande, fait la différence.'}
             </p>
           </div>
         </div>
@@ -707,7 +796,7 @@ export default function SavedOffers({
             boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
           }}
         >
-          <span>Découvrir plus d'opportunités</span>
+          <span>{isAr ? 'اكتشف المزيد من الفرص' : "Découvrir plus d'opportunités"}</span>
           <IconArrowRight color="#006D5B" />
         </button>
       </div>
@@ -717,10 +806,10 @@ export default function SavedOffers({
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
           <div>
             <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
-              D’autres opportunités qui pourraient vous intéresser
+              {isAr ? 'فرص أخرى قد تهمّك' : 'D’autres opportunités qui pourraient vous intéresser'}
             </h2>
             <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>
-              Basées sur vos centres d'intérêt et vos offres sauvegardées.
+              {isAr ? 'مقترحة بناءً على اهتماماتك وتطوعاتك السابقة.' : "Basées sur vos centres d'intérêt et vos offres sauvegardées."}
             </p>
           </div>
 
@@ -739,7 +828,7 @@ export default function SavedOffers({
               cursor: 'pointer'
             }}
           >
-            <span>Voir toutes les opportunités</span>
+            <span>{isAr ? 'عرض جميع الفرص' : 'Voir toutes les opportunités'}</span>
             <IconArrowRight color="#006D5B" />
           </button>
         </div>
@@ -764,7 +853,7 @@ export default function SavedOffers({
               <div style={{ position: 'relative', width: '100%', height: '190px', background: '#f1f5f9', overflow: 'hidden' }}>
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={isAr ? (item.titleAr || item.title) : item.title}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
 
@@ -772,11 +861,12 @@ export default function SavedOffers({
                 <button
                   type="button"
                   onClick={(e) => handleAddSaved(item, e)}
-                  title="Ajouter aux offres sauvegardées"
+                  title={isAr ? 'إضافة إلى المحفوظات' : 'Ajouter aux offres sauvegardées'}
                   style={{
                     position: 'absolute',
                     top: '12px',
-                    right: '12px',
+                    right: isAr ? 'auto' : '12px',
+                    left: isAr ? '12px' : 'auto',
                     width: '38px',
                     height: '38px',
                     borderRadius: '50%',
@@ -809,7 +899,7 @@ export default function SavedOffers({
                       color: item.categoryColor
                     }}
                   >
-                    {item.category}
+                    {isAr ? (item.categoryAr || item.category) : item.category}
                   </span>
                 </div>
 
@@ -826,22 +916,22 @@ export default function SavedOffers({
                     minHeight: '44px'
                   }}
                 >
-                  {item.title}
+                  {isAr ? (item.titleAr || item.title) : item.title}
                 </h3>
 
                 {/* 3 Detail rows */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '18px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#64748b' }}>
                     <IconMapPin />
-                    <span>{item.location}</span>
+                    <span>{isAr ? (item.locationAr || item.location) : item.location}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#64748b' }}>
                     <IconCalendar color="#94a3b8" />
-                    <span>{item.date}</span>
+                    <span>{isAr ? (item.dateAr || item.date) : item.date}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#64748b' }}>
                     <IconClock />
-                    <span>{item.duration}</span>
+                    <span>{isAr ? (item.durationAr || item.duration) : item.duration}</span>
                   </div>
                 </div>
 
@@ -864,7 +954,7 @@ export default function SavedOffers({
                       boxShadow: '0 2px 6px rgba(0, 109, 91, 0.2)'
                     }}
                   >
-                    Voir l'offre
+                    {isAr ? 'عرض الفرصة' : "Voir l'offre"}
                   </button>
                 </div>
 
@@ -890,19 +980,19 @@ export default function SavedOffers({
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <img src={atharLogoClean} alt="Athar" style={{ height: '26px', width: 'auto' }} />
           <div>
-            <strong style={{ fontSize: '13px', color: '#006D5B', display: 'block', lineHeight: 1.1 }}>Athar</strong>
-            <small style={{ fontSize: '10.5px', color: '#94a3b8' }}>Le bénévole qui unit</small>
+            <strong style={{ fontSize: '13px', color: '#006D5B', display: 'block', lineHeight: 1.1 }}>{isAr ? 'أثر' : 'Athar'}</strong>
+            <small style={{ fontSize: '10.5px', color: '#94a3b8' }}>{isAr ? 'العمل التطوعي الذي يوحّدنا' : 'Le bénévole qui unit'}</small>
           </div>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '22px', fontSize: '13px', color: '#64748b' }}>
-          <a href="#aide" style={{ textDecoration: 'none', color: 'inherit' }}>Aide</a>
-          <a href="#confidentialite" style={{ textDecoration: 'none', color: 'inherit' }}>Confidentialité</a>
-          <a href="#conditions" style={{ textDecoration: 'none', color: 'inherit' }}>Conditions</a>
-          <a href="#contact" style={{ textDecoration: 'none', color: 'inherit' }}>Contact</a>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: 700, color: '#334155', cursor: 'pointer' }}>
-            <span>🌐</span>
-            <span>FR</span>
+          <a href="#aide" style={{ textDecoration: 'none', color: 'inherit' }}>{isAr ? 'المساعدة' : 'Aide'}</a>
+          <a href="#confidentialite" style={{ textDecoration: 'none', color: 'inherit' }}>{isAr ? 'الخصوصية' : 'Confidentialité'}</a>
+          <a href="#conditions" style={{ textDecoration: 'none', color: 'inherit' }}>{isAr ? 'الشروط' : 'Conditions'}</a>
+          <a href="#contact" style={{ textDecoration: 'none', color: 'inherit' }}>{isAr ? 'اتصل بنا' : 'Contact'}</a>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#334155', cursor: 'pointer' }}>
+            <IconGlobe color="#334155" />
+            <span>{isAr ? 'العربية' : 'FR'}</span>
             <IconChevronDown />
           </div>
         </div>

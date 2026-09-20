@@ -81,18 +81,24 @@ function IconArrowRight({ className = "w-4 h-4" }) {
 }
 
 export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = null, onToast }) {
+  const isAr = currentLang === 'ar';
+
   // Liste des publications conformes à feed benev .png
   const [posts, setPosts] = useState([
     {
       id: 'cra-1',
       author: 'Croissant Rouge Algérien',
+      authorAr: 'الهلال الأحمر الجزائري',
       initials: 'CRA',
       avatarBg: '#ffffff',
       avatarType: 'image',
       avatarImg: assocCraLogo,
       location: 'Alger',
+      locationAr: 'الجزائر العاصمة',
       time: 'il y a 2 heures',
+      timeAr: 'منذ ساعتين',
       content: '350 colis alimentaires distribués aux familles dans le besoin ce week-end. Merci à tous les bénévoles pour leur engagement !',
+      contentAr: 'تم توزيع 350 طرداً غذائياً على العائلات المحتاجة خلال عطلة نهاية هذا الأسبوع. شكراً جزيلاً لجميع المتطوعين على التزامهم وتفانيهم الميداني!',
       images: [feedCraImg],
       likes: 128,
       commentsCount: 24,
@@ -103,12 +109,16 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
     {
       id: 'gf-2',
       author: 'Green Future',
+      authorAr: 'Green Future',
       initials: 'GF',
       avatarBg: '#1b5e20',
       avatarType: 'leaf',
       location: 'Zéralda, Alger',
+      locationAr: 'زرالدة، الجزائر',
       time: 'il y a 1 jour',
-      content: 'Une nouvelle journée de plantation à Zéralda 🌱 Merci aux 40 bénévoles présents !',
+      timeAr: 'منذ يوم واحد',
+      content: 'Une nouvelle journée de plantation à Zéralda. Merci aux 40 bénévoles présents !',
+      contentAr: 'يوم غرس وتشجير جديد ناجح في غابة زرالدة. شكراً لـ 40 متطوعاً ومتطوعة على حضورهم الفعّال وطاقتهم الإيجابية!',
       images: [feedSproutImg, feedCoastPlantingImg],
       isGrid: true,
       likes: 96,
@@ -120,12 +130,16 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
     {
       id: 'chu-3',
       author: 'CHU Mustapha',
+      authorAr: 'مستشفى مصطفى باشا الجامعي',
       initials: 'CHU',
       avatarBg: '#1565c0',
       avatarType: 'text',
       location: 'Alger',
+      locationAr: 'الجزائر العاصمة',
       time: 'il y a 2 jours',
-      content: 'Collecte de sang réussie ce samedi au CHU Mustapha. Merci à tous les donneurs ! Votre geste sauve des vies. ❤️',
+      timeAr: 'منذ يومين',
+      content: 'Collecte de sang réussie ce samedi au CHU Mustapha. Merci à tous les donneurs ! Votre geste sauve des vies.',
+      contentAr: 'حملة تبرع بالدم ناجحة يوم السبت بمركز حقن الدم بالمستشفى الجامعي مصطفى باشا. شكراً لكل المتبرعين الكرام! قطرة دم تنقذ حياة.',
       images: [feedSangImg],
       likes: 210,
       commentsCount: 28,
@@ -136,12 +150,16 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
     {
       id: 'lpd-4',
       author: 'Lire pour Demain',
+      authorAr: 'اقرأ للغد',
       initials: 'LPD',
       avatarBg: '#00838f',
       avatarType: 'book',
       location: 'Hydra, Alger',
+      locationAr: 'حيدرة، الجزائر',
       time: 'il y a 3 jours',
+      timeAr: 'منذ 3 أيام',
       content: 'Atelier de lecture et éveil artistique avec les enfants. Des sourires qui inspirent !',
+      contentAr: 'ورشة قراءة تفاعلية وإيقاظ فني وثقافي مع الأطفال. ابتسامات بريئة وفضول معرفي يلهمنا للمواصلة والعطاء!',
       images: [feedLectureImg],
       likes: 74,
       commentsCount: 9,
@@ -153,11 +171,11 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
 
   // État des associations suggérées
   const [suggestedAssocs, setSuggestedAssocs] = useState([
-    { id: 1, name: 'Croissant Rouge Algérien', category: 'Humanitaire', logoImg: assocCraLogo, bg: '#ffffff', isFollowing: false },
-    { id: 2, name: 'Green Future', category: 'Environnement', isLeaf: true, bg: '#1b5e20', isFollowing: false },
-    { id: 3, name: 'Lire pour Demain', category: 'Éducation', isBook: true, bg: '#00838f', isFollowing: false },
-    { id: 4, name: 'Association El Baraka', category: 'Solidarité', badge: 'EB', bg: '#5e35b1', isFollowing: false },
-    { id: 5, name: 'Club Vert USTHB', category: 'Jeunesse', isLeaf: true, bg: '#2e7d32', isFollowing: false }
+    { id: 1, name: 'Croissant Rouge Algérien', nameAr: 'الهلال الأحمر الجزائري', category: 'Humanitaire', categoryAr: 'عمل إنساني', logoImg: assocCraLogo, bg: '#ffffff', isFollowing: false },
+    { id: 2, name: 'Green Future', nameAr: 'Green Future', category: 'Environnement', categoryAr: 'بيئة وتشجير', isLeaf: true, bg: '#1b5e20', isFollowing: false },
+    { id: 3, name: 'Lire pour Demain', nameAr: 'اقرأ للغد', category: 'Éducation', categoryAr: 'تعليم وثقافة', isBook: true, bg: '#00838f', isFollowing: false },
+    { id: 4, name: 'Association El Baraka', nameAr: 'جمعية البركة', category: 'Solidarité', categoryAr: 'تضامن وإغاثة', badge: 'EB', bg: '#5e35b1', isFollowing: false },
+    { id: 5, name: 'Club Vert USTHB', nameAr: 'نادي البيئة USTHB', category: 'Jeunesse', categoryAr: 'شباب وطلبة', isLeaf: true, bg: '#2e7d32', isFollowing: false }
   ]);
 
   const [commentInputs, setCommentInputs] = useState({});
@@ -181,7 +199,10 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
       if (p.id === postId) {
         const nextFollow = !p.isFollowing;
         if (onToast) {
-          onToast(nextFollow ? `Vous suivez désormais ${p.author}` : `Vous ne suivez plus ${p.author}`);
+          onToast(nextFollow 
+            ? (isAr ? `أنت تتابع الآن ${p.authorAr || p.author}` : `Vous suivez désormais ${p.author}`) 
+            : (isAr ? `ألغيت متابعة ${p.authorAr || p.author}` : `Vous ne suivez plus ${p.author}`)
+          );
         }
         return { ...p, isFollowing: nextFollow };
       }
@@ -194,7 +215,10 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
       if (a.id === assocId) {
         const nextFollow = !a.isFollowing;
         if (onToast) {
-          onToast(nextFollow ? `Vous suivez désormais ${a.name}` : `Vous ne suivez plus ${a.name}`);
+          onToast(nextFollow 
+            ? (isAr ? `أنت تتابع الآن ${a.nameAr || a.name}` : `Vous suivez désormais ${a.name}`)
+            : (isAr ? `ألغيت متابعة ${a.nameAr || a.name}` : `Vous ne suivez plus ${a.name}`)
+          );
         }
         return { ...a, isFollowing: nextFollow };
       }
@@ -213,7 +237,7 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
           commentsCount: p.commentsCount + 1,
           comments: [
             ...p.comments,
-            { id: Date.now(), author: volunteerUser?.name || 'Nadia Mansouri', text }
+            { id: Date.now(), author: volunteerUser?.name || (isAr ? 'نادية منصوري' : 'Nadia Mansouri'), text }
           ]
         };
       }
@@ -221,8 +245,10 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
     }));
 
     setCommentInputs(prev => ({ ...prev, [postId]: '' }));
-    if (onToast) onToast('Commentaire publié avec succès !');
+    if (onToast) onToast(isAr ? 'تم نشر التعليق بنجاح!' : 'Commentaire publié avec succès !');
   };
+
+  const volunteerFirstName = volunteerUser?.name?.split(' ')[0] || (isAr ? 'نادية' : 'Nadia');
 
   return (
     <div className="feed-benev-wrapper" style={{ maxWidth: '1080px', margin: '0 auto', paddingBottom: '50px' }}>
@@ -247,17 +273,19 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
       >
         <div style={{ flex: '1 1 55%', zIndex: 2 }}>
           <span style={{ fontSize: '15px', fontWeight: 800, color: '#00897b', display: 'inline-block', marginBottom: '6px' }}>
-            Bonjour <strong>{volunteerUser?.name?.split(' ')[0] || 'Nadia'}</strong> 👋
+            {isAr ? <>مرحباً <strong>{volunteerFirstName}</strong></> : <>Bonjour <strong>{volunteerFirstName}</strong></>}
           </span>
           <h1 style={{ fontSize: '26px', fontWeight: 900, color: '#0f172a', margin: '0 0 10px', lineHeight: 1.25 }}>
-            Prête à faire la différence aujourd'hui ?
+            {isAr ? 'مستعدة لإحداث الفرق اليوم؟' : "Prête à faire la différence aujourd'hui ?"}
           </h1>
           <p style={{ fontSize: '14px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
-            Découvrez les actions des associations et rejoignez une communauté qui agit pour une Algérie plus solidaire.
+            {isAr
+              ? 'اكتشفي مبادرات الجمعيات وانضمي إلى مجتمع متفاعل يعمل من أجل جزائر أكثر تضامناً وعطاءً.'
+              : 'Découvrez les actions des associations et rejoignez une communauté qui agit pour une Algérie plus solidaire.'}
           </p>
         </div>
 
-        {/* IMAGE PANORAMIQUE ALGER + SLOGAN CURSIF */}
+        {/* IMAGE PANORAMIQUE ALGER + SLOGAN */}
         <div style={{ flex: '0 0 380px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
           <div style={{ position: 'relative', width: '330px', height: '110px', borderRadius: '18px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}>
             <img 
@@ -270,19 +298,20 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
           <div 
             style={{
               position: 'absolute',
-              right: '12px',
+              right: isAr ? 'auto' : '12px',
+              left: isAr ? '12px' : 'auto',
               top: '50%',
               transform: 'translateY(-50%)',
-              textAlign: 'right',
+              textAlign: isAr ? 'left' : 'right',
               color: '#0f172a',
               textShadow: '0 1px 4px rgba(255,255,255,0.9)'
             }}
           >
-            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15 }}>
-              Des citoyens,
+            <div style={{ fontFamily: isAr ? "'Cairo', sans-serif" : 'Georgia, serif', fontStyle: isAr ? 'normal' : 'italic', fontSize: '19px', fontWeight: 800, color: '#004d40', lineHeight: 1.15 }}>
+              {isAr ? 'مواطنون فاعلون،' : 'Des citoyens,'}
             </div>
-            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
-              Un impact réel.
+            <div style={{ fontFamily: isAr ? "'Cairo', sans-serif" : 'Georgia, serif', fontStyle: isAr ? 'normal' : 'italic', fontSize: '19px', fontWeight: 800, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
+              {isAr ? 'أثر حقيقي.' : 'Un impact réel.'}
             </div>
           </div>
         </div>
@@ -293,200 +322,207 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
         
         {/* COLONNE DE GAUCHE : FLUX DES PUBLICATIONS */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-          {posts.map(post => (
-            <article 
-              key={post.id}
-              style={{
-                background: '#ffffff',
-                borderRadius: '18px',
-                border: '1px solid #e2e8f0',
-                padding: '22px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px'
-              }}
-            >
-              {/* EN-TÊTE DU POST */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  {/* AVATAR ASSOCIATION */}
-                  <div 
-                    style={{
-                      width: '44px',
-                      height: '44px',
-                      borderRadius: '50%',
-                      background: post.avatarBg,
-                      color: '#ffffff',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 800,
-                      fontSize: '14px',
-                      flexShrink: 0
-                    }}
-                  >
-                    {post.avatarType === 'image' && post.avatarImg ? (
-                      <img src={post.avatarImg} alt={post.author} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '3px', borderRadius: '50%' }} />
-                    ) : post.avatarType === 'leaf' ? (
-                      <IconLeaf className="w-5 h-5 text-white" />
-                    ) : post.avatarType === 'book' ? (
-                      <IconBookOpen className="w-5 h-5 text-white" />
-                    ) : (
-                      post.initials
-                    )}
+          {posts.map(post => {
+            const authorText = isAr && post.authorAr ? post.authorAr : post.author;
+            const locationText = isAr && post.locationAr ? post.locationAr : post.location;
+            const timeText = isAr && post.timeAr ? post.timeAr : post.time;
+            const contentText = isAr && post.contentAr ? post.contentAr : post.content;
+
+            return (
+              <article 
+                key={post.id}
+                style={{
+                  background: '#ffffff',
+                  borderRadius: '18px',
+                  border: '1px solid #e2e8f0',
+                  padding: '22px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '14px'
+                }}
+              >
+                {/* EN-TÊTE DU POST */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    {/* AVATAR ASSOCIATION */}
+                    <div 
+                      style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '50%',
+                        background: post.avatarBg,
+                        color: '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 800,
+                        fontSize: '14px',
+                        flexShrink: 0
+                      }}
+                    >
+                      {post.avatarType === 'image' && post.avatarImg ? (
+                        <img src={post.avatarImg} alt={authorText} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '3px', borderRadius: '50%' }} />
+                      ) : post.avatarType === 'leaf' ? (
+                        <IconLeaf className="w-5 h-5 text-white" />
+                      ) : post.avatarType === 'book' ? (
+                        <IconBookOpen className="w-5 h-5 text-white" />
+                      ) : (
+                        post.initials
+                      )}
+                    </div>
+
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a' }}>
+                          {authorText}
+                        </span>
+                        <IconCheckVerified className="w-4 h-4" />
+                      </div>
+                      <span style={{ fontSize: '12.5px', color: '#94a3b8' }}>
+                        {locationText} • {timeText}
+                      </span>
+                    </div>
                   </div>
 
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a' }}>
-                        {post.author}
-                      </span>
-                      <IconCheckVerified className="w-4 h-4" />
-                    </div>
-                    <span style={{ fontSize: '12.5px', color: '#94a3b8' }}>
-                      {post.location} • {post.time}
-                    </span>
+                  {/* BOUTON SUIVRE + MENU TROIS POINTS */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <button
+                      type="button"
+                      onClick={() => handleToggleFollowPost(post.id)}
+                      style={{
+                        padding: '6px 14px',
+                        borderRadius: '20px',
+                        fontSize: '12.5px',
+                        fontWeight: 700,
+                        background: post.isFollowing ? '#f1f5f9' : '#e6f7f3',
+                        color: post.isFollowing ? '#475569' : '#006D5B',
+                        border: post.isFollowing ? '1px solid #cbd5e1' : '1px solid transparent',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {post.isFollowing ? (isAr ? 'متابع' : 'Suivi') : (isAr ? '+ متابعة' : '+ Suivre')}
+                    </button>
+                    <button 
+                      type="button" 
+                      style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '4px' }}
+                    >
+                      <IconMoreHorizontal className="w-5 h-5" />
+                    </button>
                   </div>
                 </div>
 
-                {/* BOUTON SUIVRE + MENU TROIS POINTS */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {/* CONTENU TEXTE */}
+                <p style={{ margin: 0, fontSize: '14.5px', color: '#1e293b', lineHeight: 1.55 }}>
+                  {contentText}
+                </p>
+
+                {/* IMAGES DU POST */}
+                {post.isGrid ? (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', borderRadius: '14px', overflow: 'hidden' }}>
+                    <img 
+                      src={post.images[0]} 
+                      alt="Plantation de pousses" 
+                      style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
+                    />
+                    <img 
+                      src={post.images[1]} 
+                      alt="Volontaires sur la côte" 
+                      style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
+                    />
+                  </div>
+                ) : (
+                  <div style={{ borderRadius: '14px', overflow: 'hidden' }}>
+                    <img 
+                      src={post.images[0]} 
+                      alt={authorText} 
+                      style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', display: 'block' }}
+                    />
+                  </div>
+                )}
+
+                {/* BARRE D'ACTIONS / INTERACTIONS */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '22px', paddingTop: '4px' }}>
                   <button
                     type="button"
-                    onClick={() => handleToggleFollowPost(post.id)}
+                    onClick={() => handleToggleLike(post.id)}
                     style={{
-                      padding: '6px 14px',
-                      borderRadius: '20px',
-                      fontSize: '12.5px',
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '7px',
+                      fontSize: '13.5px',
                       fontWeight: 700,
-                      background: post.isFollowing ? '#f1f5f9' : '#e6f7f3',
-                      color: post.isFollowing ? '#475569' : '#006D5B',
-                      border: post.isFollowing ? '1px solid #cbd5e1' : '1px solid transparent',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease'
+                      color: post.isLiked ? '#ef4444' : '#64748b',
+                      cursor: 'pointer'
                     }}
                   >
-                    {post.isFollowing ? 'Suivi ✓' : '+ Suivre'}
+                    <IconHeart className="w-4 h-4" fill={post.isLiked} />
+                    <span>{post.likes}</span>
                   </button>
-                  <button 
-                    type="button" 
-                    style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '4px' }}
-                  >
-                    <IconMoreHorizontal className="w-5 h-5" />
-                  </button>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '7px', fontSize: '13.5px', fontWeight: 700, color: '#64748b' }}>
+                    <IconMessageSquare className="w-4 h-4" />
+                    <span>{post.commentsCount}</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* CONTENU TEXTE */}
-              <p style={{ margin: 0, fontSize: '14.5px', color: '#1e293b', lineHeight: 1.55 }}>
-                {post.content}
-              </p>
-
-              {/* IMAGES DU POST */}
-              {post.isGrid ? (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', borderRadius: '14px', overflow: 'hidden' }}>
-                  <img 
-                    src={post.images[0]} 
-                    alt="Plantation de pousses" 
-                    style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
-                  />
-                  <img 
-                    src={post.images[1]} 
-                    alt="Volontaires sur la côte" 
-                    style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
-                  />
-                </div>
-              ) : (
-                <div style={{ borderRadius: '14px', overflow: 'hidden' }}>
-                  <img 
-                    src={post.images[0]} 
-                    alt={post.author} 
-                    style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', display: 'block' }}
-                  />
-                </div>
-              )}
-
-              {/* BARRE D'ACTIONS / INTERACTIONS */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '22px', paddingTop: '4px' }}>
-                <button
-                  type="button"
-                  onClick={() => handleToggleLike(post.id)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '7px',
-                    fontSize: '13.5px',
-                    fontWeight: 700,
-                    color: post.isLiked ? '#ef4444' : '#64748b',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <IconHeart className="w-4 h-4" fill={post.isLiked} />
-                  <span>{post.likes}</span>
-                </button>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '7px', fontSize: '13.5px', fontWeight: 700, color: '#64748b' }}>
-                  <IconMessageSquare className="w-4 h-4" />
-                  <span>{post.commentsCount}</span>
-                </div>
-              </div>
-
-              {/* LISTE DES COMMENTAIRES NOUVELLEMENT AJOUTÉS */}
-              {post.comments.length > 0 && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '8px', borderTop: '1px solid #f1f5f9' }}>
-                  {post.comments.map(c => (
-                    <div key={c.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px' }}>
-                      <img 
-                        src={profileNadiaAvatar} 
-                        alt={c.author} 
-                        style={{ width: '26px', height: '26px', borderRadius: '50%', objectFit: 'cover' }}
-                      />
-                      <div style={{ background: '#f8fafc', padding: '8px 14px', borderRadius: '14px', flex: 1 }}>
-                        <strong style={{ color: '#0f172a', marginRight: '6px' }}>{c.author}</strong>
-                        <span style={{ color: '#334155' }}>{c.text}</span>
+                {/* LISTE DES COMMENTAIRES */}
+                {post.comments.length > 0 && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '8px', borderTop: '1px solid #f1f5f9' }}>
+                    {post.comments.map(c => (
+                      <div key={c.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px' }}>
+                        <img 
+                          src={profileNadiaAvatar} 
+                          alt={c.author} 
+                          style={{ width: '26px', height: '26px', borderRadius: '50%', objectFit: 'cover' }}
+                        />
+                        <div style={{ background: '#f8fafc', padding: '8px 14px', borderRadius: '14px', flex: 1 }}>
+                          <strong style={{ color: '#0f172a', marginRight: '6px' }}>{c.author}</strong>
+                          <span style={{ color: '#334155' }}>{c.text}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
 
-              {/* CHAMP D'AJOUT DE COMMENTAIRE AVEC AVATAR NADIA */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '6px' }}>
-                <img 
-                  src={profileNadiaAvatar} 
-                  alt="Nadia Mansouri" 
-                  style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
-                />
-                <div style={{ flex: 1, position: 'relative' }}>
-                  <input
-                    type="text"
-                    placeholder="Ajouter un commentaire..."
-                    value={commentInputs[post.id] || ''}
-                    onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') handleAddComment(post.id);
-                    }}
-                    style={{
-                      width: '100%',
-                      background: '#f8fafc',
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '24px',
-                      padding: '9px 18px',
-                      fontSize: '13px',
-                      color: '#1e293b',
-                      outline: 'none',
-                      boxSizing: 'border-box'
-                    }}
+                {/* CHAMP D'AJOUT DE COMMENTAIRE */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '6px' }}>
+                  <img 
+                    src={profileNadiaAvatar} 
+                    alt="Nadia Mansouri" 
+                    style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
                   />
+                  <div style={{ flex: 1, position: 'relative' }}>
+                    <input
+                      type="text"
+                      placeholder={isAr ? 'أضف تعليقاً...' : 'Ajouter un commentaire...'}
+                      value={commentInputs[post.id] || ''}
+                      onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleAddComment(post.id);
+                      }}
+                      style={{
+                        width: '100%',
+                        background: '#f8fafc',
+                        border: '1px solid #e2e8f0',
+                        borderRadius: '24px',
+                        padding: '9px 18px',
+                        fontSize: '13px',
+                        color: '#1e293b',
+                        outline: 'none',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         {/* COLONNE DE DROITE : WIDGETS (feed benev .png) */}
@@ -504,74 +540,79 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
               <h3 style={{ margin: 0, fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
-                Associations à suivre
+                {isAr ? 'جمعيات مقترحة للمتابعة' : 'Associations à suivre'}
               </h3>
               <button 
                 type="button" 
                 style={{ background: 'none', border: 'none', color: '#006D5B', fontSize: '12.5px', fontWeight: 700, cursor: 'pointer' }}
               >
-                Voir tout
+                {isAr ? 'عرض الكل' : 'Voir tout'}
               </button>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {suggestedAssocs.map(assoc => (
-                <div key={assoc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div 
+              {suggestedAssocs.map(assoc => {
+                const assocName = isAr && assoc.nameAr ? assoc.nameAr : assoc.name;
+                const assocCat = isAr && assoc.categoryAr ? assoc.categoryAr : assoc.category;
+
+                return (
+                  <div key={assoc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div 
+                        style={{
+                          width: '38px',
+                          height: '38px',
+                          borderRadius: '50%',
+                          background: assoc.bg,
+                          color: '#ffffff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontWeight: 800,
+                          fontSize: '12px',
+                          flexShrink: 0
+                        }}
+                      >
+                        {assoc.logoImg ? (
+                          <img src={assoc.logoImg} alt={assocName} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px', borderRadius: '50%' }} />
+                        ) : assoc.isLeaf ? (
+                          <IconLeaf className="w-4 h-4 text-white" />
+                        ) : assoc.isBook ? (
+                          <IconBookOpen className="w-4 h-4 text-white" />
+                        ) : (
+                          assoc.badge
+                        )}
+                      </div>
+                      <div>
+                        <h4 style={{ margin: 0, fontSize: '13.5px', fontWeight: 700, color: '#0f172a', lineHeight: 1.2 }}>
+                          {assocName}
+                        </h4>
+                        <span style={{ fontSize: '11.5px', color: '#94a3b8' }}>
+                          {assocCat}
+                        </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleToggleFollowSidebar(assoc.id)}
                       style={{
-                        width: '38px',
-                        height: '38px',
-                        borderRadius: '50%',
-                        background: assoc.bg,
-                        color: '#ffffff',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontWeight: 800,
+                        padding: '5px 12px',
+                        borderRadius: '16px',
                         fontSize: '12px',
+                        fontWeight: 700,
+                        background: assoc.isFollowing ? '#f1f5f9' : '#e6f7f3',
+                        color: assoc.isFollowing ? '#475569' : '#006D5B',
+                        border: assoc.isFollowing ? '1px solid #cbd5e1' : '1px solid transparent',
+                        cursor: 'pointer',
                         flexShrink: 0
                       }}
                     >
-                      {assoc.logoImg ? (
-                        <img src={assoc.logoImg} alt={assoc.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px', borderRadius: '50%' }} />
-                      ) : assoc.isLeaf ? (
-                        <IconLeaf className="w-4 h-4 text-white" />
-                      ) : assoc.isBook ? (
-                        <IconBookOpen className="w-4 h-4 text-white" />
-                      ) : (
-                        assoc.badge
-                      )}
-                    </div>
-                    <div>
-                      <h4 style={{ margin: 0, fontSize: '13.5px', fontWeight: 700, color: '#0f172a', lineHeight: 1.2 }}>
-                        {assoc.name}
-                      </h4>
-                      <span style={{ fontSize: '11.5px', color: '#94a3b8' }}>
-                        {assoc.category}
-                      </span>
-                    </div>
+                      {assoc.isFollowing ? (isAr ? 'متابع' : 'Suivi') : (isAr ? '+ متابعة' : '+ Suivre')}
+                    </button>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => handleToggleFollowSidebar(assoc.id)}
-                    style={{
-                      padding: '5px 12px',
-                      borderRadius: '16px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      background: assoc.isFollowing ? '#f1f5f9' : '#e6f7f3',
-                      color: assoc.isFollowing ? '#475569' : '#006D5B',
-                      border: assoc.isFollowing ? '1px solid #cbd5e1' : '1px solid transparent',
-                      cursor: 'pointer',
-                      flexShrink: 0
-                    }}
-                  >
-                    {assoc.isFollowing ? 'Suivi' : '+ Suivre'}
-                  </button>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -587,18 +628,20 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
               <h3 style={{ margin: 0, fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
-                Sujets en tendance
+                {isAr ? 'مواضيع شائعة' : 'Sujets en tendance'}
               </h3>
-              <IconArrowRight className="w-4 h-4 text-slate-500" />
+              <span style={{ transform: isAr ? 'scaleX(-1)' : 'none', display: 'inline-flex' }}>
+                <IconArrowRight className="w-4 h-4 text-slate-500" />
+              </span>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                { tag: 'Solidarité', count: '1.2k publications' },
-                { tag: 'Environnement', count: '980 publications' },
-                { tag: 'Jeunesse', count: '720 publications' },
-                { tag: 'DonDeSang', count: '640 publications' },
-                { tag: 'Éducation', count: '580 publications' }
+                { tag: isAr ? 'تضامن وإغاثة' : 'Solidarité', count: isAr ? '1.2k منشور' : '1.2k publications' },
+                { tag: isAr ? 'بيئة وتشجير' : 'Environnement', count: isAr ? '980 منشور' : '980 publications' },
+                { tag: isAr ? 'شباب متطوع' : 'Jeunesse', count: isAr ? '720 منشور' : '720 publications' },
+                { tag: isAr ? 'تبرع بالدم' : 'DonDeSang', count: isAr ? '640 منشور' : '640 publications' },
+                { tag: isAr ? 'تعليم وأطفال' : 'Éducation', count: isAr ? '580 منشور' : '580 publications' }
               ].map(item => (
                 <div key={item.tag} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#0f172a' }}>
@@ -625,19 +668,19 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
           >
             <p 
               style={{
-                fontFamily: 'Georgia, serif',
-                fontStyle: 'italic',
+                fontFamily: isAr ? "'Cairo', sans-serif" : 'Georgia, serif',
+                fontStyle: isAr ? 'normal' : 'italic',
                 fontSize: '17px',
-                fontWeight: 600,
+                fontWeight: 700,
                 color: '#004d40',
                 margin: '0 0 12px',
                 lineHeight: 1.45
               }}
             >
-              “Des petites actions font de grands changements.”
+              {isAr ? '“المبادرات الصغيرة تصنع التغييرات الكبرى.”' : '“Des petites actions font de grands changements.”'}
             </p>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: '#006D5B' }}>
-              — Athar
+            <span style={{ fontSize: '13px', fontWeight: 800, color: '#006D5B' }}>
+              {isAr ? '— منصة أثر' : '— Athar'}
             </span>
           </div>
 
@@ -648,3 +691,4 @@ export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = 
     </div>
   );
 }
+

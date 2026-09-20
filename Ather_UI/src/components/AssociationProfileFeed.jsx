@@ -309,10 +309,128 @@ const POSTS = [
   }
 ];
 
-export default function AssociationProfileFeed({ onNavigateNewPost }) {
+const STORIES_AR = [
+  { 
+    id: 'terrain', 
+    label: 'في الميدان', 
+    img: assocStoryTerrain, 
+    desc: 'تعبئة مستمرة لفرقنا الميدانية: تنظيف الشواطئ، دعم لوجستي ومساعدة للأسر المحتاجة.',
+    badge: 'تدخل مباشر'
+  },
+  { 
+    id: 'education', 
+    label: 'التعليم والتكوين', 
+    img: assocStoryEducation, 
+    desc: 'توزيع محافظ ومستلزمات مدرسية كاملة لأبناء المناطق النائية والمعزولة.',
+    badge: 'دخول مدرسي متضامن'
+  },
+  { 
+    id: 'environnement', 
+    label: 'البيئة والتشجير', 
+    img: assocStoryEnvironnement, 
+    desc: 'حملات تطوعية للتشجير ومكافحة التصحر وحماية المساحات الغابية.',
+    badge: 'بيئة وتنمية'
+  },
+  { 
+    id: 'sante', 
+    label: 'الصحة والتبرع بالدم', 
+    img: assocStorySante, 
+    desc: 'حملات مكثفة للتبرع بالدم مع مراكز حقن الدم وقوافل الفحص الطبي المتخصص المجاني.',
+    badge: 'إنقاذ الأرواح'
+  },
+  { 
+    id: 'patrimoine', 
+    label: 'الإسعاف والطوارئ', 
+    img: assocStoryPatrimoine, 
+    desc: 'إسعافات أولية، تكوين المتطوعين وسرعة استجابة أمام الأزمات والكوارث.',
+    badge: 'حماية وإسعاف'
+  },
+  { 
+    id: 'caravane', 
+    label: 'قوافل الجنوب', 
+    img: assocStoryCaravane, 
+    desc: 'قوافل المساعدات الإنسانية والطرود الغذائية والكسوة لولايات الجنوب الكبير.',
+    badge: 'شتاء دافئ'
+  },
+];
+
+const POSTS_AR = [
+  {
+    id: 'post-2',
+    title: 'قافلة إنسانية تضامنية',
+    location: 'بسكرة والواحات',
+    image: assocPostCaravane,
+    photosCount: 5,
+    likes: 312,
+    comments: 44,
+    date: '15 ماي 2025',
+    caption: "وصول القافلة التضامنية الكبرى للهلال الأحمر الجزائري إلى مناطق الظل: توزيع أغطية شتوية، حقائب نظافة وألبسة لـ 200 عائلة."
+  },
+  {
+    id: 'post-3',
+    title: 'حملة تشجير كبرى',
+    location: 'زرالدة، الجزائر العاصمة',
+    image: assocPostArbre,
+    photosCount: 4,
+    likes: 389,
+    comments: 52,
+    date: '10 ماي 2025',
+    caption: "تعبئة مواطنة لإعادة تخضير شريطنا الساحلي: غرس أكثر من 800 شجيرة بمشاركة 60 شاباً وشابة متطوعين بحماس وأمل."
+  },
+  {
+    id: 'post-4',
+    title: 'ترميم وتأهيل القصبة العتيقة',
+    location: 'القصبة، الجزائر العاصمة',
+    image: assocPostQuartiers,
+    photosCount: 6,
+    likes: 420,
+    comments: 63,
+    date: '4 ماي 2025',
+    caption: "يوم تضامني في قلب القصبة التاريخية: تنظيف الأزقة، ترميم الواجهات وإبراز تراثنا المشترك بالتنسيق مع الحرفيين والسكان."
+  },
+  {
+    id: 'post-5',
+    title: 'تنظيف وحماية الشواطئ',
+    location: 'شنوة، تيبازة',
+    image: assocPostPlage,
+    photosCount: 4,
+    likes: 365,
+    comments: 41,
+    date: '28 أفريل 2025',
+    caption: "نجاح حملة الشواطئ النظيفة: جمع 1.2 طن من البلاستيك والنفايات البحرية وتوجيهها للرسكلة. شكراً للغواصين والمتطوعين!"
+  },
+  {
+    id: 'post-6',
+    title: 'حملة التبرع بالدم والفحص الطبي',
+    location: 'المستشفى الجامعي مصطفى باشا، الجزائر',
+    image: assocPostSante,
+    photosCount: 3,
+    likes: 298,
+    comments: 36,
+    date: '22 أفريل 2025',
+    caption: "حملة تبرع بالدم واسعة بمستشفى مصطفى باشا: جمع 140 كيساً لتغطية الاحتياجات العاجلة لمصالح الطوارئ. قطرة دم = حياة تُنقذ!"
+  },
+  {
+    id: 'post-7',
+    title: 'الدخول المدرسي المتضامن',
+    location: 'المدية',
+    image: assocPostEcole,
+    photosCount: 4,
+    likes: 275,
+    comments: 29,
+    date: '14 أفريل 2025',
+    caption: "توزيع محافظ وأدوات مدرسية متكاملة لـ 180 تلميذاً في البلديات الجبلية، لضمان حق كل طفل في التعلّم بكرامة."
+  }
+];
+
+export default function AssociationProfileFeed({ onNavigateNewPost, currentLang = 'fr' }) {
   const [activeTab, setActiveTab] = useState('publications'); // 'publications' | 'apropos' | 'benevoles'
   const [selectedPost, setSelectedPost] = useState(null);
   const [showStoryModal, setShowStoryModal] = useState(null);
+
+  const isAr = currentLang === 'ar';
+  const storiesList = isAr ? STORIES_AR : STORY_HIGHLIGHTS;
+  const postsList = isAr ? POSTS_AR : POSTS;
 
   return (
     <div className="assoc-feed-root">
@@ -328,7 +446,11 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
           {/* Citation cursive sur la photo */}
           <div className="assoc-cover-quote">
             <span className="assoc-cover-quote-text">
-              Des petites actions<br />font de grands<br />changements.
+              {isAr ? (
+                <>خطوات صغيرة<br />تصنع فارقاً<br />عظيماً.</>
+              ) : (
+                <>Des petites actions<br />font de grands<br />changements.</>
+              )}
             </span>
           </div>
 
@@ -338,7 +460,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
             className="assoc-cover-change-btn"
           >
             <IconCamera className="w-3.5 h-3.5" />
-            <span>Changer la couverture</span>
+            <span>{isAr ? 'تغيير صورة الغلاف' : 'Changer la couverture'}</span>
           </button>
         </div>
 
@@ -357,10 +479,12 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
 
               <div className="assoc-profile-name-group">
                 <div className="assoc-profile-title-row">
-                  <h1 className="assoc-profile-title">Croissant Rouge Algérien</h1>
+                  <h1 className="assoc-profile-title">{isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien'}</h1>
                   <IconCheckVerified className="w-5 h-5" />
                 </div>
-                <div className="assoc-profile-category">Association humanitaire reconnue d'utilité publique</div>
+                <div className="assoc-profile-category">
+                  {isAr ? 'جمعية إنسانية وطنية ذات منفعة عامة معتمدة' : "Association humanitaire reconnue d'utilité publique"}
+                </div>
               </div>
             </div>
 
@@ -371,7 +495,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                 className="assoc-btn-edit"
               >
                 <IconEdit className="w-3.5 h-3.5" />
-                <span>Modifier le profil</span>
+                <span>{isAr ? 'تعديل الملف' : 'Modifier le profil'}</span>
               </button>
               
               <button
@@ -380,21 +504,23 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                 className="assoc-btn-new-post"
               >
                 <IconPlus className="w-4 h-4" />
-                <span>Nouvelle publication</span>
+                <span>{isAr ? 'منشور جديد' : 'Nouvelle publication'}</span>
               </button>
             </div>
           </div>
 
           {/* Bio Description aérée */}
           <p className="assoc-profile-bio">
-            Soulager les souffrances, protéger les personnes les plus vulnérables et bâtir des communautés plus résilientes à travers les 69 wilayas d'Algérie.
+            {isAr
+              ? 'التخفيف من المعاناة وحماية الفئات الأكثر هشاشة وبناء مجتمعات أكثر صموداً وتكافلاً عبر 69 ولاية جزائرية.'
+              : 'Soulager les souffrances, protéger les personnes les plus vulnérables et bâtir des communautés plus résilientes à travers les 69 wilayas d\'Algérie.'}
           </p>
 
           {/* Liens de contact sous forme de badges aérés */}
           <div className="assoc-profile-contact-row">
             <span className="assoc-contact-pill">
               <IconMapPin className="w-3.5 h-3.5" />
-              <span>Alger, Algérie</span>
+              <span>{isAr ? 'الجزائر العاصمة، الجزائر' : 'Alger, Algérie'}</span>
             </span>
             <span className="assoc-contact-pill">
               <IconMail className="w-3.5 h-3.5" />
@@ -415,7 +541,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               </div>
               <div>
                 <div className="assoc-stat-val">24</div>
-                <div className="assoc-stat-label">Publications</div>
+                <div className="assoc-stat-label">{isAr ? 'منشورات ميدانية' : 'Publications'}</div>
               </div>
             </div>
 
@@ -426,7 +552,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               </div>
               <div>
                 <div className="assoc-stat-val">186</div>
-                <div className="assoc-stat-label">Bénévoles engagés</div>
+                <div className="assoc-stat-label">{isAr ? 'متطوعون منخرطون' : 'Bénévoles engagés'}</div>
               </div>
             </div>
 
@@ -437,7 +563,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               </div>
               <div>
                 <div className="assoc-stat-val">5</div>
-                <div className="assoc-stat-label">Missions réalisées</div>
+                <div className="assoc-stat-label">{isAr ? 'مبادرات منجزة' : 'Missions réalisées'}</div>
               </div>
             </div>
 
@@ -448,7 +574,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               </div>
               <div>
                 <div className="assoc-stat-val">1.2K</div>
-                <div className="assoc-stat-label">Abonnés</div>
+                <div className="assoc-stat-label">{isAr ? 'متابعون' : 'Abonnés'}</div>
               </div>
             </div>
           </div>
@@ -457,7 +583,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
 
       {/* 3. STORIES TEMPS FORTS */}
       <div className="assoc-stories-card">
-        {STORY_HIGHLIGHTS.map((story) => (
+        {storiesList.map((story) => (
           <button
             type="button"
             key={story.id}
@@ -497,7 +623,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
             <IconPlus className="w-5 h-5" />
           </div>
           <span className="assoc-story-label" style={{ color: '#64748b' }}>
-            Nouveau
+            {isAr ? 'جديد' : 'Nouveau'}
           </span>
         </button>
       </div>
@@ -516,7 +642,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               className={`assoc-tab-btn ${activeTab === 'publications' ? 'active' : ''}`}
             >
               <IconGrid className="w-4 h-4" />
-              <span>Nos publications</span>
+              <span>{isAr ? 'المنشورات' : 'Nos publications'}</span>
             </button>
 
             <button
@@ -525,7 +651,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               className={`assoc-tab-btn ${activeTab === 'apropos' ? 'active' : ''}`}
             >
               <IconInfo className="w-4 h-4" />
-              <span>À propos</span>
+              <span>{isAr ? 'نبذة عن الجمعية' : 'À propos'}</span>
             </button>
 
             <button
@@ -534,14 +660,14 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
               className={`assoc-tab-btn ${activeTab === 'benevoles' ? 'active' : ''}`}
             >
               <IconUsers className="w-4 h-4" />
-              <span>Bénévoles (186)</span>
+              <span>{isAr ? 'المتطوعون (186)' : 'Bénévoles (186)'}</span>
             </button>
           </div>
 
           {/* ONGLET 1: GRILLE DE PUBLICATIONS STYLE INSTAGRAM */}
           {activeTab === 'publications' && (
             <div className="assoc-posts-grid">
-              {POSTS.map((post) => (
+              {postsList.map((post) => (
                 <div
                   key={post.id}
                   onClick={() => setSelectedPost(post)}
@@ -595,31 +721,33 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
           {activeTab === 'apropos' && (
             <div className="assoc-profile-card" style={{ padding: '28px 32px' }}>
               <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '0 0 12px' }}>
-                Histoire et Mission
+                {isAr ? 'التاريخ والرسالة الإنسانية' : 'Histoire et Mission'}
               </h3>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--assoc-text-body)', margin: '0 0 20px' }}>
-                Fondé en 1956, le Croissant Rouge Algérien (CRA) est la société nationale humanitaire d'Algérie, auxiliaire des pouvoirs publics dans le domaine humanitaire. Présente sur l'ensemble des 69 wilayas à travers ses comités locaux et de wilaya, l'organisation mobilise chaque année des dizaines de milliers de volontaires dévoués.
+                {isAr
+                  ? 'تأسس الهلال الأحمر الجزائري سنة 1956، وهو الجمعية الوطنية الإنسانية للجمهورية الجزائرية الديمقراطية الشعبية، وهيئة مساعدة للسلطات العمومية في المجال الإنساني. ينشط عبر كامل التراب الوطني في 69 ولاية من خلال لجانه الولائية والمحلية، ويجنّد سنوياً عشرات الآلاف من المتطوعين المخلصين لخدمة المحتاجين والمتضررين.'
+                  : "Fondé en 1956, le Croissant Rouge Algérien (CRA) est la société nationale humanitaire d'Algérie, auxiliaire des pouvoirs publics dans le domaine humanitaire. Présente sur l'ensemble des 69 wilayas à travers ses comités locaux et de wilaya, l'organisation mobilise chaque année des dizaines de milliers de volontaires dévoués."}
               </p>
 
               <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '0 0 14px' }}>
-                Principes Fondamentaux
+                {isAr ? 'المبادئ الأساسية' : 'Principes Fondamentaux'}
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div style={{ padding: '14px 16px', background: 'var(--assoc-bg-subtle)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', fontWeight: 700, color: 'var(--assoc-text-primary)' }}>
                   <IconShield className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                  <span>Humanité & Neutralité</span>
+                  <span>{isAr ? 'الإنسانية والحياد' : 'Humanité & Neutralité'}</span>
                 </div>
                 <div style={{ padding: '14px 16px', background: 'var(--assoc-bg-subtle)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', fontWeight: 700, color: 'var(--assoc-text-primary)' }}>
                   <IconUsers className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                  <span>Impartialité & Unité</span>
+                  <span>{isAr ? 'عدم التحيز والوحدة' : 'Impartialité & Unité'}</span>
                 </div>
                 <div style={{ padding: '14px 16px', background: 'var(--assoc-bg-subtle)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', fontWeight: 700, color: 'var(--assoc-text-primary)' }}>
                   <IconGlobe className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                  <span>Universalité</span>
+                  <span>{isAr ? 'العالمية' : 'Universalité'}</span>
                 </div>
                 <div style={{ padding: '14px 16px', background: 'var(--assoc-bg-subtle)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', fontWeight: 700, color: 'var(--assoc-text-primary)' }}>
                   <IconHeart className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                  <span>Engagement Bénévole</span>
+                  <span>{isAr ? 'التطوع والخدمة المجتمعية' : 'Engagement Bénévole'}</span>
                 </div>
               </div>
             </div>
@@ -630,14 +758,16 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
             <div className="assoc-profile-card" style={{ padding: '28px 32px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--assoc-navy)', margin: 0 }}>
-                  Bénévoles engagés (186)
+                  {isAr ? 'المتطوعون المنخرطون (186)' : 'Bénévoles engagés (186)'}
                 </h3>
                 <span style={{ fontSize: '13px', color: 'var(--assoc-emerald)', fontWeight: 700, cursor: 'pointer' }}>
-                  Gérer la communauté →
+                  {isAr ? 'إدارة المجتمع التطوعي ←' : 'Gérer la communauté →'}
                 </span>
               </div>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--assoc-text-muted)', margin: 0 }}>
-                Ces citoyens dévoués donnent de leur temps chaque semaine pour faire vivre la solidarité et secourir nos concitoyens sur le terrain à travers toute l'Algérie.
+                {isAr
+                  ? 'سواعد معطاءة وطاقات شابة تكرس وقتها وجهدها كل أسبوع لترسيخ قيم التكافل وإغاثة إخوانهم عبر ربوع الجزائر الحبيبة.'
+                  : "Ces citoyens dévoués donnent de leur temps chaque semaine pour faire vivre la solidarité et secourir nos concitoyens sur le terrain à travers toute l'Algérie."}
               </p>
             </div>
           )}
@@ -649,13 +779,17 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
           {/* Bloc 1: À propos de nous */}
           <div className="assoc-profile-card" style={{ padding: '24px 26px' }}>
             <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '0 0 10px' }}>
-              À propos de nous
+              {isAr ? 'نبذة عن الجمعية' : 'À propos de nous'}
             </h3>
             <p style={{ fontSize: '13.5px', color: 'var(--assoc-text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
-              Le Croissant Rouge Algérien est une association humanitaire nationale, auxiliaire des pouvoirs publics, qui œuvre pour la protection de la vie, la santé et la dignité humaine.
+              {isAr
+                ? 'الهلال الأحمر الجزائري منظمة إنسانية وطنية مستقلة وهيئة مساعدة للسلطات العمومية في الميدان الإنساني، تعمل لصون الحياة والصحة والكرامة الإنسانية.'
+                : 'Le Croissant Rouge Algérien est une association humanitaire nationale, auxiliaire des pouvoirs publics, qui œuvre pour la protection de la vie, la santé et la dignité humaine.'}
             </p>
             <p style={{ fontSize: '13.5px', color: 'var(--assoc-text-body)', lineHeight: 1.6, margin: '0 0 16px' }}>
-              Nous mobilisons des bénévoles à travers tout le territoire national pour porter assistance aux personnes vulnérables et renforcer la cohésion sociale.
+              {isAr
+                ? 'نجنّد المتطوعين عبر كافة الولايات لإعانة الفئات الهشة وبناء مجتمع متماسك ومتضامن.'
+                : 'Nous mobilisons des bénévoles à travers tout le territoire national pour porter assistance aux personnes vulnérables et renforcer la cohésion sociale.'}
             </p>
 
             <button
@@ -674,15 +808,15 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                 gap: '6px'
               }}
             >
-              <span>Voir l'historique complet</span>
-              <span>→</span>
+              <span>{isAr ? 'عرض السجل التعريفي الكامل' : "Voir l'historique complet"}</span>
+              <span>{isAr ? '←' : '→'}</span>
             </button>
           </div>
 
           {/* Bloc 2: Domaines d'action */}
           <div className="assoc-profile-card" style={{ padding: '24px 26px' }}>
             <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '0 0 14px' }}>
-              Domaines d'action
+              {isAr ? 'مجالات العمل والنشاط' : "Domaines d'action"}
             </h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -690,35 +824,35 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                 <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--assoc-emerald-light)', color: 'var(--assoc-emerald)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <IconShield className="w-4 h-4" />
                 </div>
-                <span>Aide humanitaire & secours</span>
+                <span>{isAr ? 'الإغاثة والمساعدات الإنسانية' : 'Aide humanitaire & secours'}</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', fontWeight: 600, color: 'var(--assoc-text-body)' }}>
                 <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#ffe4e6', color: '#e11d48', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <IconHeart className="w-4 h-4" />
                 </div>
-                <span>Santé et premiers secours</span>
+                <span>{isAr ? 'الصحة والإسعافات الأولية' : 'Santé et premiers secours'}</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', fontWeight: 600, color: 'var(--assoc-text-body)' }}>
                 <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <IconBookOpen className="w-4 h-4" />
                 </div>
-                <span>Éducation et inclusion</span>
+                <span>{isAr ? 'التعليم والتأهيل المدرسي' : 'Éducation et inclusion'}</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', fontWeight: 600, color: 'var(--assoc-text-body)' }}>
                 <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#ecfdf5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <IconLeaf className="w-4 h-4" />
                 </div>
-                <span>Environnement & reboisement</span>
+                <span>{isAr ? 'البيئة وحملات التشجير' : 'Environnement & reboisement'}</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', fontWeight: 600, color: 'var(--assoc-text-body)' }}>
                 <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#fef3c7', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <IconAlertTriangle className="w-4 h-4" />
                 </div>
-                <span>Urgences et catastrophes</span>
+                <span>{isAr ? 'الطوارئ وإدارة الأزمات' : 'Urgences et catastrophes'}</span>
               </div>
             </div>
           </div>
@@ -735,10 +869,12 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
             }}
           >
             <p style={{ fontSize: '14px', fontWeight: 700, fontStyle: 'italic', color: '#064e3b', lineHeight: 1.6, margin: '0 0 10px' }}>
-              “ Une société plus solidaire se construit chaque jour, avec vous. ”
+              {isAr
+                ? '“ مجتمع أكثر تكافلاً وتضامناً يُبنى كل يوم، بسواعدكم وهمتكم. ”'
+                : '“ Une société plus solidaire se construit chaque jour, avec vous. ”'}
             </p>
             <div style={{ fontSize: '12px', fontWeight: 800, color: 'var(--assoc-emerald)' }}>
-              — Croissant Rouge Algérien
+              {isAr ? '— الهلال الأحمر الجزائري' : '— Croissant Rouge Algérien'}
             </div>
           </div>
 
@@ -766,7 +902,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                     <img src={assocCraLogo} alt="CRA" />
                   </div>
                   <div className="assoc-modal-author-info">
-                    <strong>Croissant Rouge Algérien</strong>
+                    <strong>{isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien'}</strong>
                     <small>{selectedPost.location} · {selectedPost.date}</small>
                   </div>
                 </div>
@@ -775,7 +911,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                   type="button"
                   className="assoc-modal-close-btn"
                   onClick={() => setSelectedPost(null)}
-                  title="Fermer"
+                  title={isAr ? 'إغلاق' : 'Fermer'}
                 >
                   <IconX className="w-5 h-5" />
                 </button>
@@ -788,7 +924,8 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                 </p>
 
                 <div style={{ padding: '12px 14px', background: 'var(--assoc-bg-subtle)', borderRadius: '10px', fontSize: '12.5px', color: 'var(--assoc-text-muted)' }}>
-                  <strong>Thématique : </strong> Action de terrain certifiée par Athar
+                  <strong>{isAr ? 'التصنيف الميداني : ' : 'Thématique : '}</strong>
+                  {isAr ? 'نشاط ميداني موثق ومؤكد عبر منصة أثر' : 'Action de terrain certifiée par Athar'}
                 </div>
               </div>
 
@@ -798,11 +935,11 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: 'var(--assoc-text-primary)' }}>
                       <IconHeart className="w-4 h-4" style={{ color: '#f43f5e' }} />
-                      <span>{selectedPost.likes} mentions J'aime</span>
+                      <span>{selectedPost.likes} {isAr ? 'إعجاب' : "mentions J'aime"}</span>
                     </span>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: 'var(--assoc-text-muted)' }}>
                       <IconMessageSquare className="w-4 h-4" />
-                      <span>{selectedPost.comments} commentaires</span>
+                      <span>{selectedPost.comments} {isAr ? 'تعليق' : 'commentaires'}</span>
                     </span>
                   </div>
 
@@ -811,7 +948,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                     onClick={() => setSelectedPost(null)}
                     style={{ border: 'none', background: 'none', color: 'var(--assoc-emerald)', fontWeight: 700, cursor: 'pointer', fontSize: '13px' }}
                   >
-                    Fermer
+                    {isAr ? 'إغلاق' : 'Fermer'}
                   </button>
                 </div>
               </div>
@@ -849,15 +986,19 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                   <img src={assocCraLogo} alt="CRA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 <div>
-                  <strong style={{ fontSize: '13px', display: 'block', color: '#f8fafc' }}>Croissant Rouge Algérien</strong>
-                  <small style={{ fontSize: '11px', color: '#94a3b8' }}>Temps fort · {showStoryModal.badge || 'Archive officielle'}</small>
+                  <strong style={{ fontSize: '13px', display: 'block', color: '#f8fafc' }}>
+                    {isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien'}
+                  </strong>
+                  <small style={{ fontSize: '11px', color: '#94a3b8' }}>
+                    {isAr ? 'محطة بارزة · ' : 'Temps fort · '}{showStoryModal.badge || (isAr ? 'أرشيف رسمي' : 'Archive officielle')}
+                  </small>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowStoryModal(null)}
                 style={{ border: 'none', background: 'rgba(255, 255, 255, 0.1)', color: '#ffffff', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-                title="Fermer"
+                title={isAr ? 'إغلاق' : 'Fermer'}
               >
                 <IconX className="w-4 h-4" />
               </button>
@@ -870,7 +1011,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                 alt={showStoryModal.label}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-              <div style={{ position: 'absolute', bottom: '12px', left: '16px' }}>
+              <div style={{ position: 'absolute', bottom: '12px', left: isAr ? 'auto' : '16px', right: isAr ? '16px' : 'auto' }}>
                 <span style={{ fontSize: '11px', fontWeight: 800, padding: '4px 10px', borderRadius: '20px', background: 'rgba(0, 109, 91, 0.85)', backdropFilter: 'blur(4px)', color: '#ffffff' }}>
                   {showStoryModal.badge}
                 </span>
@@ -878,12 +1019,12 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
             </div>
 
             {/* Légende & Actions */}
-            <div style={{ padding: '20px 24px 24px', textAlign: 'left' }}>
+            <div style={{ padding: '20px 24px 24px', textAlign: isAr ? 'right' : 'left' }}>
               <h3 style={{ fontSize: '17px', fontWeight: 800, margin: '0 0 6px', color: '#f8fafc' }}>
                 {showStoryModal.label}
               </h3>
               <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>
-                {showStoryModal.desc || `Revivez les temps forts de notre action dans le domaine « ${showStoryModal.label} ».`}
+                {showStoryModal.desc || (isAr ? `تابع أبرز محطات نشاطنا في مجال « ${showStoryModal.label} ».` : `Revivez les temps forts de notre action dans le domaine « ${showStoryModal.label} ».`)}
               </p>
               <div style={{ display: 'flex', gap: '10px' }}>
                 <button
@@ -892,7 +1033,7 @@ export default function AssociationProfileFeed({ onNavigateNewPost }) {
                   className="assoc-btn-new-post"
                   style={{ flex: 1, justifyContent: 'center' }}
                 >
-                  Fermer la story
+                  {isAr ? 'إغلاق القصة' : 'Fermer la story'}
                 </button>
               </div>
             </div>

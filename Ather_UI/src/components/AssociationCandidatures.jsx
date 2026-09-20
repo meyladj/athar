@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import '../styles/association/candidatures.css';
 
 // Assets
-import assocCandYasmine from '../assets/assoc-cand-yasmine.png';
+import candAvatar1 from '../assets/cand-avatar-1.png';
+import candAvatar2 from '../assets/cand-avatar-2.png';
+import candAvatar3 from '../assets/cand-avatar-3.png';
+import candAvatar4 from '../assets/cand-avatar-4.png';
+import candAvatar5 from '../assets/cand-avatar-5.png';
+import candAvatar6 from '../assets/cand-avatar-6.png';
+import candAvatar7 from '../assets/cand-avatar-7.png';
+import candAvatar8 from '../assets/cand-avatar-8.png';
 import assocCraLogo from '../assets/assoc-cra-logo.png';
 
 // Clean SVG Icons (zero emojis)
@@ -84,11 +91,11 @@ function IconUsers({ className = "w-4 h-4" }) {
 const CANDIDATES = [
   {
     id: 'c-1',
-    name: 'Yasmine K.',
-    roleMission: 'Soutien scolaire pour enfants',
+    name: 'Yasmine Kaci',
+    roleMission: 'Soutien scolaire & éveil pour enfants',
     experience: "2 ans d'expérience",
     status: 'pending',
-    avatar: assocCandYasmine,
+    avatar: candAvatar1,
     isImg: true,
     age: 22,
     location: 'Alger, Alger',
@@ -101,87 +108,149 @@ const CANDIDATES = [
   },
   {
     id: 'c-2',
-    name: 'Karim A.',
-    roleMission: 'Reboisement urbain',
+    name: 'Karim Amrani',
+    roleMission: 'Campagne de reboisement des forêts',
     experience: "1 an d'expérience",
     status: 'pending',
-    avatar: 'KA',
-    isImg: false,
+    avatar: candAvatar5,
+    isImg: true,
     age: 25,
-    location: 'Blida, Blida',
+    location: 'Tizi Ouzou, Kabylie',
     studies: 'Master en Agronomie & Écologie',
-    languages: 'Arabe, Français',
-    bio: "Sensibilisé à l'urgence climatique et à la reforestation du barrage vert, je suis habitué aux travaux physiques sur le terrain.",
+    languages: 'Arabe, Français, Tamazight',
+    bio: "Sensibilisé à l'urgence climatique et à la reforestation de nos massifs forestiers, je suis habitué aux travaux physiques sur le terrain.",
     rating: '4.9/5',
     completedMissionsCount: 3,
     availability: 'Samedis'
   },
   {
     id: 'c-3',
-    name: 'Sabrina M.',
-    roleMission: 'Distribution alimentaire',
+    name: 'Sabrina Mansour',
+    roleMission: 'Distribution alimentaire d\'urgence',
     experience: "3 ans d'expérience",
     status: 'pending',
-    avatar: 'SM',
-    isImg: false,
+    avatar: candAvatar7,
+    isImg: true,
     age: 28,
-    location: 'Tizi Ouzou',
+    location: 'Alger, Alger',
     studies: 'Assistante sociale certifiée',
-    languages: 'Kabyle, Arabe, Français',
-    bio: "Coordinatrice bénévole sur plusieurs campagnes hivernales de solidarité auprès des personnes vulnérables.",
+    languages: 'Arabe, Français',
+    bio: "Coordinatrice bénévole sur plusieurs campagnes hivernales de solidarité auprès des personnes vulnérables et des familles nécessiteuses.",
     rating: '5.0/5',
     completedMissionsCount: 8,
     availability: 'Flexible'
   },
   {
     id: 'c-4',
-    name: 'Mehdi T.',
-    roleMission: 'Nettoyage de plage',
+    name: 'Mehdi Touati',
+    roleMission: 'Nettoyage du site antique de Tipaza',
     experience: "1 an d'expérience",
     status: 'pending',
-    avatar: 'MT',
-    isImg: false,
+    avatar: candAvatar6,
+    isImg: true,
     age: 23,
-    location: 'Oran, Oran',
-    studies: 'Licence en Biologie Marine',
+    location: 'Tipaza',
+    studies: 'Licence en Biologie Marine & Écologie',
     languages: 'Arabe, Français, Anglais',
-    bio: "Membre actif d'un club de plongée sous-marine engagé dans la dépollution du littoral.",
+    bio: "Membre actif d'un club de plongée sous-marine engagé dans la dépollution du littoral et la préservation des vestiges historiques côtiers.",
     rating: '4.7/5',
     completedMissionsCount: 4,
     availability: 'Week-ends'
   },
   {
     id: 'c-5',
-    name: 'Nour El Houda B.',
-    roleMission: 'Aide aux personnes âgées',
+    name: 'Nour El Houda Belkacem',
+    roleMission: 'Caravane médicale et secours du Sud',
     experience: 'Expérience terrain',
     status: 'pending',
-    avatar: 'NB',
-    isImg: false,
+    avatar: candAvatar2,
+    isImg: true,
     age: 24,
-    location: 'Constantine',
-    studies: 'Étudiante en Pharmacie',
-    languages: 'Arabe, Français',
-    bio: "Dévouée à l'accompagnement médical et humain de nos aînés.",
+    location: 'Djanet, Illizi',
+    studies: 'Étudiante en Pharmacie & Secourisme',
+    languages: 'Arabe, Français, Tamazight',
+    bio: "Dévouée à l'accompagnement médical et humain des populations nomades et rurales dans le cadre des caravanes sanitaires du Croissant-Rouge.",
     rating: '4.9/5',
     completedMissionsCount: 6,
     availability: 'Vendredis & Samedis'
+  },
+  {
+    id: 'c-6',
+    name: 'Sara Louni',
+    roleMission: 'Atelier éducatif & contes pour jeunes',
+    experience: "2 ans d'expérience",
+    status: 'pending',
+    avatar: candAvatar3,
+    isImg: true,
+    age: 22,
+    location: 'Constantine',
+    studies: 'Master en Littérature et Pédagogie',
+    languages: 'Arabe, Français, Anglais',
+    bio: "Animation de cercles de lecture et accompagnement scolaire pour les élèves des zones reculées.",
+    rating: '4.8/5',
+    completedMissionsCount: 4,
+    availability: 'Mercredis & Samedis'
+  },
+  {
+    id: 'c-7',
+    name: 'Inès Benmoussa',
+    roleMission: 'Collecte et tri de colis solidaires',
+    experience: "1 an d'expérience",
+    status: 'pending',
+    avatar: candAvatar4,
+    isImg: true,
+    age: 21,
+    location: 'Béjaïa',
+    studies: 'Licence en Gestion Logistique',
+    languages: 'Tamazight, Français, Arabe',
+    bio: "Rigueur et engagement pour l'optimisation des flux de distribution et la constitution des paniers alimentaires.",
+    rating: '4.6/5',
+    completedMissionsCount: 2,
+    availability: 'Week-ends'
+  },
+  {
+    id: 'c-8',
+    name: 'Meriem Hadj',
+    roleMission: 'Sensibilisation civique & environnement',
+    experience: "3 ans d'expérience",
+    status: 'accepted',
+    avatar: candAvatar8,
+    isImg: true,
+    age: 26,
+    location: 'Tizi Ouzou',
+    studies: 'Ingénieur en Environnement',
+    languages: 'Tamazight, Arabe, Français',
+    bio: "Animatrice de chantiers nature et membre active des actions de protection du massif forestier.",
+    rating: '5.0/5',
+    completedMissionsCount: 9,
+    availability: 'Samedis'
   }
 ];
 
-export default function AssociationCandidatures() {
+export default function AssociationCandidatures({ currentLang = 'fr' }) {
+  const isAr = currentLang === 'ar';
   const [activeTab, setActiveTab] = useState('pending'); // 'pending' | 'accepted' | 'rejected'
   const [selectedCandidate, setSelectedCandidate] = useState(CANDIDATES[0]);
   const [searchQuery, setSearchQuery] = useState('');
   const [actionFeedback, setActionFeedback] = useState(null);
 
   const handleAccept = () => {
-    setActionFeedback({ type: 'accept', text: `Candidature de ${selectedCandidate.name} acceptée avec succès ! Notification envoyée.` });
+    setActionFeedback({
+      type: 'accept',
+      text: isAr
+        ? `تم قبول ترشح المتطوع ${selectedCandidate.name} بنجاح! تم إرسال الإشعار.`
+        : `Candidature de ${selectedCandidate.name} acceptée avec succès ! Notification envoyée.`
+    });
     setTimeout(() => setActionFeedback(null), 3500);
   };
 
   const handleReject = () => {
-    setActionFeedback({ type: 'reject', text: `Candidature de ${selectedCandidate.name} archivée.` });
+    setActionFeedback({
+      type: 'reject',
+      text: isAr
+        ? `تمت أرشفة ترشح المتطوع ${selectedCandidate.name}.`
+        : `Candidature de ${selectedCandidate.name} archivée.`
+    });
     setTimeout(() => setActionFeedback(null), 3500);
   };
 
@@ -197,15 +266,19 @@ export default function AssociationCandidatures() {
       {/* 1. EN-TÊTE DE SECTION */}
       <div className="assoc-cand-header">
         <div>
-          <h1>Traitement des candidatures</h1>
-          <p>Consultez les profils des bénévoles engagés, évaluez leurs motivations et validez leur participation.</p>
+          <h1>{isAr ? 'إدارة ومعالجة طلبات التطوع' : 'Traitement des candidatures'}</h1>
+          <p>
+            {isAr
+              ? 'مراجعة ملفات المتطوعين المتقدمين، الاطلاع على دوافعهم وتأكيد قبول مشاركتهم في الميدان.'
+              : 'Consultez les profils des bénévoles engagés, évaluez leurs motivations et validez leur participation.'}
+          </p>
         </div>
 
         <div className="assoc-cand-count-card">
           <IconUsers className="w-5 h-5" style={{ color: 'var(--assoc-emerald)' }} />
           <div>
             <div className="assoc-cand-count-num">24</div>
-            <div className="assoc-cand-count-label">Candidatures en attente</div>
+            <div className="assoc-cand-count-label">{isAr ? 'طلبات قيد المراجعة' : 'Candidatures en attente'}</div>
           </div>
         </div>
       </div>
@@ -231,21 +304,21 @@ export default function AssociationCandidatures() {
               onClick={() => setActiveTab('pending')}
               className={`assoc-cand-tab-btn ${activeTab === 'pending' ? 'active' : ''}`}
             >
-              En attente (24)
+              {isAr ? 'قيد المراجعة (24)' : 'En attente (24)'}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('accepted')}
               className={`assoc-cand-tab-btn ${activeTab === 'accepted' ? 'active' : ''}`}
             >
-              Acceptées (12)
+              {isAr ? 'المقبولة (12)' : 'Acceptées (12)'}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('rejected')}
               className={`assoc-cand-tab-btn ${activeTab === 'rejected' ? 'active' : ''}`}
             >
-              Refusées (6)
+              {isAr ? 'المرفوضة (6)' : 'Refusées (6)'}
             </button>
           </div>
 
@@ -254,7 +327,7 @@ export default function AssociationCandidatures() {
             <IconSearch className="w-4 h-4" style={{ color: 'var(--assoc-text-muted)' }} />
             <input
               type="text"
-              placeholder="Rechercher par nom ou mission..."
+              placeholder={isAr ? 'ابحث بالاسم أو الفرصة التطوعية...' : 'Rechercher par nom ou mission...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -282,7 +355,7 @@ export default function AssociationCandidatures() {
                     <div className="assoc-cand-info">
                       <div className="assoc-cand-name">{c.name}</div>
                       <div className="assoc-cand-mission">
-                        <IconBriefcase className="w-3 h-3" style={{ display: 'inline', marginRight: '4px' }} />
+                        <IconBriefcase className="w-3 h-3" style={{ display: 'inline', marginInlineEnd: '4px' }} />
                         {c.roleMission}
                       </div>
                       <div className="assoc-cand-exp">{c.experience}</div>
@@ -290,7 +363,7 @@ export default function AssociationCandidatures() {
                   </div>
 
                   <span className={`assoc-cand-badge ${c.status}`}>
-                    {c.status === 'pending' ? 'En attente' : c.status === 'accepted' ? 'Validée' : 'Refusée'}
+                    {c.status === 'pending' ? (isAr ? 'قيد المراجعة' : 'En attente') : c.status === 'accepted' ? (isAr ? 'مقبول' : 'Validée') : (isAr ? 'مرفوض' : 'Refusée')}
                   </span>
                 </div>
               );
@@ -321,7 +394,7 @@ export default function AssociationCandidatures() {
                   <h2>
                     <span>{selectedCandidate.name}</span>
                     <span style={{ fontSize: '11px', background: 'var(--assoc-emerald-tint)', color: 'var(--assoc-emerald)', border: '1px solid var(--assoc-emerald-border)', padding: '2px 8px', borderRadius: '999px', fontWeight: 700 }}>
-                      Profil vérifié
+                      {isAr ? 'ملف موثق' : 'Profil vérifié'}
                     </span>
                   </h2>
                   <div className="assoc-cand-meta-pills">
@@ -330,7 +403,7 @@ export default function AssociationCandidatures() {
                       <span>{selectedCandidate.location}</span>
                     </span>
                     <span>·</span>
-                    <span>{selectedCandidate.age} ans</span>
+                    <span>{selectedCandidate.age} {isAr ? 'سنة' : 'ans'}</span>
                     <span>·</span>
                     <span>{selectedCandidate.availability}</span>
                   </div>
@@ -345,7 +418,7 @@ export default function AssociationCandidatures() {
                   className="assoc-cand-btn-accept"
                 >
                   <IconCheck className="w-4 h-4" />
-                  <span>Accepter</span>
+                  <span>{isAr ? 'قبول المترشح' : 'Accepter'}</span>
                 </button>
 
                 <button
@@ -354,14 +427,14 @@ export default function AssociationCandidatures() {
                   className="assoc-cand-btn-reject"
                 >
                   <IconX className="w-4 h-4" />
-                  <span>Refuser</span>
+                  <span>{isAr ? 'اعتذار / رفض' : 'Refuser'}</span>
                 </button>
               </div>
             </div>
 
             {/* Motivation / Bio du bénévole */}
             <div>
-              <div className="assoc-cand-section-title">Présentation & Motivation</div>
+              <div className="assoc-cand-section-title">{isAr ? 'التعريف ورسالة التحفيز' : 'Présentation & Motivation'}</div>
               <div className="assoc-cand-bio-box">
                 “ {selectedCandidate.bio} ”
               </div>
@@ -370,31 +443,31 @@ export default function AssociationCandidatures() {
             {/* Grille : Formation & Langues */}
             <div className="assoc-cand-details-grid">
               <div className="assoc-cand-detail-item">
-                <div className="assoc-cand-detail-label">Niveau d'études</div>
+                <div className="assoc-cand-detail-label">{isAr ? 'المستوى الدراسي' : "Niveau d'études"}</div>
                 <div className="assoc-cand-detail-val">{selectedCandidate.studies}</div>
               </div>
 
               <div className="assoc-cand-detail-item">
-                <div className="assoc-cand-detail-label">Langues maîtrisées</div>
+                <div className="assoc-cand-detail-label">{isAr ? 'اللغات المتقنة' : 'Langues maîtrisées'}</div>
                 <div className="assoc-cand-detail-val">{selectedCandidate.languages}</div>
               </div>
             </div>
 
             {/* Certificats & Badges validés */}
             <div>
-              <div className="assoc-cand-section-title">Certificats & Badges validés</div>
+              <div className="assoc-cand-section-title">{isAr ? 'الشهادات والأوسمة المعتمدة' : 'Certificats & Badges validés'}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 <div style={{ padding: '8px 14px', background: 'var(--assoc-bg-subtle)', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', fontWeight: 600 }}>
                   <img src={assocCraLogo} alt="CRA" style={{ width: '18px', height: '18px', objectFit: 'contain' }} />
-                  <span>Premiers secours CRA</span>
+                  <span>{isAr ? 'إسعافات أولية CRA' : 'Premiers secours CRA'}</span>
                 </div>
                 <div style={{ padding: '8px 14px', background: 'var(--assoc-bg-subtle)', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', fontWeight: 600 }}>
                   <IconAward className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                  <span>Attestation de Bénévolat Athar</span>
+                  <span>{isAr ? 'شهادة تطوع أثر الرسمية' : 'Attestation de Bénévolat Athar'}</span>
                 </div>
                 <div style={{ padding: '8px 14px', background: 'var(--assoc-bg-subtle)', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', fontWeight: 600 }}>
                   <IconCheck className="w-4 h-4" style={{ color: '#16a34a' }} />
-                  <span>Expérience terrain certifiée</span>
+                  <span>{isAr ? 'خبرة ميدانية موثقة' : 'Expérience terrain certifiée'}</span>
                 </div>
               </div>
             </div>
@@ -402,16 +475,16 @@ export default function AssociationCandidatures() {
             {/* Statistiques terrain */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
               <div style={{ padding: '14px', background: 'var(--assoc-emerald-tint)', border: '1px solid var(--assoc-emerald-border)', borderRadius: '14px', textAlign: 'center' }}>
-                <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--assoc-emerald)' }}>2 ans</div>
-                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600, marginTop: '2px' }}>Expérience globale</div>
+                <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--assoc-emerald)' }}>{isAr ? 'سنتان' : '2 ans'}</div>
+                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600, marginTop: '2px' }}>{isAr ? 'الخبرة الميدانية' : 'Expérience globale'}</div>
               </div>
               <div style={{ padding: '14px', background: 'var(--assoc-blue-light)', border: '1px solid var(--assoc-blue-border)', borderRadius: '14px', textAlign: 'center' }}>
                 <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--assoc-blue)' }}>{selectedCandidate.completedMissionsCount}</div>
-                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600, marginTop: '2px' }}>Missions réalisées</div>
+                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600, marginTop: '2px' }}>{isAr ? 'مبادرات منجزة' : 'Missions réalisées'}</div>
               </div>
               <div style={{ padding: '14px', background: 'var(--assoc-amber-light)', border: '1px solid var(--assoc-amber-border)', borderRadius: '14px', textAlign: 'center' }}>
                 <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--assoc-amber)' }}>{selectedCandidate.rating}</div>
-                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600, marginTop: '2px' }}>Évaluation moyenne</div>
+                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600, marginTop: '2px' }}>{isAr ? 'متوسط التقييم' : 'Évaluation moyenne'}</div>
               </div>
             </div>
 

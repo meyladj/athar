@@ -233,7 +233,8 @@ Les bénévoles ont dégagé les encombrants historiques et nettoyé les fontain
   }
 ];
 
-export default function AssociationArticles() {
+export default function AssociationArticles({ currentLang = 'fr' }) {
+  const isAr = currentLang === 'ar';
   const [articles, setArticles] = useState(INITIAL_ARTICLES);
   const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'published' | 'draft'
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -265,7 +266,7 @@ export default function AssociationArticles() {
 
   const handlePublish = (status = 'published') => {
     if (!newTitle.trim()) {
-      alert('Veuillez saisir un titre pour l\'article.');
+      alert(isAr ? 'يرجى إدخال عنوان للمقال.' : 'Veuillez saisir un titre pour l\'article.');
       return;
     }
 
@@ -274,8 +275,8 @@ export default function AssociationArticles() {
       title: newTitle,
       category: newCategory,
       status: status,
-      author: 'Croissant Rouge Algérien',
-      date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
+      author: isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien',
+      date: new Date().toLocaleDateString(isAr ? 'ar-DZ' : 'fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
       readTime: newReadTime,
       views: 0,
       shares: 0,
@@ -290,13 +291,13 @@ export default function AssociationArticles() {
     setNewTitle('');
     setNewExcerpt('');
     setNewContent('');
-    setSuccessToast(status === 'published' ? 'Article publié avec succès !' : 'Brouillon enregistré.');
+    setSuccessToast(status === 'published' ? (isAr ? 'تم نشر المقال بنجاح!' : 'Article publié avec succès !') : (isAr ? 'تم حفظ المسودة بنجاح.' : 'Brouillon enregistré.'));
     setTimeout(() => setSuccessToast(''), 4000);
   };
 
   const handleDelete = (id, e) => {
     e.stopPropagation();
-    if (window.confirm('Voulez-vous vraiment supprimer cet article ?')) {
+    if (window.confirm(isAr ? 'هل أنت متأكد من حذف هذا المقال؟' : 'Veuillez confirmer la suppression de cet article ?')) {
       setArticles(articles.filter(a => a.id !== id));
     }
   };
@@ -314,9 +315,11 @@ export default function AssociationArticles() {
       {/* 1. EN-TÊTE DE LA SECTION ARTICLES */}
       <div className="assoc-articles-header">
         <div className="assoc-articles-header-left">
-          <h1>Articles & Récits de terrain</h1>
+          <h1>{isAr ? 'مقالات وقصص الأثر الميداني' : 'Articles & Récits de terrain'}</h1>
           <p>
-            Rédigez, publiez et valorisez les actions de votre association. Partagez l'impact concret de vos bénévoles à travers toute l'Algérie.
+            {isAr
+              ? 'انشر وتصفح مقالات التوعية، التقارير الميدانية وقصص المتطوعين عبر ربوع الجزائر الحبيبة.'
+              : 'Rédigez, publiez et valorisez les actions de votre association. Partagez l\'impact concret de vos bénévoles à travers toute l\'Algérie.'}
           </p>
         </div>
 
@@ -326,7 +329,7 @@ export default function AssociationArticles() {
           className="assoc-btn-write-article"
         >
           <IconPlus className="w-4 h-4" />
-          <span>{isWriting ? 'Fermer le formulaire' : 'Rédiger un article'}</span>
+          <span>{isWriting ? (isAr ? 'إغلاق الاستمارة' : 'Fermer le formulaire') : (isAr ? 'تحرير مقال جديد' : 'Rédiger un article')}</span>
         </button>
       </div>
 
@@ -356,7 +359,7 @@ export default function AssociationArticles() {
           </div>
           <div>
             <div className="assoc-articles-stat-val">{articles.filter(a => a.status === 'published').length}</div>
-            <div className="assoc-articles-stat-sub">Articles publiés</div>
+            <div className="assoc-articles-stat-sub">{isAr ? 'مقالات منشورة' : 'Articles publiés'}</div>
           </div>
         </div>
 
@@ -368,7 +371,7 @@ export default function AssociationArticles() {
             <div className="assoc-articles-stat-val">
               {(articles.reduce((acc, a) => acc + (a.views || 0), 0) / 1000).toFixed(1)}k
             </div>
-            <div className="assoc-articles-stat-sub">Lectures cumulées</div>
+            <div className="assoc-articles-stat-sub">{isAr ? 'قراءات تراكمية' : 'Lectures cumulées'}</div>
           </div>
         </div>
 
@@ -380,7 +383,7 @@ export default function AssociationArticles() {
             <div className="assoc-articles-stat-val">
               {articles.reduce((acc, a) => acc + (a.shares || 0), 0)}
             </div>
-            <div className="assoc-articles-stat-sub">Partages citoyens</div>
+            <div className="assoc-articles-stat-sub">{isAr ? 'مشاركات وتفاعل' : 'Partages citoyens'}</div>
           </div>
         </div>
 
@@ -390,7 +393,7 @@ export default function AssociationArticles() {
           </div>
           <div>
             <div className="assoc-articles-stat-val">{articles.filter(a => a.status === 'draft').length}</div>
-            <div className="assoc-articles-stat-sub">Brouillons en attente</div>
+            <div className="assoc-articles-stat-sub">{isAr ? 'مسودات قيد المراجعة' : 'Brouillons en attente'}</div>
           </div>
         </div>
       </div>
@@ -399,11 +402,12 @@ export default function AssociationArticles() {
       {isWriting && (
         <div className="assoc-article-form-card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <h2 className="assoc-article-form-title">Créer un nouvel article de presse / récit</h2>
+            <h2 className="assoc-article-form-title">{isAr ? 'تحرير ونشر مقال ميداني جديد' : 'Créer un nouvel article de presse / récit'}</h2>
             <button
               type="button"
               onClick={() => setIsWriting(false)}
               style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--assoc-text-muted)' }}
+              title={isAr ? 'إغلاق' : 'Fermer'}
             >
               <IconX className="w-5 h-5" />
             </button>
@@ -413,30 +417,30 @@ export default function AssociationArticles() {
             {/* Colonne gauche : Contenu & Titre */}
             <div>
               <div className="assoc-article-form-group">
-                <label>Titre de l'article *</label>
+                <label>{isAr ? 'عنوان المقال *' : "Titre de l'article *"}</label>
                 <input
                   type="text"
-                  placeholder="Ex: Rentrée solidaire : 1 200 cartables distribués aux écoliers..."
+                  placeholder={isAr ? 'مثال: الدخول المدرسي المتضامن: توزيع 1200 محفظة...' : "Ex: Rentrée solidaire : 1 200 cartables distribués aux écoliers..."}
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                 />
               </div>
 
               <div className="assoc-article-form-group">
-                <label>Extrait / Chapô d'introduction (court résumé)</label>
+                <label>{isAr ? 'موجز المقال / المقدمة (المستخلص)' : "Extrait / Chapô d'introduction (court résumé)"}</label>
                 <textarea
                   rows="3"
-                  placeholder="Présentez brièvement l'action, le lieu et l'impact clé de cet article..."
+                  placeholder={isAr ? 'قدّم ملخصاً وجيزاً عن المبادرة الميدانية، المكان والأثر المحقق...' : "Présentez brièvement l'action, le lieu et l'impact clé de cet article..."}
                   value={newExcerpt}
                   onChange={(e) => setNewExcerpt(e.target.value)}
                 />
               </div>
 
               <div className="assoc-article-form-group">
-                <label>Corps complet de l'article *</label>
+                <label>{isAr ? 'نص المقال كاملاً *' : "Corps complet de l'article *"}</label>
                 <textarea
                   rows="8"
-                  placeholder="Racontez en détail le déroulement de l'action sur le terrain, les témoignages des bénéficiaires et bénévoles..."
+                  placeholder={isAr ? 'اسرد تفاصيل النشاط الميداني، انطباعات المستفيدين ورسائل المتطوعين...' : "Racontez en détail le déroulement de l'action sur le terrain, les témoignages des bénéficiaires et bénévoles..."}
                   value={newContent}
                   onChange={(e) => setNewContent(e.target.value)}
                 />
@@ -446,15 +450,15 @@ export default function AssociationArticles() {
             {/* Colonne droite : Photo & Métadonnées */}
             <div>
               <div className="assoc-article-form-group">
-                <label>Photo de couverture de l'article *</label>
+                <label>{isAr ? 'الصورة التوضيحية للمقال *' : "Photo de couverture de l'article *"}</label>
                 <div className="assoc-article-photo-picker" onClick={() => document.getElementById('article-file-upload').click()}>
                   {coverPreview ? (
                     <img src={coverPreview} alt="Aperçu" className="assoc-article-preview-img" />
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', color: 'var(--assoc-text-muted)' }}>
                       <IconImage className="w-8 h-8" />
-                      <span style={{ fontSize: '13px', fontWeight: 600 }}>Importer une photo</span>
-                      <small style={{ fontSize: '11px' }}>PNG, JPG jusqu'à 10 Mo</small>
+                      <span style={{ fontSize: '13px', fontWeight: 600 }}>{isAr ? 'رفع صورة من الجهاز' : 'Importer une photo'}</span>
+                      <small style={{ fontSize: '11px' }}>PNG, JPG {isAr ? 'حتى 10 ميغابايت' : "jusqu'à 10 Mo"}</small>
                     </div>
                   )}
                   <input
@@ -468,18 +472,18 @@ export default function AssociationArticles() {
               </div>
 
               <div className="assoc-article-form-group">
-                <label>Catégorie thématique</label>
+                <label>{isAr ? 'المجال التخصصي' : 'Catégorie thématique'}</label>
                 <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
-                  <option value="Solidarité">Solidarité & Aide d'urgence</option>
-                  <option value="Éducation">Éducation & Jeunesse</option>
-                  <option value="Environnement">Environnement & Reboisement</option>
-                  <option value="Santé">Santé & Don de sang</option>
-                  <option value="Patrimoine">Patrimoine & Culture</option>
+                  <option value="Solidarité">{isAr ? 'التضامن والإغاثة' : 'Solidarité & Aide d\'urgence'}</option>
+                  <option value="Éducation">{isAr ? 'التعليم والتكوين' : 'Éducation & Jeunesse'}</option>
+                  <option value="Environnement">{isAr ? 'البيئة والتشجير' : 'Environnement & Reboisement'}</option>
+                  <option value="Santé">{isAr ? 'الصحة والتبرع بالدم' : 'Santé & Don de sang'}</option>
+                  <option value="Patrimoine">{isAr ? 'التراث والثقافة' : 'Patrimoine & Culture'}</option>
                 </select>
               </div>
 
               <div className="assoc-article-form-group">
-                <label>Wilaya concernée (69 wilayas)</label>
+                <label>{isAr ? 'الولاية المعنية (69 ولاية)' : 'Wilaya concernée (69 wilayas)'}</label>
                 <select value={newWilaya} onChange={(e) => setNewWilaya(e.target.value)}>
                   {WILAYAS_LIST.map((w) => (
                     <option key={w} value={w}>{w}</option>
@@ -488,22 +492,22 @@ export default function AssociationArticles() {
               </div>
 
               <div className="assoc-article-form-group">
-                <label>Temps de lecture estimé</label>
+                <label>{isAr ? 'وقت القراءة التقديري' : 'Temps de lecture estimé'}</label>
                 <input
                   type="text"
                   value={newReadTime}
                   onChange={(e) => setNewReadTime(e.target.value)}
-                  placeholder="Ex: 4 min"
+                  placeholder={isAr ? 'مثال: 4 دقائق' : 'Ex: 4 min'}
                 />
               </div>
 
               <div className="assoc-article-form-group">
-                <label>Tags (#)</label>
+                <label>{isAr ? 'الوسوم والكلمات الدلالية (#)' : 'Tags (#)'}</label>
                 <input
                   type="text"
                   value={newTags}
                   onChange={(e) => setNewTags(e.target.value)}
-                  placeholder="#CroissantRouge #Solidarite"
+                  placeholder="#الهلال_الأحمر #أثر"
                 />
               </div>
             </div>
@@ -515,7 +519,7 @@ export default function AssociationArticles() {
               onClick={() => setIsWriting(false)}
               className="assoc-btn-cancel"
             >
-              Annuler
+              {isAr ? 'إلغاء' : 'Annuler'}
             </button>
             <button
               type="button"
@@ -523,7 +527,7 @@ export default function AssociationArticles() {
               className="assoc-btn-cancel"
               style={{ backgroundColor: 'var(--assoc-bg-subtle)', color: 'var(--assoc-navy)' }}
             >
-              Enregistrer brouillon
+              {isAr ? 'حفظ كمسودة' : 'Enregistrer brouillon'}
             </button>
             <button
               type="button"
@@ -531,7 +535,7 @@ export default function AssociationArticles() {
               className="assoc-btn-write-article"
             >
               <IconCheckCircle className="w-4 h-4" />
-              <span>Publier l'article</span>
+              <span>{isAr ? 'نشر المقال الآن' : "Publier l'article"}</span>
             </button>
           </div>
         </div>
@@ -545,21 +549,21 @@ export default function AssociationArticles() {
             className={`assoc-articles-pill ${activeFilter === 'all' ? 'active' : ''}`}
             onClick={() => setActiveFilter('all')}
           >
-            Tous les articles ({articles.length})
+            {isAr ? `كافة المقالات (${articles.length})` : `Tous les articles (${articles.length})`}
           </button>
           <button
             type="button"
             className={`assoc-articles-pill ${activeFilter === 'published' ? 'active' : ''}`}
             onClick={() => setActiveFilter('published')}
           >
-            Publiés ({articles.filter(a => a.status === 'published').length})
+            {isAr ? `المنشورة (${articles.filter(a => a.status === 'published').length})` : `Publiés (${articles.filter(a => a.status === 'published').length})`}
           </button>
           <button
             type="button"
             className={`assoc-articles-pill ${activeFilter === 'draft' ? 'active' : ''}`}
             onClick={() => setActiveFilter('draft')}
           >
-            Brouillons ({articles.filter(a => a.status === 'draft').length})
+            {isAr ? `المسودات (${articles.filter(a => a.status === 'draft').length})` : `Brouillons (${articles.filter(a => a.status === 'draft').length})`}
           </button>
         </div>
 
@@ -568,7 +572,7 @@ export default function AssociationArticles() {
             <IconSearch className="w-4 h-4 text-slate-400" />
             <input
               type="text"
-              placeholder="Rechercher par titre ou mot-clé..."
+              placeholder={isAr ? 'ابحث بالعنوان أو الكلمات الدلالية...' : 'Rechercher par titre ou mot-clé...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -590,7 +594,7 @@ export default function AssociationArticles() {
               <img src={article.cover} alt={article.title} />
               <span className="assoc-article-badge-cat">{article.category}</span>
               <span className={`assoc-article-badge-status ${article.status}`}>
-                {article.status === 'published' ? '● En ligne' : 'Brouillon'}
+                {article.status === 'published' ? (isAr ? '● منشور' : '● En ligne') : (isAr ? 'مسودة' : 'Brouillon')}
               </span>
             </div>
 
@@ -627,13 +631,13 @@ export default function AssociationArticles() {
                   className="assoc-article-btn-read"
                 >
                   <IconEye className="w-3.5 h-3.5" />
-                  <span>Lire l'article</span>
+                  <span>{isAr ? 'قراءة المقال' : "Lire l'article"}</span>
                 </button>
                 <button
                   type="button"
                   onClick={(e) => handleDelete(article.id, e)}
                   className="assoc-article-btn-action delete"
-                  title="Supprimer l'article"
+                  title={isAr ? 'حذف المقال' : "Supprimer l'article"}
                 >
                   <IconTrash className="w-3.5 h-3.5" />
                 </button>
@@ -655,6 +659,7 @@ export default function AssociationArticles() {
                 type="button"
                 onClick={() => setSelectedArticle(null)}
                 style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--assoc-text-muted)' }}
+                title={isAr ? 'إغلاق' : 'Fermer'}
               >
                 <IconX className="w-5 h-5" />
               </button>
@@ -671,11 +676,11 @@ export default function AssociationArticles() {
             </h2>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '12.5px', color: 'var(--assoc-text-muted)', marginBottom: '20px', paddingBottom: '14px', borderBottom: '1px solid var(--assoc-border)' }}>
-              <span>Par <strong>{selectedArticle.author}</strong></span>
+              <span>{isAr ? 'بواسطة ' : 'Par '}<strong>{selectedArticle.author}</strong></span>
               <span>•</span>
               <span>{selectedArticle.date}</span>
               <span>•</span>
-              <span>{selectedArticle.readTime} de lecture</span>
+              <span>{selectedArticle.readTime} {isAr ? 'قراءة' : 'de lecture'}</span>
             </div>
 
             <p style={{ fontSize: '15px', fontStyle: 'italic', color: 'var(--assoc-navy-light)', lineHeight: 1.6, marginBottom: '20px', backgroundColor: 'var(--assoc-bg-subtle)', padding: '16px', borderRadius: '14px' }}>
@@ -702,7 +707,7 @@ export default function AssociationArticles() {
                 onClick={() => setSelectedArticle(null)}
                 className="assoc-btn-cancel"
               >
-                Fermer
+                {isAr ? 'إغلاق' : 'Fermer'}
               </button>
             </div>
           </div>

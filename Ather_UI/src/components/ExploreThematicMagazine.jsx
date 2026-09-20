@@ -82,6 +82,24 @@ function IconX({ className = "w-5 h-5" }) {
   );
 }
 
+function IconCheck({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function IconGlobe({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
 // Category Specific Icons
 function IconGraduation() {
   return (
@@ -989,7 +1007,7 @@ export default function ExploreThematicMagazine({
         <div style={{ flex: '0 0 420px', zIndex: 2 }}>
           {newsletterSuccess ? (
             <div style={{ background: '#ffffff', borderRadius: '12px', padding: '14px 18px', border: '1px solid #86efac', color: '#166534', fontSize: '13.5px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>✓</span>
+              <IconCheck className="w-4 h-4 text-emerald-600" />
               <span>Merci ! Vous êtes bien inscrit(e) aux histoires citoyennes Athar.</span>
             </div>
           ) : (
@@ -1047,8 +1065,8 @@ export default function ExploreThematicMagazine({
           <a href="#conditions" style={{ textDecoration: 'none', color: 'inherit' }}>Conditions</a>
           <a href="#contact" style={{ textDecoration: 'none', color: 'inherit' }}>Contact</a>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: 700, color: '#334155', cursor: 'pointer' }}>
-            <span>🌐</span>
-            <span>FR</span>
+            <IconGlobe className="w-3.5 h-3.5 text-slate-500" />
+            <span>{currentLang === 'ar' ? 'العربية' : 'FR'}</span>
             <IconChevronDown />
           </div>
         </div>

@@ -38,6 +38,14 @@ import AssociationCalendar from './components/AssociationCalendar';
 import AssociationCandidatures from './components/AssociationCandidatures';
 import SavedOffers from './components/SavedOffers';
 import assocCraLogo from './assets/assoc-cra-logo.png';
+import candAvatar1 from './assets/cand-avatar-1.png';
+import candAvatar2 from './assets/cand-avatar-2.png';
+import candAvatar3 from './assets/cand-avatar-3.png';
+import candAvatar4 from './assets/cand-avatar-4.png';
+import candAvatar5 from './assets/cand-avatar-5.png';
+import candAvatar6 from './assets/cand-avatar-6.png';
+import candAvatar7 from './assets/cand-avatar-7.png';
+import candAvatar8 from './assets/cand-avatar-8.png';
 
 function IconUser({ className = "w-4 h-4" }) {
   return (
@@ -153,6 +161,16 @@ function IconCheck({ className = "w-4 h-4" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20 6 9 17l-5-5"/>
+    </svg>
+  );
+}
+
+function IconGlobe({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
     </svg>
   );
 }
@@ -1696,19 +1714,24 @@ export default function App() {
     }
   ]);
 
-  // Candidatures reçues détaillées
+  // Candidatures reçues détaillées (8 candidats avec avatars)
   const [candidatesList, setCandidatesList] = useState([
     {
       id: 1,
       name: "Amine Bellouze",
+      nameAr: "أمين بلوز",
       initials: "AB",
+      avatar: candAvatar1,
       missionId: 1,
       missionTitle: "Nettoyage du site antique de Tipaza",
+      missionTitleAr: "تنظيف الموقع الأثري بتيبازة",
       wilaya: "Tipaza",
+      wilayaAr: "تيبازة",
       age: 24,
       email: "amine.bellouze@example.com",
       phone: "05 50 12 34 56",
       skills: ["Logistique", "Secourisme", "Informatique"],
+      skillsAr: ["لوجستيك", "إسعافات أولية", "إعلام آلي"],
       languages: ["Arabe", "Français", "Tamazight"],
       motivation: "Je souhaite consacrer mes week-ends à aider à préserver le patrimoine historique et environnemental de Tipaza.",
       appliedDate: "14 avr. 2025",
@@ -1717,14 +1740,19 @@ export default function App() {
     {
       id: 2,
       name: "Sara Louni",
+      nameAr: "سارة لوني",
       initials: "SL",
+      avatar: candAvatar3,
       missionId: 2,
       missionTitle: "Soutien scolaire & éveil pour enfants",
+      missionTitleAr: "دروس دعم مدرسي للأطفال",
       wilaya: "Constantine",
+      wilayaAr: "قسنطينة",
       age: 22,
       email: "sara.louni@example.com",
       phone: "06 61 78 90 12",
       skills: ["Enseignement", "Français", "Mathématiques"],
+      skillsAr: ["تعليم", "فرنسية", "رياضيات"],
       languages: ["Arabe", "Français", "Anglais"],
       motivation: "Étudiante en Master de langues, je souhaite donner des cours de soutien aux collégiens et enfants pour les préparer aux examens.",
       appliedDate: "15 avr. 2025",
@@ -1733,14 +1761,19 @@ export default function App() {
     {
       id: 3,
       name: "Yacine Kaci",
+      nameAr: "ياسين قاسي",
       initials: "YK",
+      avatar: candAvatar6,
       missionId: 1,
       missionTitle: "Nettoyage du site antique de Tipaza",
+      missionTitleAr: "تنظيف الموقع الأثري بتيبازة",
       wilaya: "Tipaza",
+      wilayaAr: "تيبازة",
       age: 28,
       email: "yacine.kaci@example.com",
       phone: "07 72 45 67 89",
       skills: ["Chauffeur / Véhicule", "Logistique", "Coordination"],
+      skillsAr: ["سياقة ونقل", "لوجستيك", "تنسيق"],
       languages: ["Arabe", "Français"],
       motivation: "Je dispose d'un utilitaire et je peux assurer le transport des équipements d'entretien et de collecte des déchets sur le site.",
       appliedDate: "16 avr. 2025",
@@ -1749,18 +1782,107 @@ export default function App() {
     {
       id: 4,
       name: "Meriem Hadj",
+      nameAr: "مريم حاج",
       initials: "MH",
+      avatar: candAvatar8,
       missionId: 3,
       missionTitle: "Campagne de reboisement des forêts",
+      missionTitleAr: "حملة تشجير وتجديد الغابات",
       wilaya: "Tizi Ouzou",
+      wilayaAr: "تيزي وزو",
       age: 26,
       email: "meriem.hadj@example.com",
       phone: "05 55 98 76 54",
       skills: ["Biologie / Écologie", "Secourisme", "Animation"],
+      skillsAr: ["بيولوجيا وبيئة", "إسعافات أولية", "تنشيط"],
       languages: ["Tamazight", "Arabe", "Français"],
       motivation: "Passionnée de protection de l'environnement et membre d'un club de randonnée, je souhaite apporter mon énergie à la reforestation de nos forêts.",
-      appliedDate: "17 avr. 2025",
+      appliedDate: "16 avr. 2025",
       status: "accepted"
+    },
+    {
+      id: 5,
+      name: "Nour El Houda Belkacem",
+      nameAr: "نور الهدى بلقاسم",
+      initials: "NB",
+      avatar: candAvatar2,
+      missionId: 4,
+      missionTitle: "Caravane médicale et secours du Sud",
+      missionTitleAr: "قافلة طبية وإغاثة الجنوب",
+      wilaya: "Illizi",
+      wilayaAr: "إيليزي",
+      age: 24,
+      email: "nour.belkacem@example.com",
+      phone: "06 63 21 45 67",
+      skills: ["Pharmacie", "Secourisme", "Médecine"],
+      skillsAr: ["صيدلة", "إسعافات أولية", "طب"],
+      languages: ["Arabe", "Français", "Tamazight"],
+      motivation: "Dévouée à l'accompagnement médical et humain des populations nomades et rurales dans le grand sud.",
+      appliedDate: "17 avr. 2025",
+      status: "pending"
+    },
+    {
+      id: 6,
+      name: "Karim Amrani",
+      nameAr: "كريم عمراني",
+      initials: "KA",
+      avatar: candAvatar5,
+      missionId: 3,
+      missionTitle: "Campagne de reboisement des forêts",
+      missionTitleAr: "حملة تشجير وتجديد الغابات",
+      wilaya: "Tizi Ouzou",
+      wilayaAr: "تيزي وزو",
+      age: 25,
+      email: "karim.amrani@example.com",
+      phone: "07 70 88 99 11",
+      skills: ["Agronomie", "Reboisement", "Coordination"],
+      skillsAr: ["زراعة", "تشجير", "تنسيق ميداني"],
+      languages: ["Arabe", "Français", "Tamazight"],
+      motivation: "Sensibilisé à l'urgence climatique et à la reforestation, habitué aux travaux physiques sur le terrain.",
+      appliedDate: "17 avr. 2025",
+      status: "pending"
+    },
+    {
+      id: 7,
+      name: "Sabrina Mansour",
+      nameAr: "صبرينة منصور",
+      initials: "SM",
+      avatar: candAvatar7,
+      missionId: 2,
+      missionTitle: "Distribution alimentaire d'urgence",
+      missionTitleAr: "توزيع الطرود والمساعدات الغذائية",
+      wilaya: "Alger",
+      wilayaAr: "الجزائر العاصمة",
+      age: 28,
+      email: "sabrina.mansour@example.com",
+      phone: "05 60 33 44 55",
+      skills: ["Action sociale", "Logistique", "Coordination"],
+      skillsAr: ["عمل اجتماعي", "لوجستيك", "تنسيق"],
+      languages: ["Arabe", "Français"],
+      motivation: "Coordinatrice bénévole sur plusieurs campagnes humanitaires auprès des familles vulnérables.",
+      appliedDate: "18 avr. 2025",
+      status: "pending"
+    },
+    {
+      id: 8,
+      name: "Inès Benmoussa",
+      nameAr: "إيناس بن موسى",
+      initials: "IB",
+      avatar: candAvatar4,
+      missionId: 1,
+      missionTitle: "Nettoyage du site antique de Tipaza",
+      missionTitleAr: "تنظيف الموقع الأثري بتيبازة",
+      wilaya: "Béjaïa",
+      wilayaAr: "بجاية",
+      age: 21,
+      email: "ines.benmoussa@example.com",
+      phone: "06 77 12 34 89",
+      skills: ["Gestion de flux", "Logistique", "Écologie"],
+      skillsAr: ["تسيير اللوجستيك", "بيئة", "تنظيم"],
+      languages: ["Tamazight", "Français", "Arabe"],
+      motivation: "Rigueur et engagement pour l'optimisation des flux et la préservation de notre environnement méditerranéen.",
+      appliedDate: "18 avr. 2025",
+      status: "pending"
     }
   ]);
 
@@ -1768,7 +1890,7 @@ export default function App() {
   const handleAcceptCandidate = (cand) => {
     const targetMission = associationMissions.find(m => m.id === cand.missionId);
     if (targetMission && targetMission.spots_registered >= targetMission.spots_total) {
-      showToast(`Attention : La mission "${targetMission.title}" a déjà atteint sa capacité maximale (${targetMission.spots_total}/${targetMission.spots_total} bénévoles).`);
+      showToast(currentLang === 'ar' ? `تنبيه: لقد بلغت المبادرة طاقة استيعابها القصوى (${targetMission.spots_total}/${targetMission.spots_total} متطوع).` : `Attention : La mission "${targetMission.title}" a déjà atteint sa capacité maximale (${targetMission.spots_total}/${targetMission.spots_total} bénévoles).`);
       return;
     }
 
@@ -1788,7 +1910,7 @@ export default function App() {
     // Synchroniser avec les candidatures de l'espace bénévole
     setVolunteerApplications(prev => prev.map(va => {
       if (va.missionId === cand.missionId && (cand.name.includes("Nadia") || cand.name === volunteerUser.name)) {
-        return { ...va, status: 'accepted', notes: "Candidature validée par l'association ! Vous êtes attendu sur le terrain." };
+        return { ...va, status: 'accepted', notes: currentLang === 'ar' ? "تم قبول الترشح من الجمعية! ننتظر حضورك في الميدان." : "Candidature validée par l'association ! Vous êtes attendu sur le terrain." };
       }
       return va;
     }));
@@ -1797,7 +1919,7 @@ export default function App() {
       setSelectedCandidateDetail(prev => ({ ...prev, status: 'accepted' }));
     }
 
-    showToast(`✓ Candidature de ${cand.name} acceptée !`);
+    showToast(currentLang === 'ar' ? `تم قبول ترشح ${cand.nameAr || cand.name} بنجاح!` : `Candidature de ${cand.name} acceptée !`);
   };
 
   const handleRejectCandidate = (cand) => {
@@ -1954,7 +2076,7 @@ export default function App() {
   // Profil officiel de l'association (Croissant Rouge Algérien)
   const [assocProfile, setAssocProfile] = useState({
     name: "Croissant Rouge Algérien",
-    tagline: "Soulager les souffrances, protéger les plus vulnérables et bâtir des communautés plus résilientes en Algérie. ❤️",
+    tagline: "Soulager les souffrances, protéger les plus vulnérables et bâtir des communautés plus résilientes en Algérie.",
     agrement: "DZ-1956-0001",
     creationYear: "1956",
     responsable: "Dr. Ibtissem Hamlaoui",
@@ -2626,7 +2748,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('profile')}
               >
                 <IconUser className="w-4 h-4" />
-                <span>Profil</span>
+                <span>{currentLang === 'ar' ? 'الملف التعريفي' : 'Profil'}</span>
               </button>
 
               {/* 2. PUBLICATIONS / PREUVES */}
@@ -2636,7 +2758,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('traceability')}
               >
                 <IconEdit className="w-4 h-4" />
-                <span>Publications</span>
+                <span>{currentLang === 'ar' ? 'المنشورات والإثباتات' : 'Publications'}</span>
               </button>
 
               {/* 3. ARTICLES */}
@@ -2646,7 +2768,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('articles')}
               >
                 <IconFileText className="w-4 h-4" />
-                <span>Articles</span>
+                <span>{currentLang === 'ar' ? 'المقالات' : 'Articles'}</span>
               </button>
 
               {/* 4. MISSIONS */}
@@ -2656,7 +2778,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('missions')}
               >
                 <IconBriefcase className="w-4 h-4" />
-                <span>Missions</span>
+                <span>{currentLang === 'ar' ? 'المبادرات' : 'Missions'}</span>
                 <span className="saas-nav-badge">24</span>
               </button>
 
@@ -2667,7 +2789,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('candidatures')}
               >
                 <IconUsers className="w-4 h-4" />
-                <span>Candidatures</span>
+                <span>{currentLang === 'ar' ? 'طلبات التطوع' : 'Candidatures'}</span>
                 <span className="saas-nav-badge alert">24</span>
               </button>
 
@@ -2678,7 +2800,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('messages')}
               >
                 <IconMessageSquare className="w-4 h-4" />
-                <span>Messages</span>
+                <span>{currentLang === 'ar' ? 'الرسائل' : 'Messages'}</span>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ef4444', marginLeft: 'auto' }}></span>
               </button>
 
@@ -2689,7 +2811,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('calendrier')}
               >
                 <IconCalendar className="w-4 h-4" />
-                <span>Calendrier</span>
+                <span>{currentLang === 'ar' ? 'الرزنامة' : 'Calendrier'}</span>
               </button>
 
               {/* 8. PARAMÈTRES */}
@@ -2699,7 +2821,7 @@ export default function App() {
                 onClick={() => setDashActiveTab('parametres')}
               >
                 <IconSettings className="w-4 h-4" />
-                <span>Paramètres</span>
+                <span>{currentLang === 'ar' ? 'الإعدادات' : 'Paramètres'}</span>
               </button>
             </nav>
 
@@ -2729,17 +2851,21 @@ export default function App() {
                 <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                   <div>
                     <h4 style={{ fontWeight: 800, fontSize: '13px', lineHeight: 1.25, color: '#ffffff', margin: 0 }}>
-                      Ensemble<br />pour une Algérie<br />plus solidaire
+                      {currentLang === 'ar' ? (
+                        <>معاً<br />لجزائر أكثر<br />تضامناً</>
+                      ) : (
+                        <>Ensemble<br />pour une Algérie<br />plus solidaire</>
+                      )}
                     </h4>
                     <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '11px', marginTop: '8px' }}>
-                      →
+                      {currentLang === 'ar' ? '←' : '→'}
                     </div>
                   </div>
-                  <div style={{ marginTop: '28px', textAlign: 'right' }}>
+                  <div style={{ marginTop: '28px', textAlign: currentLang === 'ar' ? 'left' : 'right' }}>
                     <span
-                      style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '13px', fontWeight: 700, display: 'block', color: '#ffffff' }}
+                      style={{ fontFamily: currentLang === 'ar' ? "'Cairo', sans-serif" : "'Caveat', cursive, sans-serif", fontSize: '13px', fontWeight: 700, display: 'block', color: '#ffffff' }}
                     >
-                      Des citoyens,<br />Un impact réel.
+                      {currentLang === 'ar' ? <>مواطنون،<br />أثر حقيقي.</> : <>Des citoyens,<br />Un impact réel.</>}
                     </span>
                   </div>
                 </div>
@@ -2757,7 +2883,7 @@ export default function App() {
                 <IconSearch className="w-4 h-4" style={{ color: '#94a3b8', flexShrink: 0 }} />
                 <input
                   type="text"
-                  placeholder="Rechercher des associations, missions, publications..."
+                  placeholder={currentLang === 'ar' ? "ابحث عن جمعيات، مبادرات، منشورات..." : "Rechercher des associations, missions, publications..."}
                   value={globalSearchQuery}
                   onChange={(e) => setGlobalSearchQuery(e.target.value)}
                 />
@@ -2795,9 +2921,9 @@ export default function App() {
                   {isNotifOpen && (
                     <div className="saas-notif-dropdown">
                       <div className="saas-notif-header">
-                        <strong>Notifications ({pendingCandidatesCount})</strong>
+                        <strong>{currentLang === 'ar' ? `الإشعارات (${pendingCandidatesCount})` : `Notifications (${pendingCandidatesCount})`}</strong>
                         <small style={{ color: 'var(--emerald-main)', cursor: 'pointer', fontWeight: 700 }} onClick={() => setIsNotifOpen(false)}>
-                          Fermer
+                          {currentLang === 'ar' ? 'إغلاق' : 'Fermer'}
                         </small>
                       </div>
                       {candidatesList.filter(c => c.status === 'pending').slice(0, 3).map((cand) => (
@@ -2810,13 +2936,19 @@ export default function App() {
                             setDashActiveTab('candidatures');
                           }}
                         >
-                          <div className="saas-notif-avatar">{cand.initials}</div>
+                          <div className="saas-notif-avatar" style={{ overflow: 'hidden', padding: 0 }}>
+                            {cand.avatar ? (
+                              <img src={cand.avatar} alt={cand.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            ) : (
+                              cand.initials
+                            )}
+                          </div>
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#0f172a' }}>
-                              Candidature reçue : {cand.name}
+                              {currentLang === 'ar' ? `طلب تطوع جديد : ${cand.nameAr || cand.name}` : `Candidature reçue : ${cand.name}`}
                             </div>
                             <small style={{ fontSize: '11px', color: '#64748b', display: 'block', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                              {cand.missionTitle} · {cand.wilaya}
+                              {currentLang === 'ar' ? (cand.missionTitleAr || cand.missionTitle) : cand.missionTitle} · {currentLang === 'ar' ? (cand.wilayaAr || cand.wilaya) : cand.wilaya}
                             </small>
                           </div>
                         </div>
@@ -2830,7 +2962,7 @@ export default function App() {
                             setIsNotifOpen(false);
                           }}
                         >
-                          Gérer les candidatures →
+                          {currentLang === 'ar' ? '← إدارة طلبات التطوع' : 'Gérer les candidatures →'}
                         </button>
                       </div>
                     </div>
@@ -2922,7 +3054,7 @@ export default function App() {
               {/* ======================================================== */}
               {dashActiveTab === 'profile' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationProfileFeed onNavigateNewPost={() => setDashActiveTab('traceability')} />
+                  <AssociationProfileFeed currentLang={currentLang} onNavigateNewPost={() => setDashActiveTab('traceability')} />
                 </div>
               )}
 
@@ -2931,7 +3063,7 @@ export default function App() {
               {/* ======================================================== */}
               {dashActiveTab === 'articles' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationArticles />
+                  <AssociationArticles currentLang={currentLang} />
                 </div>
               )}
 
@@ -3162,21 +3294,29 @@ export default function App() {
                           >
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <div className="saas-user-avatar" style={{ width: '28px', height: '28px', fontSize: '11px' }}>
-                                  {cand.initials}
+                                <div className="saas-user-avatar" style={{ width: '28px', height: '28px', fontSize: '11px', overflow: 'hidden', padding: 0 }}>
+                                  {cand.avatar ? (
+                                    <img src={cand.avatar} alt={cand.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                  ) : (
+                                    cand.initials
+                                  )}
                                 </div>
                                 <div>
-                                  <strong style={{ fontSize: '12.5px', color: '#0f172a', display: 'block' }}>{cand.name}</strong>
-                                  <small style={{ fontSize: '10.5px', color: '#64748b' }}>{cand.wilaya}</small>
+                                  <strong style={{ fontSize: '12.5px', color: '#0f172a', display: 'block' }}>
+                                    {currentLang === 'ar' && cand.nameAr ? cand.nameAr : cand.name}
+                                  </strong>
+                                  <small style={{ fontSize: '10.5px', color: '#64748b' }}>
+                                    {currentLang === 'ar' && cand.wilayaAr ? cand.wilayaAr : cand.wilaya}
+                                  </small>
                                 </div>
                               </div>
                               <span className={`saas-badge ${cand.status}`}>
-                                {cand.status === 'accepted' ? 'Acceptée' : cand.status === 'rejected' ? 'Refusée' : 'En attente'}
+                                {cand.status === 'accepted' ? (currentLang === 'ar' ? 'مقبولة' : 'Acceptée') : cand.status === 'rejected' ? (currentLang === 'ar' ? 'مرفوضة' : 'Refusée') : (currentLang === 'ar' ? 'قيد الانتظار' : 'En attente')}
                               </span>
                             </div>
 
                             <div style={{ fontSize: '11.5px', color: '#334155', background: '#ffffff', padding: '6px 10px', borderRadius: '6px', border: '1px solid #f1f5f9' }}>
-                              <strong>Mission : </strong>{cand.missionTitle}
+                              <strong>{currentLang === 'ar' ? 'المهمة : ' : 'Mission : '}</strong>{currentLang === 'ar' && cand.missionTitleAr ? cand.missionTitleAr : cand.missionTitle}
                             </div>
 
                             <div style={{ display: 'flex', gap: '6px', marginTop: '2px' }}>
@@ -3195,7 +3335,7 @@ export default function App() {
                                 }}
                                 onClick={() => setSelectedCandidateDrawer(cand)}
                               >
-                                Fiche détaillée
+                                {currentLang === 'ar' ? 'الملف الكامل' : 'Fiche détaillée'}
                               </button>
                               {cand.status === 'pending' && (
                                 <>
@@ -3252,7 +3392,7 @@ export default function App() {
               {/* ======================================================== */}
               {dashActiveTab === 'missions' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationMissions onOpenCreateMission={() => setDashActiveTab('new_mission')} />
+                  <AssociationMissions currentLang={currentLang} onOpenCreateMission={() => setDashActiveTab('new_mission')} />
                 </div>
               )}
 
@@ -3576,7 +3716,7 @@ export default function App() {
               {/* ======================================================== */}
               {dashActiveTab === 'candidatures' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationCandidatures />
+                  <AssociationCandidatures currentLang={currentLang} />
                 </div>
               )}
 
@@ -4065,9 +4205,12 @@ export default function App() {
               {/* ======================================================== */}
               {/* VUE 7 : CALENDRIER DES INTERVENTIONS                    */}
               {/* ======================================================== */}
+              {/* ======================================================== */}
+              {/* VUE 7 : CALENDRIER DES INTERVENTIONS                    */}
+              {/* ======================================================== */}
               {dashActiveTab === 'calendrier' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationCalendar />
+                  <AssociationCalendar currentLang={currentLang} />
                 </div>
               )}
 
@@ -4076,21 +4219,21 @@ export default function App() {
               {/* ======================================================== */}
               {dashActiveTab === 'parametres' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationSettings />
+                  <AssociationSettings currentLang={currentLang} />
                 </div>
               )}
 
               {/* MESSAGERIE CITOYENNE DIRECTE */}
               {dashActiveTab === 'messages' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationMessenger />
+                  <AssociationMessenger currentLang={currentLang} />
                 </div>
               )}
 
               {/* REGISTRE DE TRAÇABILITÉ & CERTIFICATION D'IMPACT */}
               {dashActiveTab === 'traceability' && (
                 <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-                  <AssociationPostProof onBackToFeed={() => setDashActiveTab('profile')} onPublished={() => { setDashActiveTab('profile'); showToast('Preuve de terrain publiée avec succès !'); }} />
+                  <AssociationPostProof currentLang={currentLang} onBackToFeed={() => setDashActiveTab('profile')} onPublished={() => { setDashActiveTab('profile'); showToast(currentLang === 'ar' ? 'تم نشر إثبات الميدان بنجاح!' : 'Preuve de terrain publiée avec succès !'); }} />
                 </div>
               )}
             </main>
@@ -4106,10 +4249,16 @@ export default function App() {
               <aside className="saas-drawer" role="dialog" aria-modal="true">
                 <div className="saas-drawer-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div className="saas-drawer-avatar">{selectedCandidateDrawer.initials}</div>
+                    <div className="saas-drawer-avatar" style={{ overflow: 'hidden', padding: 0 }}>
+                      {selectedCandidateDrawer.avatar ? (
+                        <img src={selectedCandidateDrawer.avatar} alt={selectedCandidateDrawer.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        selectedCandidateDrawer.initials
+                      )}
+                    </div>
                     <div>
                       <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>
-                        {selectedCandidateDrawer.name}
+                        {currentLang === 'ar' && selectedCandidateDrawer.nameAr ? selectedCandidateDrawer.nameAr : selectedCandidateDrawer.name}
                       </h3>
                       <small style={{ color: '#64748b', fontSize: '12px' }}>
                         {selectedCandidateDrawer.email} · {selectedCandidateDrawer.phone}
@@ -4120,7 +4269,7 @@ export default function App() {
                     type="button"
                     className="saas-drawer-close"
                     onClick={() => setSelectedCandidateDrawer(null)}
-                    title="Fermer"
+                    title={currentLang === 'ar' ? 'إغلاق' : 'Fermer'}
                   >
                     <IconX className="w-5 h-5" />
                   </button>
@@ -4128,51 +4277,64 @@ export default function App() {
 
                 <div className="saas-drawer-body">
                   <div>
-                    <span className="saas-drawer-section-title">Mission ciblée</span>
+                    <span className="saas-drawer-section-title">
+                      {currentLang === 'ar' ? 'المهمة المستهدفة' : 'Mission ciblée'}
+                    </span>
                     <div className="saas-drawer-mission-box">
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                        <strong style={{ fontSize: '14px', color: '#0f172a' }}>{selectedCandidateDrawer.missionTitle}</strong>
+                        <strong style={{ fontSize: '14px', color: '#0f172a' }}>
+                          {currentLang === 'ar' && selectedCandidateDrawer.missionTitleAr ? selectedCandidateDrawer.missionTitleAr : selectedCandidateDrawer.missionTitle}
+                        </strong>
                         <span className={`saas-badge ${selectedCandidateDrawer.status}`}>
-                          {selectedCandidateDrawer.status === 'accepted' ? 'Acceptée' : selectedCandidateDrawer.status === 'rejected' ? 'Refusée' : 'En attente'}
+                          {selectedCandidateDrawer.status === 'accepted' ? (currentLang === 'ar' ? 'مقبولة' : 'Acceptée') : selectedCandidateDrawer.status === 'rejected' ? (currentLang === 'ar' ? 'مرفوضة' : 'Refusée') : (currentLang === 'ar' ? 'قيد الانتظار' : 'En attente')}
                         </span>
                       </div>
-                      <small style={{ color: '#64748b' }}>Wilaya d'intervention : {selectedCandidateDrawer.wilaya}</small>
+                      <small style={{ color: '#64748b' }}>
+                        {currentLang === 'ar' ? 'ولاية التدخل : ' : "Wilaya d'intervention : "}
+                        {currentLang === 'ar' && selectedCandidateDrawer.wilayaAr ? selectedCandidateDrawer.wilayaAr : selectedCandidateDrawer.wilaya}
+                      </small>
                     </div>
                   </div>
 
                   <div>
-                    <span className="saas-drawer-section-title">Informations personnelles</span>
+                    <span className="saas-drawer-section-title">
+                      {currentLang === 'ar' ? 'المعلومات الشخصية' : 'Informations personnelles'}
+                    </span>
                     <div className="saas-drawer-info-grid">
                       <div>
-                        <small>Âge</small>
-                        <strong>{selectedCandidateDrawer.age} ans</strong>
+                        <small>{currentLang === 'ar' ? 'العمر' : 'Âge'}</small>
+                        <strong>{selectedCandidateDrawer.age} {currentLang === 'ar' ? 'سنة' : 'ans'}</strong>
                       </div>
                       <div>
-                        <small>Wilaya</small>
-                        <strong>{selectedCandidateDrawer.wilaya}</strong>
+                        <small>{currentLang === 'ar' ? 'الولاية' : 'Wilaya'}</small>
+                        <strong>{currentLang === 'ar' && selectedCandidateDrawer.wilayaAr ? selectedCandidateDrawer.wilayaAr : selectedCandidateDrawer.wilaya}</strong>
                       </div>
                       <div>
-                        <small>Date de candidature</small>
+                        <small>{currentLang === 'ar' ? 'تاريخ الترشح' : 'Date de candidature'}</small>
                         <strong>{selectedCandidateDrawer.appliedDate}</strong>
                       </div>
                       <div>
-                        <small>Langues</small>
-                        <strong>{selectedCandidateDrawer.languages?.join(', ') || 'Arabe, Français'}</strong>
+                        <small>{currentLang === 'ar' ? 'اللغات' : 'Langues'}</small>
+                        <strong>{currentLang === 'ar' ? 'العربية، الفرنسية' : (selectedCandidateDrawer.languages?.join(', ') || 'Arabe, Français')}</strong>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <span className="saas-drawer-section-title">Compétences & Aptitudes</span>
+                    <span className="saas-drawer-section-title">
+                      {currentLang === 'ar' ? 'المهارات والقدرات' : 'Compétences & Aptitudes'}
+                    </span>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      {selectedCandidateDrawer.skills?.map((sk, idx) => (
+                      {(currentLang === 'ar' && selectedCandidateDrawer.skillsAr ? selectedCandidateDrawer.skillsAr : selectedCandidateDrawer.skills)?.map((sk, idx) => (
                         <span key={idx} className="saas-skill-pill">{sk}</span>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <span className="saas-drawer-section-title">Lettre de motivation</span>
+                    <span className="saas-drawer-section-title">
+                      {currentLang === 'ar' ? 'رسالة التحفيز' : 'Lettre de motivation'}
+                    </span>
                     <blockquote className="saas-drawer-quote">
                       « {selectedCandidateDrawer.motivation} »
                     </blockquote>
@@ -4190,7 +4352,7 @@ export default function App() {
                       }}
                     >
                       <IconX className="w-4 h-4" />
-                      <span>Refuser la candidature</span>
+                      <span>{currentLang === 'ar' ? 'رفض الترشح' : 'Refuser la candidature'}</span>
                     </button>
                   )}
                   {selectedCandidateDrawer.status !== 'accepted' && (
@@ -4203,7 +4365,7 @@ export default function App() {
                       }}
                     >
                       <IconCheck className="w-4 h-4" />
-                      <span>Accepter la candidature</span>
+                      <span>{currentLang === 'ar' ? 'قبول الترشح' : 'Accepter la candidature'}</span>
                     </button>
                   )}
                   {selectedCandidateDrawer.status === 'accepted' && (
@@ -4243,7 +4405,9 @@ export default function App() {
               />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '18px', fontWeight: 900, color: '#006D5B', lineHeight: 1.1 }}>Athar</span>
-                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>Le bénévolat a un sens</span>
+                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>
+                  {currentLang === 'ar' ? 'التطوع له معنى وأثر' : 'Le bénévolat a un sens'}
+                </span>
               </div>
             </div>
 
@@ -4259,7 +4423,7 @@ export default function App() {
                 }}
               >
                 <IconHome className="w-4 h-4" />
-                <span>Accueil</span>
+                <span>{currentLang === 'ar' ? 'الرئيسية' : 'Accueil'}</span>
               </button>
 
               {/* 2. MON PROFIL */}
@@ -4273,7 +4437,7 @@ export default function App() {
                 }}
               >
                 <IconUsers className="w-4 h-4" />
-                <span>Mon profil</span>
+                <span>{currentLang === 'ar' ? 'ملفي الشخصي' : 'Mon profil'}</span>
               </button>
 
               {/* 3. MISSIONS */}
@@ -4283,7 +4447,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('missions'); }}
               >
                 <IconSearch className="w-4 h-4" />
-                <span>Missions</span>
+                <span>{currentLang === 'ar' ? 'المهمات التطوعية' : 'Missions'}</span>
               </button>
 
               {/* 4. ACTION MAP */}
@@ -4293,7 +4457,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('map'); }}
               >
                 <IconMapPin className="w-4 h-4 text-emerald-600" />
-                <span>Action Map</span>
+                <span>{currentLang === 'ar' ? 'خريطة الميدان' : 'Action Map'}</span>
               </button>
 
               {/* 5. ARTICLES */}
@@ -4303,7 +4467,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('explore'); }}
               >
                 <IconFileText className="w-4 h-4" />
-                <span>Articles</span>
+                <span>{currentLang === 'ar' ? 'المقالات' : 'Articles'}</span>
               </button>
 
               {/* 6. SOS BLOOD */}
@@ -4313,7 +4477,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('blood'); }}
               >
                 <IconDroplet className="w-4 h-4 text-rose-500" />
-                <span>SOS Blood</span>
+                <span>{currentLang === 'ar' ? 'نداءات الدم SOS' : 'SOS Blood'}</span>
               </button>
 
               {/* 7. MESSAGES AVEC POINT ROUGE */}
@@ -4323,7 +4487,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('messages'); }}
               >
                 <IconMessageSquare className="w-4 h-4" />
-                <span>Messages</span>
+                <span>{currentLang === 'ar' ? 'المحادثات' : 'Messages'}</span>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ef4444', marginLeft: 'auto' }}></span>
               </button>
 
@@ -4334,7 +4498,7 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('saved'); }}
               >
                 <IconHeart className="w-4 h-4" />
-                <span>Mes offres sauvegardées</span>
+                <span>{currentLang === 'ar' ? 'المحفوظات' : 'Mes offres sauvegardées'}</span>
               </button>
 
               {/* 9. PARAMÈTRES */}
@@ -4344,19 +4508,19 @@ export default function App() {
                 onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('settings'); }}
               >
                 <IconSettings className="w-4 h-4" />
-                <span>Paramètres</span>
+                <span>{currentLang === 'ar' ? 'الإعدادات' : 'Paramètres'}</span>
               </button>
             </nav>
 
             {/* CARTE PROMO EN BAS DE LA SIDEBAR (profile benev .png) */}
             <div className="portal-sidebar-promo">
               <div className="portal-sidebar-promo-top">
-                <h5>Une Algérie plus solidaire est possible</h5>
+                <h5>{currentLang === 'ar' ? 'جزائر أكثر تضامناً ممكنة بجهودكم' : 'Une Algérie plus solidaire est possible'}</h5>
                 <button
                   type="button"
                   className="portal-sidebar-promo-btn"
                   onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('missions'); }}
-                  title="Explorer les opportunités"
+                  title={currentLang === 'ar' ? 'استكشاف الفرص' : 'Explorer les opportunités'}
                 >
                   <IconArrowRight className="w-4 h-4" />
                 </button>
@@ -4379,8 +4543,8 @@ export default function App() {
                   type="text"
                   placeholder={
                     volunteerPortalTab === 'explore'
-                      ? "Rechercher des articles, des thématiques, des auteurs..."
-                      : "Rechercher des associations, des missions, des lieux..."
+                      ? (currentLang === 'ar' ? "ابحث في المقالات، المواضيع، الكتّاب..." : "Rechercher des articles, des thématiques, des auteurs...")
+                      : (currentLang === 'ar' ? "ابحث عن جمعيات، مهمات، ولايات..." : "Rechercher des associations, des missions, des lieux...")
                   }
                   value={volunteerSearchQuery}
                   onChange={(e) => {
@@ -4393,6 +4557,9 @@ export default function App() {
               </div>
 
               <div className="portal-topbar-right">
+                {/* Sélecteur de langue */}
+                <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
+
                 {/* Notifications cloche */}
                 <div style={{ position: 'relative' }}>
                   <button
@@ -4402,7 +4569,7 @@ export default function App() {
                       setIsVolunteerNotifOpen(!isVolunteerNotifOpen);
                       setIsVolunteerProfileOpen(false);
                     }}
-                    title="Notifications"
+                    title={currentLang === 'ar' ? 'الإشعارات' : 'Notifications'}
                   >
                     <IconBell className="w-4 h-4" />
                     <span className="portal-notif-badge-dot"></span>
@@ -4411,16 +4578,16 @@ export default function App() {
                   {isVolunteerNotifOpen && (
                     <div className="saas-notif-dropdown" style={{ right: 0 }}>
                       <div className="saas-notif-header">
-                        <strong>Notifications</strong>
+                        <strong>{currentLang === 'ar' ? 'الإشعارات' : 'Notifications'}</strong>
                         <button
                           type="button"
                           style={{ background: 'none', border: 'none', color: '#006D5B', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
                           onClick={() => {
                             setVolunteerNotifications(prev => prev.map(n => ({ ...n, unread: false })));
-                            showToast("Toutes les notifications marquées comme lues.");
+                            showToast(currentLang === 'ar' ? "تم تحديد كل الإشعارات كمقروءة." : "Toutes les notifications marquées comme lues.");
                           }}
                         >
-                          Tout marquer comme lu
+                          {currentLang === 'ar' ? 'تحديد الكل كمقروء' : 'Tout marquer comme lu'}
                         </button>
                       </div>
                       {volunteerNotifications.map(notif => (
@@ -4663,9 +4830,12 @@ export default function App() {
                     </h1>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#cbd5e1', fontSize: '13.5px' }}>
-                      <span>Organisation : <strong>{selectedMissionDetail.association_name}</strong></span>
+                      <span>{currentLang === 'ar' ? 'الجمعية : ' : 'Organisation : '}<strong>{selectedMissionDetail.association_name}</strong></span>
                       <span>·</span>
-                      <span style={{ color: '#86efac', fontWeight: 700 }}>✓ Association Partenaire Agréée</span>
+                      <span style={{ color: '#86efac', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                        <IconCheck className="w-3.5 h-3.5 text-emerald-300" />
+                        <span>{currentLang === 'ar' ? 'جمعية شريكة معتمدة' : 'Association Partenaire Agréée'}</span>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -5128,13 +5298,19 @@ export default function App() {
                     >
                       <div style={{ flex: '1 1 55%', zIndex: 2 }}>
                         <span style={{ fontSize: '12px', fontWeight: 800, color: '#006D5B', letterSpacing: '0.8px', textTransform: 'uppercase', display: 'inline-block', marginBottom: '8px' }}>
-                          MISSIONS BÉNÉVOLES
+                          {currentLang === 'ar' ? 'المهمات التطوعية' : 'MISSIONS BÉNÉVOLES'}
                         </span>
                         <h1 style={{ fontSize: '27px', fontWeight: 900, color: '#0f172a', margin: '0 0 10px', lineHeight: 1.25 }}>
-                          Agir aujourd'hui<br />pour une Algérie plus solidaire 🌱
+                          {currentLang === 'ar' ? (
+                            <>العمل اليوم<br />من أجل جزائر أكثر تضامناً</>
+                          ) : (
+                            <>Agir aujourd'hui<br />pour une Algérie plus solidaire</>
+                          )}
                         </h1>
                         <p style={{ fontSize: '14px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
-                          Trouvez une mission qui a du sens et faites la différence près de chez vous.
+                          {currentLang === 'ar'
+                            ? 'اعثر على فرصة تطوع ذات معنى وأثر إيجابي حقيقي بالقرب منك.'
+                            : 'Trouvez une mission qui a du sens et faites la différence près de chez vous.'}
                         </p>
                       </div>
 
@@ -5160,10 +5336,10 @@ export default function App() {
                           }}
                         >
                           <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15 }}>
-                            Des citoyens,
+                            {currentLang === 'ar' ? 'مواطنون،' : 'Des citoyens,'}
                           </div>
                           <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
-                            Un impact réel.
+                            {currentLang === 'ar' ? 'أثر حقيقي.' : 'Un impact réel.'}
                           </div>
                         </div>
                       </div>
@@ -5177,7 +5353,7 @@ export default function App() {
                           <IconSearch className="w-4 h-4 text-slate-400" style={{ position: 'absolute', left: '14px' }} />
                           <input
                             type="text"
-                            placeholder="Mots-clés, rôle, ou lieu..."
+                            placeholder={currentLang === 'ar' ? "كلمات مفتاحية، دور، أو ولاية..." : "Mots-clés, rôle, ou lieu..."}
                             value={volunteerSearchQuery}
                             onChange={(e) => setVolunteerSearchQuery(e.target.value)}
                             style={{ width: '100%', paddingLeft: '38px', borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', outline: 'none' }}
@@ -5188,47 +5364,47 @@ export default function App() {
                           onChange={(e) => setVolunteerFilterWilaya(e.target.value)}
                           style={{ borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', padding: '0 12px', outline: 'none' }}
                         >
-                          <option value="all">Toutes les wilayas</option>
-                          <option value="Alger">Alger</option>
-                          <option value="Tipaza">Tipaza</option>
-                          <option value="Oran">Oran</option>
-                          <option value="Constantine">Constantine</option>
+                          <option value="all">{currentLang === 'ar' ? 'كل الولايات' : 'Toutes les wilayas'}</option>
+                          <option value="Alger">{currentLang === 'ar' ? '16 - الجزائر' : 'Alger'}</option>
+                          <option value="Tipaza">{currentLang === 'ar' ? '42 - تيبازة' : 'Tipaza'}</option>
+                          <option value="Oran">{currentLang === 'ar' ? '31 - وهران' : 'Oran'}</option>
+                          <option value="Constantine">{currentLang === 'ar' ? '25 - قسنطينة' : 'Constantine'}</option>
                         </select>
                         <select
                           value={volunteerFilterTheme}
                           onChange={(e) => setVolunteerFilterTheme(e.target.value)}
                           style={{ borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', padding: '0 12px', outline: 'none' }}
                         >
-                          <option value="all">Toutes thématiques</option>
-                          <option value="Climat">Climat</option>
-                          <option value="Solidarité">Solidarité</option>
-                          <option value="Éducation">Éducation</option>
-                          <option value="Environnement">Environnement</option>
-                          <option value="Santé">Santé</option>
-                          <option value="Patrimoine">Patrimoine</option>
+                          <option value="all">{currentLang === 'ar' ? 'كل المجالات' : 'Toutes thématiques'}</option>
+                          <option value="Climat">{currentLang === 'ar' ? 'المناخ' : 'Climat'}</option>
+                          <option value="Solidarité">{currentLang === 'ar' ? 'التضامن' : 'Solidarité'}</option>
+                          <option value="Éducation">{currentLang === 'ar' ? 'التعليم' : 'Éducation'}</option>
+                          <option value="Environnement">{currentLang === 'ar' ? 'البيئة' : 'Environnement'}</option>
+                          <option value="Santé">{currentLang === 'ar' ? 'الصحة' : 'Santé'}</option>
+                          <option value="Patrimoine">{currentLang === 'ar' ? 'التراث' : 'Patrimoine'}</option>
                         </select>
                         <select
                           value={volunteerFilterDate}
                           onChange={(e) => setVolunteerFilterDate(e.target.value)}
                           style={{ borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', padding: '0 12px', outline: 'none' }}
                         >
-                          <option value="all">Toutes périodes</option>
-                          <option value="weekend">Week-ends</option>
-                          <option value="month">Ce mois-ci</option>
+                          <option value="all">{currentLang === 'ar' ? 'كل الفترات' : 'Toutes périodes'}</option>
+                          <option value="weekend">{currentLang === 'ar' ? 'عطلة نهاية الأسبوع' : 'Week-ends'}</option>
+                          <option value="month">{currentLang === 'ar' ? 'هذا الشهر' : 'Ce mois-ci'}</option>
                         </select>
                       </div>
 
-                      {/* LIGNE 2 : PILULES DE THÉMATIQUES AVEC ÉMOJIS/ICÔNES */}
+                      {/* LIGNE 2 : PILULES DE THÉMATIQUES SANS ÉMOJIS */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflowX: 'auto', paddingTop: '4px' }}>
                         {[
-                          { name: 'Tous', icon: null },
-                          { name: 'Éducation', icon: '📖' },
-                          { name: 'Climat', icon: '🌱' },
-                          { name: 'Santé', icon: '🩺' },
-                          { name: 'Solidarité', icon: '👥' },
-                          { name: 'Patrimoine', icon: '🏛️' },
-                          { name: 'Faune', icon: '🐾' },
-                          { name: 'Repas offert', icon: '🍽️' }
+                          { name: 'Tous', nameAr: 'الكل' },
+                          { name: 'Éducation', nameAr: 'التعليم' },
+                          { name: 'Climat', nameAr: 'المناخ' },
+                          { name: 'Santé', nameAr: 'الصحة' },
+                          { name: 'Solidarité', nameAr: 'التضامن' },
+                          { name: 'Patrimoine', nameAr: 'التراث' },
+                          { name: 'Faune', nameAr: 'الحياة البرية' },
+                          { name: 'Repas offert', nameAr: 'وجبة متوفرة' }
                         ].map(p => {
                           const isActive = volunteerQuickTag === p.name || (p.name === 'Tous' && volunteerFilterTheme === 'all' && (!volunteerQuickTag || volunteerQuickTag === 'Tous'));
                           return (
@@ -5256,8 +5432,7 @@ export default function App() {
                                 transition: 'all 0.15s ease'
                               }}
                             >
-                              {p.icon && <span>{p.icon}</span>}
-                              <span>{p.name}</span>
+                              <span>{currentLang === 'ar' ? p.nameAr : p.name}</span>
                             </button>
                           );
                         })}
@@ -5482,8 +5657,9 @@ export default function App() {
                 {/* 2. PAGE 'MON PROFIL BÉNÉVOLE' (Conforme à profile benev .png) */}
                 {/* ======================================================== */}
                 {volunteerPortalTab === 'profile' && (
-                  <div className="benev-profile-page">
-                    {/* 1. HERO COVER BANNER */}
+                  <div style={{ maxWidth: '1180px', margin: '0 auto', width: '100%' }}>
+                    <div className="benev-profile-page">
+                      {/* 1. HERO COVER BANNER */}
                     <div className="benev-cover-banner">
                       <img src={profileBannerImg} alt="Alger la blanche et Baie d'Alger" className="benev-cover-img" />
                       <div className="benev-cover-overlay">
@@ -6048,29 +6224,44 @@ export default function App() {
                         <img src={atharLogoClean} alt="Athar" style={{ height: '26px', width: 'auto' }} />
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                           <strong style={{ fontSize: '13px', color: '#006D5B', lineHeight: 1.1 }}>Athar</strong>
-                          <small style={{ fontSize: '10.5px', color: '#94a3b8' }}>Le bénévolat a un sens</small>
+                          <small style={{ fontSize: '10.5px', color: '#94a3b8' }}>
+                            {currentLang === 'ar' ? 'التطوع له معنى وأثر' : 'Le bénévolat a un sens'}
+                          </small>
                         </div>
                       </div>
 
                       <div className="benev-footer-links">
-                        <a href="#aide" onClick={(e) => { e.preventDefault(); showToast("Centre d'aide et FAQ en ligne"); }}>Aide</a>
-                        <a href="#confidentialite" onClick={(e) => { e.preventDefault(); showToast("Politique de confidentialité Athar"); }}>Confidentialité</a>
-                        <a href="#conditions" onClick={(e) => { e.preventDefault(); showToast("Conditions Générales d'Utilisation"); }}>Conditions</a>
-                        <a href="#contact" onClick={(e) => { e.preventDefault(); showToast("Support bénévole disponible 7j/7"); }}>Contact</a>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', cursor: 'pointer', fontWeight: 600, color: '#475569' }}>
-                          <span style={{ fontSize: '14px' }}>🌐</span>
-                          <span>FR</span>
+                        <a href="#aide" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "مركز المساعدة والأسئلة الشائعة" : "Centre d'aide et FAQ en ligne"); }}>
+                          {currentLang === 'ar' ? 'المساعدة' : 'Aide'}
+                        </a>
+                        <a href="#confidentialite" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "سياسة الخصوصية لمنصة أثر" : "Politique de confidentialité Athar"); }}>
+                          {currentLang === 'ar' ? 'الخصوصية' : 'Confidentialité'}
+                        </a>
+                        <a href="#conditions" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "شروط الاستخدام العامة" : "Conditions Générales d'Utilisation"); }}>
+                          {currentLang === 'ar' ? 'الشروط' : 'Conditions'}
+                        </a>
+                        <a href="#contact" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "الدعم متاح 7/7 أيام" : "Support bénévole disponible 7j/7"); }}>
+                          {currentLang === 'ar' ? 'اتصل بنا' : 'Contact'}
+                        </a>
+                        <div 
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', cursor: 'pointer', fontWeight: 600, color: '#475569' }}
+                          onClick={() => setCurrentLang(prev => prev === 'ar' ? 'fr' : 'ar')}
+                        >
+                          <IconGlobe className="w-4 h-4 text-slate-500" />
+                          <span>{currentLang === 'ar' ? 'العربية' : 'FR'}</span>
                           <IconChevronDown className="w-3 h-3 text-slate-400" />
                         </div>
                       </div>
                     </footer>
                   </div>
-                )}
+                </div>
+              )}
 
                 {/* 8. PAGE 'MES OFFRES SAUVEGARDÉES' (offres sauvgardés.png) */}
                 {(volunteerPortalTab === 'saved' || volunteerPortalTab === 'favorites') && (
                   <div style={{ maxWidth: '1240px', width: '100%', margin: '0 auto', padding: '0 4px' }}>
                     <SavedOffers
+                      currentLang={currentLang}
                       onSelectMission={(mission) => setSelectedMissionDetail(mission)}
                       onNavigateToMissions={() => setVolunteerPortalTab('missions')}
                       onToast={showToast}
@@ -6751,42 +6942,44 @@ export default function App() {
       <div className={`modal ${publishModalOpen ? 'on' : ''}`} aria-hidden={!publishModalOpen}>
         <div className="modal-bg" onClick={closePublish}></div>
         <div className="modal-card" role="dialog" aria-modal="true" aria-label="Publier une mission">
-          <button className="modal-x" onClick={closePublish} aria-label="Fermer">✕</button>
+          <button className="modal-x" onClick={closePublish} aria-label="Fermer">
+            <IconX className="w-4 h-4" />
+          </button>
 
           <div className="modal-head sm">
-            <div className="mtag asso">Association El Baraka</div>
-            <h3>Publier une nouvelle mission</h3>
+            <div className="mtag asso">{currentLang === 'ar' ? 'جمعية البركة' : 'Association El Baraka'}</div>
+            <h3>{currentLang === 'ar' ? 'نشر مهمة تطوعية جديدة' : 'Publier une nouvelle mission'}</h3>
             <p style={{ fontSize: '13.5px', color: 'var(--muted)', marginTop: '4px' }}>
-              Décrivez votre besoin pour mobiliser des bénévoles engagés.
+              {currentLang === 'ar' ? 'صِف احتياجكم لحشد متطوعين ملتزمين ومؤهلين.' : 'Décrivez votre besoin pour mobiliser des bénévoles engagés.'}
             </p>
           </div>
 
           <form className="mform" onSubmit={handleCreateMission}>
-            <label>Titre de la mission</label>
+            <label>{currentLang === 'ar' ? 'عنوان المهمة' : 'Titre de la mission'}</label>
             <input
               type="text"
               required
-              placeholder="Ex. Nettoyage de la plage des Aiguades"
+              placeholder={currentLang === 'ar' ? "مثال: تنظيف شاطئ العيڨاد" : "Ex. Nettoyage de la plage des Aiguades"}
               value={newMissionForm.title}
               onChange={(e) => setNewMissionForm({ ...newMissionForm, title: e.target.value })}
             />
 
             <div className="frow">
               <div>
-                <label>Domaine / Cause</label>
+                <label>{currentLang === 'ar' ? 'المجال / القضية' : 'Domaine / Cause'}</label>
                 <select
                   value={newMissionForm.category}
                   onChange={(e) => setNewMissionForm({ ...newMissionForm, category: e.target.value })}
                 >
-                  <option value="Solidarité">Solidarité</option>
-                  <option value="Éducation">Éducation</option>
-                  <option value="Environnement">Environnement</option>
-                  <option value="Santé">Santé</option>
-                  <option value="Urgence">Aide d'urgence</option>
+                  <option value="Solidarité">{currentLang === 'ar' ? 'التضامن' : 'Solidarité'}</option>
+                  <option value="Éducation">{currentLang === 'ar' ? 'التعليم' : 'Éducation'}</option>
+                  <option value="Environnement">{currentLang === 'ar' ? 'البيئة' : 'Environnement'}</option>
+                  <option value="Santé">{currentLang === 'ar' ? 'الصحة' : 'Santé'}</option>
+                  <option value="Urgence">{currentLang === 'ar' ? 'الإغاثة المستعجلة' : "Aide d'urgence"}</option>
                 </select>
               </div>
               <div>
-                <label>Nombre de places</label>
+                <label>{currentLang === 'ar' ? 'عدد المقاعد' : 'Nombre de places'}</label>
                 <input
                   type="number"
                   min="1"
@@ -6799,32 +6992,33 @@ export default function App() {
 
             <div className="frow">
               <div>
-                <label>Wilaya</label>
+                <label>{currentLang === 'ar' ? 'الولاية' : 'Wilaya'}</label>
                 <select
                   value={newMissionForm.location}
                   onChange={(e) => setNewMissionForm({ ...newMissionForm, location: e.target.value })}
                 >
-                  <option value="Alger">Alger</option>
-                  <option value="Béjaïa">Béjaïa</option>
-                  <option value="Oran">Oran</option>
-                  <option value="Constantine">Constantine</option>
-                  <option value="Sétif">Sétif</option>
-                  <option value="Tizi Ouzou">Tizi Ouzou</option>
+                  <option value="Alger">{currentLang === 'ar' ? '16 - الجزائر' : 'Alger'}</option>
+                  <option value="Béjaïa">{currentLang === 'ar' ? '06 - بجاية' : 'Béjaïa'}</option>
+                  <option value="Oran">{currentLang === 'ar' ? '31 - وهران' : 'Oran'}</option>
+                  <option value="Constantine">{currentLang === 'ar' ? '25 - قسنطينة' : 'Constantine'}</option>
+                  <option value="Sétif">{currentLang === 'ar' ? '19 - سطيف' : 'Sétif'}</option>
+                  <option value="Tizi Ouzou">{currentLang === 'ar' ? '15 - تيزي وزو' : 'Tizi Ouzou'}</option>
                 </select>
               </div>
               <div>
-                <label>Date prévue</label>
+                <label>{currentLang === 'ar' ? 'التاريخ المحدد' : 'Date prévue'}</label>
                 <input
                   type="text"
-                  placeholder="Ex. 15 mai 2025"
+                  placeholder={currentLang === 'ar' ? "مثال: 15 ماي 2025" : "Ex. 15 mai 2025"}
                   value={newMissionForm.date}
                   onChange={(e) => setNewMissionForm({ ...newMissionForm, date: e.target.value })}
                 />
               </div>
             </div>
 
-            <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '12px' }}>
-              ✓ Publier la mission immédiatement
+            <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <IconCheck className="w-4 h-4" />
+              <span>{currentLang === 'ar' ? 'نشر المهمة فوراً' : 'Publier la mission immédiatement'}</span>
             </button>
           </form>
         </div>
@@ -7028,9 +7222,9 @@ export default function App() {
                   closeSignup();
                 }}
               >
-                <div className="fsec">Document d'agrément</div>
+                <div className="fsec">{currentLang === 'ar' ? 'وثيقة الاعتماد الرسمية' : "Document d'agrément"}</div>
                 <div className="scanhint">
-                  📄 Importez le scan de votre agrément : les informations (nom, n° d'agrément, wilaya) seront <b>extraites automatiquement</b> et remplies pour vous.
+                  {currentLang === 'ar' ? <>ارفعوا وثيقة الاعتماد الرسمية للجمعية : سيتم <b>استخراج البيانات تلقائياً</b> وتعبئة النموذج فوراً.</> : <>Importez le scan de votre agrément : les informations (nom, n° d'agrément, wilaya) seront <b>extraites automatiquement</b> et remplies pour vous.</>}
                 </div>
                 <label className={`filebox scan ${assoScan === 'done' ? 'has' : ''}`}>
                   <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleAgrementScan} />
@@ -7038,14 +7232,17 @@ export default function App() {
                     <path d="M4 7V5a1 1 0 0 1 1-1h2M20 7V5a1 1 0 0 0-1-1h-2M4 17v2a1 1 0 0 0 1 1h2M20 17v2a1 1 0 0 1-1 1h-2M3 12h18"/>
                   </svg>
                   <span className="filetxt">
-                    {assoScanName ? '📎 ' + assoScanName : <>Scanner l'agrément — <b>cliquez pour importer</b> (PDF ou photo)</>}
+                    {assoScanName ? assoScanName : (currentLang === 'ar' ? <>مسح وثيقة الاعتماد — <b>انقر للاستيراد</b> (PDF أو صورة)</> : <>Scanner l'agrément — <b>cliquez pour importer</b> (PDF ou photo)</>)}
                   </span>
                 </label>
                 {assoScan === 'scanning' && (
-                  <div className="scanres"><span className="spin"></span> Analyse du document en cours…</div>
+                  <div className="scanres"><span className="spin"></span> {currentLang === 'ar' ? 'جارٍ تحليل الوثيقة وقراءة البيانات...' : 'Analyse du document en cours…'}</div>
                 )}
                 {assoScan === 'done' && (
-                  <div className="scanres ok">✓ Informations extraites automatiquement — vérifiez puis complétez.</div>
+                  <div className="scanres ok" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <IconCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{currentLang === 'ar' ? 'تم استخراج المعلومات تلقائياً — يرجى التحقق والتأكيد.' : 'Informations extraites automatiquement — vérifiez puis complétez.'}</span>
+                  </div>
                 )}
 
                 <div className="fsec">Informations de l'association</div>
@@ -7118,7 +7315,7 @@ export default function App() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/>
                   </svg>
-                  <span className="filetxt">{assoLogoName ? '🖼️ ' + assoLogoName : 'Importer le logo (image)'}</span>
+                  <span className="filetxt">{assoLogoName ? assoLogoName : (currentLang === 'ar' ? 'استيراد شعار الجمعية (صورة)' : 'Importer le logo (image)')}</span>
                 </label>
 
                 <div className="fsec">Sécurité</div>

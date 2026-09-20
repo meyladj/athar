@@ -187,7 +187,8 @@ const CONVERSATIONS = [
   }
 ];
 
-export default function AssociationMessenger() {
+export default function AssociationMessenger({ currentLang = 'fr' }) {
+  const isAr = currentLang === 'ar';
   const [activeChatId, setActiveChatId] = useState('cra');
   const [filterTab, setFilterTab] = useState('tous'); // 'tous' | 'benevoles' | 'associations'
   const [searchQuery, setSearchQuery] = useState('');
@@ -197,31 +198,41 @@ export default function AssociationMessenger() {
     {
       id: 1,
       sender: 'cra',
-      text: "Bonjour. Merci pour votre intérêt pour la mission de reboisement à Oran. Êtes-vous toujours disponible pour y participer ?",
+      text: isAr
+        ? "السلام عليكم ورحمة الله. شكراً لاهتمامك بمبادرة التشجير في وهران. هل ما زلت جاهزاً ومتاحاً للمشاركة معنا يوم السبت؟"
+        : "Bonjour. Merci pour votre intérêt pour la mission de reboisement à Oran. Êtes-vous toujours disponible pour y participer ?",
       time: '10:12'
     },
     {
       id: 2,
       sender: 'me',
-      text: "Bonjour. Oui, je confirme ma présence. Prête à contribuer sur le terrain !",
+      text: isAr
+        ? "وعليكم السلام. نعم أؤكد حضوري ومستعد لتقديم كل العون في الميدان بإذن الله !"
+        : "Bonjour. Oui, je confirme ma présence. Prête à contribuer sur le terrain !",
       time: '10:15'
     },
     {
       id: 3,
       sender: 'cra',
-      text: "Voici les informations utiles pour le déroulement de la journée :\n\n• Point de rassemblement : Forêt de Canastel, Oran\n• Horaire : 08h00 précises\n• Équipement : Prévoir des chaussures de marche\n• Matériel : Des gants et sacs vous seront fournis sur place.",
+      text: isAr
+        ? "إليك التفاصيل والمعلومات الهامة لسيرورة اليوم الميداني:\n\n• نقطة التجمع: غابة كناستيل، وهران\n• التوقيت: الساعة 08h00 صباحاً بالضبط\n• التجهيز: يرجى ارتداء حذاء مخصص للمشي الجبلي\n• العتاد: سيتم تسليمكم القفازات وأكياس الغرس في عين المكان."
+        : "Voici les informations utiles pour le déroulement de la journée :\n\n• Point de rassemblement : Forêt de Canastel, Oran\n• Horaire : 08h00 précises\n• Équipement : Prévoir des chaussures de marche\n• Matériel : Des gants et sacs vous seront fournis sur place.",
       time: '10:20'
     },
     {
       id: 4,
       sender: 'me',
-      text: "Merci pour ces précisions. Est-il possible de partager ma position exacte le matin même ?",
+      text: isAr
+        ? "بارك الله فيكم على التوضيحات. هل من الممكن مشاركة موقعي الجغرافي المباشر صبيحة المبادرة؟"
+        : "Merci pour ces précisions. Est-il possible de partager ma position exacte le matin même ?",
       time: '10:22'
     },
     {
       id: 5,
       sender: 'cra',
-      text: "Bien sûr. Vous pourrez la partager directement dans cette discussion pour faciliter la coordination.",
+      text: isAr
+        ? "بالتأكيد، يمكنك مشاركة الموقع مباشرة في هذه المحادثة لتسهيل التنسيق مع المشرفين الميدانيين."
+        : "Bien sûr. Vous pourrez la partager directement dans cette discussion pour faciliter la coordination.",
       time: '10:24'
     },
     {
@@ -229,7 +240,7 @@ export default function AssociationMessenger() {
       sender: 'cra',
       isPhoto: true,
       photoUrl: assocMsgCanastel,
-      text: "Aperçu de la zone d'intervention. À samedi !",
+      text: isAr ? "صورة تمهيدية لمنطقة التدخل في غابة كناستيل. نلتقي السبت إن شاء الله !" : "Aperçu de la zone d'intervention. À samedi !",
       time: '10:24'
     }
   ]);
@@ -266,8 +277,7 @@ export default function AssociationMessenger() {
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} dir={isAr ? 'rtl' : 'ltr'}>
       {/* 1. EN-TÊTE DE LA MESSAGERIE */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
         <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'var(--assoc-emerald-light)', color: 'var(--assoc-emerald)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -275,31 +285,31 @@ export default function AssociationMessenger() {
         </div>
         <div>
           <h1 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--assoc-navy)', margin: 0 }}>
-            Messagerie associative
+            {isAr ? 'المراسلات الفورية للجمعية' : 'Messagerie associative'}
           </h1>
           <p style={{ fontSize: '13px', color: 'var(--assoc-text-muted)', margin: '2px 0 0' }}>
-            Communiquez en direct avec vos bénévoles et coordonnez vos opérations de terrain.
+            {isAr
+              ? 'تواصل مباشر وسريع مع المتطوعين لتنسيق العمليات الميدانية في الوقت الفعلي.'
+              : 'Communiquez en direct avec vos bénévoles et coordonnez vos opérations de terrain.'}
           </p>
         </div>
       </div>
 
       {/* 2. CONTENEUR PRINCIPAL DU CHAT */}
       <div className="assoc-msg-root">
-        
         {/* PANNEAU GAUCHE : LISTE DES CONVERSATIONS */}
         <div className="assoc-msg-sidebar">
-          
           {/* Recherche & Filtres */}
           <div className="assoc-msg-sidebar-header">
             <h2 style={{ margin: '0 0 12px', fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)' }}>
-              Discussions
+              {isAr ? 'المحادثات' : 'Discussions'}
             </h2>
             
             <div className="assoc-msg-search-box">
               <IconSearch className="w-4 h-4" style={{ color: 'var(--assoc-text-muted)' }} />
               <input
                 type="text"
-                placeholder="Rechercher une discussion..."
+                placeholder={isAr ? 'ابحث في المحادثات...' : 'Rechercher une discussion...'}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -320,7 +330,7 @@ export default function AssociationMessenger() {
                   cursor: 'pointer'
                 }}
               >
-                Tous
+                {isAr ? 'الكل' : 'Tous'}
               </button>
               <button
                 type="button"
@@ -336,7 +346,7 @@ export default function AssociationMessenger() {
                   cursor: 'pointer'
                 }}
               >
-                Bénévoles
+                {isAr ? 'المتطوعون' : 'Bénévoles'}
               </button>
               <button
                 type="button"
@@ -352,7 +362,7 @@ export default function AssociationMessenger() {
                   cursor: 'pointer'
                 }}
               >
-                Associations
+                {isAr ? 'الجمعيات' : 'Associations'}
               </button>
             </div>
           </div>
@@ -397,28 +407,27 @@ export default function AssociationMessenger() {
 
         {/* PANNEAU DROIT : ZONE DE CHAT */}
         <div className="assoc-msg-chat-pane">
-          
           {/* En-tête de la conversation active */}
           <div className="assoc-msg-chat-header">
             <div className="assoc-msg-chat-header-user">
               <img src={assocCraLogo} alt="CRA" style={{ width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--assoc-border)', objectFit: 'contain', padding: '2px', background: '#fff' }} />
               <div>
-                <div className="assoc-msg-chat-header-name">Croissant Rouge Algérien</div>
+                <div className="assoc-msg-chat-header-name">{isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien'}</div>
                 <div className="assoc-msg-chat-header-sub" style={{ color: '#16a34a', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#16a34a' }} />
-                  <span>En ligne</span>
+                  <span>{isAr ? 'متصل الآن' : 'En ligne'}</span>
                 </div>
               </div>
             </div>
 
             <div className="assoc-msg-chat-header-actions">
-              <button type="button" className="assoc-msg-icon-btn" title="Appeler">
+              <button type="button" className="assoc-msg-icon-btn" title={isAr ? 'اتصال صوتي' : 'Appeler'}>
                 <IconPhone className="w-4 h-4" />
               </button>
-              <button type="button" className="assoc-msg-icon-btn" title="Vidéo">
+              <button type="button" className="assoc-msg-icon-btn" title={isAr ? 'اتصال مرئي' : 'Vidéo'}>
                 <IconVideo className="w-4 h-4" />
               </button>
-              <button type="button" className="assoc-msg-icon-btn" title="Infos">
+              <button type="button" className="assoc-msg-icon-btn" title={isAr ? 'معلومات' : 'Infos'}>
                 <IconInfo className="w-4 h-4" />
               </button>
             </div>
@@ -431,15 +440,15 @@ export default function AssociationMessenger() {
                 <img src={assocMsgCard} alt="Miniature mission" style={{ width: '48px', height: '48px', borderRadius: '10px', objectFit: 'cover', flexShrink: 0 }} />
                 <div style={{ minWidth: 0 }}>
                   <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--assoc-emerald)', background: 'var(--assoc-emerald-tint)', padding: '2px 8px', borderRadius: '4px' }}>
-                    Mission liée
+                    {isAr ? 'مبادرة مرتبطة' : 'Mission liée'}
                   </span>
                   <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '3px 0 2px' }}>
-                    Plantation de 500 arbres à Oran
+                    {isAr ? 'غرس 500 شجرة في غابة كناستيل وهران' : 'Plantation de 500 arbres à Oran'}
                   </div>
                   <div style={{ fontSize: '11.5px', color: 'var(--assoc-text-muted)', display: 'flex', gap: '10px' }}>
-                    <span>Forêt de Canastel</span>
+                    <span>{isAr ? 'غابة كناستيل' : 'Forêt de Canastel'}</span>
                     <span>·</span>
-                    <span>Samedi 26 avril</span>
+                    <span>{isAr ? 'السبت 26 أفريل' : 'Samedi 26 avril'}</span>
                   </div>
                 </div>
               </div>
@@ -458,7 +467,7 @@ export default function AssociationMessenger() {
                   flexShrink: 0
                 }}
               >
-                Fiche mission
+                {isAr ? 'بطاقة المبادرة' : 'Fiche mission'}
               </button>
             </div>
           </div>
@@ -475,7 +484,7 @@ export default function AssociationMessenger() {
                         <img src={msg.photoUrl} alt="Photo" style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }} />
                       </div>
                     )}
-                    <p style={{ margin: 0 }}>{msg.text}</p>
+                    <p style={{ margin: 0, whiteSpace: 'pre-line' }}>{msg.text}</p>
                   </div>
                   <span className="assoc-msg-bubble-time">{msg.time}</span>
                 </div>
@@ -487,7 +496,7 @@ export default function AssociationMessenger() {
           <div style={{ padding: '8px 24px', background: '#ffffff', borderTop: '1px solid var(--assoc-border-subtle)', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             <button
               type="button"
-              onClick={() => handleQuickAction("Je confirme ma présence pour la mission !")}
+              onClick={() => handleQuickAction(isAr ? "أؤكد حضوري للمبادرة التطوعية إن شاء الله !" : "Je confirme ma présence pour la mission !")}
               style={{
                 border: '1px solid var(--assoc-border)',
                 background: 'var(--assoc-bg-subtle)',
@@ -503,12 +512,12 @@ export default function AssociationMessenger() {
               }}
             >
               <IconCheck className="w-3.5 h-3.5" style={{ color: 'var(--assoc-emerald)' }} />
-              <span>Confirmer ma présence</span>
+              <span>{isAr ? 'تأكيد الحضور الميداني' : 'Confirmer ma présence'}</span>
             </button>
 
             <button
               type="button"
-              onClick={() => handleQuickAction("Position actuelle partagée : Canastel, Oran")}
+              onClick={() => handleQuickAction(isAr ? "الموقع الجغرافي الحالي : غابة كناستيل، وهران" : "Position actuelle partagée : Canastel, Oran")}
               style={{
                 border: '1px solid var(--assoc-border)',
                 background: 'var(--assoc-bg-subtle)',
@@ -524,7 +533,7 @@ export default function AssociationMessenger() {
               }}
             >
               <IconMapPin className="w-3.5 h-3.5" style={{ color: '#2563eb' }} />
-              <span>Partager ma position</span>
+              <span>{isAr ? 'مشاركة موقعي الجغرافي' : 'Partager ma position'}</span>
             </button>
           </div>
 
@@ -533,7 +542,7 @@ export default function AssociationMessenger() {
             <button
               type="button"
               style={{ border: 'none', background: 'none', color: 'var(--assoc-text-muted)', cursor: 'pointer', padding: '6px' }}
-              title="Joindre un fichier"
+              title={isAr ? 'إرفاق ملف' : 'Joindre un fichier'}
             >
               <IconPaperclip className="w-4 h-4" />
             </button>
@@ -541,7 +550,7 @@ export default function AssociationMessenger() {
             <input
               type="text"
               className="assoc-msg-input"
-              placeholder="Écrivez votre message..."
+              placeholder={isAr ? 'اكتب رسالتك هنا...' : 'Écrivez votre message...'}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             />
@@ -549,16 +558,13 @@ export default function AssociationMessenger() {
             <button
               type="submit"
               className="assoc-msg-send-btn"
-              title="Envoyer"
+              title={isAr ? 'إرسال' : 'Envoyer'}
             >
               <IconSend className="w-4 h-4" />
             </button>
           </form>
-
         </div>
-
       </div>
-
     </div>
   );
 }

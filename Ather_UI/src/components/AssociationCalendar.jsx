@@ -56,7 +56,7 @@ function IconUsers({ className = "w-3.5 h-3.5" }) {
   );
 }
 
-const UPCOMING_EVENTS = [
+const UPCOMING_EVENTS_FR = [
   {
     id: 'ev-1',
     title: "Nettoyage de la plage d'Aïn El Turk",
@@ -103,8 +103,61 @@ const UPCOMING_EVENTS = [
   }
 ];
 
-export default function AssociationCalendar() {
-  const [viewMode, setViewMode] = useState('mois'); // 'mois' | 'semaine' | 'liste'
+const UPCOMING_EVENTS_AR = [
+  {
+    id: 'ev-1',
+    title: "تنظيف شاطئ عين الترك",
+    location: 'وهران',
+    date: 'السبت 12 أفريل 2025',
+    volunteers: '32 / 50',
+    percent: 64,
+    badge: 'التسجيلات مفتوحة',
+    badgeType: 'open',
+    img: assocCalMadagh
+  },
+  {
+    id: 'ev-2',
+    title: 'دروس دعم مدرسي في غرداية',
+    location: 'غرداية',
+    date: 'الثلاثاء 15 أفريل 2025',
+    volunteers: '18 / 30',
+    percent: 60,
+    badge: 'قيد التنظيم',
+    badgeType: 'organizing',
+    img: assocCalGhardaia
+  },
+  {
+    id: 'ev-3',
+    title: 'حملة تشجير – جبل الوحش',
+    location: 'قسنطينة',
+    date: 'السبت 26 أفريل 2025',
+    volunteers: '25 / 40',
+    percent: 62,
+    badge: 'التسجيلات مفتوحة',
+    badgeType: 'open',
+    img: assocCalConstantine
+  },
+  {
+    id: 'ev-4',
+    title: 'توزيع الطرود الغذائية على العائلات',
+    location: 'تيزي وزو',
+    date: 'الأربعاء 30 أفريل 2025',
+    volunteers: '40 / 50',
+    percent: 80,
+    badge: 'قيد التأكيد النهائي',
+    badgeType: 'open',
+    img: assocCalTizi
+  }
+];
+
+export default function AssociationCalendar({ currentLang = 'fr' }) {
+  const isAr = currentLang === 'ar';
+  const upcomingEvents = isAr ? UPCOMING_EVENTS_AR : UPCOMING_EVENTS_FR;
+  const weekdays = isAr 
+    ? ['الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد']
+    : ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+
+  const [viewMode, setViewMode] = useState('mois'); // 'mois' | 'semaine'
   const [selectedDay, setSelectedDay] = useState(12);
 
   const days = [
@@ -142,8 +195,7 @@ export default function AssociationCalendar() {
   ];
 
   return (
-    <div className="assoc-cal-root">
-      
+    <div className="assoc-cal-root" dir={isAr ? 'rtl' : 'ltr'}>
       {/* 1. CARTE BANNIÈRE DE BIENVENUE DU CALENDRIER */}
       <div
         style={{
@@ -157,42 +209,36 @@ export default function AssociationCalendar() {
       >
         <img
           src={assocCalBanner}
-          alt="Bannière Calendrier"
+          alt={isAr ? "جدول المواعيد الميدانية" : "Bannière Calendrier"}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.3) 100%)' }} />
         <div style={{ position: 'absolute', inset: 0, padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', color: '#ffffff' }}>
           <h1 style={{ fontSize: '24px', fontWeight: 800, margin: '0 0 6px', color: '#ffffff' }}>
-            Calendrier des interventions & événements
+            {isAr ? 'جدول المبادرات والفعاليات الميدانية' : 'Calendrier des interventions & événements'}
           </h1>
           <p style={{ fontSize: '14px', color: '#e2e8f0', margin: 0, maxWidth: '600px', lineHeight: 1.5 }}>
-            Planifiez vos missions sur le terrain, mobilisez les équipes et assurez un suivi temporel rigoureux.
+            {isAr
+              ? 'تخطيط وتنسيق المبادرات التطوعية على الميدان، حشد الطاقات ومتابعة الجداول الزمنية بدقة.'
+              : 'Planifiez vos missions sur le terrain, mobilisez les équipes et assurez un suivi temporel rigoureux.'}
           </p>
         </div>
       </div>
 
       {/* 2. GRILLE DEUX COLONNES */}
       <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: '26px', alignItems: 'start' }}>
-        
         {/* COLONNE GAUCHE : CALENDRIER & MISSIONS DU MOIS */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          
           {/* Carte Calendrier */}
           <div className="assoc-cal-card">
             {/* Contrôles d'en-tête */}
             <div className="assoc-cal-header">
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <button
-                  type="button"
-                  className="assoc-cal-nav-btn"
-                >
+                <button type="button" className="assoc-cal-nav-btn">
                   <IconChevronLeft className="w-4 h-4" />
                 </button>
-                <h2 className="assoc-cal-month-title">Avril 2025</h2>
-                <button
-                  type="button"
-                  className="assoc-cal-nav-btn"
-                >
+                <h2 className="assoc-cal-month-title">{isAr ? 'أفريل 2025' : 'Avril 2025'}</h2>
+                <button type="button" className="assoc-cal-nav-btn">
                   <IconChevronRight className="w-4 h-4" />
                 </button>
               </div>
@@ -211,7 +257,7 @@ export default function AssociationCalendar() {
                     cursor: 'pointer'
                   }}
                 >
-                  Aujourd'hui
+                  {isAr ? 'اليوم' : "Aujourd'hui"}
                 </button>
 
                 <div style={{ display: 'flex', background: 'var(--assoc-bg-subtle)', borderRadius: '10px', padding: '3px' }}>
@@ -229,7 +275,7 @@ export default function AssociationCalendar() {
                       cursor: 'pointer'
                     }}
                   >
-                    Mois
+                    {isAr ? 'شهر' : 'Mois'}
                   </button>
                   <button
                     type="button"
@@ -245,7 +291,7 @@ export default function AssociationCalendar() {
                       cursor: 'pointer'
                     }}
                   >
-                    Semaine
+                    {isAr ? 'أسبوع' : 'Semaine'}
                   </button>
                 </div>
               </div>
@@ -253,7 +299,7 @@ export default function AssociationCalendar() {
 
             {/* Jours de la semaine */}
             <div className="assoc-cal-weekdays">
-              {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((d, idx) => (
+              {weekdays.map((d, idx) => (
                 <div key={idx} className="assoc-cal-weekday">
                   {d}
                 </div>
@@ -298,19 +344,19 @@ export default function AssociationCalendar() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--assoc-border-subtle)', fontSize: '12px', fontWeight: 600, color: 'var(--assoc-text-muted)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#16a34a' }} />
-                <span>Environnement</span>
+                <span>{isAr ? 'بيئة وتشجير' : 'Environnement'}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#eab308' }} />
-                <span>Solidarité & Social</span>
+                <span>{isAr ? 'تضامن وإغاثة' : 'Solidarité & Social'}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#2563eb' }} />
-                <span>Éducation</span>
+                <span>{isAr ? 'تعليم وتكوين' : 'Éducation'}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ea580c' }} />
-                <span>Santé</span>
+                <span>{isAr ? 'صحة وإسعاف' : 'Santé'}</span>
               </div>
             </div>
           </div>
@@ -319,15 +365,15 @@ export default function AssociationCalendar() {
           <div className="assoc-cal-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)', margin: 0 }}>
-                Missions publiées pour avril 2025
+                {isAr ? 'المبادرات المنشورة لشهر أفريل 2025' : 'Missions publiées pour avril 2025'}
               </h3>
               <span style={{ fontSize: '12.5px', color: 'var(--assoc-emerald)', fontWeight: 700, cursor: 'pointer' }}>
-                Voir tout →
+                {isAr ? 'عرض الكل ←' : 'Voir tout →'}
               </span>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {UPCOMING_EVENTS.map((ev) => (
+              {upcomingEvents.map((ev) => (
                 <div
                   key={ev.id}
                   style={{
@@ -361,7 +407,7 @@ export default function AssociationCalendar() {
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right', flexShrink: 0, width: '130px' }}>
+                  <div style={{ textAlign: isAr ? 'left' : 'right', flexShrink: 0, width: '130px' }}>
                     <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--assoc-text-body)' }}>{ev.volunteers} ({ev.percent}%)</div>
                     <div style={{ width: '100%', height: '6px', borderRadius: '999px', backgroundColor: '#e2e8f0', overflow: 'hidden', marginTop: '4px' }}>
                       <div style={{ height: '100%', backgroundColor: 'var(--assoc-emerald)', width: `${ev.percent}%` }} />
@@ -371,16 +417,14 @@ export default function AssociationCalendar() {
               ))}
             </div>
           </div>
-
         </div>
 
         {/* COLONNE DROITE : ÉVÉNEMENTS À VENIR & RÉCAPITULATIF */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          
           <div className="assoc-cal-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)', margin: 0 }}>
-                Prochaines étapes logistiques
+                {isAr ? 'المحطات اللوجستية القادمة' : 'Prochaines étapes logistiques'}
               </h3>
             </div>
 
@@ -388,24 +432,36 @@ export default function AssociationCalendar() {
               <div style={{ display: 'flex', gap: '12px', paddingBottom: '12px', borderBottom: '1px solid var(--assoc-border-subtle)' }}>
                 <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#16a34a', marginTop: '5px', flexShrink: 0 }} />
                 <div>
-                  <strong style={{ fontSize: '13px', color: 'var(--assoc-text-primary)', display: 'block' }}>12 avr. 2025 · Plage d'Aïn El Turk</strong>
-                  <small style={{ fontSize: '12px', color: 'var(--assoc-text-muted)' }}>Rassemblement à 08h30 pour distribution du matériel et des sacs de tri.</small>
+                  <strong style={{ fontSize: '13px', color: 'var(--assoc-text-primary)', display: 'block' }}>
+                    {isAr ? '12 أفريل 2025 · شاطئ عين الترك وهران' : "12 avr. 2025 · Plage d'Aïn El Turk"}
+                  </strong>
+                  <small style={{ fontSize: '12px', color: 'var(--assoc-text-muted)' }}>
+                    {isAr ? 'التجمع على 08:30 صباحاً لتوزيع العتاد وأكياس الفرز.' : 'Rassemblement à 08h30 pour distribution du matériel et des sacs de tri.'}
+                  </small>
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '12px', paddingBottom: '12px', borderBottom: '1px solid var(--assoc-border-subtle)' }}>
                 <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#2563eb', marginTop: '5px', flexShrink: 0 }} />
                 <div>
-                  <strong style={{ fontSize: '13px', color: 'var(--assoc-text-primary)', display: 'block' }}>15 avr. 2025 · Soutien scolaire à Ghardaïa</strong>
-                  <small style={{ fontSize: '12px', color: 'var(--assoc-text-muted)' }}>Validation finale des fiches pédagogiques avec les tuteurs bénévoles.</small>
+                  <strong style={{ fontSize: '13px', color: 'var(--assoc-text-primary)', display: 'block' }}>
+                    {isAr ? '15 أفريل 2025 · دعم مدرسي في غرداية' : '15 avr. 2025 · Soutien scolaire à Ghardaïa'}
+                  </strong>
+                  <small style={{ fontSize: '12px', color: 'var(--assoc-text-muted)' }}>
+                    {isAr ? 'المصادقة النهائية على البطاقات البيداغوجية مع المتطوعين.' : 'Validation finale des fiches pédagogiques avec les tuteurs bénévoles.'}
+                  </small>
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '12px' }}>
                 <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#16a34a', marginTop: '5px', flexShrink: 0 }} />
                 <div>
-                  <strong style={{ fontSize: '13px', color: 'var(--assoc-text-primary)', display: 'block' }}>26 avr. 2025 · Djebel El Ouahch Constantine</strong>
-                  <small style={{ fontSize: '12px', color: 'var(--assoc-text-muted)' }}>Livraison des 1 000 jeunes plants d'arbres par la pépinière.</small>
+                  <strong style={{ fontSize: '13px', color: 'var(--assoc-text-primary)', display: 'block' }}>
+                    {isAr ? '26 أفريل 2025 · جبل الوحش قسنطينة' : '26 avr. 2025 · Djebel El Ouahch Constantine'}
+                  </strong>
+                  <small style={{ fontSize: '12px', color: 'var(--assoc-text-muted)' }}>
+                    {isAr ? 'استلام 1 000 شتلة شجرية من المشتلة الولائية.' : 'Livraison des 1 000 jeunes plants d\'arbres par la pépinière.'}
+                  </small>
                 </div>
               </div>
             </div>
@@ -414,24 +470,25 @@ export default function AssociationCalendar() {
           {/* Vue d'ensemble chiffrée */}
           <div className="assoc-cal-card">
             <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '0 0 16px' }}>
-              Statistiques mensuelles
+              {isAr ? 'إحصائيات الشهر' : 'Statistiques mensuelles'}
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               <div style={{ padding: '14px', background: 'var(--assoc-bg-subtle)', borderRadius: '12px', textAlign: 'center' }}>
                 <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--assoc-navy)' }}>8</div>
-                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600 }}>Événements ce mois</div>
+                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600 }}>
+                  {isAr ? 'فعاليات هذا الشهر' : 'Événements ce mois'}
+                </div>
               </div>
               <div style={{ padding: '14px', background: 'var(--assoc-bg-subtle)', borderRadius: '12px', textAlign: 'center' }}>
                 <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--assoc-navy)' }}>215</div>
-                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600 }}>Bénévoles mobilisés</div>
+                <div style={{ fontSize: '11px', color: 'var(--assoc-text-muted)', fontWeight: 600 }}>
+                  {isAr ? 'متطوعاً مجنداً' : 'Bénévoles mobilisés'}
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }

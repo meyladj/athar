@@ -358,12 +358,160 @@ const MAP_ACTIONS = [
   }
 ];
 
+const MAP_ACTIONS_AR = {
+  'urg-1': {
+    badge: 'حالة طارئة حرجة',
+    title: 'حملة تبرع بالدم مستعجلة (جناح باستور)',
+    association: 'مركز حقن الدم - مستشفى مصطفى باشا الجامعي',
+    wilaya: 'الجزائر العاصمة',
+    date: 'السبت 19 أفريل 2025',
+    time: '08:30 – 16:30',
+    spots: '18 مقعداً شاغراً'
+  },
+  'urg-2': {
+    badge: 'طوارئ صحية',
+    title: 'فحوصات طبية وتشخيص مجاني',
+    association: 'جمعية البركة الخيرية',
+    wilaya: 'سيدي بلعباس',
+    date: 'السبت 10 ماي 2025',
+    time: '09:00 – 14:00',
+    spots: '15 مقعداً شاغراً'
+  },
+  'urg-3': {
+    badge: 'حالة طارئة حرجة',
+    title: 'تبرع بالدم بمستشفى باب الوادي',
+    association: 'المستشفى الجامعي باب الوادي',
+    wilaya: 'الجزائر العاصمة',
+    date: 'الأحد 20 أفريل 2025',
+    time: '09:00 – 15:00',
+    spots: '12 مقعداً شاغراً'
+  },
+  'urg-4': {
+    badge: 'إسعاف وإنقاذ',
+    title: 'نقطة إسعاف متقدم وإنعاش أولي',
+    association: 'الهلال الأحمر الجزائري',
+    wilaya: 'غرداية',
+    date: 'الأربعاء 23 أفريل 2025',
+    time: '10:00 – 16:00',
+    spots: '8 مقاعد شاغرة'
+  },
+  'sol-1': {
+    badge: 'تضامن وإغاثة',
+    title: 'توزيع طرود ومساعدات غذائية',
+    association: 'الهلال الأحمر الجزائري',
+    wilaya: 'وهران',
+    date: 'الأحد 27 أفريل 2025',
+    time: '10:00 – 15:00',
+    spots: '12 مقعداً شاغراً'
+  },
+  'sol-2': {
+    badge: 'تضامن وإغاثة',
+    title: 'طرود غذائية لمناطق الظل',
+    association: 'جمعية البركة الخيرية',
+    wilaya: 'بشار',
+    date: 'الخميس 1 ماي 2025',
+    time: '08:00 – 16:00',
+    spots: '16 مقعداً شاغراً'
+  },
+  'sol-3': {
+    badge: 'تضامن وإغاثة',
+    title: 'مساعدات مباشرة للأسر المتعففة',
+    association: 'الهلال الأحمر الجزائري',
+    wilaya: 'قسنطينة',
+    date: 'السبت 26 أفريل 2025',
+    time: '09:00 – 14:00',
+    spots: '14 مقعداً شاغراً'
+  },
+  'sol-4': {
+    badge: 'تضامن وإغاثة',
+    title: 'قافلة كسوة الشتاء للجنوب الكبير',
+    association: 'ناس الخير',
+    wilaya: 'تمنراست',
+    date: 'الإثنين 5 ماي 2025',
+    time: '08:00 – 17:00',
+    spots: '10 مقاعد شاغرة'
+  },
+  'edu-1': {
+    badge: 'تعليم وتدريب',
+    title: 'ورشة فنون وإيقاظ تعليمي للأطفال',
+    association: 'اقرأ للغد',
+    wilaya: 'قسنطينة',
+    date: 'السبت 3 ماي 2025',
+    time: '09:00 – 12:00',
+    spots: '20 مقعداً شاغراً'
+  },
+  'edu-2': {
+    badge: 'تعليم وتدريب',
+    title: 'مكتبات شوارع تفاعلية للأطفال',
+    association: 'اقرأ للغد',
+    wilaya: 'الجزائر العاصمة',
+    date: 'الأربعاء 7 ماي 2025',
+    time: '14:00 – 17:00',
+    spots: '10 مقاعد شاغرة'
+  },
+  'edu-3': {
+    badge: 'تعليم وتدريب',
+    title: 'دعم مدرسي ومبادئ الرقمنة',
+    association: 'النادي العلمي الطلابي',
+    wilaya: 'تلمسان',
+    date: 'الجمعة 9 ماي 2025',
+    time: '09:30 – 13:00',
+    spots: '12 مقعداً شاغراً'
+  },
+  'edu-4': {
+    badge: 'تعليم وتدريب',
+    title: 'حكايات صحراوية وجلسات قراءة',
+    association: 'اقرأ للغد',
+    wilaya: 'تمنراست',
+    date: 'السبت 17 ماي 2025',
+    time: '16:00 – 19:00',
+    spots: '8 مقاعد شاغرة'
+  },
+  'pla-1': {
+    badge: 'تشجير وبيئة',
+    title: 'حملة إعادة تشجير بتيبازة',
+    association: 'Green Future',
+    wilaya: 'تيبازة',
+    date: 'السبت 26 أفريل 2025',
+    time: '09:00 – 13:00',
+    spots: '24 مقعداً شاغراً'
+  },
+  'pla-2': {
+    badge: 'تشجير وبيئة',
+    title: 'غرس أشجار بغابة زرالدة',
+    association: 'Green Future',
+    wilaya: 'الجزائر العاصمة',
+    date: 'السبت 12 أفريل 2025',
+    time: '09:00 – 15:00',
+    spots: '30 مقعداً شاغراً'
+  },
+  'pla-3': {
+    badge: 'تشجير وبيئة',
+    title: 'الحزام الأخضر لمكافحة التصحر',
+    association: 'نادي البيئة USTHB',
+    wilaya: 'الجلفة',
+    date: 'السبت 10 ماي 2025',
+    time: '08:30 – 15:00',
+    spots: '22 مقعداً شاغراً'
+  },
+  'pla-4': {
+    badge: 'تشجير وبيئة',
+    title: 'غرس أشجار الخروب والأركان',
+    association: 'Green Future',
+    wilaya: 'معسكر',
+    date: 'السبت 17 ماي 2025',
+    time: '09:00 – 14:00',
+    spots: '18 مقعداً شاغراً'
+  }
+};
+
 export default function InteractiveActionMap({
   currentLang = 'fr',
   volunteerUser = null,
   onToast = () => {},
   onSelectMission = null
 }) {
+  const isAr = currentLang === 'ar';
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersGroupRef = useRef(null);
@@ -410,16 +558,16 @@ export default function InteractiveActionMap({
     filteredActions.forEach(act => {
       // Pin icon HTML avec couleurs conformes à map benev.png
       let pinColor = '#ef4444'; // rouge
-      let pinSymbol = '+';
+      let pinSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
       if (act.type === 'solidarity') {
         pinColor = '#3b82f6'; // bleu
-        pinSymbol = '🤝';
+        pinSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
       } else if (act.type === 'education') {
         pinColor = '#a855f7'; // violet
-        pinSymbol = '📖';
+        pinSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
       } else if (act.type === 'planting') {
         pinColor = '#10b981'; // vert
-        pinSymbol = '🌱';
+        pinSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>`;
       }
 
       const isSelected = act.id === selectedActionId;
@@ -436,13 +584,11 @@ export default function InteractiveActionMap({
           align-items: center;
           justify-content: center;
           color: #ffffff;
-          font-size: 15px;
-          font-weight: 900;
           cursor: pointer;
           transform: ${isSelected ? 'scale(1.2)' : 'scale(1)'};
           transition: transform 0.2s ease;
         ">
-          ${pinSymbol}
+          ${pinSvg}
         </div>
       `;
 
@@ -493,15 +639,17 @@ export default function InteractiveActionMap({
       >
         <div style={{ flex: '1 1 55%', zIndex: 2 }}>
           <div style={{ fontSize: '12px', fontWeight: 700, color: '#64748b', marginBottom: '6px' }}>
-            <span>Accueil</span>
-            <span style={{ margin: '0 6px' }}>&gt;</span>
-            <span style={{ color: '#006D5B', fontWeight: 800 }}>Action Map</span>
+            <span>{isAr ? 'الرئيسية' : 'Accueil'}</span>
+            <span style={{ margin: '0 6px' }}>{isAr ? '<' : '>'}</span>
+            <span style={{ color: '#006D5B', fontWeight: 800 }}>{isAr ? 'خريطة المبادرات' : 'Action Map'}</span>
           </div>
           <h1 style={{ fontSize: '26px', fontWeight: 900, color: '#0f172a', margin: '0 0 8px', lineHeight: 1.25 }}>
-            Points d'Action & Missions<br />près de chez vous
+            {isAr ? <>نقاط المبادرة والتطوع<br />بالقرب منك</> : <>Points d'Action & Missions<br />près de chez vous</>}
           </h1>
           <p style={{ fontSize: '13.5px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
-            Découvrez les actions solidaires en cours partout en Algérie et rejoignez celles qui vous inspirent.
+            {isAr
+              ? 'اكتشف الأنشطة التضامنية الجارية في جميع أنحاء الجزائر وشارك في المبادرات التي تلهمك.'
+              : 'Découvrez les actions solidaires en cours partout en Algérie et rejoignez celles qui vous inspirent.'}
           </p>
         </div>
 
@@ -518,19 +666,20 @@ export default function InteractiveActionMap({
           <div 
             style={{
               position: 'absolute',
-              right: '12px',
+              right: isAr ? 'auto' : '12px',
+              left: isAr ? '12px' : 'auto',
               top: '50%',
               transform: 'translateY(-50%)',
-              textAlign: 'right',
+              textAlign: isAr ? 'left' : 'right',
               color: '#0f172a',
               textShadow: '0 1px 4px rgba(255,255,255,0.9)'
             }}
           >
-            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15 }}>
-              Des citoyens,
+            <div style={{ fontFamily: isAr ? "'Cairo', sans-serif" : 'Georgia, serif', fontStyle: isAr ? 'normal' : 'italic', fontSize: '19px', fontWeight: 800, color: '#004d40', lineHeight: 1.15 }}>
+              {isAr ? 'مواطنون فاعلون،' : 'Des citoyens,'}
             </div>
-            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
-              Un impact réel.
+            <div style={{ fontFamily: isAr ? "'Cairo', sans-serif" : 'Georgia, serif', fontStyle: isAr ? 'normal' : 'italic', fontSize: '19px', fontWeight: 800, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
+              {isAr ? 'أثر حقيقي.' : 'Un impact réel.'}
             </div>
           </div>
         </div>
@@ -539,7 +688,9 @@ export default function InteractiveActionMap({
       {/* 2. BARRE DE FILTRES DES CATÉGORIES (map benev.png) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-          <span style={{ fontSize: '13px', fontWeight: 800, color: '#0f172a', marginRight: '6px' }}>Catégories</span>
+          <span style={{ fontSize: '13px', fontWeight: 800, color: '#0f172a', marginRight: '6px' }}>
+            {isAr ? 'المجالات' : 'Catégories'}
+          </span>
           
           {/* TOUTES (16) */}
           <button
@@ -559,8 +710,8 @@ export default function InteractiveActionMap({
               gap: '6px'
             }}
           >
-            <span>☀️</span>
-            <span>Toutes (16)</span>
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#006D5B' }} />
+            <span>{isAr ? 'الكل (16)' : 'Toutes (16)'}</span>
           </button>
 
           {/* URGENCES (4) */}
@@ -582,7 +733,7 @@ export default function InteractiveActionMap({
             }}
           >
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }} />
-            <span>Urgences (4)</span>
+            <span>{isAr ? 'طوارئ (4)' : 'Urgences (4)'}</span>
           </button>
 
           {/* SOLIDARITÉ (4) */}
@@ -604,7 +755,7 @@ export default function InteractiveActionMap({
             }}
           >
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
-            <span>Solidarité (4)</span>
+            <span>{isAr ? 'تضامن (4)' : 'Solidarité (4)'}</span>
           </button>
 
           {/* ÉDUCATION (4) */}
@@ -626,7 +777,7 @@ export default function InteractiveActionMap({
             }}
           >
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }} />
-            <span>Éducation (4)</span>
+            <span>{isAr ? 'تعليم (4)' : 'Éducation (4)'}</span>
           </button>
 
           {/* PLANTATIONS (4) */}
@@ -648,21 +799,23 @@ export default function InteractiveActionMap({
             }}
           >
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-            <span>Plantations (4)</span>
+            <span>{isAr ? 'تشجير وبيئة (4)' : 'Plantations (4)'}</span>
           </button>
         </div>
 
         {/* LIGNE WILAYA & RESET */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: '#475569' }}>Wilaya</span>
+            <span style={{ fontSize: '13px', fontWeight: 700, color: '#475569' }}>
+              {isAr ? 'الولاية' : 'Wilaya'}
+            </span>
             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-              <IconMapPin className="w-4 h-4 text-emerald-700" style={{ position: 'absolute', left: '12px' }} />
+              <IconMapPin className="w-4 h-4 text-emerald-700" style={{ position: 'absolute', [isAr ? 'right' : 'left']: '12px' }} />
               <select
                 value={selectedWilaya}
                 onChange={(e) => setSelectedWilaya(e.target.value)}
                 style={{
-                  padding: '8px 16px 8px 34px',
+                  padding: isAr ? '8px 34px 8px 16px' : '8px 16px 8px 34px',
                   borderRadius: '12px',
                   border: '1px solid #cbd5e1',
                   background: '#ffffff',
@@ -673,13 +826,13 @@ export default function InteractiveActionMap({
                   cursor: 'pointer'
                 }}
               >
-                <option value="ALL">Toutes les wilayas (National)</option>
-                <option value="Alger">Alger</option>
-                <option value="Tipaza">Tipaza</option>
-                <option value="Oran">Oran</option>
-                <option value="Constantine">Constantine</option>
-                <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
-                <option value="Tamanrasset">Tamanrasset</option>
+                <option value="ALL">{isAr ? 'جميع الولايات (الوطن)' : 'Toutes les wilayas (National)'}</option>
+                <option value="Alger">{isAr ? '16 - الجزائر العاصمة' : 'Alger'}</option>
+                <option value="Tipaza">{isAr ? '42 - تيبازة' : 'Tipaza'}</option>
+                <option value="Oran">{isAr ? '31 - وهران' : 'Oran'}</option>
+                <option value="Constantine">{isAr ? '25 - قسنطينة' : 'Constantine'}</option>
+                <option value="Sidi Bel Abbès">{isAr ? '22 - سيدي بلعباس' : 'Sidi Bel Abbès'}</option>
+                <option value="Tamanrasset">{isAr ? '11 - تمنراست' : 'Tamanrasset'}</option>
               </select>
             </div>
           </div>
@@ -689,7 +842,7 @@ export default function InteractiveActionMap({
             onClick={() => {
               setActiveCategory('ALL');
               setSelectedWilaya('ALL');
-              onToast('Filtres réinitialisés.');
+              onToast(isAr ? 'تمت إعادة ضبط الفلاتر.' : 'Filtres réinitialisés.');
             }}
             style={{
               background: 'none',
@@ -704,7 +857,7 @@ export default function InteractiveActionMap({
             }}
           >
             <IconRefresh className="w-3.5 h-3.5" />
-            <span>Réinitialiser les filtres</span>
+            <span>{isAr ? 'إعادة ضبط الفلاتر' : 'Réinitialiser les filtres'}</span>
           </button>
         </div>
       </div>
@@ -730,7 +883,7 @@ export default function InteractiveActionMap({
             {/* STATUT SUPÉRIEUR SUR LA CARTE */}
             <div style={{ padding: '12px 18px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-              <span><strong>{filteredActions.length} actions</strong> sur la carte</span>
+              <span><strong>{filteredActions.length}</strong> {isAr ? 'مبادرة على الخريطة' : 'actions sur la carte'}</span>
             </div>
 
             {/* CONTENEUR DU CANEVAS LEAFLET */}
@@ -762,19 +915,19 @@ export default function InteractiveActionMap({
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '12px', fontWeight: 700 }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#b91c1c' }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }} />
-                  Urgences
+                  {isAr ? 'طوارئ' : 'Urgences'}
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#1d4ed8' }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
-                  Solidarité
+                  {isAr ? 'تضامن' : 'Solidarité'}
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#7e22ce' }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }} />
-                  Éducation
+                  {isAr ? 'تعليم' : 'Éducation'}
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#15803d' }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-                  Plantations
+                  {isAr ? 'تشجير' : 'Plantations'}
                 </span>
               </div>
 
@@ -800,7 +953,7 @@ export default function InteractiveActionMap({
                 }}
               >
                 <IconCrosshair className="w-3 h-3 text-emerald-600" />
-                <span>Ma position</span>
+                <span>{isAr ? 'موقعي' : 'Ma position'}</span>
               </button>
             </div>
 
@@ -838,19 +991,19 @@ export default function InteractiveActionMap({
               </div>
               <div>
                 <h4 style={{ margin: '0 0 3px', fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
-                  Ensemble pour une Algérie plus solidaire
+                  {isAr ? 'معاً من أجل جزائر أكثر تضامناً' : 'Ensemble pour une Algérie plus solidaire'}
                 </h4>
                 <p style={{ margin: 0, fontSize: '12.5px', color: '#64748b' }}>
-                  Des citoyens engagés, des actions concrètes, un impact durable.
+                  {isAr ? 'مواطنون ملتزمون، مبادرات ملموسة، وأثر مستدام.' : 'Des citoyens engagés, des actions concrètes, un impact durable.'}
                 </p>
               </div>
             </div>
 
-            <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '18px', fontWeight: 700, color: '#004d40' }}>
-                Chaque action compte.
+            <div style={{ textAlign: isAr ? 'left' : 'right', flexShrink: 0 }}>
+              <div style={{ fontFamily: isAr ? "'Cairo', sans-serif" : 'Georgia, serif', fontStyle: isAr ? 'normal' : 'italic', fontSize: '18px', fontWeight: 800, color: '#004d40' }}>
+                {isAr ? 'كل مبادرة تصنع الفرق.' : 'Chaque action compte.'}
               </div>
-              <div style={{ width: '40px', height: '2px', background: '#006D5B', marginLeft: 'auto', marginTop: '4px' }} />
+              <div style={{ width: '40px', height: '2px', background: '#006D5B', [isAr ? 'marginRight' : 'marginLeft']: 'auto', marginTop: '4px' }} />
             </div>
           </div>
 
@@ -862,7 +1015,7 @@ export default function InteractiveActionMap({
           {/* HEADER DE LA LISTE */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2px' }}>
             <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span>Actions à proximité</span>
+              <span>{isAr ? 'مبادرات قريبة منك' : 'Actions à proximité'}</span>
               <span style={{ fontSize: '12px', fontWeight: 800, background: '#f1f5f9', color: '#475569', padding: '2px 8px', borderRadius: '12px' }}>
                 {filteredActions.length}
               </span>
@@ -881,9 +1034,9 @@ export default function InteractiveActionMap({
                 cursor: 'pointer'
               }}
             >
-              <option>Plus récentes</option>
-              <option>Plus proches</option>
-              <option>Urgentes</option>
+              <option>{isAr ? 'الأحدث' : 'Plus récentes'}</option>
+              <option>{isAr ? 'الأقرب' : 'Plus proches'}</option>
+              <option>{isAr ? 'العاجلة' : 'Urgentes'}</option>
             </select>
           </div>
 
@@ -891,6 +1044,15 @@ export default function InteractiveActionMap({
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {filteredActions.slice(0, 5).map(act => {
               const isSelected = act.id === selectedActionId;
+              const arData = MAP_ACTIONS_AR[act.id];
+
+              const displayBadge = isAr && arData ? arData.badge : act.badge;
+              const displayTitle = isAr && arData ? arData.title : act.title;
+              const displayAssoc = isAr && arData ? arData.association : act.association;
+              const displayWilaya = isAr && arData ? arData.wilaya : act.wilaya;
+              const displayDate = isAr && arData ? arData.date : act.date;
+              const displayTime = isAr && arData ? arData.time : act.time;
+              const displaySpots = isAr && arData ? arData.spots : act.spots;
 
               return (
                 <div
@@ -913,7 +1075,7 @@ export default function InteractiveActionMap({
                   <div style={{ width: '90px', height: '80px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0 }}>
                     <img 
                       src={act.image} 
-                      alt={act.title}
+                      alt={displayTitle}
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   </div>
@@ -930,14 +1092,18 @@ export default function InteractiveActionMap({
                           padding: '2px 8px',
                           borderRadius: '14px',
                           background: act.badgeBg,
-                          color: act.badgeColor
+                          color: act.badgeColor,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px'
                         }}
                       >
-                        ✦ {act.badge}
+                        <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'currentColor' }} />
+                        {displayBadge}
                       </span>
                       <span style={{ fontSize: '11.5px', color: '#64748b', display: 'flex', alignItems: 'center', gap: '3px' }}>
                         <IconMapPin className="w-3 h-3 text-slate-400" />
-                        {act.wilaya}
+                        {displayWilaya}
                       </span>
                     </div>
 
@@ -954,35 +1120,35 @@ export default function InteractiveActionMap({
                         whiteSpace: 'nowrap'
                       }}
                     >
-                      {act.title}
+                      {displayTitle}
                     </h4>
 
                     {/* ASSOCIATION */}
                     <div style={{ fontSize: '11.5px', color: '#006D5B', fontWeight: 700 }}>
-                      {act.association}
+                      {displayAssoc}
                     </div>
 
                     {/* DATE & HEURE */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '11px', color: '#64748b' }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                         <IconCalendar className="w-3 h-3 text-slate-400" />
-                        {act.date}
+                        {displayDate}
                       </span>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                         <IconClock className="w-3 h-3 text-slate-400" />
-                        {act.time}
+                        {displayTime}
                       </span>
                     </div>
 
                     {/* PLACES */}
                     <div style={{ fontSize: '11px', fontWeight: 700, color: '#334155', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
                       <IconUsers className="w-3 h-3 text-emerald-600" />
-                      <span>{act.spots}</span>
+                      <span>{displaySpots}</span>
                     </div>
 
                   </div>
 
-                  {/* BOUTON CERCLE FLÈCHE DROITE */}
+                  {/* BOUTON CERCLE FLÈCHE */}
                   <div 
                     style={{
                       width: '32px',
@@ -994,7 +1160,8 @@ export default function InteractiveActionMap({
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: '#475569',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      transform: isAr ? 'scaleX(-1)' : 'none'
                     }}
                   >
                     <IconArrowRight className="w-3.5 h-3.5" />
@@ -1024,8 +1191,10 @@ export default function InteractiveActionMap({
                 boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
               }}
             >
-              <span>Voir toutes les actions</span>
-              <IconArrowRight className="w-3.5 h-3.5" />
+              <span>{isAr ? 'عرض جميع المبادرات' : 'Voir toutes les actions'}</span>
+              <span style={{ transform: isAr ? 'scaleX(-1)' : 'none', display: 'inline-flex' }}>
+                <IconArrowRight className="w-3.5 h-3.5" />
+              </span>
             </button>
           </div>
 
@@ -1036,3 +1205,4 @@ export default function InteractiveActionMap({
     </div>
   );
 }
+

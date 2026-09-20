@@ -90,7 +90,7 @@ function IconShare({ className = "w-4 h-4" }) {
   );
 }
 
-const PROOF_PRESETS = [
+const PROOF_PRESETS_FR = [
   {
     id: 'distribution',
     label: 'Aide alimentaire',
@@ -125,26 +125,63 @@ const PROOF_PRESETS = [
   }
 ];
 
-export default function AssociationPostProof({ onBackToFeed, onPublished }) {
+const PROOF_PRESETS_AR = [
+  {
+    id: 'distribution',
+    label: 'مساعدات غذائية',
+    img: proofDistribution,
+    defaultLocation: "تيزي وزو، ولاية تيزي وزو",
+    defaultCategory: "solidarite",
+    defaultCaption: "توزيع أكثر من 350 طرداً غذائياً من المواد الأساسية للعائلات المعوزة في قرى منطقة القبائل.\n\nتنظيم محكم أشرف عليه متطوعونا لضمان كرامة وراحة كل أسرة.\n\n#تضامن #الهلال_الأحمر_الجزائري #أثر #تكافل_مواطنة"
+  },
+  {
+    id: 'caravane',
+    label: 'قافلة إنسانية للجنوب',
+    img: proofCaravane,
+    defaultLocation: "بسكرة وواحات الجنوب الكبير",
+    defaultCategory: "solidarite",
+    defaultCaption: "وصول القافلة التضامنية الكبرى للهلال الأحمر الجزائري إلى مناطق الظل والقرى المعزولة.\n\nتوزيع أغطية شتوية، ألبسة دافئة ومواد غذائية أساسية لأكثر من 200 عائلة.\n\n#قافلة_تضامنية #الجنوب_الكبير #الهلال_الأحمر"
+  },
+  {
+    id: 'reboisement',
+    label: 'حملة تشجير الشواطئ والغابات',
+    img: proofReboisement,
+    defaultLocation: "غابة زرالدة، الجزائر العاصمة",
+    defaultCategory: "environnement",
+    defaultCaption: "تعبئة مواطنة رائدة لإعادة اخضرار الشريط الساحلي: غرس 800 شتلة شجرية بمشاركة 60 متطوعاً ومتطوعة.\n\nكل شجرة تُغرس هي نسمة أمل لأجيالنا وحصن طبيعي ضد الانجراف.\n\n#البيئة #تشجير #الجزائر_الخضراء"
+  },
+  {
+    id: 'casbah',
+    label: 'ترميم وتثمين القصبة',
+    img: proofCasbah,
+    defaultLocation: "قصبة الجزائر العتيقة، الجزائر العاصمة",
+    defaultCategory: "culture",
+    defaultCaption: "ورشة عمل مواطنة وتضامنية في قلب قصبة الجزائر العتيقة.\n\nتنظيف وترميم الأزقة التاريخية وحفظ الذاكرة المشتركة إلى جانب الحرفيين والسكان.\n\n#القصبة #تراث_وطني #الهلال_الأحمر #تضامن"
+  }
+];
+
+export default function AssociationPostProof({ currentLang = 'fr', onBackToFeed, onPublished }) {
+  const isAr = currentLang === 'ar';
+  const presets = isAr ? PROOF_PRESETS_AR : PROOF_PRESETS_FR;
+
   const [selectedThumb, setSelectedThumb] = useState(0);
-  const [caption, setCaption] = useState(PROOF_PRESETS[0].defaultCaption);
-  const [location, setLocation] = useState(PROOF_PRESETS[0].defaultLocation);
+  const [caption, setCaption] = useState(presets[0].defaultCaption);
+  const [location, setLocation] = useState(presets[0].defaultLocation);
   const [date, setDate] = useState("2025-05-18");
-  const [category, setCategory] = useState(PROOF_PRESETS[0].defaultCategory);
-  const [proofType, setProofType] = useState("tracabilite");
+  const [category, setCategory] = useState(presets[0].defaultCategory);
   const [visibility, setVisibility] = useState("publique"); // 'publique' | 'communaute' | 'privee'
 
   const [taggedVolunteers, setTaggedVolunteers] = useState([
-    { id: '1', name: 'Yasmine K.', avatar: 'YK' },
-    { id: '2', name: 'Karim A.', avatar: 'KA' },
-    { id: '3', name: 'Sabrina M.', avatar: 'SM' },
+    { id: '1', name: isAr ? 'ياسمين قاسي' : 'Yasmine K.', avatar: 'YK' },
+    { id: '2', name: isAr ? 'كريم عمراني' : 'Karim A.', avatar: 'KA' },
+    { id: '3', name: isAr ? 'صبرينة مزيان' : 'Sabrina M.', avatar: 'SM' },
   ]);
 
   const [suggestedVolunteers, setSuggestedVolunteers] = useState([
-    { id: '4', name: 'Mehdi T.', avatar: 'MT' },
-    { id: '5', name: 'Amira B.', avatar: 'AB' },
-    { id: '6', name: 'Walid S.', avatar: 'WS' },
-    { id: '7', name: 'Nour E.', avatar: 'NE' },
+    { id: '4', name: isAr ? 'مهدي تومي' : 'Mehdi T.', avatar: 'MT' },
+    { id: '5', name: isAr ? 'أميرة بن علي' : 'Amira B.', avatar: 'AB' },
+    { id: '6', name: isAr ? 'وليد سعدي' : 'Walid S.', avatar: 'WS' },
+    { id: '7', name: isAr ? 'نور الهدى' : 'Nour E.', avatar: 'NE' },
   ]);
 
   const [publishedSuccess, setPublishedSuccess] = useState(false);
@@ -170,8 +207,7 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
   };
 
   return (
-    <div className="assoc-proof-root">
-      
+    <div className="assoc-proof-root" dir={isAr ? 'rtl' : 'ltr'}>
       {/* 1. EN-TÊTE DE LA PAGE */}
       <div className="assoc-proof-header">
         <div className="assoc-proof-header-left">
@@ -179,14 +215,14 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
             type="button"
             onClick={onBackToFeed}
             className="assoc-proof-back-btn"
-            title="Retour au profil"
+            title={isAr ? 'العودة للملف' : 'Retour au profil'}
           >
             <IconArrowLeft className="w-5 h-5" />
           </button>
 
           <div className="assoc-proof-header-titles">
-            <h1>Publier une preuve d'impact</h1>
-            <p>Documentez vos actions terrain avec photos et traçabilité transparente.</p>
+            <h1>{isAr ? 'نشر إثبات أثر ميداني' : "Publier une preuve d'impact"}</h1>
+            <p>{isAr ? 'توثيق مبادرات الميدان بالصور والشفافية التامة أمام المجتمع والشركاء.' : 'Documentez vos actions terrain avec photos et traçabilité transparente.'}</p>
           </div>
         </div>
 
@@ -204,47 +240,45 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
             cursor: 'pointer'
           }}
         >
-          Annuler
+          {isAr ? 'إلغاء' : 'Annuler'}
         </button>
       </div>
 
       {/* Message de succès */}
       {publishedSuccess && (
         <div style={{ padding: '14px 20px', background: 'var(--assoc-emerald-tint)', border: '1px solid var(--assoc-emerald-border)', borderRadius: '12px', color: 'var(--assoc-emerald)', fontWeight: 700, fontSize: '13.5px' }}>
-          Preuve de terrain publiée avec succès sur le fil d'actualité !
+          {isAr ? 'تم نشر وثيقة الإثبات الميداني بنجاح في شريط المنشورات !' : "Preuve de terrain publiée avec succès sur le fil d'actualité !"}
         </div>
       )}
 
       {/* 2. GRILLE DEUX COLONNES : FORMULAIRE ET APERÇU LIVE */}
       <div className="assoc-proof-grid">
-        
         {/* FORMULAIRE GAUCHE */}
         <form onSubmit={handlePublish} className="assoc-proof-form-pane">
-          
           {/* ÉTAPE 1 : PHOTOS */}
           <div className="assoc-proof-card">
             <h2 className="assoc-proof-step-title">
               <span className="assoc-proof-step-num">1</span>
-              <span>Photos de terrain</span>
+              <span>{isAr ? 'الصور الميدانية الموثقة' : 'Photos de terrain'}</span>
             </h2>
 
             {/* Photo principale sélectionnée */}
             <div style={{ height: '230px', borderRadius: '14px', overflow: 'hidden', position: 'relative', border: '1px solid var(--assoc-border)', backgroundColor: '#0f172a' }}>
               <img
-                src={PROOF_PRESETS[selectedThumb].img}
-                alt={PROOF_PRESETS[selectedThumb].label}
+                src={presets[selectedThumb].img}
+                alt={presets[selectedThumb].label}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-              <div style={{ position: 'absolute', bottom: '12px', left: '14px' }}>
+              <div style={{ position: 'absolute', bottom: '12px', [isAr ? 'right' : 'left']: '14px' }}>
                 <span style={{ fontSize: '11.5px', fontWeight: 800, padding: '4px 12px', borderRadius: '20px', background: 'rgba(0, 109, 91, 0.9)', color: '#ffffff', backdropFilter: 'blur(4px)' }}>
-                  {PROOF_PRESETS[selectedThumb].label}
+                  {presets[selectedThumb].label}
                 </span>
               </div>
             </div>
 
             {/* Vignettes des 4 photos fournies */}
             <div className="assoc-proof-thumbs-row">
-              {PROOF_PRESETS.map((item, idx) => (
+              {presets.map((item, idx) => (
                 <div
                   key={item.id}
                   onClick={() => {
@@ -266,17 +300,17 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
           <div className="assoc-proof-card">
             <h2 className="assoc-proof-step-title">
               <span className="assoc-proof-step-num">2</span>
-              <span>Compte rendu de l'action</span>
+              <span>{isAr ? 'تقرير الأثر والنتائج الميدانية' : "Compte rendu de l'action"}</span>
             </h2>
 
             <div className="assoc-field-group">
-              <label className="assoc-field-label">Description détaillée de l'impact</label>
+              <label className="assoc-field-label">{isAr ? 'الوصف المفصل للأثر المتحقق' : "Description détaillée de l'impact"}</label>
               <textarea
                 className="assoc-field-textarea"
                 rows={5}
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
-                placeholder="Décrivez les résultats obtenus sur le terrain, le nombre de bénéficiaires..."
+                placeholder={isAr ? 'صف المخرجات الميدانية، عدد العائلات المستفيدة أو كميات الإنجاز...' : 'Décrivez les résultats obtenus sur le terrain, le nombre de bénéficiaires...'}
               />
             </div>
           </div>
@@ -285,7 +319,7 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
           <div className="assoc-proof-card">
             <h2 className="assoc-proof-step-title">
               <span className="assoc-proof-step-num">3</span>
-              <span>Bénévoles mobilisés</span>
+              <span>{isAr ? 'المتطوعون المشاركون في الإنجاز' : 'Bénévoles mobilisés'}</span>
             </h2>
 
             <div className="assoc-proof-tagged-volunteers">
@@ -305,7 +339,7 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
 
             <div style={{ marginTop: '10px' }}>
               <small style={{ color: 'var(--assoc-text-muted)', fontSize: '12px', display: 'block', marginBottom: '8px' }}>
-                Suggestions récentes :
+                {isAr ? 'اقتراحات حديثة :' : 'Suggestions récentes :'}
               </small>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {suggestedVolunteers.map((vol) => (
@@ -335,12 +369,12 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
           <div className="assoc-proof-card">
             <h2 className="assoc-proof-step-title">
               <span className="assoc-proof-step-num">4</span>
-              <span>Informations de localisation & date</span>
+              <span>{isAr ? 'المكان، التاريخ ومجال النشاط' : 'Informations de localisation & date'}</span>
             </h2>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
               <div className="assoc-field-group">
-                <label className="assoc-field-label">Lieu de l'intervention</label>
+                <label className="assoc-field-label">{isAr ? 'مكان التدخل الميداني' : "Lieu de l'intervention"}</label>
                 <input
                   type="text"
                   className="assoc-field-input"
@@ -350,7 +384,7 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
               </div>
 
               <div className="assoc-field-group">
-                <label className="assoc-field-label">Date</label>
+                <label className="assoc-field-label">{isAr ? 'التاريخ' : 'Date'}</label>
                 <input
                   type="date"
                   className="assoc-field-input"
@@ -362,30 +396,30 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '10px' }}>
               <div className="assoc-field-group">
-                <label className="assoc-field-label">Thématique</label>
+                <label className="assoc-field-label">{isAr ? 'المجال' : 'Thématique'}</label>
                 <select
                   className="assoc-field-select"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="environnement">Environnement & Reboisement</option>
-                  <option value="solidarite">Solidarité & Dignité</option>
-                  <option value="education">Éducation & Soutien</option>
-                  <option value="sante">Santé & Secours</option>
-                  <option value="culture">Culture & Patrimoine</option>
+                  <option value="environnement">{isAr ? 'البيئة والتشجير' : 'Environnement & Reboisement'}</option>
+                  <option value="solidarite">{isAr ? 'التضامن والتكافل' : 'Solidarité & Dignité'}</option>
+                  <option value="education">{isAr ? 'التعليم والتكوين' : 'Éducation & Soutien'}</option>
+                  <option value="sante">{isAr ? 'الصحة والإسعاف' : 'Santé & Secours'}</option>
+                  <option value="culture">{isAr ? 'التراث والهوية' : 'Culture & Patrimoine'}</option>
                 </select>
               </div>
 
               <div className="assoc-field-group">
-                <label className="assoc-field-label">Visibilité</label>
+                <label className="assoc-field-label">{isAr ? 'مستوى الرؤية' : 'Visibilité'}</label>
                 <select
                   className="assoc-field-select"
                   value={visibility}
                   onChange={(e) => setVisibility(e.target.value)}
                 >
-                  <option value="publique">Publique (Tous les citoyens)</option>
-                  <option value="communaute">Communauté des bénévoles</option>
-                  <option value="privee">Interne association</option>
+                  <option value="publique">{isAr ? 'عام (مرئي لكافة المواطنين)' : 'Publique (Tous les citoyens)'}</option>
+                  <option value="communaute">{isAr ? 'مجتمع المتطوعين فقط' : 'Communauté des bénévoles'}</option>
+                  <option value="privee">{isAr ? 'خاص بأعضاء الجمعية' : 'Interne association'}</option>
                 </select>
               </div>
             </div>
@@ -397,14 +431,14 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
               type="button"
               className="assoc-proof-btn-draft"
             >
-              Enregistrer brouillon
+              {isAr ? 'حفظ كمسودة' : 'Enregistrer brouillon'}
             </button>
             <button
               type="submit"
               className="assoc-proof-btn-publish"
             >
               <IconSend className="w-4 h-4" />
-              <span>Publier la preuve</span>
+              <span>{isAr ? 'نشر وثيقة الإثبات' : 'Publier la preuve'}</span>
             </button>
           </div>
         </form>
@@ -412,24 +446,28 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
         {/* APERÇU LIVE DROITE */}
         <div className="assoc-proof-preview-pane">
           <div className="assoc-proof-preview-badge">
-            <span>● Aperçu en direct dans le fil d'actualité</span>
+            <span>{isAr ? '● معاينة حية في شريط المنشورات' : "● Aperçu en direct dans le fil d'actualité"}</span>
           </div>
 
           <div className="assoc-proof-preview-card">
             <div style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               <img src={assocCraLogo} alt="CRA" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'contain', border: '1px solid var(--assoc-border)', padding: '2px' }} />
               <div>
-                <strong style={{ fontSize: '13.5px', color: 'var(--assoc-text-primary)', display: 'block' }}>Croissant Rouge Algérien</strong>
-                <small style={{ fontSize: '11.5px', color: 'var(--assoc-text-muted)' }}>{location} · Aujourd'hui</small>
+                <strong style={{ fontSize: '13.5px', color: 'var(--assoc-text-primary)', display: 'block' }}>
+                  {isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien'}
+                </strong>
+                <small style={{ fontSize: '11.5px', color: 'var(--assoc-text-muted)' }}>
+                  {location} · {isAr ? 'اليوم' : 'Aujourd\'hui'}
+                </small>
               </div>
             </div>
 
             <div className="assoc-proof-preview-img-wrap">
-              <img src={PROOF_PRESETS[selectedThumb].img} alt={PROOF_PRESETS[selectedThumb].label} />
+              <img src={presets[selectedThumb].img} alt={presets[selectedThumb].label} />
             </div>
 
             <div className="assoc-proof-preview-body">
-              <p className="assoc-proof-preview-caption">
+              <p className="assoc-proof-preview-caption" style={{ whiteSpace: 'pre-line' }}>
                 {caption}
               </p>
 
@@ -450,9 +488,7 @@ export default function AssociationPostProof({ onBackToFeed, onPublished }) {
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }

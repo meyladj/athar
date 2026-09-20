@@ -196,7 +196,8 @@ const MISSIONS_DATA = [
   }
 ];
 
-export default function AssociationMissions({ onOpenCreateMission }) {
+export default function AssociationMissions({ onOpenCreateMission, currentLang = 'fr' }) {
+  const isAr = currentLang === 'ar';
   const [activeTab, setActiveTab] = useState('all'); // 'all' | 'active' | 'upcoming' | 'completed'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMission, setSelectedMission] = useState(null);
@@ -215,19 +216,21 @@ export default function AssociationMissions({ onOpenCreateMission }) {
       {/* 1. EN-TÊTE DE LA SECTION MISSIONS */}
       <div className="assoc-missions-header">
         <div className="assoc-missions-header-left">
-          <h1>Gestion des missions</h1>
+          <h1>{isAr ? 'إدارة المبادرات والفرص التطوعية' : 'Gestion des missions'}</h1>
           <p>
-            Créez, organisez et suivez vos missions de bénévolat. Ensemble, donnons plus d'impact à nos actions !
+            {isAr
+              ? 'أنشئ ونظّم وتابع فرص التطوع الميدانية. معاً نصنع أثراً حقيقياً ومستداماً عبر الجزائر!'
+              : 'Créez, organisez et suivez vos missions de bénévolat. Ensemble, donnons plus d\'impact à nos actions !'}
           </p>
         </div>
 
         {/* Citation cursive + Bouton d'action */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <div style={{ textAlign: 'right', display: 'none' }} className="sm:block">
+          <div style={{ textAlign: isAr ? 'left' : 'right', display: 'none' }} className="sm:block">
             <span
-              style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '20px', fontWeight: 700, color: 'var(--assoc-navy-light)' }}
+              style={{ fontFamily: isAr ? "'Cairo', sans-serif" : "'Caveat', cursive, sans-serif", fontSize: isAr ? '17px' : '20px', fontWeight: 700, color: 'var(--assoc-navy-light)' }}
             >
-              Des citoyens,<br />Un impact réel.
+              {isAr ? <>سواعد مواطنة،<br />وأثر حقيقي.</> : <>Des citoyens,<br />Un impact réel.</>}
             </span>
           </div>
 
@@ -237,7 +240,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             className="assoc-btn-create-mission"
           >
             <IconPlus className="w-4 h-4" />
-            <span>Créer une mission</span>
+            <span>{isAr ? 'إنشاء فرصة تطوعية' : 'Créer une mission'}</span>
           </button>
         </div>
       </div>
@@ -251,7 +254,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
           </div>
           <div>
             <div className="assoc-missions-stat-val">24</div>
-            <div className="assoc-missions-stat-sub">Missions au total</div>
+            <div className="assoc-missions-stat-sub">{isAr ? 'إجمالي المبادرات' : 'Missions au total'}</div>
           </div>
         </div>
 
@@ -262,7 +265,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
           </div>
           <div>
             <div className="assoc-missions-stat-val">532</div>
-            <div className="assoc-missions-stat-sub">Places ouvertes</div>
+            <div className="assoc-missions-stat-sub">{isAr ? 'مقاعد مفتوحة' : 'Places ouvertes'}</div>
           </div>
         </div>
 
@@ -273,17 +276,17 @@ export default function AssociationMissions({ onOpenCreateMission }) {
           </div>
           <div>
             <div className="assoc-missions-stat-val">1 248</div>
-            <div className="assoc-missions-stat-sub">Candidatures reçues</div>
+            <div className="assoc-missions-stat-sub">{isAr ? 'طلبات مستلمة' : 'Candidatures reçues'}</div>
           </div>
         </div>
 
         {/* 4. Carte Citation Athar */}
         <div className="assoc-quote-stat-card">
           <p className="assoc-quote-stat-text">
-            “ Des petites actions font de grands changements. ”
+            {isAr ? '“ خطوات صغيرة تصنع فارقاً عظيماً. ”' : '“ Des petites actions font de grands changements. ”'}
           </p>
           <div className="assoc-quote-stat-author">
-            — Athar
+            {isAr ? '— منصة أثر' : '— Athar'}
           </div>
         </div>
       </div>
@@ -297,7 +300,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             onClick={() => setActiveTab('all')}
             className={`assoc-status-pill ${activeTab === 'all' ? 'active' : ''}`}
           >
-            Toutes les missions (24)
+            {isAr ? 'كافة المبادرات (24)' : 'Toutes les missions (24)'}
           </button>
 
           <button
@@ -305,7 +308,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             onClick={() => setActiveTab('active')}
             className={`assoc-status-pill ${activeTab === 'active' ? 'active' : ''}`}
           >
-            Actives (18)
+            {isAr ? 'جارية ومفتوحة (18)' : 'Actives (18)'}
           </button>
 
           <button
@@ -313,7 +316,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             onClick={() => setActiveTab('upcoming')}
             className={`assoc-status-pill ${activeTab === 'upcoming' ? 'active' : ''}`}
           >
-            À venir (6)
+            {isAr ? 'قادمة قريباً (6)' : 'À venir (6)'}
           </button>
 
           <button
@@ -321,7 +324,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             onClick={() => setActiveTab('completed')}
             className={`assoc-status-pill ${activeTab === 'completed' ? 'active' : ''}`}
           >
-            Terminées (42)
+            {isAr ? 'مكتملة (42)' : 'Terminées (42)'}
           </button>
         </div>
 
@@ -331,7 +334,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             <IconSearch className="w-4 h-4" style={{ color: 'var(--assoc-text-muted)', flexShrink: 0 }} />
             <input
               type="text"
-              placeholder="Rechercher une mission par titre..."
+              placeholder={isAr ? 'ابحث عن مبادرة بالعنوان...' : 'Rechercher une mission par titre...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -351,7 +354,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
               justifyContent: 'center',
               flexShrink: 0
             }}
-            title="Filtres avancés"
+            title={isAr ? 'تصفية متقدمة' : 'Filtres avancés'}
           >
             <IconFilter className="w-4 h-4" />
           </button>
@@ -389,7 +392,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
                   {m.description}
                 </p>
 
-                {/* Rangée de métadonnées avec icônes nettes */}
+                {/* Rangée de métادonnées avec icônes nettes */}
                 <div className="assoc-mission-meta-row">
                   <span className="assoc-mission-meta-item">
                     <IconCalendar className="w-3.5 h-3.5" />
@@ -401,7 +404,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
                   </span>
                   <span className="assoc-mission-meta-item">
                     <IconUsers className="w-3.5 h-3.5" />
-                    <span>{m.volunteersTotal} bénévoles</span>
+                    <span>{m.volunteersTotal} {isAr ? 'متطوعاً' : 'bénévoles'}</span>
                   </span>
                 </div>
               </div>
@@ -409,7 +412,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
               {/* Jauge de progression des bénévoles inscrits */}
               <div className="assoc-mission-gauge-box">
                 <div className="assoc-mission-gauge-labels">
-                  <span>{m.volunteersJoined} / {m.volunteersTotal} inscrits</span>
+                  <span>{m.volunteersJoined} / {m.volunteersTotal} {isAr ? 'مسجل' : 'inscrits'}</span>
                   <span>{m.percent}%</span>
                 </div>
                 <div className="assoc-mission-gauge-track">
@@ -432,7 +435,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
                 >
                   <IconEye className="w-3.5 h-3.5" />
-                  <span>Détails</span>
+                  <span>{isAr ? 'تفاصيل' : 'Détails'}</span>
                 </button>
 
                 <button
@@ -441,7 +444,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
                 >
                   <IconEdit className="w-3.5 h-3.5" />
-                  <span>Modifier</span>
+                  <span>{isAr ? 'تعديل' : 'Modifier'}</span>
                 </button>
 
                 <button
@@ -450,7 +453,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
                 >
                   <IconCheckCircle className="w-3.5 h-3.5" />
-                  <span>Inscrits</span>
+                  <span>{isAr ? 'المسجلون' : 'Inscrits'}</span>
                 </button>
               </div>
             </div>
@@ -502,10 +505,12 @@ export default function AssociationMissions({ onOpenCreateMission }) {
           </div>
 
           <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--assoc-navy)', margin: '0 0 8px' }}>
-            Créer une nouvelle mission
+            {isAr ? 'إنشاء فرصة تطوعية جديدة' : 'Créer une nouvelle mission'}
           </h3>
           <p style={{ fontSize: '13px', color: 'var(--assoc-text-muted)', maxWidth: '280px', lineHeight: 1.6, margin: '0 0 20px' }}>
-            Lancez une nouvelle action sur le terrain et mobilisez des bénévoles partout en Algérie.
+            {isAr
+              ? 'أطلق مبادرة ميدانية جديدة وجنّد متطوعين فاعلين في أي ولاية جزائرية.'
+              : 'Lancez une nouvelle action sur le terrain et mobilisez des bénévoles partout en Algérie.'}
           </p>
 
           <button
@@ -513,7 +518,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
             className="assoc-btn-create-mission"
           >
             <IconPlus className="w-4 h-4" />
-            <span>Publier une mission</span>
+            <span>{isAr ? 'نشر مبادرة جديدة' : 'Publier une mission'}</span>
           </button>
         </div>
       </div>
@@ -556,11 +561,11 @@ export default function AssociationMissions({ onOpenCreateMission }) {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--assoc-text-body)' }}>
                 <IconUsers className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                <span>{selectedMission.volunteersJoined} / {selectedMission.volunteersTotal} bénévoles</span>
+                <span>{selectedMission.volunteersJoined} / {selectedMission.volunteersTotal} {isAr ? 'متطوعاً' : 'bénévoles'}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--assoc-text-body)' }}>
                 <IconPercent className="w-4 h-4" style={{ color: 'var(--assoc-emerald)' }} />
-                <span>{selectedMission.percent}% d'inscrits</span>
+                <span>{selectedMission.percent}% {isAr ? 'نسبة الامتلاء' : "d'inscrits"}</span>
               </div>
             </div>
 
@@ -571,7 +576,7 @@ export default function AssociationMissions({ onOpenCreateMission }) {
                 className="assoc-btn-create-mission"
                 style={{ padding: '10px 22px' }}
               >
-                Fermer
+                {isAr ? 'إغلاق' : 'Fermer'}
               </button>
             </div>
           </div>

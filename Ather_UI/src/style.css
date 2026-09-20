@@ -1822,7 +1822,13 @@ textarea {
 /* ===== RTL SUPPORT (ARABIC) ===== */
 [dir="rtl"] {
   text-align: right;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', Tahoma, sans-serif;
+  font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', Tahoma, sans-serif;
+}
+
+[dir="rtl"] input,
+[dir="rtl"] select,
+[dir="rtl"] textarea {
+  font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
 }
 
 [dir="rtl"] .nav .right {
@@ -2504,7 +2510,7 @@ textarea {
   height: calc(100vh - 68px);
   overflow-y: auto;
   width: 100%;
-  padding: 26px 36px 64px;
+  padding: 32px 36px 64px;
   box-sizing: border-box;
 }
 .portal-container > * {
@@ -5875,15 +5881,16 @@ html[dir="rtl"] .hero h1 {
   display: block;
 }
 
-/* Page Profil Espace Bénévole */
+/* Page Profil Espace Bénévole (Mêmes marges que profil Croissant Rouge) */
 .benev-profile-page {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 0 0 48px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 28px;
+  box-sizing: border-box;
 }
 
 /* Couverture panoramique */

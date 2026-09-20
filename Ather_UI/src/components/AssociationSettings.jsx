@@ -70,23 +70,26 @@ const WILAYAS_LIST = [
   "59 Aflou", "60 Barika", "61 Ksar Chellala", "62 Messaad", "63 Aïn Oussara", "64 Boussaâda", "65 El Abiodh Sidi Cheikh", "66 El Kantara", "67 Bir El Ater", "68 Khemis Miliana", "69 Debila"
 ];
 
-export default function AssociationSettings() {
+export default function AssociationSettings({ currentLang = 'fr' }) {
+  const isAr = currentLang === 'ar';
   const [activeSubTab, setActiveSubTab] = useState('identity'); // 'identity' | 'governance' | 'notifications' | 'security'
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   // Form state : Identity
   const [formData, setFormData] = useState({
-    name: 'Croissant Rouge Algérien',
-    acronym: 'CRA',
+    name: isAr ? 'الهلال الأحمر الجزائري' : 'Croissant Rouge Algérien',
+    acronym: isAr ? 'هـ.أ.ج / CRA' : 'CRA',
     registrationNumber: 'AGR-1956-DZ-001',
     registrationDate: '1956-12-11',
     wilayaSiege: '16 Alger',
-    address: 'Rue Mohamed Belouizdad, Hamma, Alger',
+    address: isAr ? 'شارع محمد بلوزداد، الحامة، الجزائر العاصمة' : 'Rue Mohamed Belouizdad, Hamma, Alger',
     phone: '+213 (0) 21 67 89 00',
     email: 'contact@cra-algerie.org',
     website: 'https://www.cra.dz',
-    bio: 'Société nationale humanitaire indépendante, auxiliaire des pouvoirs publics dans le domaine humanitaire. Présente sur l\'ensemble des 69 wilayas d\'Algérie pour secourir, soigner et protéger les populations vulnérables.',
-    category: 'Humanitaire & Secours d\'urgence'
+    bio: isAr
+      ? 'جمعية إنسانية تطوعية وطنية مستقلة، ومساعدة للسلطات العمومية في المجال الإنساني. متواجدة عبر كافة ولايات الجزائر الـ 69 لإغاثة، علاج ورعاية الفئات الهشة والمحتاجة.'
+      : 'Société nationale humanitaire indépendante, auxiliaire des pouvoirs publics dans le domaine humanitaire. Présente sur l\'ensemble des 69 wilayas d\'Algérie pour secourir, soigner et protéger les populations vulnérables.',
+    category: isAr ? 'إنساني وإغاثة طوارئ' : 'Humanitaire & Secours d\'urgence'
   });
 
   // Form state : Notifications
@@ -105,20 +108,22 @@ export default function AssociationSettings() {
   };
 
   return (
-    <div className="assoc-settings-root">
+    <div className="assoc-settings-root" dir={isAr ? 'rtl' : 'ltr'}>
       {/* 1. EN-TÊTE PARAMÈTRES */}
       <div className="assoc-settings-header">
         <div className="assoc-settings-header-left">
-          <h1>Paramètres de l'association</h1>
+          <h1>{isAr ? 'إعدادات الجمعية' : "Paramètres de l'association"}</h1>
           <p>
-            Gérez l'identité légale de votre organisation, vos coordonnées officielles, la gouvernance de votre bureau et vos préférences d'alertes.
+            {isAr
+              ? 'إدارة الهوية القانونية لمنظمتكم، بيانات الاتصال الرسمية، تركيبة المكتب التنفيذي وتفضيلات الإشعارات والتنبيهات.'
+              : "Gérez l'identité légale de votre organisation, vos coordonnées officielles, la gouvernance de votre bureau et vos préférences d'alertes."}
           </p>
         </div>
 
         {savedSuccess && (
           <div className="assoc-settings-alert-success">
             <IconCheck className="w-4 h-4" />
-            <span>Modifications enregistrées avec succès</span>
+            <span>{isAr ? 'تم حفظ التعديلات بنجاح' : 'Modifications enregistrées avec succès'}</span>
           </div>
         )}
       </div>
@@ -131,7 +136,7 @@ export default function AssociationSettings() {
           onClick={() => setActiveSubTab('identity')}
         >
           <IconBuilding className="w-4 h-4" />
-          <span>Identité & Coordonnées</span>
+          <span>{isAr ? 'الهوية والاعتماد' : 'Identité & Coordonnées'}</span>
         </button>
 
         <button
@@ -140,7 +145,7 @@ export default function AssociationSettings() {
           onClick={() => setActiveSubTab('governance')}
         >
           <IconUsers className="w-4 h-4" />
-          <span>Bureau & Responsables</span>
+          <span>{isAr ? 'المكتب والمسؤولون' : 'Bureau & Responsables'}</span>
         </button>
 
         <button
@@ -149,7 +154,7 @@ export default function AssociationSettings() {
           onClick={() => setActiveSubTab('notifications')}
         >
           <IconBell className="w-4 h-4" />
-          <span>Notifications & Alertes</span>
+          <span>{isAr ? 'الإشعارات والتنبيهات' : 'Notifications & Alertes'}</span>
         </button>
 
         <button
@@ -158,7 +163,7 @@ export default function AssociationSettings() {
           onClick={() => setActiveSubTab('security')}
         >
           <IconShieldLock className="w-4 h-4" />
-          <span>Sécurité & Accès</span>
+          <span>{isAr ? 'الأمان والحساب' : 'Sécurité & Accès'}</span>
         </button>
       </div>
 
@@ -168,15 +173,19 @@ export default function AssociationSettings() {
         {activeSubTab === 'identity' && (
           <div className="assoc-settings-card">
             <div className="assoc-settings-card-header">
-              <h2 className="assoc-settings-card-title">Informations officielles & Agrément</h2>
+              <h2 className="assoc-settings-card-title">
+                {isAr ? 'المعلومات الرسمية ورقم الاعتماد' : 'Informations officielles & Agrément'}
+              </h2>
               <p className="assoc-settings-card-desc">
-                Ces renseignements sont visibles par les bénévoles et les partenaires institutionnels sur Athar.
+                {isAr
+                  ? 'هذه المعلومات معتمدة ومتاحة للمتطوعين والشركاء الرسميين عبر منصة أثر.'
+                  : 'Ces renseignements sont visibles par les bénévoles et les partenaires institutionnels sur Athar.'}
               </p>
             </div>
 
             <div className="assoc-settings-form-grid">
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Dénomination officielle *</label>
+                <label className="assoc-settings-label">{isAr ? 'التسمية الرسمية للجمعية *' : 'Dénomination officielle *'}</label>
                 <input
                   type="text"
                   className="assoc-settings-input"
@@ -186,7 +195,7 @@ export default function AssociationSettings() {
               </div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Sigle / Acronyme</label>
+                <label className="assoc-settings-label">{isAr ? 'الاسم المختصر / الرمز' : 'Sigle / Acronyme'}</label>
                 <input
                   type="text"
                   className="assoc-settings-input"
@@ -196,18 +205,20 @@ export default function AssociationSettings() {
               </div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Numéro d'agrément officiel *</label>
+                <label className="assoc-settings-label">{isAr ? 'رقم الاعتماد الرسمي *' : "Numéro d'agrément officiel *"}</label>
                 <input
                   type="text"
                   className="assoc-settings-input"
                   value={formData.registrationNumber}
                   onChange={(e) => setFormData({ ...formData, registrationNumber: e.target.value })}
                 />
-                <span className="assoc-settings-hint">Certifié et validé par le Ministère de l'Intérieur</span>
+                <span className="assoc-settings-hint">
+                  {isAr ? 'موثق ومعتمد من وزارة الداخلية والجماعات المحلية' : 'Certifié et validé par le Ministère de l\'Intérieur'}
+                </span>
               </div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Wilaya de rattachement du siège (69 wilayas)</label>
+                <label className="assoc-settings-label">{isAr ? 'ولاية المقر الرئيسي (69 ولاية)' : 'Wilaya de rattachement du siège (69 wilayas)'}</label>
                 <select
                   className="assoc-settings-select"
                   value={formData.wilayaSiege}
@@ -220,7 +231,7 @@ export default function AssociationSettings() {
               </div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Email institutionnel *</label>
+                <label className="assoc-settings-label">{isAr ? 'البريد الإلكتروني الرسمي *' : 'Email institutionnel *'}</label>
                 <input
                   type="email"
                   className="assoc-settings-input"
@@ -230,7 +241,7 @@ export default function AssociationSettings() {
               </div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Téléphone de permanence *</label>
+                <label className="assoc-settings-label">{isAr ? 'هاتف المداومة والاستقبال *' : 'Téléphone de permanence *'}</label>
                 <input
                   type="text"
                   className="assoc-settings-input"
@@ -240,7 +251,7 @@ export default function AssociationSettings() {
               </div>
 
               <div className="assoc-settings-group full-width">
-                <label className="assoc-settings-label">Adresse postale complète</label>
+                <label className="assoc-settings-label">{isAr ? 'العنوان البريدي الكامل' : 'Adresse postale complète'}</label>
                 <input
                   type="text"
                   className="assoc-settings-input"
@@ -250,7 +261,7 @@ export default function AssociationSettings() {
               </div>
 
               <div className="assoc-settings-group full-width">
-                <label className="assoc-settings-label">Mission officielle & Présentation</label>
+                <label className="assoc-settings-label">{isAr ? 'الرسالة الإنسانية والنبذة الرسمية' : 'Mission officielle & Présentation'}</label>
                 <textarea
                   rows="4"
                   className="assoc-settings-textarea"
@@ -262,11 +273,11 @@ export default function AssociationSettings() {
 
             <div className="assoc-settings-save-bar">
               <span style={{ fontSize: '12.5px', color: 'var(--assoc-text-muted)' }}>
-                Dernière synchronisation : Aujourd'hui à 11:30
+                {isAr ? 'آخر مزامنة: اليوم على 11:30' : 'Dernière synchronisation : Aujourd\'hui à 11:30'}
               </span>
               <button type="submit" className="assoc-btn-save">
                 <IconSave className="w-4 h-4" />
-                <span>Enregistrer les modifications</span>
+                <span>{isAr ? 'حفظ التعديلات' : 'Enregistrer les modifications'}</span>
               </button>
             </div>
           </div>
@@ -276,9 +287,13 @@ export default function AssociationSettings() {
         {activeSubTab === 'governance' && (
           <div className="assoc-settings-card">
             <div className="assoc-settings-card-header">
-              <h2 className="assoc-settings-card-title">Membres du bureau exécutif</h2>
+              <h2 className="assoc-settings-card-title">
+                {isAr ? 'أعضاء المكتب التنفيذي' : 'Membres du bureau exécutif'}
+              </h2>
               <p className="assoc-settings-card-desc">
-                Personnes habilitées à engager l'association et à valider les missions officielles.
+                {isAr
+                  ? 'الأشخاص المخولون قانونياً بإطلاق المبادرات الميدانية وتوقيع الاتفاقيات باسم الجمعية.'
+                  : 'Personnes habilitées à engager l\'association et à valider les missions officielles.'}
               </p>
             </div>
 
@@ -287,43 +302,43 @@ export default function AssociationSettings() {
                 <div className="assoc-member-info">
                   <div className="assoc-member-avatar">IB</div>
                   <div>
-                    <div className="assoc-member-name">Dr. Ibtissem Hamlaoui</div>
-                    <div className="assoc-member-role">Présidente nationale</div>
+                    <div className="assoc-member-name">{isAr ? 'د. ابتسام حملاوي' : 'Dr. Ibtissem Hamlaoui'}</div>
+                    <div className="assoc-member-role">{isAr ? 'الرئيسة الوطنية' : 'Présidente nationale'}</div>
                   </div>
                 </div>
-                <span className="assoc-member-badge">Administrateur Principal</span>
+                <span className="assoc-member-badge">{isAr ? 'مسؤول رئيسي' : 'Administrateur Principal'}</span>
               </div>
 
               <div className="assoc-member-item">
                 <div className="assoc-member-info">
                   <div className="assoc-member-avatar" style={{ backgroundColor: '#eff6ff', color: '#2563eb' }}>RB</div>
                   <div>
-                    <div className="assoc-member-name">Rachid Benali</div>
-                    <div className="assoc-member-role">Secrétaire Général</div>
+                    <div className="assoc-member-name">{isAr ? 'رشيد بن علي' : 'Rachid Benali'}</div>
+                    <div className="assoc-member-role">{isAr ? 'الأمين العام' : 'Secrétaire Général'}</div>
                   </div>
                 </div>
-                <span className="assoc-member-badge">Gestionnaire</span>
+                <span className="assoc-member-badge">{isAr ? 'مسؤول تنفيذي' : 'Gestionnaire'}</span>
               </div>
 
               <div className="assoc-member-item">
                 <div className="assoc-member-info">
                   <div className="assoc-member-avatar" style={{ backgroundColor: '#fef3c7', color: '#b45309' }}>ML</div>
                   <div>
-                    <div className="assoc-member-name">Mounir Larbi</div>
-                    <div className="assoc-member-role">Coordinateur National du Bénévolat</div>
+                    <div className="assoc-member-name">{isAr ? 'منير العربي' : 'Mounir Larbi'}</div>
+                    <div className="assoc-member-role">{isAr ? 'المنسق الوطني للعمل التطوعي' : 'Coordinateur National du Bénévolat'}</div>
                   </div>
                 </div>
-                <span className="assoc-member-badge">Superviseur Terrain</span>
+                <span className="assoc-member-badge">{isAr ? 'مشرف ميداني' : 'Superviseur Terrain'}</span>
               </div>
             </div>
 
             <div className="assoc-settings-save-bar">
               <span style={{ fontSize: '12.5px', color: 'var(--assoc-text-muted)' }}>
-                3 membres enregistrés
+                {isAr ? '3 أعضاء مسجلين وموثقين' : '3 membres enregistrés'}
               </span>
               <button type="submit" className="assoc-btn-save">
                 <IconSave className="w-4 h-4" />
-                <span>Mettre à jour les accès</span>
+                <span>{isAr ? 'تحديث صلاحيات المكتب' : 'Mettre à jour les accès'}</span>
               </button>
             </div>
           </div>
@@ -333,17 +348,21 @@ export default function AssociationSettings() {
         {activeSubTab === 'notifications' && (
           <div className="assoc-settings-card">
             <div className="assoc-settings-card-header">
-              <h2 className="assoc-settings-card-title">Canaux d'alertes & Notifications</h2>
+              <h2 className="assoc-settings-card-title">
+                {isAr ? 'قنوات الإشعارات والتنبيهات' : 'Canaux d\'alertes & Notifications'}
+              </h2>
               <p className="assoc-settings-card-desc">
-                Personnalisez la fréquence et les alertes reçues pour ne manquer aucune mobilisation citoyenne.
+                {isAr
+                  ? 'تخصيص وتيرة الإشعارات المستلمة لمتابعة كافة مبادرات التطوع في حينها وبكل دقة.'
+                  : 'Personnalisez la fréquence et les alertes reçues pour ne manquer aucune mobilisation citoyenne.'}
               </p>
             </div>
 
             <div>
               <div className="assoc-settings-toggle-row">
                 <div className="assoc-settings-toggle-info">
-                  <h4>Notification immédiate de candidature</h4>
-                  <p>Recevoir un email dès qu'un bénévole postule à l'une de vos missions.</p>
+                  <h4>{isAr ? 'إشعار فوري عند وصول طلب تطوع جديد' : 'Notification immédiate de candidature'}</h4>
+                  <p>{isAr ? 'استلام بريد إلكتروني فوري بمجرد تقديم متطوع على إحدى المبادرات.' : 'Recevoir un email dès qu\'un bénévole postule à l\'une de vos missions.'}</p>
                 </div>
                 <label className="assoc-switch">
                   <input
@@ -357,8 +376,8 @@ export default function AssociationSettings() {
 
               <div className="assoc-settings-toggle-row">
                 <div className="assoc-settings-toggle-info">
-                  <h4>Alertes SMS d'urgence médicale & secours</h4>
-                  <p>Recevoir un SMS d'alerte lors des besoins urgents en don de sang ou catastrophes naturelles.</p>
+                  <h4>{isAr ? 'تنبيهات SMS لحالات الطوارئ والإغاثة الطبية' : 'Alertes SMS d\'urgence médicale & secours'}</h4>
+                  <p>{isAr ? 'استلام رسائل نصية عاجلة للحاجة الماسة للدم أو في حالات الكوارث الطبيعية.' : 'Recevoir un SMS d\'alerte lors des besoins urgents en don de sang ou catastrophes naturelles.'}</p>
                 </div>
                 <label className="assoc-switch">
                   <input
@@ -372,8 +391,8 @@ export default function AssociationSettings() {
 
               <div className="assoc-settings-toggle-row">
                 <div className="assoc-settings-toggle-info">
-                  <h4>Messages instantanés des bénévoles</h4>
-                  <p>Afficher le témoin rouge et recevoir les notifications des échanges dans la messagerie Athar.</p>
+                  <h4>{isAr ? 'رسائل المحادثة الفورية مع المتطوعين' : 'Messages instantanés des bénévoles'}</h4>
+                  <p>{isAr ? 'إظهار الشارة الحمراء واستلام تنبيهات الرسائل في مساحة المحادثة.' : 'Afficher le témoin rouge et recevoir les notifications des échanges dans la messagerie Athar.'}</p>
                 </div>
                 <label className="assoc-switch">
                   <input
@@ -387,8 +406,8 @@ export default function AssociationSettings() {
 
               <div className="assoc-settings-toggle-row">
                 <div className="assoc-settings-toggle-info">
-                  <h4>Rapport hebdomadaire de performance</h4>
-                  <p>Synthèse chiffrée chaque lundi sur les inscriptions, heures de bénévolat et retours de missions.</p>
+                  <h4>{isAr ? 'التقرير الأسبوعي لنشاط التطوع' : 'Rapport hebdomadaire de performance'}</h4>
+                  <p>{isAr ? 'ملخص إحصائي يصلك كل يوم إثنين حول طلبات التطوع وساعات الإنجاز الميداني.' : 'Synthèse chiffrée chaque lundi sur les inscriptions, heures de bénévolat et retours de missions.'}</p>
                 </div>
                 <label className="assoc-switch">
                   <input
@@ -403,11 +422,11 @@ export default function AssociationSettings() {
 
             <div className="assoc-settings-save-bar">
               <span style={{ fontSize: '12.5px', color: 'var(--assoc-text-muted)' }}>
-                Notifications synchronisées en temps réel
+                {isAr ? 'تحديث الإشعارات فوري ومباشر' : 'Notifications synchronisées en temps réel'}
               </span>
               <button type="submit" className="assoc-btn-save">
                 <IconSave className="w-4 h-4" />
-                <span>Sauvegarder les préférences</span>
+                <span>{isAr ? 'حفظ تفضيلات الإشعارات' : 'Sauvegarder les préférences'}</span>
               </button>
             </div>
           </div>
@@ -417,15 +436,19 @@ export default function AssociationSettings() {
         {activeSubTab === 'security' && (
           <div className="assoc-settings-card">
             <div className="assoc-settings-card-header">
-              <h2 className="assoc-settings-card-title">Sécurité du compte & Authentification</h2>
+              <h2 className="assoc-settings-card-title">
+                {isAr ? 'أمان الحساب وتسجيل الدخول' : 'Sécurité du compte & Authentification'}
+              </h2>
               <p className="assoc-settings-card-desc">
-                Protégez les données sensibles de votre association et vos communications officielles.
+                {isAr
+                  ? 'حماية البيانات الحساسة لجمعيتكم ومراسلاتكم الرسمية المشفرة.'
+                  : 'Protégez les données sensibles de votre association et vos communications officielles.'}
               </p>
             </div>
 
             <div className="assoc-settings-form-grid">
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Mot de passe actuel</label>
+                <label className="assoc-settings-label">{isAr ? 'كلمة المرور الحالية' : 'Mot de passe actuel'}</label>
                 <input
                   type="password"
                   className="assoc-settings-input"
@@ -436,20 +459,20 @@ export default function AssociationSettings() {
               <div></div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Nouveau mot de passe</label>
+                <label className="assoc-settings-label">{isAr ? 'كلمة المرور الجديدة' : 'Nouveau mot de passe'}</label>
                 <input
                   type="password"
                   className="assoc-settings-input"
-                  placeholder="Au moins 10 caractères avec chiffres et symboles"
+                  placeholder={isAr ? '10 أحرف على الأقل تتضمن أرقام ورموز' : 'Au moins 10 caractères avec chiffres et symboles'}
                 />
               </div>
 
               <div className="assoc-settings-group">
-                <label className="assoc-settings-label">Confirmer le nouveau mot de passe</label>
+                <label className="assoc-settings-label">{isAr ? 'تأكيد كلمة المرور الجديدة' : 'Confirmer le nouveau mot de passe'}</label>
                 <input
                   type="password"
                   className="assoc-settings-input"
-                  placeholder="Répétez le nouveau mot de passe"
+                  placeholder={isAr ? 'أعد إدخال كلمة المرور الجديدة' : 'Répétez le nouveau mot de passe'}
                 />
               </div>
             </div>
@@ -458,25 +481,27 @@ export default function AssociationSettings() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
                   <h4 style={{ margin: '0 0 4px', fontSize: '14px', fontWeight: 700, color: 'var(--assoc-navy)' }}>
-                    Authentification à deux facteurs (2FA)
+                    {isAr ? 'المصادقة الثنائية (2FA)' : 'Authentification à deux facteurs (2FA)'}
                   </h4>
                   <p style={{ margin: 0, fontSize: '12.5px', color: 'var(--assoc-text-muted)' }}>
-                    Sécurisez l'accès par code de confirmation envoyé sur l'application ou par SMS.
+                    {isAr
+                      ? 'تأمين تسجيل الدخول برمز تأكيد يُرسل إلى التطبيق أو عبر رسالة SMS قصيرة.'
+                      : 'Sécurisez l\'accès par code de confirmation envoyé sur l\'application ou par SMS.'}
                   </p>
                 </div>
                 <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--assoc-emerald)', backgroundColor: 'var(--assoc-emerald-light)', padding: '6px 12px', borderRadius: '8px' }}>
-                  Activé
+                  {isAr ? 'مفعّلة' : 'Activé'}
                 </span>
               </div>
             </div>
 
             <div className="assoc-settings-save-bar">
               <span style={{ fontSize: '12.5px', color: 'var(--assoc-text-muted)' }}>
-                Dernière modification de mot de passe il y a 3 mois
+                {isAr ? 'آخر تحديث لكلمة المرور منذ 3 أشهر' : 'Dernière modification de mot de passe il y a 3 mois'}
               </span>
               <button type="submit" className="assoc-btn-save">
                 <IconSave className="w-4 h-4" />
-                <span>Mettre à jour le mot de passe</span>
+                <span>{isAr ? 'تحديث كلمة المرور' : 'Mettre à jour le mot de passe'}</span>
               </button>
             </div>
           </div>
