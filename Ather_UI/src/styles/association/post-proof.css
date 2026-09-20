@@ -1,0 +1,332 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : PUBLICATION DE PREUVES DE TERRAIN
+   Formulaire de traçabilité d'impact avec prévisualisation en direct.
+   ========================================================================== */
+
+@import './variables.css';
+
+.assoc-proof-root {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: var(--assoc-font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   1. EN-TÊTE AVEC RETOUR AU FEED
+   -------------------------------------------------------------------------- */
+.assoc-proof-header {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 22px 30px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.assoc-proof-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.assoc-proof-back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--assoc-radius-sm);
+  border: 1px solid var(--assoc-border);
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.assoc-proof-back-btn:hover {
+  background-color: #ffffff;
+  border-color: var(--assoc-emerald);
+  color: var(--assoc-emerald);
+}
+
+.assoc-proof-header-titles h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 4px;
+}
+
+.assoc-proof-header-titles p {
+  font-size: 13px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. GRILLE 2 COLONNES : FORMULAIRE & APERÇU LIVE
+   -------------------------------------------------------------------------- */
+.assoc-proof-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .assoc-proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Formulaire étape par étape */
+.assoc-proof-form-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.assoc-proof-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 26px 30px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.assoc-proof-step-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.assoc-proof-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sélecteur de vignettes photos */
+.assoc-proof-thumbs-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.assoc-proof-thumb-item {
+  border-radius: var(--assoc-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.15s ease;
+  aspect-ratio: 4 / 3;
+}
+
+.assoc-proof-thumb-item.active {
+  border-color: var(--assoc-emerald);
+  box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.15);
+}
+
+.assoc-proof-thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Champs de saisie */
+.assoc-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.assoc-field-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--assoc-text-primary);
+}
+
+.assoc-field-input,
+.assoc-field-textarea,
+.assoc-field-select {
+  background-color: var(--assoc-bg-page);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 11px 16px;
+  font-size: 13.5px;
+  color: var(--assoc-text-primary);
+  outline: none;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.assoc-field-input:focus,
+.assoc-field-textarea:focus,
+.assoc-field-select:focus {
+  background-color: #ffffff;
+  border-color: var(--assoc-emerald);
+  box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.08);
+}
+
+.assoc-field-textarea {
+  min-height: 110px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+/* Bénévoles identifiés */
+.assoc-proof-tagged-volunteers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assoc-tagged-vol-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--assoc-bg-subtle);
+  border: 1px solid var(--assoc-border);
+  padding: 5px 10px;
+  border-radius: var(--assoc-radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--assoc-text-body);
+}
+
+.assoc-tagged-vol-remove {
+  border: none;
+  background: none;
+  color: var(--assoc-text-faint);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+}
+
+.assoc-tagged-vol-remove:hover {
+  color: var(--assoc-rose);
+}
+
+/* Boutons de soumission */
+.assoc-proof-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 10px;
+}
+
+.assoc-proof-btn-draft {
+  background-color: #ffffff;
+  border: 1px solid var(--assoc-border);
+  color: var(--assoc-text-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: var(--assoc-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.assoc-proof-btn-draft:hover {
+  background-color: var(--assoc-bg-subtle);
+}
+
+.assoc-proof-btn-publish {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 11px 24px;
+  border-radius: var(--assoc-radius-sm);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 109, 91, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.assoc-proof-btn-publish:hover {
+  background-color: var(--assoc-emerald-hover);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   3. COLONNE DROITE : APERÇU EN DIRECT STICKY
+   -------------------------------------------------------------------------- */
+.assoc-proof-preview-pane {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assoc-proof-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--assoc-emerald);
+  background-color: var(--assoc-emerald-tint);
+  border: 1px solid var(--assoc-emerald-border);
+  padding: 6px 12px;
+  border-radius: var(--assoc-radius-full);
+  align-self: flex-start;
+}
+
+/* Carte preview avec espacement généreux */
+.assoc-proof-preview-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--assoc-shadow-md);
+}
+
+.assoc-proof-preview-img-wrap {
+  width: 100%;
+  height: 240px;
+  background-color: #cbd5e1;
+  overflow: hidden;
+}
+
+.assoc-proof-preview-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.assoc-proof-preview-body {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.assoc-proof-preview-caption {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--assoc-text-body);
+  white-space: pre-line;
+}

@@ -1,0 +1,461 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : GESTION DES CANDIDATURES
+   Double colonne élégante : liste aérée des candidats + dossier d'évaluation complet.
+   ========================================================================== */
+
+@import './variables.css';
+
+.assoc-candidatures-root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: var(--assoc-font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   1. EN-TÊTE DE LA PAGE CANDIDATURES
+   -------------------------------------------------------------------------- */
+.assoc-cand-header {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 24px 32px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.assoc-cand-header h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.assoc-cand-header p {
+  font-size: 13.5px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+}
+
+.assoc-cand-count-card {
+  background-color: var(--assoc-bg-subtle);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assoc-cand-count-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--assoc-emerald);
+  line-height: 1;
+}
+
+.assoc-cand-count-label {
+  font-size: 12px;
+  color: var(--assoc-text-muted);
+  font-weight: 600;
+}
+
+/* Toast de confirmation acceptation/refus */
+.assoc-cand-toast {
+  padding: 14px 20px;
+  border-radius: var(--assoc-radius-md);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  animation: assocFadeSlide 0.2s ease-out;
+}
+
+.assoc-cand-toast.accept {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.assoc-cand-toast.reject {
+  background-color: #fff1f2;
+  color: #9f1239;
+  border: 1px solid #fecdd3;
+}
+
+/* --------------------------------------------------------------------------
+   2. MISE EN PAGE 2 COLONNES (LISTE GAUCHE + DOSSIER DROITE)
+   -------------------------------------------------------------------------- */
+.assoc-cand-split-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 26px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .assoc-cand-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* COLONNE GAUCHE : PANNEAU LISTE DES CANDIDATS */
+.assoc-cand-list-panel {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 22px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Onglets de filtrage par état */
+.assoc-cand-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+  padding-bottom: 12px;
+}
+
+.assoc-cand-tab-btn {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--assoc-text-muted);
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: var(--assoc-radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  position: relative;
+}
+
+.assoc-cand-tab-btn:hover {
+  color: var(--assoc-text-primary);
+}
+
+.assoc-cand-tab-btn.active {
+  color: var(--assoc-emerald);
+  background-color: var(--assoc-emerald-tint);
+}
+
+/* Recherche de candidat */
+.assoc-cand-search-box {
+  background-color: var(--assoc-bg-page);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 0 14px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.15s ease;
+}
+
+.assoc-cand-search-box:focus-within {
+  border-color: var(--assoc-emerald);
+}
+
+.assoc-cand-search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 13px;
+  color: var(--assoc-text-primary);
+  outline: none;
+  font-family: inherit;
+}
+
+/* Liste défilante des candidats */
+.assoc-cand-scroll-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 640px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Carte individuelle d'un candidat (Spacieuse, sans texte collé) */
+.assoc-cand-item-card {
+  padding: 16px 18px;
+  border-radius: var(--assoc-radius-md);
+  border: 1px solid var(--assoc-border);
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  transition: all 0.15s ease;
+}
+
+.assoc-cand-item-card:hover {
+  border-color: #cbd5e1;
+  background-color: var(--assoc-bg-subtle);
+  transform: translateX(2px);
+}
+
+.assoc-cand-item-card.selected {
+  border-color: var(--assoc-emerald);
+  background-color: var(--assoc-emerald-tint);
+  box-shadow: 0 0 0 1px var(--assoc-emerald);
+}
+
+.assoc-cand-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.assoc-cand-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--assoc-border);
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+}
+
+.assoc-cand-info {
+  min-width: 0;
+}
+
+.assoc-cand-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--assoc-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.assoc-cand-mission {
+  font-size: 12px;
+  color: var(--assoc-text-muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.assoc-cand-exp {
+  font-size: 11px;
+  color: var(--assoc-text-faint);
+  margin-top: 2px;
+}
+
+/* Badge statut */
+.assoc-cand-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--assoc-radius-full);
+  white-space: nowrap;
+}
+
+.assoc-cand-badge.pending {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+}
+
+.assoc-cand-badge.accepted {
+  background-color: var(--assoc-emerald-tint);
+  color: var(--assoc-emerald);
+}
+
+.assoc-cand-badge.rejected {
+  background-color: var(--assoc-rose-light);
+  color: var(--assoc-rose);
+}
+
+/* --------------------------------------------------------------------------
+   3. COLONNE DROITE : DOSSIER DÉTAILLÉ DU CANDIDAT SÉLECTIONNÉ
+   -------------------------------------------------------------------------- */
+.assoc-cand-dossier-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 32px 36px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.assoc-cand-dossier-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+}
+
+.assoc-cand-dossier-user {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.assoc-cand-dossier-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: var(--assoc-shadow-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 24px;
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+}
+
+.assoc-cand-dossier-name-box h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assoc-cand-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--assoc-text-muted);
+}
+
+/* Sections du dossier */
+.assoc-cand-section-title {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--assoc-text-faint);
+  margin-bottom: 10px;
+}
+
+.assoc-cand-bio-box {
+  background-color: var(--assoc-bg-page);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-lg);
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--assoc-text-body);
+}
+
+/* Grille 2 blocs : Formation & Langues */
+.assoc-cand-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 600px) {
+  .assoc-cand-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assoc-cand-detail-item {
+  background-color: var(--assoc-bg-page);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 16px 20px;
+}
+
+.assoc-cand-detail-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--assoc-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.assoc-cand-detail-val {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--assoc-text-primary);
+}
+
+/* Barre d'action finale pour traiter le dossier */
+.assoc-cand-decision-bar {
+  display: flex;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--assoc-border-subtle);
+}
+
+.assoc-cand-btn-accept {
+  flex: 1;
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--assoc-radius-md);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 109, 91, 0.25);
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.assoc-cand-btn-accept:hover {
+  background-color: var(--assoc-emerald-hover);
+  transform: translateY(-1px);
+}
+
+.assoc-cand-btn-reject {
+  background-color: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: var(--assoc-radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.assoc-cand-btn-reject:hover {
+  background-color: #ffe4e6;
+  border-color: #fda4af;
+}

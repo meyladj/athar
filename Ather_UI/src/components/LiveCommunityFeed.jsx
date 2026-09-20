@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
+import profileBannerAlgiers from '../assets/profile-banner-algiers.png';
+import profileNadiaAvatar from '../assets/profile-nadia-avatar.png';
+import feedCraImg from '../assets/feed-cra-distribution.png';
+import feedSproutImg from '../assets/candidature-reboisement.png';
+import feedCoastPlantingImg from '../assets/feed-plantation-coastal.png';
+import feedSangImg from '../assets/candidature-sang.png';
+import feedLectureImg from '../assets/candidature-lecture.png';
+import assocCraLogo from '../assets/assoc-cra-logo.png';
 
-function IconShieldCheck({ className = "w-4 h-4" }) {
+function IconCheckVerified({ className = "w-4 h-4" }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      <path d="m9 12 2 2 4-4"/>
-    </svg>
-  );
-}
-
-function IconCheck({ className = "w-3.5 h-3.5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"/>
+    <svg className={className} viewBox="0 0 24 24" fill="#006D5B">
+      <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
     </svg>
   );
 }
 
 function IconHeart({ className = "w-4 h-4", fill = false }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill={fill ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill={fill ? "#ef4444" : "none"} stroke={fill ? "#ef4444" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
     </svg>
   );
@@ -33,714 +32,619 @@ function IconMessageSquare({ className = "w-4 h-4" }) {
   );
 }
 
-function IconShare2({ className = "w-4 h-4" }) {
+function IconMoreHorizontal({ className = "w-4 h-4" }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="18" cy="5" r="3"/>
-      <circle cx="6" cy="12" r="3"/>
-      <circle cx="18" cy="19" r="3"/>
-      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="1.8"/>
+      <circle cx="19" cy="12" r="1.8"/>
+      <circle cx="5" cy="12" r="1.8"/>
     </svg>
   );
 }
 
-function IconBuilding({ className = "w-4 h-4" }) {
+function IconLeaf({ className = "w-5 h-5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="16" height="20" x="4" y="2" rx="2" ry="2"/>
-      <path d="M9 22v-4h6v4"/>
-      <path d="M8 6h.01"/>
-      <path d="M16 6h.01"/>
-      <path d="M8 10h.01"/>
-      <path d="M16 10h.01"/>
-      <path d="M8 14h.01"/>
-      <path d="M16 14h.01"/>
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
     </svg>
   );
 }
 
-function IconMapPin({ className = "w-3.5 h-3.5" }) {
+function IconBookOpen({ className = "w-5 h-5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-      <circle cx="12" cy="10" r="3"/>
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
     </svg>
   );
 }
 
-// Données authentiques des publications d'associations avec preuves de traçabilité
-const INITIAL_ASSOCIATION_POSTS = [
-  {
-    id: 1,
-    author_name: 'Croissant Rouge Algérien',
-    author_type: 'cra',
-    author_role: 'Comité National de Secours & Solidarité',
-    author_initials: 'CRA',
-    avatar_color: '#dc2626',
-    wilaya: 'Tipaza & Alger Ouest',
-    time_ago: 'Il y a 2 heures',
-    category: 'Solidarité & Urgences',
-    proof_id: 'TRC-2025-0419-CRA',
-    proof_hash: '0x89f4b3...e21a',
-    title: 'Preuve de distribution : 350 colis alimentaires remis aux familles des zones d\'ombre',
-    content: 'Opération humanitaire achevée avec succès ce matin. Grâce à la mobilisation de 40 volontaires et donateurs, 350 couffins complets de denrées de première nécessité ont été acheminés et remis directement aux familles recensées dans 6 douars isolés. Chaque remise est contresignée et enregistrée dans le registre public.',
-    image_url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1000&q=80',
-    impact_badge: '350 colis remis · 1 400 bénéficiaires directs · 14 tonnes d\'aide',
-    likes_count: 148,
-    has_liked: false,
-    comments: [
-      { id: 'c1', author: 'Nadia Mansouri', text: 'Bravo à toute l\'équipe du CRA pour cette belle coordination sur le terrain !', time: 'Il y a 1h' },
-      { id: 'c2', author: 'Karim O.', text: 'Un travail exemplaire de transparence et de dignité humaine.', time: 'Il y a 35 min' }
-    ],
-    shares_count: 32
-  },
-  {
-    id: 2,
-    author_name: 'Association Green Future',
-    author_type: 'green',
-    author_role: 'ONG Agréée · Environnement & Climat',
-    author_initials: 'GF',
-    avatar_color: '#006D5B',
-    wilaya: 'Zéralda, Alger',
-    time_ago: 'Hier à 17h30',
-    category: 'Climat & Écologie',
-    proof_id: 'TRC-2025-0412-GF',
-    proof_hash: '0x72c1e8...9b4e',
-    title: 'Preuve de reboisement : 450 arbres plantés et arrosés dans la forêt récréative de Zéralda',
-    content: 'Rapport d\'impact de la grande journée de régénération forestière méditerranéenne. 85 bénévoles ont mis en terre 450 jeunes plants de pins d\'Alep et de caroubiers, posé des tuteurs biodégradables et effectué un premier arrosage minutieux. Le taux de reprise sera suivi mensuellement.',
-    image_url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80',
-    impact_badge: '450 arbres plantés · 2.5 hectares régénérés · Taux de reprise 98%',
-    likes_count: 192,
-    has_liked: true,
-    comments: [
-      { id: 'c3', author: 'Sarah B.', text: 'Une journée mémorable ! Les enfants du quartier étaient ravis de participer.', time: 'Hier' }
-    ],
-    shares_count: 41
-  },
-  {
-    id: 3,
-    author_name: 'CTS · CHU Mustapha Pacha',
-    author_type: 'hospital',
-    author_role: 'Centre de Transfusion Sanguine Hospitalier',
-    author_initials: 'CHU',
-    avatar_color: '#b91c1c',
-    wilaya: 'Alger Centre',
-    time_ago: 'Il y a 1 jour',
-    category: 'Santé & Don de Sang',
-    proof_id: 'TRC-2025-0415-CHU',
-    proof_hash: '0x44a8fd...d710',
-    title: 'Preuve de collecte hospitalière : 140 poches de sang collectées et sécurisées',
-    content: 'L\'appel d\'urgence vital a été entendu ! 140 donneurs bénévoles se sont présentés au centre de prélèvement. Les poches ont été analysées, séparées en concentrés de globules rouges et plaquettes, permettant de sécuriser les blocs chirurgicaux pédiatriques et traumatologiques.',
-    image_url: 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1000&q=80',
-    impact_badge: '140 poches collectées · Groupes O- et A+ réapprovisionnés · 420 vies soutenues',
-    likes_count: 230,
-    has_liked: false,
-    comments: [
-      { id: 'c4', author: 'Amine K.', text: 'Don effectué avec succès, personnel médical bienveillant et rapide !', time: 'Hier' }
-    ],
-    shares_count: 58
-  },
-  {
-    id: 4,
-    author_name: 'Association El Baraka Algérie',
-    author_type: 'baraka',
-    author_role: 'Organisation Humanitaire Agréée',
-    author_initials: 'EB',
-    avatar_color: '#0284c7',
-    wilaya: 'Médéa & Blida',
-    time_ago: 'Il y a 2 jours',
-    category: 'Solidarité & Urgences',
-    proof_id: 'TRC-2025-0405-BAR',
-    proof_hash: '0x61d9a2...f420',
-    title: 'Preuve d\'acheminement : Convoi Hivernal pour 250 familles des hauts plateaux',
-    content: 'Clôture de la caravane solidaire hivernale. 250 foyers ont reçu des couvertures thermiques haute densité, des poêles à mazout homologués et des kits alimentaires complets. Tous les bordereaux de décharge sont certifiés conformes avec les comités de village.',
-    image_url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80',
-    impact_badge: '250 familles dotées · 180 couvertures · 4 villages désenclavés',
-    likes_count: 176,
-    has_liked: false,
-    comments: [],
-    shares_count: 27
-  },
-  {
-    id: 5,
-    author_name: 'Lire pour Demain',
-    author_type: 'education',
-    author_role: 'Association Éducative & Éveil Jeunesse',
-    author_initials: 'LPD',
-    avatar_color: '#7c3aed',
-    wilaya: 'Béjaïa & Alger',
-    time_ago: 'Il y a 3 jours',
-    category: 'Éducation Jeunesse',
-    proof_id: 'TRC-2025-0410-LPD',
-    proof_hash: '0x33e5c7...11a9',
-    title: 'Preuve d\'équipement : 3 bibliothèques scolaires inaugurées et 600 livres remis',
-    content: 'Installation officielle de coins lecture interactifs dans trois écoles primaires rurales. Les malles pédagogiques composées d\'encyclopédies, de contes en arabe et français et de jeux éducatifs sont à disposition des écoliers sous la tutelle des enseignants.',
-    image_url: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80',
-    impact_badge: '3 écoles équipées · 600 livres offerts · 180 écoliers accompagnés',
-    likes_count: 124,
-    has_liked: false,
-    comments: [
-      { id: 'c5', author: 'Yacine D.', text: 'L\'éducation est la clé de tout. Merci pour nos enfants !', time: 'Il y a 2 jours' }
-    ],
-    shares_count: 20
-  }
-];
+function IconHash({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="4" y1="9" x2="20" y2="9"/>
+      <line x1="4" y1="15" x2="20" y2="15"/>
+      <line x1="10" y1="3" x2="8" y2="21"/>
+      <line x1="16" y1="3" x2="14" y2="21"/>
+    </svg>
+  );
+}
 
-const SUGGESTED_ASSOCIATIONS = [
-  {
-    name: 'Association Green Future',
-    category: 'Climat & Écologie',
-    wilaya: 'Alger & Tipaza',
-    initials: 'GF',
-    color: '#006D5B',
-    followersCount: '2.4k'
-  },
-  {
-    name: 'Croissant Rouge Algérien',
-    category: 'Solidarité Nationale',
-    wilaya: 'National (69 wilayas)',
-    initials: 'CRA',
-    color: '#dc2626',
-    followersCount: '18.9k'
-  },
-  {
-    name: 'CTS · CHU Mustapha Pacha',
-    category: 'Santé & Don de Sang',
-    wilaya: 'Alger Centre',
-    initials: 'CHU',
-    color: '#b91c1c',
-    followersCount: '5.1k'
-  },
-  {
-    name: 'Lire pour Demain',
-    category: 'Éducation Jeunesse',
-    wilaya: 'Béjaïa & Alger',
-    initials: 'LPD',
-    color: '#7c3aed',
-    followersCount: '1.8k'
-  },
-  {
-    name: 'Association El Baraka Algérie',
-    category: 'Solidarité & Urgences',
-    wilaya: 'Médéa & Blida',
-    initials: 'EB',
-    color: '#0284c7',
-    followersCount: '9.3k'
-  }
-];
+function IconArrowRight({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14"/>
+      <path d="m12 5 7 7-7 7"/>
+    </svg>
+  );
+}
 
 export default function LiveCommunityFeed({ currentLang = 'fr', volunteerUser = null, onToast }) {
-  const [posts, setPosts] = useState(INITIAL_ASSOCIATION_POSTS);
-  const [followedAssocs, setFollowedAssocs] = useState(['Association Green Future', 'Croissant Rouge Algérien']);
-  const [activeTab, setActiveTab] = useState('all'); // 'all' | 'following'
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState('ALL');
+  // Liste des publications conformes à feed benev .png
+  const [posts, setPosts] = useState([
+    {
+      id: 'cra-1',
+      author: 'Croissant Rouge Algérien',
+      initials: 'CRA',
+      avatarBg: '#ffffff',
+      avatarType: 'image',
+      avatarImg: assocCraLogo,
+      location: 'Alger',
+      time: 'il y a 2 heures',
+      content: '350 colis alimentaires distribués aux familles dans le besoin ce week-end. Merci à tous les bénévoles pour leur engagement !',
+      images: [feedCraImg],
+      likes: 128,
+      commentsCount: 24,
+      isLiked: false,
+      isFollowing: false,
+      comments: []
+    },
+    {
+      id: 'gf-2',
+      author: 'Green Future',
+      initials: 'GF',
+      avatarBg: '#1b5e20',
+      avatarType: 'leaf',
+      location: 'Zéralda, Alger',
+      time: 'il y a 1 jour',
+      content: 'Une nouvelle journée de plantation à Zéralda 🌱 Merci aux 40 bénévoles présents !',
+      images: [feedSproutImg, feedCoastPlantingImg],
+      isGrid: true,
+      likes: 96,
+      commentsCount: 12,
+      isLiked: false,
+      isFollowing: false,
+      comments: []
+    },
+    {
+      id: 'chu-3',
+      author: 'CHU Mustapha',
+      initials: 'CHU',
+      avatarBg: '#1565c0',
+      avatarType: 'text',
+      location: 'Alger',
+      time: 'il y a 2 jours',
+      content: 'Collecte de sang réussie ce samedi au CHU Mustapha. Merci à tous les donneurs ! Votre geste sauve des vies. ❤️',
+      images: [feedSangImg],
+      likes: 210,
+      commentsCount: 28,
+      isLiked: false,
+      isFollowing: false,
+      comments: []
+    },
+    {
+      id: 'lpd-4',
+      author: 'Lire pour Demain',
+      initials: 'LPD',
+      avatarBg: '#00838f',
+      avatarType: 'book',
+      location: 'Hydra, Alger',
+      time: 'il y a 3 jours',
+      content: 'Atelier de lecture et éveil artistique avec les enfants. Des sourires qui inspirent !',
+      images: [feedLectureImg],
+      likes: 74,
+      commentsCount: 9,
+      isLiked: false,
+      isFollowing: false,
+      comments: []
+    }
+  ]);
+
+  // État des associations suggérées
+  const [suggestedAssocs, setSuggestedAssocs] = useState([
+    { id: 1, name: 'Croissant Rouge Algérien', category: 'Humanitaire', logoImg: assocCraLogo, bg: '#ffffff', isFollowing: false },
+    { id: 2, name: 'Green Future', category: 'Environnement', isLeaf: true, bg: '#1b5e20', isFollowing: false },
+    { id: 3, name: 'Lire pour Demain', category: 'Éducation', isBook: true, bg: '#00838f', isFollowing: false },
+    { id: 4, name: 'Association El Baraka', category: 'Solidarité', badge: 'EB', bg: '#5e35b1', isFollowing: false },
+    { id: 5, name: 'Club Vert USTHB', category: 'Jeunesse', isLeaf: true, bg: '#2e7d32', isFollowing: false }
+  ]);
+
   const [commentInputs, setCommentInputs] = useState({});
-  const [expandedComments, setExpandedComments] = useState({});
 
-  const categories = ['ALL', 'Solidarité & Urgences', 'Climat & Écologie', 'Santé & Don de Sang', 'Éducation Jeunesse'];
-
-  // Toggle Like / Soutien
   const handleToggleLike = (postId) => {
     setPosts(prev => prev.map(p => {
       if (p.id === postId) {
-        const nextLiked = !p.has_liked;
-        if (nextLiked && onToast) {
-          onToast(currentLang === 'ar' ? 'شكراً على تفاعلك ودعمك للمبادرة !' : 'Merci pour votre soutien à cette action citoyenne !');
-        }
+        const nextLiked = !p.isLiked;
         return {
           ...p,
-          has_liked: nextLiked,
-          likes_count: nextLiked ? p.likes_count + 1 : p.likes_count - 1
+          isLiked: nextLiked,
+          likes: nextLiked ? p.likes + 1 : p.likes - 1
         };
       }
       return p;
     }));
   };
 
-  // Toggle Suivre Association
-  const handleToggleFollow = (assocName) => {
-    const isCurrentlyFollowing = followedAssocs.includes(assocName);
-    if (isCurrentlyFollowing) {
-      setFollowedAssocs(prev => prev.filter(name => name !== assocName));
-      if (onToast) onToast(`Vous ne suivez plus ${assocName}.`);
-    } else {
-      setFollowedAssocs(prev => [...prev, assocName]);
-      if (onToast) onToast(`Vous suivez désormais ${assocName} !`);
-    }
+  const handleToggleFollowPost = (postId) => {
+    setPosts(prev => prev.map(p => {
+      if (p.id === postId) {
+        const nextFollow = !p.isFollowing;
+        if (onToast) {
+          onToast(nextFollow ? `Vous suivez désormais ${p.author}` : `Vous ne suivez plus ${p.author}`);
+        }
+        return { ...p, isFollowing: nextFollow };
+      }
+      return p;
+    }));
   };
 
-  // Ajouter un commentaire d'encouragement
+  const handleToggleFollowSidebar = (assocId) => {
+    setSuggestedAssocs(prev => prev.map(a => {
+      if (a.id === assocId) {
+        const nextFollow = !a.isFollowing;
+        if (onToast) {
+          onToast(nextFollow ? `Vous suivez désormais ${a.name}` : `Vous ne suivez plus ${a.name}`);
+        }
+        return { ...a, isFollowing: nextFollow };
+      }
+      return a;
+    }));
+  };
+
   const handleAddComment = (postId) => {
     const text = commentInputs[postId]?.trim();
     if (!text) return;
-
-    const newComment = {
-      id: `c_${Date.now()}`,
-      author: volunteerUser?.name || 'Nadia Mansouri',
-      text,
-      time: 'À l\'instant'
-    };
 
     setPosts(prev => prev.map(p => {
       if (p.id === postId) {
         return {
           ...p,
-          comments: [...p.comments, newComment]
+          commentsCount: p.commentsCount + 1,
+          comments: [
+            ...p.comments,
+            { id: Date.now(), author: volunteerUser?.name || 'Nadia Mansouri', text }
+          ]
         };
       }
       return p;
     }));
 
     setCommentInputs(prev => ({ ...prev, [postId]: '' }));
-    setExpandedComments(prev => ({ ...prev, [postId]: true }));
-    if (onToast) onToast("Votre mot d'encouragement a été transmis à l'association !");
+    if (onToast) onToast('Commentaire publié avec succès !');
   };
 
-  // Filtrage des posts selon 'all' vs 'following' et thématique
-  const displayedPosts = posts.filter(post => {
-    if (activeTab === 'following' && !followedAssocs.includes(post.author_name)) {
-      return false;
-    }
-    if (activeCategoryFilter !== 'ALL' && post.category !== activeCategoryFilter) {
-      return false;
-    }
-    return true;
-  });
-
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '28px', alignItems: 'flex-start' }} className="volunteer-feed-layout">
-      {/* COLONNE GAUCHE : FLUX DES PUBLICATIONS DES ASSOCIATIONS */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        {/* BARRE D'ONGLETS PRINCIPAUX : TOUT LE FLUX vs MES ABONNEMENTS */}
-        <div style={{ background: '#ffffff', border: '1px solid #E2E8F0', borderRadius: '16px', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button
-              type="button"
-              className={`btn ${activeTab === 'all' ? 'btn-green' : 'btn-ghost'}`}
-              style={{ padding: '8px 18px', fontSize: '13px', borderRadius: '10px' }}
-              onClick={() => setActiveTab('all')}
-            >
-              <span>{currentLang === 'ar' ? 'جميع منشورات الجمعيات' : 'Toutes les publications'}</span>
-            </button>
-            <button
-              type="button"
-              className={`btn ${activeTab === 'following' ? 'btn-green' : 'btn-ghost'}`}
-              style={{ padding: '8px 18px', fontSize: '13px', borderRadius: '10px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-              onClick={() => setActiveTab('following')}
-            >
-              <IconCheck className="w-3.5 h-3.5" />
-              <span>{currentLang === 'ar' ? 'اشتراكاتي' : 'Mes abonnements'}</span>
-              <span style={{ background: activeTab === 'following' ? '#ffffff' : '#006D5B', color: activeTab === 'following' ? '#006D5B' : '#ffffff', fontSize: '11px', fontWeight: 800, padding: '1px 7px', borderRadius: '999px' }}>
-                {followedAssocs.length}
-              </span>
-            </button>
-          </div>
-
-          <div style={{ fontSize: '12px', color: '#64748B', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <IconShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>{currentLang === 'ar' ? 'منشورات موثقة بأدلة الميدان' : 'Preuves de traçabilité certifiées'}</span>
-          </div>
+    <div className="feed-benev-wrapper" style={{ maxWidth: '1080px', margin: '0 auto', paddingBottom: '50px' }}>
+      
+      {/* 1. CARTE DE BIENVENUE MINT (feed benev .png) */}
+      <div 
+        className="feed-welcome-banner"
+        style={{
+          background: 'linear-gradient(135deg, #edf9f6 0%, #e2f5f1 100%)',
+          borderRadius: '20px',
+          padding: '28px 36px',
+          marginBottom: '26px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '24px',
+          border: '1px solid rgba(0, 109, 91, 0.12)',
+          boxShadow: '0 2px 12px rgba(0, 109, 91, 0.04)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        <div style={{ flex: '1 1 55%', zIndex: 2 }}>
+          <span style={{ fontSize: '15px', fontWeight: 800, color: '#00897b', display: 'inline-block', marginBottom: '6px' }}>
+            Bonjour <strong>{volunteerUser?.name?.split(' ')[0] || 'Nadia'}</strong> 👋
+          </span>
+          <h1 style={{ fontSize: '26px', fontWeight: 900, color: '#0f172a', margin: '0 0 10px', lineHeight: 1.25 }}>
+            Prête à faire la différence aujourd'hui ?
+          </h1>
+          <p style={{ fontSize: '14px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
+            Découvrez les actions des associations et rejoignez une communauté qui agit pour une Algérie plus solidaire.
+          </p>
         </div>
 
-        {/* FILTRES PAR THÉMATIQUES */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategoryFilter(cat)}
+        {/* IMAGE PANORAMIQUE ALGER + SLOGAN CURSIF */}
+        <div style={{ flex: '0 0 380px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <div style={{ position: 'relative', width: '330px', height: '110px', borderRadius: '18px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}>
+            <img 
+              src={profileBannerAlgiers} 
+              alt="Baie d'Alger et Makam Echahid" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(237,249,246,0.1), rgba(0,0,0,0.15))' }} />
+          </div>
+          <div 
+            style={{
+              position: 'absolute',
+              right: '12px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              textAlign: 'right',
+              color: '#0f172a',
+              textShadow: '0 1px 4px rgba(255,255,255,0.9)'
+            }}
+          >
+            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15 }}>
+              Des citoyens,
+            </div>
+            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
+              Un impact réel.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. DISPOSITION PRINCIPALE DU FEED (2 COLONNES) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 320px', gap: '26px', alignItems: 'flex-start' }} className="feed-grid-layout">
+        
+        {/* COLONNE DE GAUCHE : FLUX DES PUBLICATIONS */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+          {posts.map(post => (
+            <article 
+              key={post.id}
               style={{
-                background: activeCategoryFilter === cat ? '#006D5B' : '#ffffff',
-                color: activeCategoryFilter === cat ? '#ffffff' : '#475569',
-                border: activeCategoryFilter === cat ? '1px solid #006D5B' : '1px solid #E2E8F0',
-                borderRadius: '20px',
-                padding: '6px 14px',
-                fontSize: '12.5px',
-                fontWeight: 700,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                transition: 'all 0.15s ease'
+                background: '#ffffff',
+                borderRadius: '18px',
+                border: '1px solid #e2e8f0',
+                padding: '22px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
               }}
             >
-              {cat === 'ALL' ? (currentLang === 'ar' ? 'الكل' : 'Tous les domaines') : cat}
-            </button>
+              {/* EN-TÊTE DU POST */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  {/* AVATAR ASSOCIATION */}
+                  <div 
+                    style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '50%',
+                      background: post.avatarBg,
+                      color: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 800,
+                      fontSize: '14px',
+                      flexShrink: 0
+                    }}
+                  >
+                    {post.avatarType === 'image' && post.avatarImg ? (
+                      <img src={post.avatarImg} alt={post.author} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '3px', borderRadius: '50%' }} />
+                    ) : post.avatarType === 'leaf' ? (
+                      <IconLeaf className="w-5 h-5 text-white" />
+                    ) : post.avatarType === 'book' ? (
+                      <IconBookOpen className="w-5 h-5 text-white" />
+                    ) : (
+                      post.initials
+                    )}
+                  </div>
+
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a' }}>
+                        {post.author}
+                      </span>
+                      <IconCheckVerified className="w-4 h-4" />
+                    </div>
+                    <span style={{ fontSize: '12.5px', color: '#94a3b8' }}>
+                      {post.location} • {post.time}
+                    </span>
+                  </div>
+                </div>
+
+                {/* BOUTON SUIVRE + MENU TROIS POINTS */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <button
+                    type="button"
+                    onClick={() => handleToggleFollowPost(post.id)}
+                    style={{
+                      padding: '6px 14px',
+                      borderRadius: '20px',
+                      fontSize: '12.5px',
+                      fontWeight: 700,
+                      background: post.isFollowing ? '#f1f5f9' : '#e6f7f3',
+                      color: post.isFollowing ? '#475569' : '#006D5B',
+                      border: post.isFollowing ? '1px solid #cbd5e1' : '1px solid transparent',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    {post.isFollowing ? 'Suivi ✓' : '+ Suivre'}
+                  </button>
+                  <button 
+                    type="button" 
+                    style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '4px' }}
+                  >
+                    <IconMoreHorizontal className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* CONTENU TEXTE */}
+              <p style={{ margin: 0, fontSize: '14.5px', color: '#1e293b', lineHeight: 1.55 }}>
+                {post.content}
+              </p>
+
+              {/* IMAGES DU POST */}
+              {post.isGrid ? (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', borderRadius: '14px', overflow: 'hidden' }}>
+                  <img 
+                    src={post.images[0]} 
+                    alt="Plantation de pousses" 
+                    style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
+                  />
+                  <img 
+                    src={post.images[1]} 
+                    alt="Volontaires sur la côte" 
+                    style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              ) : (
+                <div style={{ borderRadius: '14px', overflow: 'hidden' }}>
+                  <img 
+                    src={post.images[0]} 
+                    alt={post.author} 
+                    style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              )}
+
+              {/* BARRE D'ACTIONS / INTERACTIONS */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '22px', paddingTop: '4px' }}>
+                <button
+                  type="button"
+                  onClick={() => handleToggleLike(post.id)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '7px',
+                    fontSize: '13.5px',
+                    fontWeight: 700,
+                    color: post.isLiked ? '#ef4444' : '#64748b',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <IconHeart className="w-4 h-4" fill={post.isLiked} />
+                  <span>{post.likes}</span>
+                </button>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '7px', fontSize: '13.5px', fontWeight: 700, color: '#64748b' }}>
+                  <IconMessageSquare className="w-4 h-4" />
+                  <span>{post.commentsCount}</span>
+                </div>
+              </div>
+
+              {/* LISTE DES COMMENTAIRES NOUVELLEMENT AJOUTÉS */}
+              {post.comments.length > 0 && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '8px', borderTop: '1px solid #f1f5f9' }}>
+                  {post.comments.map(c => (
+                    <div key={c.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px' }}>
+                      <img 
+                        src={profileNadiaAvatar} 
+                        alt={c.author} 
+                        style={{ width: '26px', height: '26px', borderRadius: '50%', objectFit: 'cover' }}
+                      />
+                      <div style={{ background: '#f8fafc', padding: '8px 14px', borderRadius: '14px', flex: 1 }}>
+                        <strong style={{ color: '#0f172a', marginRight: '6px' }}>{c.author}</strong>
+                        <span style={{ color: '#334155' }}>{c.text}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* CHAMP D'AJOUT DE COMMENTAIRE AVEC AVATAR NADIA */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '6px' }}>
+                <img 
+                  src={profileNadiaAvatar} 
+                  alt="Nadia Mansouri" 
+                  style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+                />
+                <div style={{ flex: 1, position: 'relative' }}>
+                  <input
+                    type="text"
+                    placeholder="Ajouter un commentaire..."
+                    value={commentInputs[post.id] || ''}
+                    onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') handleAddComment(post.id);
+                    }}
+                    style={{
+                      width: '100%',
+                      background: '#f8fafc',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '24px',
+                      padding: '9px 18px',
+                      fontSize: '13px',
+                      color: '#1e293b',
+                      outline: 'none',
+                      boxSizing: 'border-box'
+                    }}
+                  />
+                </div>
+              </div>
+
+            </article>
           ))}
         </div>
 
-        {/* LISTE DES PUBLICATIONS DES ASSOCIATIONS */}
-        {displayedPosts.length === 0 ? (
-          <div style={{ background: '#ffffff', borderRadius: '18px', padding: '48px 24px', textAlign: 'center', border: '1px solid #E2E8F0' }}>
-            <IconBuilding className="w-10 h-10 text-slate-300" style={{ margin: '0 auto 12px' }} />
-            <h3 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-navy)', margin: '0 0 6px' }}>
-              {activeTab === 'following'
-                ? "Aucune publication pour les associations suivies dans cette catégorie."
-                : "Aucune publication trouvée pour ce filtre."}
-            </h3>
-            <p style={{ fontSize: '13px', color: '#64748B', margin: '0 0 16px' }}>
-              {activeTab === 'following'
-                ? "Suivez d'autres associations recommandées à droite pour enrichir votre fil personnalisé."
-                : "Sélectionnez un autre domaine pour afficher les actions associatives."}
-            </p>
-            {activeTab === 'following' && (
-              <button
-                type="button"
-                className="btn btn-green"
-                onClick={() => setActiveTab('all')}
-                style={{ padding: '8px 20px', borderRadius: '10px' }}
+        {/* COLONNE DE DROITE : WIDGETS (feed benev .png) */}
+        <aside style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+          
+          {/* WIDGET 1 : ASSOCIATIONS À SUIVRE */}
+          <div 
+            style={{
+              background: '#ffffff',
+              borderRadius: '18px',
+              border: '1px solid #e2e8f0',
+              padding: '20px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
+                Associations à suivre
+              </h3>
+              <button 
+                type="button" 
+                style={{ background: 'none', border: 'none', color: '#006D5B', fontSize: '12.5px', fontWeight: 700, cursor: 'pointer' }}
               >
-                Explorer tout le fil des associations
+                Voir tout
               </button>
-            )}
-          </div>
-        ) : (
-          displayedPosts.map(post => {
-            const isFollowing = followedAssocs.includes(post.author_name);
-            const isCommentsOpen = expandedComments[post.id];
+            </div>
 
-            return (
-              <article
-                key={post.id}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '18px',
-                  border: '1px solid #E2E8F0',
-                  padding: '24px',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '16px'
-                }}
-              >
-                {/* ENTÊTE DE LA PUBLICATION ASSOCIATIVE */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {suggestedAssocs.map(assoc => (
+                <div key={assoc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div 
                       style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '12px',
-                        background: post.avatar_color,
+                        width: '38px',
+                        height: '38px',
+                        borderRadius: '50%',
+                        background: assoc.bg,
                         color: '#ffffff',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontWeight: 900,
-                        fontSize: '15px',
-                        shrink: 0
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 800,
+                        fontSize: '12px',
+                        flexShrink: 0
                       }}
                     >
-                      {post.author_initials}
+                      {assoc.logoImg ? (
+                        <img src={assoc.logoImg} alt={assoc.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px', borderRadius: '50%' }} />
+                      ) : assoc.isLeaf ? (
+                        <IconLeaf className="w-4 h-4 text-white" />
+                      ) : assoc.isBook ? (
+                        <IconBookOpen className="w-4 h-4 text-white" />
+                      ) : (
+                        assoc.badge
+                      )}
                     </div>
                     <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                        <strong style={{ fontSize: '15px', fontWeight: 800, color: 'var(--primary-navy)' }}>
-                          {post.author_name}
-                        </strong>
-                        <span style={{ fontSize: '11px', fontWeight: 800, padding: '2px 8px', borderRadius: '999px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                          <IconShieldCheck className="w-3 h-3 text-emerald-600" />
-                          <span>Agréée</span>
-                        </span>
-                      </div>
-                      <div style={{ fontSize: '12px', color: '#64748B', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-                        <span>{post.author_role}</span>
-                        <span>•</span>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                          <IconMapPin className="w-3 h-3 text-slate-400" />
-                          {post.wilaya}
-                        </span>
-                        <span>•</span>
-                        <span>{post.time_ago}</span>
-                      </div>
+                      <h4 style={{ margin: 0, fontSize: '13.5px', fontWeight: 700, color: '#0f172a', lineHeight: 1.2 }}>
+                        {assoc.name}
+                      </h4>
+                      <span style={{ fontSize: '11.5px', color: '#94a3b8' }}>
+                        {assoc.category}
+                      </span>
                     </div>
                   </div>
 
-                  {/* BOUTON SUIVRE / ABONNÉ */}
                   <button
                     type="button"
-                    onClick={() => handleToggleFollow(post.author_name)}
+                    onClick={() => handleToggleFollowSidebar(assoc.id)}
                     style={{
-                      border: isFollowing ? '1px solid #CBD5E1' : '1px solid #006D5B',
-                      background: isFollowing ? '#F8FAFC' : '#ECFDF5',
-                      color: isFollowing ? '#475569' : '#006D5B',
-                      padding: '6px 14px',
-                      borderRadius: '999px',
+                      padding: '5px 12px',
+                      borderRadius: '16px',
                       fontSize: '12px',
-                      fontWeight: 800,
+                      fontWeight: 700,
+                      background: assoc.isFollowing ? '#f1f5f9' : '#e6f7f3',
+                      color: assoc.isFollowing ? '#475569' : '#006D5B',
+                      border: assoc.isFollowing ? '1px solid #cbd5e1' : '1px solid transparent',
                       cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px',
-                      transition: 'all 0.15s ease',
                       flexShrink: 0
                     }}
-                    title={isFollowing ? "Cliquer pour vous désabonner" : "Suivre cette association"}
                   >
-                    {isFollowing ? (
-                      <>
-                        <IconCheck className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>Abonné</span>
-                      </>
-                    ) : (
-                      <span>+ Suivre</span>
-                    )}
+                    {assoc.isFollowing ? 'Suivi' : '+ Suivre'}
                   </button>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* TITRE ET CONTENU */}
-                <div>
-                  <h3 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-navy)', margin: '0 0 8px', lineHeight: 1.4 }}>
-                    {post.title}
-                  </h3>
-                  <p style={{ fontSize: '14px', color: '#334155', lineHeight: 1.6, margin: 0 }}>
-                    {post.content}
-                  </p>
+          {/* WIDGET 2 : SUJETS EN TENDANCE */}
+          <div 
+            style={{
+              background: '#ffffff',
+              borderRadius: '18px',
+              border: '1px solid #e2e8f0',
+              padding: '20px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
+                Sujets en tendance
+              </h3>
+              <IconArrowRight className="w-4 h-4 text-slate-500" />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {[
+                { tag: 'Solidarité', count: '1.2k publications' },
+                { tag: 'Environnement', count: '980 publications' },
+                { tag: 'Jeunesse', count: '720 publications' },
+                { tag: 'DonDeSang', count: '640 publications' },
+                { tag: 'Éducation', count: '580 publications' }
+              ].map(item => (
+                <div key={item.tag} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: '#0f172a' }}>
+                    <IconHash className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>{item.tag}</span>
+                  </span>
+                  <span style={{ color: '#94a3b8', fontSize: '12px' }}>
+                    {item.count}
+                  </span>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* BLOC DE PREUVE DE TRAÇABILITÉ OFFICIELLE */}
-                <div
-                  style={{
-                    background: '#F8FAFC',
-                    border: '1.5px solid #E2E8F0',
-                    borderLeft: '4px solid #006D5B',
-                    borderRadius: '12px',
-                    padding: '12px 16px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '6px'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#006D5B', fontSize: '12px', fontWeight: 800 }}>
-                      <IconShieldCheck className="w-4 h-4 text-emerald-700" />
-                      <span>Preuve de Traçabilité Certifiée #{post.proof_id}</span>
-                    </div>
-                    <span style={{ fontFamily: 'monospace', fontSize: '11px', color: '#475569', background: '#EDE9FE', padding: '2px 8px', borderRadius: '6px' }}>
-                      Hash: {post.proof_hash}
-                    </span>
-                  </div>
-                  <div style={{ fontSize: '13px', color: '#1E293B', fontWeight: 600 }}>
-                    <span style={{ color: '#006D5B', fontWeight: 800 }}>Résultat vérifié : </span>
-                    {post.impact_badge}
-                  </div>
-                </div>
+          {/* WIDGET 3 : CARTE CITATION ATHAR */}
+          <div 
+            style={{
+              background: '#eef9f6',
+              borderRadius: '18px',
+              border: '1px solid rgba(0, 109, 91, 0.12)',
+              padding: '24px 20px',
+              boxShadow: '0 2px 8px rgba(0, 109, 91, 0.04)'
+            }}
+          >
+            <p 
+              style={{
+                fontFamily: 'Georgia, serif',
+                fontStyle: 'italic',
+                fontSize: '17px',
+                fontWeight: 600,
+                color: '#004d40',
+                margin: '0 0 12px',
+                lineHeight: 1.45
+              }}
+            >
+              “Des petites actions font de grands changements.”
+            </p>
+            <span style={{ fontSize: '13px', fontWeight: 700, color: '#006D5B' }}>
+              — Athar
+            </span>
+          </div>
 
-                {/* IMAGE DE TERRAIN VÉRIFIÉE */}
-                {post.image_url && (
-                  <div style={{ borderRadius: '14px', overflow: 'hidden', maxHeight: '380px', border: '1px solid #E2E8F0' }}>
-                    <img
-                      src={post.image_url}
-                      alt={post.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                      loading="lazy"
-                    />
-                  </div>
-                )}
+        </aside>
 
-                {/* COMPTEURS D'ENGAGEMENT ET ACTIONS */}
-                <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '12.5px', color: '#64748B' }}>
-                    <span><strong>{post.likes_count}</strong> soutiens</span>
-                    <span>•</span>
-                    <span><strong>{post.comments.length}</strong> encouragements</span>
-                    <span>•</span>
-                    <span><strong>{post.shares_count}</strong> partages</span>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    {/* BOUTON SOUTENIR / LIKE */}
-                    <button
-                      type="button"
-                      onClick={() => handleToggleLike(post.id)}
-                      style={{
-                        background: post.has_liked ? '#FEF2F2' : '#F8FAFC',
-                        border: post.has_liked ? '1px solid #FECACA' : '1px solid #E2E8F0',
-                        color: post.has_liked ? '#DC2626' : '#475569',
-                        padding: '7px 14px',
-                        borderRadius: '10px',
-                        fontSize: '12.5px',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      <IconHeart className="w-3.5 h-3.5" fill={post.has_liked} />
-                      <span>{post.has_liked ? 'Soutenu' : 'Soutenir'}</span>
-                    </button>
-
-                    {/* BOUTON COMMENTER */}
-                    <button
-                      type="button"
-                      onClick={() => setExpandedComments(prev => ({ ...prev, [post.id]: !prev[post.id] }))}
-                      style={{
-                        background: isCommentsOpen ? '#EFF6FF' : '#F8FAFC',
-                        border: isCommentsOpen ? '1px solid #BFDBFE' : '1px solid #E2E8F0',
-                        color: isCommentsOpen ? '#1D4ED8' : '#475569',
-                        padding: '7px 14px',
-                        borderRadius: '10px',
-                        fontSize: '12.5px',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      <IconMessageSquare className="w-3.5 h-3.5" />
-                      <span>Encourager</span>
-                    </button>
-
-                    {/* BOUTON PARTAGER */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (onToast) onToast("Lien de la preuve de traçabilité copié dans le presse-papier !");
-                      }}
-                      style={{
-                        background: '#F8FAFC',
-                        border: '1px solid #E2E8F0',
-                        color: '#475569',
-                        padding: '7px 14px',
-                        borderRadius: '10px',
-                        fontSize: '12.5px',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <IconShare2 className="w-3.5 h-3.5" />
-                      <span>Partager</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* ZONE DE COMMENTAIRES (ENCOURAGEMENTS DU BÉNÉVOLE) */}
-                {isCommentsOpen && (
-                  <div style={{ background: '#F8FAFC', borderRadius: '12px', padding: '16px', border: '1px solid #E2E8F0', marginTop: '4px' }}>
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: post.comments.length > 0 ? '14px' : '0' }}>
-                      <input
-                        type="text"
-                        placeholder="Rédigez un message d'encouragement à l'association..."
-                        value={commentInputs[post.id] || ''}
-                        onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') handleAddComment(post.id);
-                        }}
-                        style={{
-                          flex: 1,
-                          padding: '9px 14px',
-                          borderRadius: '10px',
-                          border: '1px solid #CBD5E1',
-                          fontSize: '13px',
-                          background: '#ffffff'
-                        }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleAddComment(post.id)}
-                        className="btn btn-green"
-                        style={{ padding: '9px 18px', borderRadius: '10px', fontSize: '13px' }}
-                      >
-                        Envoyer
-                      </button>
-                    </div>
-
-                    {post.comments.length > 0 && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                        {post.comments.map(c => (
-                          <div key={c.id} style={{ background: '#ffffff', borderRadius: '10px', padding: '10px 14px', border: '1px solid #E2E8F0' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '3px' }}>
-                              <strong style={{ fontSize: '12.5px', color: 'var(--primary-navy)' }}>{c.author}</strong>
-                              <small style={{ fontSize: '11px', color: '#94A3B8' }}>{c.time}</small>
-                            </div>
-                            <p style={{ fontSize: '13px', color: '#334155', margin: 0 }}>{c.text}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </article>
-            );
-          })
-        )}
       </div>
 
-      {/* COLONNE DROITE : ASSOCIATIONS PARTENAIRES À SUIVRE */}
-      <aside style={{ position: 'sticky', top: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <div style={{ background: '#ffffff', border: '1px solid #E2E8F0', borderRadius: '18px', padding: '20px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px', borderBottom: '1px solid #F1F5F9', paddingBottom: '10px' }}>
-            <IconBuilding className="w-4 h-4 text-emerald-700" />
-            <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 800, color: 'var(--primary-navy)' }}>
-              {currentLang === 'ar' ? 'جمعيات نشطة مقترحة' : 'Associations à suivre'}
-            </h4>
-          </div>
-
-          <p style={{ fontSize: '12px', color: '#64748B', lineHeight: 1.5, margin: '0 0 16px' }}>
-            {currentLang === 'ar'
-              ? 'تابع الجمعيات المعتمدة لتصلك منشورات الميدان وأدلة Traçabilité مباشرة في صفحة استقبالك.'
-              : 'Abonnez-vous aux associations agréées pour voir leurs preuves d\'action directement dans votre Accueil.'}
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {SUGGESTED_ASSOCIATIONS.map((assoc, idx) => {
-              const isFollowing = followedAssocs.includes(assoc.name);
-              return (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', padding: '8px 0', borderBottom: idx < SUGGESTED_ASSOCIATIONS.length - 1 ? '1px solid #F8FAFC' : 'none' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
-                    <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: assoc.color, color: '#ffffff', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: '12px', flexShrink: 0 }}>
-                      {assoc.initials}
-                    </div>
-                    <div style={{ minWidth: 0 }}>
-                      <strong style={{ fontSize: '13px', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--primary-navy)' }}>
-                        {assoc.name}
-                      </strong>
-                      <small style={{ fontSize: '11px', color: '#64748B', display: 'block' }}>
-                        {assoc.wilaya} · {assoc.followersCount} abonnés
-                      </small>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => handleToggleFollow(assoc.name)}
-                    style={{
-                      border: isFollowing ? '1px solid #CBD5E1' : '1px solid #006D5B',
-                      background: isFollowing ? '#F8FAFC' : '#006D5B',
-                      color: isFollowing ? '#475569' : '#ffffff',
-                      padding: '5px 12px',
-                      borderRadius: '8px',
-                      fontSize: '11.5px',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                      flexShrink: 0
-                    }}
-                  >
-                    {isFollowing ? '✓ Suivi' : '+ Suivre'}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* CARTE D'INFO TRAÇABILITÉ */}
-        <div style={{ background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '16px', padding: '16px 18px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#006D5B', fontWeight: 800, fontSize: '13px', marginBottom: '6px' }}>
-            <IconShieldCheck className="w-4 h-4 text-emerald-700" />
-            <span>Garantie de Transparence</span>
-          </div>
-          <p style={{ margin: 0, fontSize: '12px', color: '#166534', lineHeight: 1.55 }}>
-            Toutes les publications présentées sur cette page proviennent d'associations officiellement agréées. Chaque photo et indicateur d'impact est relié au registre public de traçabilité.
-          </p>
-        </div>
-      </aside>
     </div>
   );
 }

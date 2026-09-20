@@ -1,0 +1,249 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : CALENDRIER DES INTERVENTIONS
+   Grille mensuelle claire, planification des missions et suivi des dates.
+   ========================================================================== */
+
+@import './variables.css';
+
+.assoc-cal-root {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: var(--assoc-font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   1. CARTE PRINCIPALE DU CALENDRIER
+   -------------------------------------------------------------------------- */
+.assoc-cal-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 28px 32px;
+  box-shadow: var(--assoc-shadow-xs);
+}
+
+/* Navigation du mois */
+.assoc-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.assoc-cal-month-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0;
+}
+
+.assoc-cal-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assoc-cal-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--assoc-radius-sm);
+  border: 1px solid var(--assoc-border);
+  background-color: var(--assoc-bg-card);
+  color: var(--assoc-text-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.assoc-cal-nav-btn:hover {
+  background-color: var(--assoc-bg-subtle);
+  border-color: #cbd5e1;
+  color: var(--assoc-emerald);
+}
+
+/* Grille des jours de la semaine */
+.assoc-cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.assoc-cal-weekday {
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--assoc-text-muted);
+  padding: 8px 0;
+}
+
+/* Grille des cases du calendrier */
+.assoc-cal-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.assoc-cal-day-cell {
+  min-height: 86px;
+  background-color: #ffffff;
+  border: 1px solid var(--assoc-border-subtle);
+  border-radius: var(--assoc-radius-sm);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.assoc-cal-day-cell:hover {
+  border-color: var(--assoc-emerald-border);
+  background-color: var(--assoc-emerald-tint);
+}
+
+.assoc-cal-day-cell.other-month {
+  background-color: var(--assoc-bg-page);
+  color: var(--assoc-text-faint);
+  opacity: 0.6;
+}
+
+.assoc-cal-day-cell.today {
+  border-color: var(--assoc-emerald);
+  background-color: #f0fdf4;
+}
+
+.assoc-cal-day-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--assoc-text-primary);
+}
+
+.assoc-cal-event-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: var(--assoc-radius-xs);
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 4px;
+}
+
+.assoc-cal-event-pill.amber {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+}
+
+/* --------------------------------------------------------------------------
+   2. ÉVÉNEMENTS & MISSIONS À VENIR
+   -------------------------------------------------------------------------- */
+.assoc-cal-upcoming-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.assoc-cal-upcoming-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0;
+}
+
+.assoc-cal-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Carte événement aérée */
+.assoc-cal-event-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  transition: all 0.15s ease;
+}
+
+.assoc-cal-event-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--assoc-shadow-sm);
+  transform: translateY(-2px);
+}
+
+.assoc-cal-event-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.assoc-cal-event-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--assoc-radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.assoc-cal-event-info h3 {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--assoc-text-primary);
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.assoc-cal-event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12.5px;
+  color: var(--assoc-text-muted);
+}
+
+.assoc-cal-event-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Colonne droite : Jauge de remplissage & Badge */
+.assoc-cal-event-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 170px;
+}
+
+.assoc-cal-event-badge {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--assoc-radius-full);
+}
+
+.assoc-cal-event-badge.open {
+  background-color: var(--assoc-emerald-tint);
+  color: var(--assoc-emerald);
+  border: 1px solid var(--assoc-emerald-border);
+}
+
+.assoc-cal-event-badge.organizing {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+  border: 1px solid var(--assoc-amber-border);
+}

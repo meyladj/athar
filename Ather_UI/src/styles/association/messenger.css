@@ -1,0 +1,321 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : MESSAGERIE DIRECTE
+   Interface de chat moderne et fluide pour coordonner les bénévoles.
+   ========================================================================== */
+
+@import './variables.css';
+
+.assoc-msg-root {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  box-shadow: var(--assoc-shadow-sm);
+  overflow: hidden;
+  height: 740px;
+  display: flex;
+  font-family: var(--assoc-font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   1. PANNEAU GAUCHE : LISTE DES CONVERSATIONS
+   -------------------------------------------------------------------------- */
+.assoc-msg-sidebar {
+  width: 340px;
+  border-right: 1px solid var(--assoc-border);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--assoc-bg-card);
+  flex-shrink: 0;
+}
+
+[dir="rtl"] .assoc-msg-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--assoc-border);
+}
+
+.assoc-msg-sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+}
+
+.assoc-msg-sidebar-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 14px;
+}
+
+.assoc-msg-search-box {
+  background-color: var(--assoc-bg-page);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 0 12px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assoc-msg-search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 12.5px;
+  color: var(--assoc-text-primary);
+  outline: none;
+  font-family: inherit;
+}
+
+.assoc-msg-convos-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Élément de conversation */
+.assoc-msg-convo-item {
+  padding: 12px 14px;
+  border-radius: var(--assoc-radius-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.assoc-msg-convo-item:hover {
+  background-color: var(--assoc-bg-subtle);
+}
+
+.assoc-msg-convo-item.active {
+  background-color: var(--assoc-emerald-tint);
+  border-color: var(--assoc-emerald-border);
+}
+
+.assoc-msg-convo-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 1px solid var(--assoc-border);
+}
+
+.assoc-msg-convo-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.assoc-msg-convo-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.assoc-msg-convo-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--assoc-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.assoc-msg-convo-time {
+  font-size: 11px;
+  color: var(--assoc-text-faint);
+  flex-shrink: 0;
+}
+
+.assoc-msg-convo-snippet {
+  font-size: 12px;
+  color: var(--assoc-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------------------------------------------------
+   2. PANNEAU DROIT : ZONE DE CHAT PRINCIPALE
+   -------------------------------------------------------------------------- */
+.assoc-msg-chat-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--assoc-bg-page);
+  min-width: 0;
+}
+
+/* En-tête de conversation */
+.assoc-msg-chat-header {
+  height: 70px;
+  background-color: var(--assoc-bg-card);
+  border-bottom: 1px solid var(--assoc-border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.assoc-msg-chat-header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assoc-msg-chat-header-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--assoc-text-primary);
+}
+
+.assoc-msg-chat-header-sub {
+  font-size: 12px;
+  color: var(--assoc-text-muted);
+}
+
+.assoc-msg-chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assoc-msg-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--assoc-radius-sm);
+  border: 1px solid var(--assoc-border);
+  background-color: #ffffff;
+  color: var(--assoc-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.assoc-msg-icon-btn:hover {
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-emerald);
+}
+
+/* Fil des messages */
+.assoc-msg-stream {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Bulles de message aérées (aucun texte collé) */
+.assoc-msg-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}
+
+.assoc-msg-bubble-wrap.incoming {
+  align-self: flex-start;
+}
+
+.assoc-msg-bubble-wrap.outgoing {
+  align-self: flex-end;
+}
+
+.assoc-msg-bubble {
+  padding: 13px 18px;
+  border-radius: var(--assoc-radius-lg);
+  font-size: 13.5px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.assoc-msg-bubble.incoming {
+  background-color: #ffffff;
+  color: var(--assoc-text-primary);
+  border: 1px solid var(--assoc-border);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--assoc-shadow-xs);
+}
+
+.assoc-msg-bubble.outgoing {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 109, 91, 0.2);
+}
+
+.assoc-msg-bubble-time {
+  font-size: 10.5px;
+  color: var(--assoc-text-faint);
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.assoc-msg-bubble-wrap.outgoing .assoc-msg-bubble-time {
+  text-align: right;
+}
+
+/* Zone de composition du message */
+.assoc-msg-composer {
+  padding: 16px 24px;
+  background-color: var(--assoc-bg-card);
+  border-top: 1px solid var(--assoc-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assoc-msg-input {
+  flex: 1;
+  background-color: var(--assoc-bg-page);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 10px 16px;
+  font-size: 13.5px;
+  color: var(--assoc-text-primary);
+  outline: none;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.assoc-msg-input:focus {
+  background-color: #ffffff;
+  border-color: var(--assoc-emerald);
+  box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.08);
+}
+
+.assoc-msg-send-btn {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--assoc-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 109, 91, 0.25);
+  transition: all 0.15s ease;
+}
+
+.assoc-msg-send-btn:hover {
+  background-color: var(--assoc-emerald-hover);
+  transform: translateY(-1px);
+}

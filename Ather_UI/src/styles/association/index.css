@@ -1,0 +1,14 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : INDEX DES FEUILLES DE STYLES MODULAIRES
+   Chaque partie dispose de sa feuille de style dédiée pour un design cohérent et aéré.
+   ========================================================================== */
+
+@import './variables.css';
+@import './layout.css';
+@import './profile-feed.css';
+@import './missions.css';
+@import './candidatures.css';
+@import './calendar.css';
+@import './messenger.css';
+@import './post-proof.css';
+@import './overview.css';

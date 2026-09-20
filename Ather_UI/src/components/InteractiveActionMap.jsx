@@ -2,7 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// SVG Icons (zero external library dependency)
+import profileBannerAlgiers from '../assets/profile-banner-algiers.png';
+import mapBloodAction from '../assets/map-blood-action.png';
+import mapReboisement from '../assets/map-reboisement.png';
+import mapDistribution from '../assets/map-distribution.png';
+import mapAtelierArt from '../assets/map-atelier-art.png';
+import mapDepistageMedical from '../assets/map-depistage-medical.png';
+
+// SVG Icons
 function IconMapPin({ className = "w-4 h-4" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -12,16 +19,7 @@ function IconMapPin({ className = "w-4 h-4" }) {
   );
 }
 
-function IconShieldCheck({ className = "w-4 h-4" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      <path d="m9 12 2 2 4-4"/>
-    </svg>
-  );
-}
-
-function IconCalendar({ className = "w-4 h-4" }) {
+function IconCalendar({ className = "w-3.5 h-3.5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
@@ -32,7 +30,7 @@ function IconCalendar({ className = "w-4 h-4" }) {
   );
 }
 
-function IconClock({ className = "w-4 h-4" }) {
+function IconClock({ className = "w-3.5 h-3.5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10"/>
@@ -41,7 +39,7 @@ function IconClock({ className = "w-4 h-4" }) {
   );
 }
 
-function IconUsers({ className = "w-4 h-4" }) {
+function IconUsers({ className = "w-3.5 h-3.5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -52,24 +50,36 @@ function IconUsers({ className = "w-4 h-4" }) {
   );
 }
 
-function IconCheck({ className = "w-4 h-4" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-  );
-}
-
 function IconArrowRight({ className = "w-4 h-4" }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 12h14"/>
       <path d="m12 5 7 7-7 7"/>
     </svg>
   );
 }
 
-function IconCrosshair({ className = "w-4 h-4" }) {
+function IconRefresh({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+      <path d="M3 3v5h5"/>
+      <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+      <path d="M16 21h5v-5"/>
+    </svg>
+  );
+}
+
+function IconLeaf({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+    </svg>
+  );
+}
+
+function IconCrosshair({ className = "w-3.5 h-3.5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10"/>
@@ -81,350 +91,270 @@ function IconCrosshair({ className = "w-4 h-4" }) {
   );
 }
 
-// 16 points d'actions réels avec coordonnées géographiques précises et les 4 codes couleurs exigés
-const ACTION_POINTS = [
-  // 1. ROUGE : URGENCES & SOS SANG (Code #DC2626)
+// 16 points d'action avec les 4 codes couleurs exigés (Rouge, Bleu, Violet, Vert)
+const MAP_ACTIONS = [
+  // 1. ROUGE : URGENCES (4)
   {
     id: 'urg-1',
     type: 'emergency',
-    color: '#DC2626',
-    categoryName: 'Urgences & SOS Sang',
-    badgeText: 'Urgence Vitale',
-    title: 'Collecte d\'Urgence Don de Sang (Pavillon Pasteur)',
+    badge: 'Urgence Vitale',
+    badgeColor: '#ffffff',
+    badgeBg: '#ef4444',
+    title: "Collecte d'Urgence Don de Sang (Pavillon Pasteur)",
     association: 'CTS CHU Mustapha Pacha',
     wilaya: 'Alger',
-    address: 'Place du 1er Mai, Sidi M\'Hamed, Alger',
-    coords: [36.7578, 3.0560],
-    date: 'Samedi 19 Avril 2025',
+    date: 'Sam. 19 Avril 2025',
     time: '08h30 – 16h30',
-    spots_total: 120,
-    spots_remaining: 18,
-    urgencyLevel: 'Critique (Groupes O- et A+)',
-    description: 'Besoins critiques immédiats en globules rouges et plaquettes pour alimenter les blocs de chirurgie pédiatrique et traumatologie. Personnel médical mobilisé sur place.',
-    tasks: ['Accueil et enregistrement des donneurs', 'Assistance à la collation post-don', 'Don de sang sur place'],
-    image_url: 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '✚'
+    spots: '18 places restantes',
+    image: mapBloodAction,
+    coords: [36.7578, 3.0560],
+    iconType: 'cross'
   },
   {
     id: 'urg-2',
     type: 'emergency',
-    color: '#DC2626',
-    categoryName: 'Urgences & SOS Sang',
-    badgeText: 'Urgence Vitale',
-    title: 'Urgence Hémodialyse et Transfusion Spécialisée',
-    association: 'CHU Lamine Debaghine (Bab El Oued)',
-    wilaya: 'Alger',
-    address: 'Boulevard Colonel Abderrahmane Mira, Bab El Oued, Alger',
-    coords: [36.7925, 3.0489],
-    date: 'Dimanche 20 Avril 2025',
-    time: '09h00 – 15h00',
-    spots_total: 40,
-    spots_remaining: 8,
-    urgencyLevel: 'Très haute priorité',
-    description: 'Mobilisation d\'urgence pour les patients en dialyse et chirurgie d\'urgence. Chaque volontaire recevra le Pass Donneur certifié.',
-    tasks: ['Orientation des familles', 'Sensibilisation au don régulier', 'Prélèvement sanguin'],
-    image_url: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '✚'
+    badge: 'Urgence',
+    badgeColor: '#ffffff',
+    badgeBg: '#ef4444',
+    title: 'Dépistage médical gratuit',
+    association: 'Association El Baraka',
+    wilaya: 'Sidi Bel Abbès',
+    date: 'Sam. 10 Mai 2025',
+    time: '09h00 – 14h00',
+    spots: '15 places restantes',
+    image: mapDepistageMedical,
+    coords: [35.1899, -0.6308],
+    iconType: 'cross'
   },
   {
     id: 'urg-3',
     type: 'emergency',
-    color: '#DC2626',
-    categoryName: 'Urgences & SOS Sang',
-    badgeText: 'Secours d\'Urgence',
-    title: 'Poste de Secours d\'Urgence et Gestes qui Sauvent',
-    association: 'Croissant Rouge Algérien (Comité Oran)',
-    wilaya: 'Oran',
-    address: 'Place du 1er Novembre (Place d\'Armes), Oran',
-    coords: [35.7032, -0.6483],
-    date: 'Lundi 21 Avril 2025',
-    time: '10h00 – 17h00',
-    spots_total: 25,
-    spots_remaining: 6,
-    urgencyLevel: 'Intervention Rapide',
-    description: 'Équipe de secouristes d\'intervention et sensibilisation de la population aux premiers gestes de réanimation en espace public.',
-    tasks: ['Poste de secours avancé', 'Formation express des citoyens', 'Distribution de trousses'],
-    image_url: 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '✚'
+    badge: 'Urgence Vitale',
+    badgeColor: '#ffffff',
+    badgeBg: '#ef4444',
+    title: 'Don de sang CHU Bab El Oued',
+    association: 'CHU Bab El Oued',
+    wilaya: 'Alger',
+    date: 'Dim. 20 Avril 2025',
+    time: '09h00 – 15h00',
+    spots: '12 places restantes',
+    image: mapBloodAction,
+    coords: [36.7925, 3.0489],
+    iconType: 'cross'
   },
   {
     id: 'urg-4',
     type: 'emergency',
-    color: '#DC2626',
-    categoryName: 'Urgences & SOS Sang',
-    badgeText: 'Urgence Vitale',
-    title: 'Mobilisation Transfusionnelle Régionale de l\'Est',
-    association: 'CHU Ibn Badis Constantine',
-    wilaya: 'Constantine',
-    address: 'Route de l\'Hôpital, Plateau du Mansourah, Constantine',
-    coords: [36.3650, 6.6147],
-    date: 'Mercredi 23 Avril 2025',
-    time: '08h00 – 14h00',
-    spots_total: 80,
-    spots_remaining: 12,
-    urgencyLevel: 'Critique chirurgical',
-    description: 'Campagne de collecte sanguine intensive pour renforcer la banque centrale de sang couvrant les wilayas de Constantine, Mila et Skikda.',
-    tasks: ['Contrôle médical préliminaire', 'Prélèvement sécurisé', 'Encadrement bénévole'],
-    image_url: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '✚'
+    badge: 'Secours',
+    badgeColor: '#ffffff',
+    badgeBg: '#ef4444',
+    title: 'Poste de secours et réanimation',
+    association: 'Croissant Rouge Algérien',
+    wilaya: 'Ghardaïa',
+    date: 'Mer. 23 Avril 2025',
+    time: '10h00 – 16h00',
+    spots: '8 places restantes',
+    image: mapDepistageMedical,
+    coords: [32.4909, 3.6735],
+    iconType: 'cross'
   },
 
-  // 2. BLEU : SOLIDARITÉ & AIDES HUMANITAIRES (Code #2563EB)
+  // 2. BLEU : SOLIDARITÉ (4)
   {
     id: 'sol-1',
     type: 'solidarity',
-    color: '#2563EB',
-    categoryName: 'Solidarité & Aide Humanitaire',
-    badgeText: 'Banque Alimentaire',
-    title: 'Conditionnement & Distribution de Colis Alimentaires',
+    badge: 'Solidarité',
+    badgeColor: '#ffffff',
+    badgeBg: '#3b82f6',
+    title: 'Distribution de paniers alimentaires',
     association: 'Croissant Rouge Algérien',
-    wilaya: 'Alger',
-    address: 'Centre Logistique CRA, Bab Ezzouar ZI, Alger',
-    coords: [36.7167, 3.1833],
-    date: 'Samedi 19 Avril 2025',
-    time: '09h00 – 16h00',
-    spots_total: 40,
-    spots_remaining: 20,
-    urgencyLevel: 'Régulier',
-    description: 'Confection de 350 cartons de denrées alimentaires essentielles pour les familles répertoriées dans les communes périphériques.',
-    tasks: ['Pesée et étiquetage des cartons', 'Mise en palettes logistique', 'Distribution aux relais communaux'],
-    image_url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🤝'
+    wilaya: 'Oran',
+    date: 'Dim. 27 Avril 2025',
+    time: '10h00 – 15h00',
+    spots: '12 places restantes',
+    image: mapDistribution,
+    coords: [35.6987, -0.6349],
+    iconType: 'shield'
   },
   {
     id: 'sol-2',
     type: 'solidarity',
-    color: '#2563EB',
-    categoryName: 'Solidarité & Aide Humanitaire',
-    badgeText: 'Convoi Solidaire',
-    title: 'Caravane Hivernale & Packs Chaleur pour Zones Rurales',
-    association: 'Association El Baraka Algérie',
-    wilaya: 'Médéa',
-    address: 'Centre Communal de Solidarité, Berrouaghia, Médéa',
-    coords: [36.1378, 2.9197],
-    date: 'Samedi 26 Avril 2025',
-    time: '08h00 – 17h00',
-    spots_total: 30,
-    spots_remaining: 9,
-    urgencyLevel: 'Action de terrain',
-    description: 'Acheminement motorisé de couvertures thermiques haute protection et de radiateurs sécurisés pour 250 foyers isolés.',
-    tasks: ['Chargement des camionnettes tout-terrain', 'Distribution porte-à-porte', 'Recueil des signatures de conformité'],
-    image_url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🤝'
+    badge: 'Solidarité',
+    badgeColor: '#ffffff',
+    badgeBg: '#3b82f6',
+    title: 'Colis alimentaires zones d\'ombre',
+    association: 'Association El Baraka',
+    wilaya: 'Béchar',
+    date: 'Jeu. 1 Mai 2025',
+    time: '08h00 – 16h00',
+    spots: '16 places restantes',
+    image: mapDistribution,
+    coords: [31.6167, -2.2167],
+    iconType: 'shield'
   },
   {
     id: 'sol-3',
     type: 'solidarity',
-    color: '#2563EB',
-    categoryName: 'Solidarité & Aide Humanitaire',
-    badgeText: 'Vestiaire Solidaire',
-    title: 'Collecte et Triage de Vêtements Chauds & Fournitures',
-    association: 'Nass El Khir Sétif',
-    wilaya: 'Sétif',
-    address: 'Maison de la Culture Houari Boumediene, Sétif',
-    coords: [36.1911, 5.4137],
-    date: 'Jeudi 24 Avril 2025',
-    time: '13h30 – 17h30',
-    spots_total: 20,
-    spots_remaining: 7,
-    urgencyLevel: 'Régulier',
-    description: 'Tri qualitatif de vêtements neufs et reconditionnés pour les enfants scolarisés issus de milieux défavorisés.',
-    tasks: ['Tri par taille et tranche d\'âge', 'Conditionnement propre en sachets scellés', 'Accueil des donateurs'],
-    image_url: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🤝'
+    badge: 'Solidarité',
+    badgeColor: '#ffffff',
+    badgeBg: '#3b82f6',
+    title: 'Aide aux familles nécessiteuses',
+    association: 'Croissant Rouge Algérien',
+    wilaya: 'Constantine',
+    date: 'Sam. 26 Avril 2025',
+    time: '09h00 – 14h00',
+    spots: '14 places restantes',
+    image: mapDistribution,
+    coords: [36.3650, 6.6147],
+    iconType: 'shield'
   },
   {
     id: 'sol-4',
     type: 'solidarity',
-    color: '#2563EB',
-    categoryName: 'Solidarité & Aide Humanitaire',
-    badgeText: 'Repas Solidaires',
-    title: 'Préparation & Distribution de Repas Équilibrés',
-    association: 'Comité de Bienfaisance de Blida',
-    wilaya: 'Blida',
-    address: 'Rue d\'Alger, Centre-Ville, Blida',
-    coords: [36.4700, 2.8300],
-    date: 'Vendredi 25 Avril 2025',
-    time: '11h00 – 15h00',
-    spots_total: 15,
-    spots_remaining: 5,
-    urgencyLevel: 'Action hebdomadaire',
-    description: 'Préparation en cuisine communautaire de 200 repas chauds et distribution bienveillante aux personnes vulnérables.',
-    tasks: ['Épluchage et préparation cuisine', 'Conditionnement en boîtes isothermes', 'Service avec le sourire'],
-    image_url: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🤝'
+    badge: 'Solidarité',
+    badgeColor: '#ffffff',
+    badgeBg: '#3b82f6',
+    title: 'Convoi vestimentaire grand sud',
+    association: 'Nass El Khir',
+    wilaya: 'Tamanrasset',
+    date: 'Lun. 5 Mai 2025',
+    time: '08h00 – 17h00',
+    spots: '10 places restantes',
+    image: mapDistribution,
+    coords: [22.7850, 5.5228],
+    iconType: 'shield'
   },
 
-  // 3. VIOLET : ÉVÉNEMENTS & ÉDUCATION & CULTURE (Code #8B5CF6)
+  // 3. VIOLET : ÉDUCATION (4)
   {
-    id: 'eve-1',
-    type: 'event',
-    color: '#8B5CF6',
-    categoryName: 'Événements & Éducation',
-    badgeText: 'Atelier Enfant',
-    title: 'Ateliers de Lecture Vivante & Éveil Artistique',
+    id: 'edu-1',
+    type: 'education',
+    badge: 'Éducation',
+    badgeColor: '#ffffff',
+    badgeBg: '#a855f7',
+    title: "Atelier d'art et d'éducation pour les enfants",
+    association: 'Lire pour Demain',
+    wilaya: 'Constantine',
+    date: 'Sam. 3 Mai 2025',
+    time: '09h00 – 12h00',
+    spots: '20 places restantes',
+    image: mapAtelierArt,
+    coords: [36.3500, 6.6000],
+    iconType: 'book'
+  },
+  {
+    id: 'edu-2',
+    type: 'education',
+    badge: 'Éducation',
+    badgeColor: '#ffffff',
+    badgeBg: '#a855f7',
+    title: 'Bibliothèques de rue pour enfants',
     association: 'Lire pour Demain',
     wilaya: 'Alger',
-    address: 'Médiathèque Municipale, Sidi Yahia, Hydra, Alger',
-    coords: [36.7450, 3.0370],
-    date: 'Mercredi 16 Avril 2025',
+    date: 'Mer. 7 Mai 2025',
     time: '14h00 – 17h00',
-    spots_total: 15,
-    spots_remaining: 8,
-    urgencyLevel: 'Événement culturel',
-    description: 'Animation de contes bilingues (Arabe / Français), dessins guidés et éveil au plaisir de lire pour 25 enfants de 6 à 11 ans.',
-    tasks: ['Lecture théâtralisée d\'histoires', 'Encadrement du mini-atelier dessin', 'Distribution du goûter sain'],
-    image_url: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '★'
+    spots: '10 places restantes',
+    image: mapAtelierArt,
+    coords: [36.7750, 3.0600],
+    iconType: 'book'
   },
   {
-    id: 'eve-2',
-    type: 'event',
-    color: '#8B5CF6',
-    categoryName: 'Événements & Éducation',
-    badgeText: 'Tech & Jeunesse',
-    title: 'Hackathon & Initiation Robotique pour Collégiens',
-    association: 'Club Robotique & Informatique USTHB',
-    wilaya: 'Alger',
-    address: 'Faculté d\'Électronique USTHB, Bab Ezzouar, Alger',
-    coords: [36.7119, 3.1812],
-    date: 'Samedi 26 Avril 2025',
-    time: '09h30 – 17h00',
-    spots_total: 20,
-    spots_remaining: 5,
-    urgencyLevel: 'Atelier innovant',
-    description: 'Accompagnement méthodologique de 40 jeunes écoliers dans la construction de mini-robots solaires et initiation au code avec Scratch.',
-    tasks: ['Mentorat technique par groupe de 3', 'Assistance au montage électronique', 'Jury d\'évaluation bienveillant'],
-    image_url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '★'
+    id: 'edu-3',
+    type: 'education',
+    badge: 'Éducation',
+    badgeColor: '#ffffff',
+    badgeBg: '#a855f7',
+    title: 'Soutien scolaire et initiation numérique',
+    association: 'Club Scientifique',
+    wilaya: 'Tlemcen',
+    date: 'Ven. 9 Mai 2025',
+    time: '09h30 – 13h00',
+    spots: '12 places restantes',
+    image: mapAtelierArt,
+    coords: [34.8783, -1.3150],
+    iconType: 'book'
   },
   {
-    id: 'eve-3',
-    type: 'event',
-    color: '#8B5CF6',
-    categoryName: 'Événements & Éducation',
-    badgeText: 'Patrimoine National',
-    title: 'Chantier Participatif & Sauvegarde de la Casbah',
-    association: 'Association Médina & Patrimoine',
-    wilaya: 'Alger',
-    address: 'Palais Mustapha Pacha, Basse Casbah, Alger',
-    coords: [36.7850, 3.0600],
-    date: 'Samedi 19 Avril 2025',
-    time: '09h00 – 15h30',
-    spots_total: 25,
-    spots_remaining: 11,
-    urgencyLevel: 'Préservation historique',
-    description: 'Nettoyage des venelles historiques, dépoussiérage des faïences anciennes et guidage culturel pour sensibiliser les visiteurs.',
-    tasks: ['Brossage doux des éléments architecturaux', 'Dégagement des ruelles pavées', 'Explication historique aux visiteurs'],
-    image_url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '★'
-  },
-  {
-    id: 'eve-4',
-    type: 'event',
-    color: '#8B5CF6',
-    categoryName: 'Événements & Éducation',
-    badgeText: 'Fête de la Science',
-    title: 'Soirée d\'Astronomie & Vulgarisation Scientifique',
-    association: 'Club Sirius d\'Astronomie Populaire',
-    wilaya: 'Alger',
-    address: 'Esplanade de l\'Observatoire, Bouzaréah, Alger',
-    coords: [36.7900, 3.0200],
-    date: 'Vendredi 2 Mai 2025',
-    time: '17h00 – 22h00',
-    spots_total: 18,
-    spots_remaining: 4,
-    urgencyLevel: 'Grand public',
-    description: 'Installation de 6 télescopes grand champ, conférence accessible sur le système solaire et guidage des observations pour les familles.',
-    tasks: ['Accueil et gestion de la file d\'attente', 'Assistance au réglage des télescopes', 'Distribution de cartes du ciel'],
-    image_url: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '★'
+    id: 'edu-4',
+    type: 'education',
+    badge: 'Éducation',
+    badgeColor: '#ffffff',
+    badgeBg: '#a855f7',
+    title: 'Atelier conte saharien et lecture',
+    association: 'Lire pour Demain',
+    wilaya: 'Tamanrasset',
+    date: 'Sam. 17 Mai 2025',
+    time: '16h00 – 19h00',
+    spots: '8 places restantes',
+    image: mapAtelierArt,
+    coords: [22.7950, 5.5350],
+    iconType: 'book'
   },
 
-  // 4. VERT : PLANTATIONS & ÉCOLOGIE & REBOISEMENT (Code #059669)
+  // 4. VERT : PLANTATIONS (4)
   {
     id: 'pla-1',
     type: 'planting',
-    color: '#059669',
-    categoryName: 'Plantations & Écologie',
-    badgeText: 'Reboisement',
-    title: 'Grande Campagne de Reboisement de la Forêt de Zéralda',
-    association: 'Association Green Future',
-    wilaya: 'Alger',
-    address: 'Forêt Récréative de Zéralda, Entrée Nord, RN11, Alger',
-    coords: [36.7135, 2.8420],
-    date: 'Samedi 12 Avril 2025',
-    time: '09h00 – 15h00',
-    spots_total: 30,
-    spots_remaining: 15,
-    urgencyLevel: 'Action environnementale',
-    description: 'Mise en terre de 450 jeunes plants de pins d\'Alep, caroubiers et oliviers. Pose de tuteurs en bois et premier arrosage en équipe.',
-    tasks: ['Creusement des trous de plantation', 'Mise en terre avec tuteurs protecteurs', 'Arrosage et paillage écologique'],
-    image_url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🌲'
+    badge: 'Plantation',
+    badgeColor: '#ffffff',
+    badgeBg: '#10b981',
+    title: 'Campagne de Reboisement à Tipaza',
+    association: 'Green Future',
+    wilaya: 'Tipaza',
+    date: 'Sam. 26 Avril 2025',
+    time: '09h00 – 13h00',
+    spots: '24 places restantes',
+    image: mapReboisement,
+    coords: [36.5897, 2.4475],
+    iconType: 'tree'
   },
   {
     id: 'pla-2',
     type: 'planting',
-    color: '#059669',
-    categoryName: 'Plantations & Écologie',
-    badgeText: 'Nettoyage Littoral',
-    title: 'Nettoyage & Protection Écologique de la Plage des Andalouses',
-    association: 'Association Bahia Clean & Mer Vivante',
-    wilaya: 'Oran',
-    address: 'Plage des Andalouses, Aïn El Turk, Oran',
-    coords: [35.7483, -0.8350],
-    date: 'Dimanche 20 Avril 2025',
-    time: '08h30 – 12h30',
-    spots_total: 35,
-    spots_remaining: 14,
-    urgencyLevel: 'Protection marine',
-    description: 'Opération citoyenne de ramassage des déchets plastiques sur 2 km de côte et sensibilisation des promeneurs au zéro déchet.',
-    tasks: ['Collecte avec pinces et sacs biodégradables', 'Pesée et tri sélectif sur la plage', 'Installation de panneaux éducatifs'],
-    image_url: 'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🌲'
+    badge: 'Plantation',
+    badgeColor: '#ffffff',
+    badgeBg: '#10b981',
+    title: 'Reboisement de la forêt de Zéralda',
+    association: 'Green Future',
+    wilaya: 'Alger',
+    date: 'Sam. 12 Avril 2025',
+    time: '09h00 – 15h00',
+    spots: '30 places restantes',
+    image: mapReboisement,
+    coords: [36.7135, 2.8420],
+    iconType: 'tree'
   },
   {
     id: 'pla-3',
     type: 'planting',
-    color: '#059669',
-    categoryName: 'Plantations & Écologie',
-    badgeText: 'Régénération Parc',
-    title: 'Plantation d\'Espèces Endémiques & Sentiers de Gouraya',
-    association: 'Club Éco-Jeunesse Gouraya',
-    wilaya: 'Béjaïa',
-    address: 'Cap Carbon, Parc National de Gouraya, Béjaïa',
-    coords: [36.7725, 5.1030],
-    date: 'Samedi 3 Mai 2025',
-    time: '09h00 – 14h30',
-    spots_total: 20,
-    spots_remaining: 8,
-    urgencyLevel: 'Biodiversité protégée',
-    description: 'Plantation de 200 buissons mellifères et consolidation des talus naturels pour freiner l\'érosion le long de la corniche.',
-    tasks: ['Acheminement des plants par sentier', 'Plantation sur les zones dégradées', 'Balisage propre des sentiers'],
-    image_url: 'https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🌲'
+    badge: 'Plantation',
+    badgeColor: '#ffffff',
+    badgeBg: '#10b981',
+    title: 'Ceinture verte contre la désertification',
+    association: 'Club Vert USTHB',
+    wilaya: 'Djelfa',
+    date: 'Sam. 10 Mai 2025',
+    time: '08h30 – 15h00',
+    spots: '22 places restantes',
+    image: mapReboisement,
+    coords: [34.6728, 3.2500],
+    iconType: 'tree'
   },
   {
     id: 'pla-4',
     type: 'planting',
-    color: '#059669',
-    categoryName: 'Plantations & Écologie',
-    badgeText: 'Cédraie de Chréa',
-    title: 'Ceinture Verte & Restauration de la Cédraie Millénaire',
-    association: 'Amis de la Nature de Blida',
-    wilaya: 'Blida',
-    address: 'Station de Chréa, Parc National de Chréa, Blida',
-    coords: [36.4250, 2.8750],
-    date: 'Samedi 10 Mai 2025',
-    time: '09h00 – 15h30',
-    spots_total: 25,
-    spots_remaining: 10,
-    urgencyLevel: 'Patrimoine naturel',
-    description: 'Sauvegarde des jeunes cèdres de l\'Atlas face aux sécheresses et élimination des déchets résiduels sur les crêtes de Chréa.',
-    tasks: ['Plantation de jeunes cèdres en pépinière forestière', 'Désherbage sélectif et paillage', 'Sensibilisation des randonneurs'],
-    image_url: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
-    iconSymbol: '🌲'
+    badge: 'Plantation',
+    badgeColor: '#ffffff',
+    badgeBg: '#10b981',
+    title: 'Plantation d\'arganiers et caroubiers',
+    association: 'Green Future',
+    wilaya: 'Mascara',
+    date: 'Sam. 17 Mai 2025',
+    time: '09h00 – 14h00',
+    spots: '18 places restantes',
+    image: mapReboisement,
+    coords: [35.3967, 0.1400],
+    iconType: 'tree'
   }
 ];
 
@@ -436,720 +366,673 @@ export default function InteractiveActionMap({
 }) {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
-  const markersLayerRef = useRef(null);
+  const markersGroupRef = useRef(null);
 
-  const [selectedAction, setSelectedAction] = useState(null);
-  const [filterType, setFilterType] = useState('ALL'); // 'ALL' | 'emergency' | 'solidarity' | 'event' | 'planting'
+  const [activeCategory, setActiveCategory] = useState('ALL'); // 'ALL' | 'emergency' | 'solidarity' | 'education' | 'planting'
   const [selectedWilaya, setSelectedWilaya] = useState('ALL');
-  const [registeredActionIds, setRegisteredActionIds] = useState([]);
+  const [selectedActionId, setSelectedActionId] = useState('urg-1');
 
-  // Calcul du nombre de points par catégorie
-  const countsByType = {
-    emergency: ACTION_POINTS.filter(p => p.type === 'emergency').length,
-    solidarity: ACTION_POINTS.filter(p => p.type === 'solidarity').length,
-    event: ACTION_POINTS.filter(p => p.type === 'event').length,
-    planting: ACTION_POINTS.filter(p => p.type === 'planting').length
-  };
-
-  const wilayasList = ['ALL', ...Array.from(new Set(ACTION_POINTS.map(p => p.wilaya)))];
-
-  // Actions filtrées selon les filtres actifs
-  const filteredActions = ACTION_POINTS.filter(p => {
-    if (filterType !== 'ALL' && p.type !== filterType) return false;
-    if (selectedWilaya !== 'ALL' && p.wilaya !== selectedWilaya) return false;
+  // Filtrage
+  const filteredActions = MAP_ACTIONS.filter(act => {
+    if (activeCategory !== 'ALL' && act.type !== activeCategory) return false;
+    if (selectedWilaya !== 'ALL' && act.wilaya !== selectedWilaya) return false;
     return true;
   });
 
-  // Initialisation de la carte Leaflet (OpenStreetMap 100% gratuit, sans clé API)
+  // Initialisation et mise à jour de la carte Leaflet
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
     if (!mapInstanceRef.current) {
+      // Centre sur l'Algérie
       const map = L.map(mapContainerRef.current, {
-        center: [36.75, 3.05], // Centré sur Alger & nord de l'Algérie
-        zoom: 8,
+        center: [33.5, 3.0],
+        zoom: 5.5,
         zoomControl: true,
-        scrollWheelZoom: true
+        scrollWheelZoom: false
       });
 
-      // Tuiles gratuites OpenStreetMap Carto Standard (aucun compte, aucun frais, haute disponibilité)
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
+      // Fond de carte épuré CartoDB Positron / OSM clair
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+        maxZoom: 18
       }).addTo(map);
 
       const markersGroup = L.layerGroup().addTo(map);
-      markersLayerRef.current = markersGroup;
+      markersGroupRef.current = markersGroup;
       mapInstanceRef.current = map;
     }
 
-    return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove();
-        mapInstanceRef.current = null;
-      }
-    };
-  }, []);
-
-  // Mise à jour des marqueurs quand les filtres changent
-  useEffect(() => {
     const map = mapInstanceRef.current;
-    const markersGroup = markersLayerRef.current;
-    if (!map || !markersGroup) return;
-
+    const markersGroup = markersGroupRef.current;
     markersGroup.clearLayers();
 
-    filteredActions.forEach(action => {
-      // Création de l'icône personnalisée avec code couleur exact
-      const pinHtml = `
-        <div class="custom-map-pin-wrap" style="cursor: pointer;">
-          <div style="
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: ${action.color};
-            opacity: 0.35;
-            animation: pulse-ring 2s infinite ease-out;
-            transform: translate(-50%, -50%);
-            left: 17px;
-            top: 17px;
-          "></div>
-          <div style="
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: ${action.color};
-            border: 2.5px solid #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 900;
-            position: relative;
-            transition: transform 0.2s ease;
-          ">
-            ${action.iconSymbol}
-          </div>
+    filteredActions.forEach(act => {
+      // Pin icon HTML avec couleurs conformes à map benev.png
+      let pinColor = '#ef4444'; // rouge
+      let pinSymbol = '+';
+      if (act.type === 'solidarity') {
+        pinColor = '#3b82f6'; // bleu
+        pinSymbol = '🤝';
+      } else if (act.type === 'education') {
+        pinColor = '#a855f7'; // violet
+        pinSymbol = '📖';
+      } else if (act.type === 'planting') {
+        pinColor = '#10b981'; // vert
+        pinSymbol = '🌱';
+      }
+
+      const isSelected = act.id === selectedActionId;
+
+      const markerHtml = `
+        <div style="
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          background: ${pinColor};
+          border: 2.5px solid #ffffff;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          font-size: 15px;
+          font-weight: 900;
+          cursor: pointer;
+          transform: ${isSelected ? 'scale(1.2)' : 'scale(1)'};
+          transition: transform 0.2s ease;
+        ">
+          ${pinSymbol}
         </div>
       `;
 
       const customIcon = L.divIcon({
-        html: pinHtml,
-        className: 'custom-action-marker',
+        html: markerHtml,
+        className: 'athar-map-pin',
         iconSize: [34, 34],
-        iconAnchor: [17, 17],
-        popupAnchor: [0, -18]
+        iconAnchor: [17, 17]
       });
 
-      const marker = L.marker(action.coords, { icon: customIcon });
-
-      // Popup Leaflet élégant avec aperçu rapide et bouton pour ouvrir tous les détails
-      const popupContent = `
-        <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px; max-width: 250px;">
-          <div style="display: inline-block; font-size: 10px; font-weight: 800; color: #ffffff; background: ${action.color}; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px;">
-            ${action.badgeText}
-          </div>
-          <h4 style="margin: 0 0 4px; font-size: 13.5px; font-weight: 800; color: #16234A; line-height: 1.35;">
-            ${action.title}
-          </h4>
-          <div style="font-size: 11.5px; color: #64748B; margin-bottom: 8px;">
-            📍 ${action.wilaya} · ${action.association}
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #006D5B; margin-bottom: 8px;">
-            👥 ${action.spots_remaining} places disponibles
-          </div>
-          <button
-            id="btn-more-details-${action.id}"
-            type="button"
-            style="
-              width: 100%;
-              padding: 7px 12px;
-              background: #006D5B;
-              color: #ffffff;
-              border: none;
-              border-radius: 8px;
-              font-size: 11.5px;
-              font-weight: 800;
-              cursor: pointer;
-            "
-          >
-            Voir tous les détails →
-          </button>
-        </div>
-      `;
-
-      marker.bindPopup(popupContent);
-
-      marker.on('popupopen', () => {
-        const btn = document.getElementById(`btn-more-details-${action.id}`);
-        if (btn) {
-          btn.onclick = () => {
-            setSelectedAction(action);
-            map.closePopup();
-          };
-        }
-      });
+      const marker = L.marker(act.coords, { icon: customIcon });
 
       marker.on('click', () => {
-        // En cliquant sur le marqueur, on sélectionne aussi l'action
-        setSelectedAction(action);
+        setSelectedActionId(act.id);
+        if (onSelectMission) onSelectMission(act);
       });
 
       markersGroup.addLayer(marker);
     });
+  }, [filteredActions, selectedActionId]);
 
-    // Ajustement de la vue pour englober tous les marqueurs visibles
-    if (filteredActions.length > 0) {
-      const bounds = L.latLngBounds(filteredActions.map(a => a.coords));
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 12 });
-    }
-  }, [filterType, selectedWilaya]);
-
-  // Centrage de la carte sur une action précise
-  const handleZoomToAction = (action) => {
-    setSelectedAction(action);
+  const handleFlyTo = (act) => {
+    setSelectedActionId(act.id);
     if (mapInstanceRef.current) {
-      mapInstanceRef.current.flyTo(action.coords, 14, { duration: 1.2 });
-    }
-  };
-
-  // Participation à l'action
-  const handleJoinAction = (action) => {
-    if (!registeredActionIds.includes(action.id)) {
-      setRegisteredActionIds(prev => [...prev, action.id]);
-      onToast(`Votre participation à l'action "${action.title}" a été confirmée ! 🎉`);
-    } else {
-      setRegisteredActionIds(prev => prev.filter(id => id !== action.id));
-      onToast(`Votre désinscription de l'action "${action.title}" a été prise en compte.`);
+      mapInstanceRef.current.flyTo(act.coords, 10, { duration: 1 });
     }
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* 1. EN-TÊTE & LÉGENDE DES 4 COULEURS OFFICIELLES */}
-      <div style={{ background: '#ffffff', border: '1px solid #E2E8F0', borderRadius: '18px', padding: '20px 24px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px', marginBottom: '16px' }}>
-          <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#006D5B', fontWeight: 800, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '4px' }}>
-              <IconMapPin className="w-4 h-4" />
-              <span>{currentLang === 'ar' ? 'الخريطة التفاعلية للميدان' : 'Carte Interactive des Actions'}</span>
-            </div>
-            <h2 style={{ margin: 0, fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
-              {currentLang === 'ar' ? 'نقاط التدخل والتطوع عبر ولايات الجزائر' : 'Points d\'Action & Missions près de chez vous'}
-            </h2>
-            <p style={{ margin: '4px 0 0', fontSize: '13.5px', color: '#64748B' }}>
-              {currentLang === 'ar'
-                ? 'استكشف نقاط التدخل الميدانية حسب تصنيف الألوان واضغط على أي نقطة للاطلاع على التفاصيل والتسجيل.'
-                : 'Consultez les points d\'action géolocalisés par code couleur et cliquez sur un point pour voir tous les détails et vous engager.'}
-            </p>
+    <div style={{ maxWidth: '1080px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '20px', paddingBottom: '50px' }}>
+      
+      {/* 1. BREADCRUMBS & HERO TITLE (map benev.png) */}
+      <div 
+        className="feed-welcome-banner"
+        style={{
+          background: 'linear-gradient(135deg, #edf9f6 0%, #e2f5f1 100%)',
+          borderRadius: '20px',
+          padding: '24px 36px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '24px',
+          border: '1px solid rgba(0, 109, 91, 0.12)',
+          boxShadow: '0 2px 12px rgba(0, 109, 91, 0.04)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        <div style={{ flex: '1 1 55%', zIndex: 2 }}>
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#64748b', marginBottom: '6px' }}>
+            <span>Accueil</span>
+            <span style={{ margin: '0 6px' }}>&gt;</span>
+            <span style={{ color: '#006D5B', fontWeight: 800 }}>Action Map</span>
           </div>
-
-          {/* SÉLECTEUR DE WILAYA */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <label style={{ fontSize: '12.5px', fontWeight: 700, color: '#475569' }}>Wilaya :</label>
-            <select
-              value={selectedWilaya}
-              onChange={(e) => setSelectedWilaya(e.target.value)}
-              style={{
-                padding: '8px 14px',
-                borderRadius: '10px',
-                border: '1.5px solid #CBD5E1',
-                fontSize: '13px',
-                fontWeight: 700,
-                color: 'var(--primary-navy)',
-                background: '#ffffff',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="ALL">Toutes les wilayas (National)</option>
-              {wilayasList.filter(w => w !== 'ALL').map(w => (
-                <option key={w} value={w}>{w}</option>
-              ))}
-            </select>
-          </div>
+          <h1 style={{ fontSize: '26px', fontWeight: 900, color: '#0f172a', margin: '0 0 8px', lineHeight: 1.25 }}>
+            Points d'Action & Missions<br />près de chez vous
+          </h1>
+          <p style={{ fontSize: '13.5px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
+            Découvrez les actions solidaires en cours partout en Algérie et rejoignez celles qui vous inspirent.
+          </p>
         </div>
 
-        {/* BARRE DE FILTRES PAR CODE COULEUR EXIGÉ PAR L'UTILISATEUR */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', borderTop: '1px solid #F1F5F9', paddingTop: '14px' }}>
-          {/* TOUT AFFICHER */}
-          <button
-            type="button"
-            onClick={() => setFilterType('ALL')}
+        {/* IMAGE PANORAMIQUE ALGER + SLOGAN CURSIF */}
+        <div style={{ flex: '0 0 380px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <div style={{ position: 'relative', width: '330px', height: '110px', borderRadius: '18px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}>
+            <img 
+              src={profileBannerAlgiers} 
+              alt="Makam Echahid et Baie d'Alger" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(237,249,246,0.1), rgba(0,0,0,0.15))' }} />
+          </div>
+          <div 
             style={{
-              padding: '7px 16px',
-              borderRadius: '999px',
-              border: filterType === 'ALL' ? '2px solid #006D5B' : '1px solid #E2E8F0',
-              background: filterType === 'ALL' ? '#ECFDF5' : '#ffffff',
-              color: filterType === 'ALL' ? '#006D5B' : '#475569',
-              fontSize: '12.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease'
+              position: 'absolute',
+              right: '12px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              textAlign: 'right',
+              color: '#0f172a',
+              textShadow: '0 1px 4px rgba(255,255,255,0.9)'
             }}
           >
-            <span>🌟 Toutes les actions ({ACTION_POINTS.length})</span>
-          </button>
-
-          {/* 1. ROUGE - URGENCES */}
-          <button
-            type="button"
-            onClick={() => setFilterType('emergency')}
-            style={{
-              padding: '7px 16px',
-              borderRadius: '999px',
-              border: filterType === 'emergency' ? '2px solid #DC2626' : '1px solid #FCA5A5',
-              background: filterType === 'emergency' ? '#FEF2F2' : '#ffffff',
-              color: '#DC2626',
-              fontSize: '12.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#DC2626', display: 'inline-block' }}></span>
-            <span>Urgences & SOS Sang ({countsByType.emergency})</span>
-          </button>
-
-          {/* 2. BLEU - SOLIDARITÉ */}
-          <button
-            type="button"
-            onClick={() => setFilterType('solidarity')}
-            style={{
-              padding: '7px 16px',
-              borderRadius: '999px',
-              border: filterType === 'solidarity' ? '2px solid #2563EB' : '1px solid #BFDBFE',
-              background: filterType === 'solidarity' ? '#EFF6FF' : '#ffffff',
-              color: '#2563EB',
-              fontSize: '12.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#2563EB', display: 'inline-block' }}></span>
-            <span>Solidarité & Aides ({countsByType.solidarity})</span>
-          </button>
-
-          {/* 3. VIOLET - ÉVÉNEMENTS & ÉDUCATION */}
-          <button
-            type="button"
-            onClick={() => setFilterType('event')}
-            style={{
-              padding: '7px 16px',
-              borderRadius: '999px',
-              border: filterType === 'event' ? '2px solid #8B5CF6' : '1px solid #DDD6FE',
-              background: filterType === 'event' ? '#F5F3FF' : '#ffffff',
-              color: '#7C3AED',
-              fontSize: '12.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#8B5CF6', display: 'inline-block' }}></span>
-            <span>Événements & Éducation ({countsByType.event})</span>
-          </button>
-
-          {/* 4. VERT - PLANTATIONS & ÉCOLOGIE */}
-          <button
-            type="button"
-            onClick={() => setFilterType('planting')}
-            style={{
-              padding: '7px 16px',
-              borderRadius: '999px',
-              border: filterType === 'planting' ? '2px solid #059669' : '1px solid #A7F3D0',
-              background: filterType === 'planting' ? '#ECFDF5' : '#ffffff',
-              color: '#059669',
-              fontSize: '12.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#059669', display: 'inline-block' }}></span>
-            <span>Plantations & Reboisement ({countsByType.planting})</span>
-          </button>
+            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15 }}>
+              Des citoyens,
+            </div>
+            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
+              Un impact réel.
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* 2. DISPOSITION PRINCIPALE : CARTE PLEINE LARGEUR AVEC BARRE LATÉRALE D'ACTIONS */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.9fr', gap: '24px', alignItems: 'stretch' }} className="map-interactive-grid">
-        {/* COLONNE CARTE LEAFLET / OPENSTREETMAP */}
-        <div style={{ background: '#ffffff', border: '1px solid #E2E8F0', borderRadius: '18px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative', minHeight: '560px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)' }}>
-          {/* BANDEAU SUPÉRIEUR DE STATUT DE LA CARTE */}
-          <div style={{ padding: '10px 18px', background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: '#64748B' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981' }}></span>
-              <strong>{filteredActions.length} points d'actions actifs</strong> sur la carte
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                if (mapInstanceRef.current) {
-                  mapInstanceRef.current.flyTo([36.75, 3.05], 8, { duration: 1 });
-                }
-              }}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#006D5B',
-                fontWeight: 700,
-                fontSize: '11.5px',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-            >
-              <IconCrosshair className="w-3.5 h-3.5" />
-              <span>Recentrer la carte</span>
-            </button>
-          </div>
+      {/* 2. BARRE DE FILTRES DES CATÉGORIES (map benev.png) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: '13px', fontWeight: 800, color: '#0f172a', marginRight: '6px' }}>Catégories</span>
+          
+          {/* TOUTES (16) */}
+          <button
+            type="button"
+            onClick={() => setActiveCategory('ALL')}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '24px',
+              fontSize: '13px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              border: activeCategory === 'ALL' ? '2px solid #006D5B' : '1px solid #cbd5e1',
+              background: activeCategory === 'ALL' ? '#e6f7f3' : '#ffffff',
+              color: activeCategory === 'ALL' ? '#006D5B' : '#334155',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <span>☀️</span>
+            <span>Toutes (16)</span>
+          </button>
 
-          {/* CONTENEUR DU CANEVAS LEAFLET */}
-          <div ref={mapContainerRef} style={{ width: '100%', height: '100%', minHeight: '510px', zIndex: 1 }}></div>
+          {/* URGENCES (4) */}
+          <button
+            type="button"
+            onClick={() => setActiveCategory('emergency')}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '24px',
+              fontSize: '13px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              border: activeCategory === 'emergency' ? '2px solid #ef4444' : '1px solid #fecaca',
+              background: activeCategory === 'emergency' ? '#fee2e2' : '#ffffff',
+              color: '#b91c1c',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }} />
+            <span>Urgences (4)</span>
+          </button>
 
-          {/* LÉGENDE FLOTTANTE COMPACTE EN BAS DE CARTE */}
-          <div style={{ position: 'absolute', bottom: '16px', left: '16px', zIndex: 1000, background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(8px)', border: '1px solid #CBD5E1', borderRadius: '12px', padding: '10px 14px', fontSize: '11px', display: 'flex', gap: '14px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#DC2626', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#DC2626' }}></span>
-              Rouge: Urgences
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#2563EB', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2563EB' }}></span>
-              Bleu: Solidarité
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#8B5CF6', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8B5CF6' }}></span>
-              Violet: Événements
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#059669', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#059669' }}></span>
-              Vert: Plantations
-            </span>
-          </div>
+          {/* SOLIDARITÉ (4) */}
+          <button
+            type="button"
+            onClick={() => setActiveCategory('solidarity')}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '24px',
+              fontSize: '13px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              border: activeCategory === 'solidarity' ? '2px solid #3b82f6' : '1px solid #bfdbfe',
+              background: activeCategory === 'solidarity' ? '#dbeafe' : '#ffffff',
+              color: '#1d4ed8',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
+            <span>Solidarité (4)</span>
+          </button>
+
+          {/* ÉDUCATION (4) */}
+          <button
+            type="button"
+            onClick={() => setActiveCategory('education')}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '24px',
+              fontSize: '13px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              border: activeCategory === 'education' ? '2px solid #a855f7' : '1px solid #e9d5ff',
+              background: activeCategory === 'education' ? '#f3e8ff' : '#ffffff',
+              color: '#7e22ce',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }} />
+            <span>Éducation (4)</span>
+          </button>
+
+          {/* PLANTATIONS (4) */}
+          <button
+            type="button"
+            onClick={() => setActiveCategory('planting')}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '24px',
+              fontSize: '13px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              border: activeCategory === 'planting' ? '2px solid #10b981' : '1px solid #a7f3d0',
+              background: activeCategory === 'planting' ? '#dcfce7' : '#ffffff',
+              color: '#15803d',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
+            <span>Plantations (4)</span>
+          </button>
         </div>
 
-        {/* COLONNE LISTE DES POINTS D'ACTION / DÉTAILS SÉLECTIONNÉS */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxHeight: '560px', overflowY: 'auto', paddingRight: '4px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 2px' }}>
-            <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-navy)' }}>
-              {filteredActions.length} action{filteredActions.length > 1 ? 's' : ''} disponible{filteredActions.length > 1 ? 's' : ''}
-            </span>
-            <small style={{ fontSize: '11.5px', color: '#64748B' }}>Cliquez pour zoomer et voir les détails</small>
-          </div>
-
-          {filteredActions.map(action => {
-            const isSelected = selectedAction?.id === action.id;
-            const isRegistered = registeredActionIds.includes(action.id);
-
-            return (
-              <div
-                key={action.id}
-                onClick={() => handleZoomToAction(action)}
+        {/* LIGNE WILAYA & RESET */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 700, color: '#475569' }}>Wilaya</span>
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <IconMapPin className="w-4 h-4 text-emerald-700" style={{ position: 'absolute', left: '12px' }} />
+              <select
+                value={selectedWilaya}
+                onChange={(e) => setSelectedWilaya(e.target.value)}
                 style={{
-                  background: isSelected ? '#F0FDF4' : '#ffffff',
-                  border: isSelected ? `2px solid ${action.color}` : '1px solid #E2E8F0',
-                  borderRadius: '16px',
-                  padding: '16px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isSelected ? '0 6px 20px rgba(0,0,0,0.06)' : '0 2px 8px rgba(0,0,0,0.02)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '10px'
+                  padding: '8px 16px 8px 34px',
+                  borderRadius: '12px',
+                  border: '1px solid #cbd5e1',
+                  background: '#ffffff',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#0f172a',
+                  outline: 'none',
+                  cursor: 'pointer'
                 }}
               >
-                {/* LIGNE DU HAUT : BADGE COULEUR & ASSOCIATION */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span
-                    style={{
-                      background: action.color,
-                      color: '#ffffff',
-                      fontSize: '10.5px',
-                      fontWeight: 800,
-                      padding: '3px 10px',
-                      borderRadius: '999px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px'
-                    }}
-                  >
-                    <span>{action.iconSymbol}</span>
-                    <span>{action.badgeText}</span>
-                  </span>
+                <option value="ALL">Toutes les wilayas (National)</option>
+                <option value="Alger">Alger</option>
+                <option value="Tipaza">Tipaza</option>
+                <option value="Oran">Oran</option>
+                <option value="Constantine">Constantine</option>
+                <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
+                <option value="Tamanrasset">Tamanrasset</option>
+              </select>
+            </div>
+          </div>
 
-                  <span style={{ fontSize: '11.5px', color: '#64748B', fontWeight: 600 }}>
-                    {action.wilaya}
-                  </span>
-                </div>
-
-                {/* TITRE ET ASSOCIATION */}
-                <div>
-                  <h4 style={{ margin: '0 0 4px', fontSize: '14.5px', fontWeight: 800, color: 'var(--primary-navy)', lineHeight: 1.35 }}>
-                    {action.title}
-                  </h4>
-                  <div style={{ fontSize: '12px', color: 'var(--primary-teal)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <IconShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>{action.association}</span>
-                  </div>
-                </div>
-
-                {/* DÉTAILS RAPIDES (DATE, LIEU, PLACES) */}
-                <div style={{ fontSize: '12px', color: '#64748B', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <IconCalendar className="w-3.5 h-3.5 text-slate-400" />
-                    <span>{action.date} · {action.time}</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <IconMapPin className="w-3.5 h-3.5 text-slate-400" />
-                    <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{action.address}</span>
-                  </div>
-                </div>
-
-                {/* BAS DE CARTE : PLACES & BOUTON D'ACTION */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #F1F5F9', paddingTop: '10px', marginTop: '2px' }}>
-                  <span style={{ fontSize: '11.5px', fontWeight: 800, color: action.spots_remaining <= 5 ? '#DC2626' : '#006D5B' }}>
-                    👥 {action.spots_remaining} places restantes
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedAction(action);
-                    }}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: action.color,
-                      fontSize: '12px',
-                      fontWeight: 800,
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px'
-                    }}
-                  >
-                    <span>Détails</span>
-                    <IconArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          <button
+            type="button"
+            onClick={() => {
+              setActiveCategory('ALL');
+              setSelectedWilaya('ALL');
+              onToast('Filtres réinitialisés.');
+            }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#64748b',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <IconRefresh className="w-3.5 h-3.5" />
+            <span>Réinitialiser les filtres</span>
+          </button>
         </div>
       </div>
 
-      {/* 3. MODALE INTERACTIVE DES DÉTAILS COMPLETS DE L'ACTION (QUAND ON CLIQUE) */}
-      {selectedAction && (
-        <div className="modal on" role="dialog" aria-modal="true">
-          <div className="modal-bg" onClick={() => setSelectedAction(null)}></div>
-          <div
-            className="modal-card"
+      {/* 3. SPLIT LAYOUT : CARTE À GAUCHE (55%) & LISTE À DROITE (45%) (map benev.png) */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1.25fr 1fr', gap: '22px', alignItems: 'start' }} className="map-grid-layout">
+        
+        {/* COLONNE GAUCHE : CARTE INTERACTIVE + BANDEAU EN BAS */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          
+          <div 
             style={{
-              maxWidth: '680px',
-              borderRadius: '22px',
-              padding: '0',
-              overflow: 'hidden',
               background: '#ffffff',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+              borderRadius: '18px',
+              border: '1px solid #e2e8f0',
+              overflow: 'hidden',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.04)',
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column'
             }}
           >
-            {/* PHOTO D'EN-TÊTE AVEC BADGE COULEUR ET CROIX DE FERMETURE */}
-            <div style={{ position: 'relative', height: '220px', width: '100%' }}>
-              <img
-                src={selectedAction.image_url}
-                alt={selectedAction.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%)' }}></div>
+            {/* STATUT SUPÉRIEUR SUR LA CARTE */}
+            <div style={{ padding: '12px 18px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
+              <span><strong>{filteredActions.length} actions</strong> sur la carte</span>
+            </div>
 
-              <button
-                className="modal-x"
-                onClick={() => setSelectedAction(null)}
-                style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(0,0,0,0.5)', color: '#ffffff', borderRadius: '50%', width: '36px', height: '36px', border: 'none', cursor: 'pointer', display: 'grid', placeItems: 'center', fontSize: '18px', zIndex: 10 }}
-              >
-                ✕
-              </button>
+            {/* CONTENEUR DU CANEVAS LEAFLET */}
+            <div 
+              ref={mapContainerRef} 
+              style={{ width: '100%', height: '540px', background: '#e2e8f0', zIndex: 1 }}
+            />
 
-              {/* BADGE DU TYPE D'ACTION */}
-              <div style={{ position: 'absolute', top: '16px', left: '16px', display: 'flex', gap: '8px' }}>
-                <span
-                  style={{
-                    background: selectedAction.color,
-                    color: '#ffffff',
-                    padding: '5px 14px',
-                    borderRadius: '999px',
-                    fontSize: '12px',
-                    fontWeight: 900,
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px'
-                  }}
-                >
-                  <span>{selectedAction.iconSymbol}</span>
-                  <span>{selectedAction.categoryName}</span>
+            {/* LÉGENDE FLOTTANTE EN BAS DE CARTE (map benev.png) */}
+            <div 
+              style={{
+                position: 'absolute',
+                bottom: '16px',
+                left: '16px',
+                right: '16px',
+                zIndex: 400,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(8px)',
+                borderRadius: '12px',
+                border: '1px solid #cbd5e1',
+                padding: '10px 16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '12px',
+                boxShadow: '0 4px 14px rgba(0,0,0,0.08)'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '12px', fontWeight: 700 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#b91c1c' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }} />
+                  Urgences
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#1d4ed8' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
+                  Solidarité
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#7e22ce' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }} />
+                  Éducation
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#15803d' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
+                  Plantations
                 </span>
               </div>
 
-              {/* TITRE ET ASSOCIATION DANS LE DÉGRADÉ */}
-              <div style={{ position: 'absolute', bottom: '16px', left: '20px', right: '20px' }}>
-                <h2 style={{ fontSize: '20px', fontWeight: 900, color: '#ffffff', margin: '0 0 4px', lineHeight: 1.3 }}>
-                  {selectedAction.title}
-                </h2>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#E2E8F0', fontSize: '13px' }}>
-                  <span style={{ fontWeight: 800 }}>{selectedAction.association}</span>
-                  <span>•</span>
-                  <span>📍 {selectedAction.wilaya}</span>
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (mapInstanceRef.current) {
+                    mapInstanceRef.current.flyTo([36.75, 3.05], 11, { duration: 1 });
+                  }
+                }}
+                style={{
+                  background: '#ffffff',
+                  border: '1px solid #cbd5e1',
+                  borderRadius: '20px',
+                  padding: '4px 12px',
+                  fontSize: '11.5px',
+                  fontWeight: 700,
+                  color: '#0f172a',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <IconCrosshair className="w-3 h-3 text-emerald-600" />
+                <span>Ma position</span>
+              </button>
             </div>
 
-            {/* CORPS DE LA MODALE */}
-            <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-              {/* GRILLE D'INFORMATIONS PRATIQUES */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', background: '#F8FAFC', padding: '14px', borderRadius: '14px', border: '1px solid #E2E8F0' }}>
-                <div>
-                  <small style={{ fontSize: '11px', color: '#64748B', display: 'block', fontWeight: 700 }}>DATE</small>
-                  <strong style={{ fontSize: '13px', color: 'var(--primary-navy)' }}>{selectedAction.date}</strong>
-                </div>
-                <div>
-                  <small style={{ fontSize: '11px', color: '#64748B', display: 'block', fontWeight: 700 }}>HORAIRES</small>
-                  <strong style={{ fontSize: '13px', color: 'var(--primary-navy)' }}>{selectedAction.time}</strong>
-                </div>
-                <div>
-                  <small style={{ fontSize: '11px', color: '#64748B', display: 'block', fontWeight: 700 }}>DISPONIBILITÉ</small>
-                  <strong style={{ fontSize: '13px', color: selectedAction.spots_remaining <= 5 ? '#DC2626' : '#006D5B' }}>
-                    {selectedAction.spots_remaining} places sur {selectedAction.spots_total}
-                  </strong>
-                </div>
-                <div>
-                  <small style={{ fontSize: '11px', color: '#64748B', display: 'block', fontWeight: 700 }}>NIVEAU D'ACTION</small>
-                  <strong style={{ fontSize: '13px', color: selectedAction.color }}>{selectedAction.urgencyLevel}</strong>
-                </div>
-              </div>
+          </div>
 
-              {/* LOCALISATION EXACTE */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#334155', background: '#F1F5F9', padding: '10px 14px', borderRadius: '10px' }}>
-                <IconMapPin className="w-4 h-4 text-emerald-700 shrink-0" />
-                <span><strong>Adresse :</strong> {selectedAction.address}</span>
+          {/* BANDEAU VERT MINT EN DESSOUS DE LA CARTE (map benev.png) */}
+          <div 
+            style={{
+              background: '#edf9f6',
+              borderRadius: '16px',
+              border: '1px solid rgba(0, 109, 91, 0.12)',
+              padding: '20px 24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '20px',
+              boxShadow: '0 2px 8px rgba(0, 109, 91, 0.04)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div 
+                style={{
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '12px',
+                  background: '#d1fae5',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#006D5B',
+                  flexShrink: 0
+                }}
+              >
+                <IconLeaf className="w-6 h-6" />
               </div>
-
-              {/* DESCRIPTION DE L'ACTION */}
               <div>
-                <h4 style={{ fontSize: '14px', fontWeight: 800, color: 'var(--primary-navy)', margin: '0 0 6px' }}>
-                  Description de la mission sur le terrain
+                <h4 style={{ margin: '0 0 3px', fontSize: '15.5px', fontWeight: 800, color: '#0f172a' }}>
+                  Ensemble pour une Algérie plus solidaire
                 </h4>
-                <p style={{ fontSize: '13.5px', color: '#475569', lineHeight: 1.6, margin: 0 }}>
-                  {selectedAction.description}
+                <p style={{ margin: 0, fontSize: '12.5px', color: '#64748b' }}>
+                  Des citoyens engagés, des actions concrètes, un impact durable.
                 </p>
               </div>
+            </div>
 
-              {/* CE QUE VOUS ALLEZ FAIRE */}
-              <div>
-                <h4 style={{ fontSize: '14px', fontWeight: 800, color: 'var(--primary-navy)', margin: '0 0 8px' }}>
-                  Ce que vous ferez sur place :
-                </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {selectedAction.tasks.map((task, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#334155' }}>
-                      <span style={{ width: '18px', height: '18px', borderRadius: '50%', background: '#ECFDF5', color: '#006D5B', display: 'grid', placeItems: 'center', fontSize: '11px', fontWeight: 800 }}>✓</span>
-                      <span>{task}</span>
-                    </div>
-                  ))}
-                </div>
+            <div style={{ textAlign: 'right', flexShrink: 0 }}>
+              <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '18px', fontWeight: 700, color: '#004d40' }}>
+                Chaque action compte.
               </div>
-
-              {/* BOUTONS D'ACTION AU BAS DE LA MODALE */}
-              <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (mapInstanceRef.current) {
-                      mapInstanceRef.current.flyTo(selectedAction.coords, 14, { duration: 1 });
-                    }
-                    setSelectedAction(null);
-                  }}
-                  style={{
-                    padding: '11px 20px',
-                    borderRadius: '12px',
-                    border: '1px solid #CBD5E1',
-                    background: '#ffffff',
-                    color: '#334155',
-                    fontSize: '13px',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px'
-                  }}
-                >
-                  <IconCrosshair className="w-4 h-4 text-slate-500" />
-                  <span>Voir sur la carte</span>
-                </button>
-
-                <div style={{ display: 'flex', gap: '10px' }}>
-                  <button
-                    type="button"
-                    className="btn btn-ghost"
-                    onClick={() => setSelectedAction(null)}
-                    style={{ padding: '11px 18px', borderRadius: '12px', fontSize: '13.5px' }}
-                  >
-                    Fermer
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleJoinAction(selectedAction)}
-                    style={{
-                      padding: '11px 24px',
-                      borderRadius: '12px',
-                      border: 'none',
-                      background: registeredActionIds.includes(selectedAction.id) ? '#DC2626' : selectedAction.color,
-                      color: '#ffffff',
-                      fontSize: '13.5px',
-                      fontWeight: 800,
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      boxShadow: `0 4px 14px ${selectedAction.color}55`,
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    <IconCheck className="w-4 h-4" />
-                    <span>
-                      {registeredActionIds.includes(selectedAction.id)
-                        ? 'Annuler ma participation'
-                        : 'Je participe à cette action'}
-                    </span>
-                  </button>
-                </div>
-              </div>
+              <div style={{ width: '40px', height: '2px', background: '#006D5B', marginLeft: 'auto', marginTop: '4px' }} />
             </div>
           </div>
+
         </div>
-      )}
+
+        {/* COLONNE DROITE : ACTIONS À PROXIMITÉ (map benev.png) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          
+          {/* HEADER DE LA LISTE */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2px' }}>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span>Actions à proximité</span>
+              <span style={{ fontSize: '12px', fontWeight: 800, background: '#f1f5f9', color: '#475569', padding: '2px 8px', borderRadius: '12px' }}>
+                {filteredActions.length}
+              </span>
+            </h3>
+
+            <select 
+              style={{
+                borderRadius: '8px',
+                border: '1px solid #cbd5e1',
+                padding: '4px 10px',
+                fontSize: '12px',
+                fontWeight: 600,
+                color: '#334155',
+                background: '#ffffff',
+                outline: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <option>Plus récentes</option>
+              <option>Plus proches</option>
+              <option>Urgentes</option>
+            </select>
+          </div>
+
+          {/* LISTE DES CARTES D'ACTIONS */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {filteredActions.slice(0, 5).map(act => {
+              const isSelected = act.id === selectedActionId;
+
+              return (
+                <div
+                  key={act.id}
+                  onClick={() => handleFlyTo(act)}
+                  style={{
+                    background: '#ffffff',
+                    borderRadius: '16px',
+                    border: isSelected ? '2px solid #006D5B' : '1px solid #e2e8f0',
+                    padding: '14px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '14px',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {/* MINIATURE PHOTO RECTANGULAIRE */}
+                  <div style={{ width: '90px', height: '80px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0 }}>
+                    <img 
+                      src={act.image} 
+                      alt={act.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
+
+                  {/* DÉTAILS DE L'ACTION */}
+                  <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                    
+                    {/* BADGE + WILAYA */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 800,
+                          padding: '2px 8px',
+                          borderRadius: '14px',
+                          background: act.badgeBg,
+                          color: act.badgeColor
+                        }}
+                      >
+                        ✦ {act.badge}
+                      </span>
+                      <span style={{ fontSize: '11.5px', color: '#64748b', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                        <IconMapPin className="w-3 h-3 text-slate-400" />
+                        {act.wilaya}
+                      </span>
+                    </div>
+
+                    {/* TITRE */}
+                    <h4 
+                      style={{
+                        margin: 0,
+                        fontSize: '13.5px',
+                        fontWeight: 800,
+                        color: '#0f172a',
+                        lineHeight: 1.25,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      {act.title}
+                    </h4>
+
+                    {/* ASSOCIATION */}
+                    <div style={{ fontSize: '11.5px', color: '#006D5B', fontWeight: 700 }}>
+                      {act.association}
+                    </div>
+
+                    {/* DATE & HEURE */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '11px', color: '#64748b' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                        <IconCalendar className="w-3 h-3 text-slate-400" />
+                        {act.date}
+                      </span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                        <IconClock className="w-3 h-3 text-slate-400" />
+                        {act.time}
+                      </span>
+                    </div>
+
+                    {/* PLACES */}
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: '#334155', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
+                      <IconUsers className="w-3 h-3 text-emerald-600" />
+                      <span>{act.spots}</span>
+                    </div>
+
+                  </div>
+
+                  {/* BOUTON CERCLE FLÈCHE DROITE */}
+                  <div 
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: '#f8fafc',
+                      border: '1px solid #e2e8f0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#475569',
+                      flexShrink: 0
+                    }}
+                  >
+                    <IconArrowRight className="w-3.5 h-3.5" />
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+
+          {/* BOUTON VOIR TOUTES LES ACTIONS (map benev.png) */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+            <button
+              type="button"
+              style={{
+                padding: '10px 24px',
+                borderRadius: '24px',
+                background: '#ffffff',
+                border: '1px solid #cbd5e1',
+                color: '#334155',
+                fontSize: '13.5px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span>Voir toutes les actions</span>
+              <IconArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
   );
 }

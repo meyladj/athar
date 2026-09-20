@@ -1,0 +1,462 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : GESTION DES MISSIONS
+   Structure aérée, jauges d'effectif nettes, cartes spacieuses sans encombrement.
+   ========================================================================== */
+
+@import './variables.css';
+
+.assoc-missions-root {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: var(--assoc-font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   1. EN-TÊTE DE SECTION & ACTION CRÉATION
+   -------------------------------------------------------------------------- */
+.assoc-missions-header {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 24px 32px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.assoc-missions-header-left h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.assoc-missions-header-left p {
+  font-size: 13.5px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+}
+
+.assoc-btn-create-mission {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 11px 22px;
+  border-radius: var(--assoc-radius-sm);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 109, 91, 0.25);
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.assoc-btn-create-mission:hover {
+  background-color: var(--assoc-emerald-hover);
+  box-shadow: 0 4px 14px rgba(0, 109, 91, 0.35);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   2. STATS ROW (4 CARTES AÉRÉES)
+   -------------------------------------------------------------------------- */
+.assoc-missions-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 1024px) {
+  .assoc-missions-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .assoc-missions-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assoc-missions-stat-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.15s ease;
+}
+
+.assoc-missions-stat-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--assoc-shadow-sm);
+  transform: translateY(-2px);
+}
+
+.assoc-missions-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--assoc-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.assoc-missions-stat-icon.emerald {
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+}
+
+.assoc-missions-stat-icon.blue {
+  background-color: var(--assoc-blue-light);
+  color: var(--assoc-blue);
+}
+
+.assoc-missions-stat-icon.amber {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+}
+
+.assoc-missions-stat-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  line-height: 1.2;
+}
+
+.assoc-missions-stat-sub {
+  font-size: 12.5px;
+  color: var(--assoc-text-muted);
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+/* Carte citation Athar */
+.assoc-quote-stat-card {
+  background: linear-gradient(135deg, #d8f3dc 0%, #e8f5e9 100%);
+  border: 1px solid #b7e4c7;
+  border-radius: var(--assoc-radius-lg);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.assoc-quote-stat-text {
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+  color: #064e3b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.assoc-quote-stat-author {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--assoc-emerald);
+  margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   3. BARRE DE RECHERCHE & FILTRES
+   -------------------------------------------------------------------------- */
+.assoc-missions-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.assoc-status-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.assoc-status-pill {
+  padding: 8px 16px;
+  border-radius: var(--assoc-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid var(--assoc-border);
+  background-color: var(--assoc-bg-card);
+  color: var(--assoc-text-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.assoc-status-pill:hover {
+  background-color: var(--assoc-bg-subtle);
+  border-color: #cbd5e1;
+}
+
+.assoc-status-pill.active {
+  background-color: var(--assoc-emerald);
+  border-color: var(--assoc-emerald);
+  color: #ffffff;
+  box-shadow: var(--assoc-shadow-xs);
+}
+
+.assoc-missions-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  max-width: 400px;
+  min-width: 260px;
+}
+
+.assoc-missions-search-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  padding: 0 14px;
+  height: 42px;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.assoc-missions-search-input:focus-within {
+  border-color: var(--assoc-emerald);
+  box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.08);
+}
+
+.assoc-missions-search-input input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  font-size: 13px;
+  color: var(--assoc-text-primary);
+  font-family: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   4. GRILLE DES CARTES DE MISSION (SPACIEUSES & AUCUN TEXTE COLLÉ)
+   -------------------------------------------------------------------------- */
+.assoc-missions-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .assoc-missions-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assoc-mission-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.assoc-mission-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--assoc-shadow-md);
+  border-color: #cbd5e1;
+}
+
+.assoc-mission-hero-img {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  background-color: #cbd5e1;
+  overflow: hidden;
+}
+
+.assoc-mission-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.assoc-mission-card:hover .assoc-mission-hero-img img {
+  transform: scale(1.04);
+}
+
+.assoc-mission-badge-status {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--assoc-radius-full);
+  box-shadow: var(--assoc-shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.assoc-mission-badge-status.active {
+  background-color: #16a34a;
+}
+
+.assoc-mission-badge-status.upcoming {
+  background-color: #2563eb;
+}
+
+.assoc-mission-badge-status.complete {
+  background-color: #64748b;
+}
+
+/* CORPS DE LA CARTE DE MISSION : PADDING GÉNÉREUX (24PX) */
+.assoc-mission-card-body {
+  padding: 24px 26px 26px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.assoc-mission-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 8px;
+  line-height: 1.35;
+  transition: color 0.15s ease;
+}
+
+.assoc-mission-card:hover .assoc-mission-card-title {
+  color: var(--assoc-emerald);
+}
+
+.assoc-mission-card-desc {
+  font-size: 13.5px;
+  color: var(--assoc-text-muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Métadonnées avec icônes : Date, Wilaya, Bénévoles */
+.assoc-mission-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--assoc-border-subtle);
+  font-size: 12.5px;
+  color: var(--assoc-text-muted);
+}
+
+.assoc-mission-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Jauge de progression */
+.assoc-mission-gauge-box {
+  margin-top: 10px;
+}
+
+.assoc-mission-gauge-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--assoc-text-body);
+  margin-bottom: 6px;
+}
+
+.assoc-mission-gauge-track {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--assoc-radius-full);
+  background-color: var(--assoc-bg-subtle);
+  overflow: hidden;
+}
+
+.assoc-mission-gauge-fill {
+  height: 100%;
+  border-radius: var(--assoc-radius-full);
+  background-color: var(--assoc-emerald);
+  transition: width 0.4s ease;
+}
+
+/* Actions au pied de carte */
+.assoc-mission-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--assoc-border-subtle);
+}
+
+.assoc-mission-btn-manage {
+  flex: 1;
+  background-color: var(--assoc-bg-subtle);
+  border: 1px solid var(--assoc-border);
+  color: var(--assoc-text-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--assoc-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.assoc-mission-btn-manage:hover {
+  background-color: #e2e8f0;
+  color: var(--assoc-text-primary);
+}
+
+.assoc-mission-btn-candidatures {
+  flex: 1;
+  background-color: var(--assoc-emerald-light);
+  border: 1px solid var(--assoc-emerald-border);
+  color: var(--assoc-emerald);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--assoc-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.assoc-mission-btn-candidatures:hover {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+}

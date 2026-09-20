@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './style.css';
+import './styles/association/index.css';
 import logoImg from './assets/logo.png';
 import panoramicImg from './assets/algeria-panoramic.jpg';
 import heroBgImg from './assets/athar-hero.png';
@@ -18,6 +19,26 @@ import profileSidebarImg from './assets/profile-sidebar-algeria.png';
 import candReboisementImg from './assets/candidature-reboisement.png';
 import candLectureImg from './assets/candidature-lecture.png';
 import candSangImg from './assets/candidature-sang.png';
+import feedCraImg from './assets/feed-cra-distribution.png';
+import missionPlantationZeralda from './assets/mission-plantation-zeralda.png';
+import missionPlage from './assets/mission-plage.png';
+import missionTipaza from './assets/mission-tipaza.png';
+import AssociationProfileFeed from './components/AssociationProfileFeed';
+import AssociationPostProof from './components/AssociationPostProof';
+import AssociationMessenger from './components/AssociationMessenger';
+import AssociationMissions from './components/AssociationMissions';
+import AssociationCalendar from './components/AssociationCalendar';
+import AssociationCandidatures from './components/AssociationCandidatures';
+import SavedOffers from './components/SavedOffers';
+import assocCraLogo from './assets/assoc-cra-logo.png';
+
+function IconCheckVerified({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="#006D5B">
+      <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+    </svg>
+  );
+}
 
 // Clean SVG Icons (zero external library dependency, zero emoji)
 function IconMessageSquare({ className = "w-3.5 h-3.5" }) {
@@ -1576,8 +1597,8 @@ export default function App() {
   };
 
   // Active tab in SaaS sidebar:
-  // 'overview' | 'missions' | 'new_mission' | 'candidatures' | 'besoins_collectes' | 'benevoles' | 'calendrier' | 'parametres'
-  const [dashActiveTab, setDashActiveTab] = useState('overview');
+  // 'profile' | 'traceability' | 'missions' | 'new_mission' | 'candidatures' | 'messages' | 'calendrier' | 'overview'
+  const [dashActiveTab, setDashActiveTab] = useState('profile');
   const [calMonth, setCalMonth] = useState(new Date(2025, 3, 1)); // Avril 2025 (mois affiché au calendrier)
   const [selectedCandidateDetail, setSelectedCandidateDetail] = useState(null);
   const [selectedCandidateDrawer, setSelectedCandidateDrawer] = useState(null);
@@ -1914,20 +1935,20 @@ export default function App() {
     showToast("Nouveau besoin ajouté à votre espace association !");
   };
 
-  // Profil officiel de l'association El Amel
+  // Profil officiel de l'association (Croissant Rouge Algérien)
   const [assocProfile, setAssocProfile] = useState({
-    name: "Association El Amel",
-    tagline: "Agir aujourd'hui pour un impact durable demain",
-    agrement: "DZ-2021-08914",
-    creationYear: "2021",
-    responsable: "Amina Cherif",
+    name: "Croissant Rouge Algérien",
+    tagline: "Soulager les souffrances, protéger les plus vulnérables et bâtir des communautés plus résilientes en Algérie. ❤️",
+    agrement: "DZ-1956-0001",
+    creationYear: "1956",
+    responsable: "Dr. Ibtissem Hamlaoui",
     wilaya: "16 - Alger",
     commune: "Alger-Centre",
-    address: "14 Rue Didouche Mourad",
-    email: "contact@elamel-algerie.org",
-    phone: "+213 21 73 45 12",
-    domain: "Solidarité, Éducation & Jeunesse",
-    description: "Association caritative nationale agréée par le Ministère de l'Intérieur, mobilisant les énergies citoyennes pour la solidarité, l'aide aux familles nécessiteuses et l'accompagnement scolaire des enfants à travers l'Algérie."
+    address: "Rue Mohamed Belouizdad",
+    email: "contact@cra.dz",
+    phone: "+213 21 65 33 22",
+    domain: "Aide humanitaire, Santé & Premiers secours",
+    description: "Le Croissant Rouge Algérien est une association humanitaire nationale, auxiliaire des pouvoirs publics, qui œuvre pour la protection de la vie, la santé et la dignité humaine. Nous mobilisons des bénévoles à travers tout le territoire pour porter assistance aux personnes vulnérables et renforcer la solidarité en Algérie."
   });
 
   // Formulaire de publication de mission en 5 étapes avec Live Preview
@@ -2150,336 +2171,239 @@ export default function App() {
     'Patrimoine'
   ];
 
-  // 6 verified Algerian missions from previous version
+  // 6 verified Algerian missions from missions benev.png
   const [missionsList, setMissionsList] = useState([
     {
       id: 1,
-      title: "Plantation d'arbres et reboisement à Zéralda",
-      association_name: "Association Green Future",
-      category: "Environnement",
+      title: "Plantation d'arbres à Zéralda",
+      association_name: "Green Future",
+      category: "Climat",
+      badge: "Climat",
+      badgeBg: "#e6f7f3",
+      badgeColor: "#006D5B",
       location: "Zéralda, Alger",
       wilaya: "Alger",
       date_str: "Sam. 12 avr. 2025",
       time_str: "9h00 – 15h00",
-      duration: "6 heures (Journée)",
-      availability_type: "weekend",
-      spots_remaining: 15,
-      spots_total: 30,
-      image_url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
-      description: "Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Ensemble, contribuons à restaurer la canopée méditerranéenne et à sensibiliser les familles à la biodiversité locale. Matériel complet et gants fournis sur place.",
+      duration: "1 jour",
+      spots_remaining: 12,
+      spots_total: 24,
+      image_url: missionPlantationZeralda,
+      description: "Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Ensemble, contribuons à restaurer la canopée méditerranéenne et à sensibiliser les familles à la biodiversité locale.",
       what_you_will_do: [
         "Accueil et orientation des équipes de bénévoles au point de ralliement",
         "Plantation assistée de jeunes plants d'arbres adaptés au climat local (pins, caroubiers, oliviers)",
         "Pose de tuteurs protecteurs et premier arrosage minutieux",
         "Sensibilisation des visiteurs du parc à la préservation des écosystèmes forestiers"
       ],
-      useful_skills: ["Esprit d'équipe", "Sensibilité écologique", "Dynamisme de plein air", "Ponctualité"],
+      useful_skills: ["Esprit d'équipe", "Sensibilité écologique", "Dynamisme de plein air"],
       practical_info: {
         exact_address: "Forêt récréative de Zéralda, Entrée Nord, RN11, Alger",
-        catering: "Déjeuner convivial, fruits frais et rafraîchissements pris en charge par l'association",
-        transport: "Navette bénévole gratuite depuis la station de métro Tafourah (départ 08h15)",
-        dress_code: "Tenue tout-terrain, pantalon résistant, casquette et chaussures de marche fermées",
-        equipment: "Tout l'outillage (bêches, gants de travail homologués, arrosoirs) est fourni",
-        insurance: "Couverture d'assurance responsabilité civile bénévole intégralement garantie"
+        catering: "Déjeuner convivial et rafraîchissements offerts",
+        transport: "Navette bénévole gratuite depuis la station Tafourah",
+        dress_code: "Tenue tout-terrain, pantalon résistant et baskets de marche",
+        equipment: "Tout l'outillage et gants fournis sur place",
+        insurance: "Assurance responsabilité civile bénévole incluse"
       },
       association_details: {
         verified: true,
         agreement: "W16/2019/342",
         rating: 4.9,
         reviews_count: 42,
-        about: "ONG algérienne pionnière dans la lutte contre la désertification et la préservation des espaces verts périurbains."
-      },
-      reviews: [
-        { author: "Karim B.", rating: 5, date: "Il y a 2 semaines", comment: "Organisation exemplaire et accueil très chaleureux. Une journée inoubliable avec des bénévoles engagés !" },
-        { author: "Sarah M.", rating: 5, date: "Il y a 1 mois", comment: "Tout était parfait : navette ponctuelle, consignes claires et un réel sentiment d'utilité collective." }
-      ]
+        about: "ONG algérienne engagée pour la biodiversité et le reboisement périurbain."
+      }
     },
     {
       id: 2,
-      title: "Campagne de distribution de colis alimentaires solidaires",
+      title: "Distribution de colis alimentaires",
       association_name: "Croissant Rouge Algérien",
       category: "Solidarité",
+      badge: "Solidarité",
+      badgeBg: "#fef3c7",
+      badgeColor: "#b45309",
       location: "Bab Ezzouar, Alger",
       wilaya: "Alger",
       date_str: "Sam. 19 avr. 2025",
       time_str: "9h00 – 16h00",
-      duration: "7 heures (Journée)",
-      availability_type: "weekend",
+      duration: "1 jour",
       spots_remaining: 20,
       spots_total: 40,
-      image_url: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
-      description: "Tri, conditionnement méticuleux et acheminement de colis alimentaires solidaires destinés à 300 familles nécessiteuses recensées. Une action humanitaire directe au service des personnes les plus vulnérables.",
+      image_url: feedCraImg,
+      description: "Tri, conditionnement et distribution de colis de denrées alimentaires essentielles pour les familles dans le besoin à travers Alger.",
       what_you_will_do: [
-        "Réception et contrôle des denrées non périssables issues des collectes",
-        "Confection des cartons et sacs de denrées essentielles selon la composition familiale",
-        "Étiquetage, pesée et organisation de la zone de chargement des véhicules",
-        "Aide à la distribution respectueuse auprès des familles ou des relais locaux"
+        "Réception et contrôle des denrées non périssables",
+        "Confection méticuleuse des colis alimentaires",
+        "Aide à la distribution respectueuse auprès des familles"
       ],
-      useful_skills: ["Rigueur logistique", "Empathie et discrétion", "Sens de l'organisation", "Entraide"],
+      useful_skills: ["Rigueur logistique", "Empathie", "Esprit d'équipe"],
       practical_info: {
-        exact_address: "Centre logistique CRA, Zone industrielle de Bab Ezzouar, Alger",
-        catering: "Repas chaud et boissons chaudes offerts à l'ensemble des volontaires",
-        transport: "Accessible par tramway station Bab Ezzouar Sud (à 5 min à pied)",
+        exact_address: "Centre logistique CRA, Bab Ezzouar, Alger",
+        catering: "Repas chaud et boissons chaudes offerts",
+        transport: "Accessible via le tramway station Bab Ezzouar Sud",
         dress_code: "Tenue décontractée confortable et baskets fermées",
-        equipment: "Chasubles officielles Athar/CRA et gants de manutention fournis",
-        insurance: "Couverture intégrale bénévole Croix-Rouge / Croissant-Rouge"
+        equipment: "Chasubles officielles CRA et gants fournis",
+        insurance: "Couverture intégrale Croissant-Rouge Algérien"
       },
       association_details: {
         verified: true,
         agreement: "AGR-NAT-1962",
         rating: 4.95,
         reviews_count: 87,
-        about: "Organisation humanitaire historique présente sur les 69 wilayas d'Algérie."
-      },
-      reviews: [
-        { author: "Yacine D.", rating: 5, date: "Il y a 3 semaines", comment: "Équipe formidable et logistique au cordeau. Voir le sourire des bénéficiaires n'a pas de prix." }
-      ]
+        about: "Comité national de secours et d'aide humanitaire en Algérie."
+      }
     },
     {
       id: 3,
-      title: "Ateliers de lecture et éveil artistique pour enfants",
+      title: "Ateliers de lecture pour enfants",
       association_name: "Lire pour Demain",
       category: "Éducation",
+      badge: "Éducation",
+      badgeBg: "#dbeafe",
+      badgeColor: "#1d4ed8",
       location: "Hydra, Alger",
       wilaya: "Alger",
       date_str: "Mer. 16 avr. 2025",
       time_str: "14h00 – 17h00",
-      duration: "3 heures (Après-midi)",
-      availability_type: "half_day",
+      duration: "1 demi-journée",
       spots_remaining: 8,
-      spots_total: 15,
-      image_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
-      description: "Animation de contes bilingues, jeux de rôles créatifs et éveil au plaisir de lire pour un groupe de 25 enfants de 6 à 11 ans au centre culturel communautaire.",
+      spots_total: 16,
+      image_url: candLectureImg,
+      description: "Ateliers ludiques de lecture bilingue, jeux créatifs et contes animés pour stimuler l'imagination et l'éveil artistique des enfants.",
       what_you_will_do: [
-        "Accueil chaleureux des enfants et animation d'une session de lecture vivante",
-        "Encadrement de mini-ateliers de dessin et restitution d'histoires",
-        "Aide à l'emprunt de livres et aménagement du coin bibliothèque",
-        "Distribution du goûter et debriefing bienveillant avec les parents"
+        "Animation de séances de contes vivants en petit groupe",
+        "Accompagnement des enfants dans l'expression orale et le dessin",
+        "Distribution des livres de la bibliothèque mobile"
       ],
-      useful_skills: ["Pédagogie & Écoute", "Aisance avec les enfants", "Créativité", "Patience"],
+      useful_skills: ["Patience", "Pédagogie", "Écoute et bienveillance"],
       practical_info: {
-        exact_address: "Médiathèque Municipale, Boulevard Sidi Yahia, Hydra, Alger",
-        catering: "Collation partagée et thé traditionnel offerts en fin d'après-midi",
-        transport: "Lignes de bus 11 et 34, arrêt Place Sidi Yahia",
-        dress_code: "Tenue soignée et confortable adaptée aux ateliers interactifs",
-        equipment: "Livres, feutres, albums illustrés et supports pédagogiques fournis",
-        insurance: "Assurance activités culturelles et encadrement jeunesse incluse"
+        exact_address: "Centre Culturel Communautaire, Hydra, Alger",
+        catering: "Goûter et rafraîchissements partagés",
+        transport: "Bus lignes 11 et 34, arrêt Hydra Centre",
+        dress_code: "Tenue soignée et décontractée",
+        equipment: "Matériel pédagogique et livres fournis",
+        insurance: "Assurance activités éducatives comprise"
       },
       association_details: {
         verified: true,
         agreement: "W16/2021/118",
         rating: 4.88,
         reviews_count: 29,
-        about: "Association dédiée à la promotion de la lecture et à l'accès au livre dans les quartiers défavorisés."
-      },
-      reviews: [
-        { author: "Nadia Mansouri", rating: 5, date: "Il y a 1 mois", comment: "Des moments magiques partagés avec les enfants. Les voir s'émerveiller devant une histoire est magique !" }
-      ]
+        about: "Association pour l'accès aux livres et l'éveil culturel des enfants."
+      }
     },
     {
       id: 4,
-      title: "Nettoyage et préservation des plages des Andalouses",
-      association_name: "Association Green Future",
+      title: "Nettoyage des plages",
+      association_name: "Association El Baraka",
       category: "Environnement",
-      location: "Les Andalouses, Oran",
-      wilaya: "Oran",
+      badge: "Environnement",
+      badgeBg: "#dcfce7",
+      badgeColor: "#15803d",
+      location: "Aïn Taya, Alger",
+      wilaya: "Alger",
       date_str: "Ven. 2 mai 2025",
       time_str: "8h30 – 14h00",
-      duration: "5h30 (Matinée)",
-      availability_type: "half_day",
-      spots_remaining: 25,
-      spots_total: 50,
-      image_url: "https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80",
-      description: "Grande journée citoyenne de dépollution marine et sensibilisation au tri sélectif le long du littoral oranais pour préserver la faune marine méditerranéenne.",
+      duration: "1 jour",
+      spots_remaining: 15,
+      spots_total: 30,
+      image_url: missionPlage,
+      description: "Opération éco-citoyenne de nettoyage et ramassage des déchets le long du littoral pour préserver notre écosystème marin.",
       what_you_will_do: [
-        "Ramassage raisonné des déchets plastiques et mégots par secteurs géographiques",
-        "Pesée et caractérisation des typologies de déchets pour étude scientifique",
-        "Animation d'un stand de sensibilisation auprès des estivants et pêcheurs locaux",
-        "Valorisation des déchets recyclables via nos filières partenaires locales"
+        "Ramassage et tri sélectif des plastiques sur le littoral",
+        "Sensibilisation des visiteurs de la plage à la préservation marine"
       ],
-      useful_skills: ["Endurance", "Esprit d'équipe", "Sensibilisation citoyenne", "Motivation"],
+      useful_skills: ["Dynamisme", "Sensibilité environnementale", "Esprit d'équipe"],
       practical_info: {
-        exact_address: "Plage Principale des Andalouses, Poste de secours 1, Oran",
-        catering: "Eau minérale, fruits et collation de midi offerts",
-        transport: "Navettes gratuites depuis la place du 1er Novembre (Oran Centre)",
-        dress_code: "Chapeau/casquette, lunettes de soleil, crème solaire et chaussures fermées",
-        equipment: "Sacs de tri biodégradables, pinces ramasse-déchets et gants épais fournis",
-        insurance: "Assurance responsabilité civile activités extérieures couverte"
+        exact_address: "Plage des Ondines, Aïn Taya, Alger",
+        catering: "Eau fraîche et déjeuner léger offerts",
+        transport: "Point de rassemblement station navette Aïn Taya",
+        dress_code: "Casquette, lunettes de soleil et baskets fermées",
+        equipment: "Pinces de ramassage, sacs poubelle et gants fournis",
+        insurance: "Assurance responsabilité civile incluse"
       },
       association_details: {
         verified: true,
-        agreement: "W31/2020/412",
+        agreement: "W16/2020/215",
         rating: 4.85,
         reviews_count: 53,
-        about: "Collectif écocitoyen de l'Ouest algérien mobilisé pour le littoral et la biodiversité marine."
-      },
-      reviews: [
-        { author: "Sofiane K.", rating: 5, date: "Il y a 3 semaines", comment: "Superbe ambiance entre bénévoles et plus de 800 kg de déchets collectés !" }
-      ]
+        about: "Organisation de solidarité et d'actions citoyennes concrètes."
+      }
     },
     {
       id: 5,
-      title: "Caravane de don du sang et dépistage préventif au CHU",
-      association_name: "Association El Chifa Santé",
+      title: "Collecte de sang",
+      association_name: "CHU Mustapha",
       category: "Santé",
-      location: "CHU Benbadis, Constantine",
-      wilaya: "Constantine",
+      badge: "Santé",
+      badgeBg: "#ffe4e6",
+      badgeColor: "#be123c",
+      location: "Alger",
+      wilaya: "Alger",
       date_str: "Jeu. 8 mai 2025",
-      time_str: "9h00 – 16h30",
-      duration: "7h30 (Journée)",
-      availability_type: "full_day",
-      spots_remaining: 12,
-      spots_total: 25,
-      image_url: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=800&q=80",
-      description: "Organisation logistique, flux d'accueil et accompagnement bienveillant des donneurs de sang volontaires au Centre de Transfusion Sanguine du CHU de Constantine.",
+      time_str: "9h00 – 13h00",
+      duration: "1 demi-journée",
+      spots_remaining: 10,
+      spots_total: 20,
+      image_url: candSangImg,
+      description: "Appui logistique et accueil des donneurs de sang au Centre de Transfusion Sanguine du CHU Mustapha pour sécuriser les réserves hospitalières.",
       what_you_will_do: [
-        "Accueil chaleureux, enregistrement et remise des questionnaires médicaux",
-        "Gestion fluide des salles d'attente et orientation des donneurs",
-        "Surveillance en salle de collation post-don et distribution des collations revigorantes",
-        "Distribution de flyers d'information sur le don régulier et les gestes de santé préventifs"
+        "Accueil bienveillant et orientation des donneurs",
+        "Distribution des collations et collation de repos post-don"
       ],
-      useful_skills: ["Sens de l'écoute", "Empathie médicale", "Sérénité", "Organisation"],
+      useful_skills: ["Empathie", "Organisation", "Sens de l'écoute"],
       practical_info: {
-        exact_address: "Centre de Transfusion Sanguine, CHU Dr Benbadis, Constantine",
-        catering: "Déjeuner et collation offerts aux bénévoles dans le salon de repos",
-        transport: "Desservi directement par la ligne de tramway station Benbadis",
-        dress_code: "Blouse ou sur-blouse fournie, tenue sobre et chaussures souples",
-        equipment: "Matériel d'accueil, badges officiels et masques de protection fournis",
-        insurance: "Assurance établissement hospitalier et protocole sanitaire officiel"
+        exact_address: "CTS Pavillon Pasteur, CHU Mustapha Pacha, Alger",
+        catering: "Collation complète offerte",
+        transport: "Métro station Khelifa Boukhalfa (sortie CHU)",
+        dress_code: "Tenue sobre et souliers plats confortables",
+        equipment: "Badges officiels et blouses d'accueil fournis",
+        insurance: "Couverture officielle établissement hospitalier"
       },
       association_details: {
         verified: true,
-        agreement: "W25/2018/095",
-        rating: 4.92,
-        reviews_count: 61,
-        about: "Association médicale et citoyenne d'appui aux structures de santé publique dans l'Est algérien."
-      },
-      reviews: [
-        { author: "Meriem T.", rating: 5, date: "Le mois dernier", comment: "Une mission qui a du sens absolu. Des centaines de poches de sang collectées grâce à notre action !" }
-      ]
+        agreement: "CHU-ALG-01",
+        rating: 4.95,
+        reviews_count: 65,
+        about: "Centre hospitalo-universitaire Mustapha Pacha, CTS central d'Alger."
+      }
     },
     {
       id: 6,
-      title: "Soutien scolaire intensif et tutorat pour collégiens",
-      association_name: "Association Amel Solidarité",
-      category: "Éducation",
-      location: "Belouizdad, Alger",
-      wilaya: "Alger",
-      date_str: "Sam. 26 avr. 2025",
-      time_str: "10h00 – 13h00",
-      duration: "3 heures (Matinée)",
-      availability_type: "weekend",
-      spots_remaining: 6,
-      spots_total: 12,
-      image_url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
-      description: "Aide aux devoirs ciblée, révisions des matières clés (Mathématiques, Sciences, Français) et coaching méthodologique pour des élèves préparant le brevet BEM.",
-      what_you_will_do: [
-        "Prise en charge d'un petit groupe de 3 à 4 élèves de 4ème année moyenne",
-        "Explication pédagogique des points de blocage et exercices d'application",
-        "Conseils de gestion du stress, de mémorisation et d'organisation du temps de travail",
-        "Bilan personnalisé de la séance avec l'équipe coordinatrice"
-      ],
-      useful_skills: ["Pédagogie", "Maîtrise du programme collège", "Patience", "Encouragement"],
-      practical_info: {
-        exact_address: "Maison des Jeunes Belouizdad, Rue Mohamed Belouizdad, Alger",
-        catering: "Café, thé et viennoiseries offerts aux tuteurs",
-        transport: "Métro station Jardin d'Essai ou Hamma (à 3 min à pied)",
-        dress_code: "Tenue citoyenne et soignée",
-        equipment: "Annales BEM, tableaux blancs, feutres et supports de cours fournis",
-        insurance: "Assurance responsabilité civile jeunesse et éducation incluse"
-      },
-      association_details: {
-        verified: true,
-        agreement: "W16/2017/204",
-        rating: 4.9,
-        reviews_count: 48,
-        about: "Soutien scolaire et insertion des jeunes issus de quartiers populaires depuis 2017."
-      },
-      reviews: [
-        { author: "Walid L.", rating: 5, date: "Il y a 2 semaines", comment: "Excellente synergie avec les élèves. Les progrès sont visibles dès les premières séances." }
-      ]
-    },
-    {
-      id: 7,
-      title: "Restauration participative et valorisation du patrimoine de la Casbah",
-      association_name: "Association Sauvegarde de la Médina",
-      category: "Culture",
-      location: "La Casbah, Alger",
-      wilaya: "Alger",
+      title: "Nettoyage du site de Tipaza",
+      association_name: "Jeunesse & Patrimoine",
+      category: "Patrimoine",
+      badge: "Patrimoine",
+      badgeBg: "#ede9fe",
+      badgeColor: "#6d28d9",
+      location: "Tipaza",
+      wilaya: "Tipaza",
       date_str: "Sam. 10 mai 2025",
-      time_str: "9h30 – 16h00",
-      duration: "6h30 (Journée)",
-      availability_type: "weekend",
-      spots_remaining: 10,
-      spots_total: 20,
-      image_url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-      description: "Nettoyage patrimonial, valorisation de placettes historiques et sensibilisation architecturale au cœur de la Casbah millénaire classée au patrimoine mondial de l'UNESCO.",
+      time_str: "9h00 – 16h00",
+      duration: "1 jour",
+      spots_remaining: 12,
+      spots_total: 24,
+      image_url: missionTipaza,
+      description: "Journée de valorisation et nettoyage respectueux des sentiers du parc archéologique romain de Tipaza, joyau classé UNESCO.",
       what_you_will_do: [
-        "Aide au désencombrement soigné de passages historiques avec les artisans locaux",
-        "Restauration de surfaces murales traditionnelles à la chaux sous supervision d'un architecte",
-        "Installation de plaques indicatives bilingues et mise en valeur de fontaines anciennes",
-        "Accueil des visiteurs et partage des récits d'histoire de la cité"
+        "Dépollution minutieuse des abords des ruines antiques",
+        "Pose de panneaux de sensibilisation au respect des monuments historiques"
       ],
-      useful_skills: ["Passion pour le patrimoine", "Travail manuel minutieux", "Aisance relationnelle"],
+      useful_skills: ["Amour du patrimoine", "Endurance", "Esprit d'équipe"],
       practical_info: {
-        exact_address: "Place des Martyrs / Entrée Casbah Basse, Alger",
-        catering: "Déjeuner traditionnel algérois offert dans une maison d'hôtes de la Casbah",
-        transport: "Métro station Place des Martyrs",
-        dress_code: "Vêtements robustes et confortables, chaussures à semelles adhérentes",
-        equipment: "Chaux naturelle, brosses, gants de protection et tabliers fournis",
-        insurance: "Assurance chantiers de bénévoles du patrimoine couverte"
+        exact_address: "Parc Archéologique de Tipaza, Route des Ruines",
+        catering: "Déjeuner traditionnel offert avec vue sur la Méditerranée",
+        transport: "Navette au départ d'Alger Tafourah à 7h45",
+        dress_code: "Chapeau, chaussures de marche et protection solaire",
+        equipment: "Tout le matériel de nettoyage fourni",
+        insurance: "Couverture intégrale garantie"
       },
       association_details: {
         verified: true,
-        agreement: "W16/2015/511",
-        rating: 4.94,
-        reviews_count: 36,
-        about: "Défense et mise en valeur vivante des sites historiques et du patrimoine bâti algérien."
-      },
-      reviews: [
-        { author: "Amina H.", rating: 5, date: "Il y a 1 mois", comment: "Une immersion extraordinaire dans notre histoire. Sentir qu'on protège la Casbah est une fierté immense." }
-      ]
-    },
-    {
-      id: 8,
-      title: "Campagne de soins, identification et protection animale",
-      association_name: "Association Cœur Animalier Algérie",
-      category: "Animaux",
-      location: "Mansourah, Tlemcen",
-      wilaya: "Tlemcen",
-      date_str: "Sam. 17 mai 2025",
-      time_str: "9h00 – 14h30",
-      duration: "5h30 (Matinée)",
-      availability_type: "weekend",
-      spots_remaining: 14,
-      spots_total: 20,
-      image_url: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80",
-      description: "Action solidaire pour le bien-être des animaux abandonnés : aide aux soins vétérinaires préventifs, nourrissage équilibré, aménagement d'abris et sensibilisation au respect de la faune urbaine.",
-      what_you_will_do: [
-        "Aide à l'accueil et maintien des animaux lors des consultations vétérinaires bénévoles",
-        "Nettoyage, désinfection et aménagement des boxes et enclos temporaires",
-        "Distribution des rations alimentaires adaptées et abreuvement",
-        "Participation à la campagne d'adoption responsable et prise de photos descriptives"
-      ],
-      useful_skills: ["Douceur et respect des animaux", "Sang-froid", "Travail d'équipe", "Sens de l'hygiène"],
-      practical_info: {
-        exact_address: "Refuge Solidaire, Route de Mansourah, Tlemcen",
-        catering: "Collation matinale et sandwichs partagés avec l'équipe vétérinaire",
-        transport: "Ligne de bus urbaine Tlemcen-Mansourah",
-        dress_code: "Tenue de travail lavable et chaussures fermées indispensables",
-        equipment: "Gants vétérinaires, blouses protectrices et matériel de contention fournis",
-        insurance: "Assurance spécifique protection animale et encadrement vétérinaire"
-      },
-      association_details: {
-        verified: true,
-        agreement: "W13/2021/078",
-        rating: 4.89,
-        reviews_count: 24,
-        about: "Refuge et réseau de sauvetage animalier actif dans la région Ouest de l'Algérie."
-      },
-      reviews: [
-        { author: "Farid S.", rating: 5, date: "Il y a 3 semaines", comment: "Des vétérinaires dévoués et une organisation exemplaire pour les animaux. Bravo !" }
-      ]
+        agreement: "W42/2021/088",
+        rating: 4.92,
+        reviews_count: 38,
+        about: "Association dédiée à la valorisation et protection du patrimoine historique algérien."
+      }
     }
   ]);
 
@@ -2677,129 +2601,126 @@ export default function App() {
               />
             </div>
 
-            {/* Navigation verticale : 8 onglets */}
+            {/* Navigation verticale Espace Association : 7 onglets conformes aux maquettes */}
             <nav className="saas-sidebar-nav">
+              {/* 1. ACCUEIL / FEED PROFIL */}
               <button
                 type="button"
-                className={`saas-nav-item ${dashActiveTab === 'overview' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('overview')}
+                className={`saas-nav-item ${dashActiveTab === 'profile' ? 'active' : ''}`}
+                onClick={() => setDashActiveTab('profile')}
               >
-                <IconLayoutDashboard className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'لوحة التحكم' : currentLang === 'en' ? 'Dashboard' : 'Tableau de bord'}</span>
+                <IconHome className="w-4 h-4" />
+                <span>Accueil</span>
               </button>
 
+              {/* 2. PUBLICATIONS / PREUVES */}
+              <button
+                type="button"
+                className={`saas-nav-item ${dashActiveTab === 'traceability' ? 'active' : ''}`}
+                onClick={() => setDashActiveTab('traceability')}
+              >
+                <IconEdit className="w-4 h-4" />
+                <span>Publications</span>
+              </button>
+
+              {/* 3. MISSIONS */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'missions' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('missions')}
               >
                 <IconBriefcase className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'مبادراتي' : currentLang === 'en' ? 'My Missions' : 'Mes missions'}</span>
-                <span className="saas-nav-badge">{associationMissions.length}</span>
+                <span>Missions</span>
+                <span className="saas-nav-badge">24</span>
               </button>
 
+              {/* 4. CANDIDATURES */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'candidatures' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('candidatures')}
               >
                 <IconUsers className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'طلبات التطوع' : currentLang === 'en' ? 'Applications' : 'Candidatures'}</span>
-                {pendingCandidatesCount > 0 ? (
-                  <span className="saas-nav-badge alert">{pendingCandidatesCount}</span>
-                ) : (
-                  <span className="saas-nav-badge">{candidatesList.length}</span>
-                )}
+                <span>Candidatures</span>
+                <span className="saas-nav-badge alert">24</span>
               </button>
 
-              <button
-                type="button"
-                className={`saas-nav-item ${dashActiveTab === 'besoins_collectes' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('besoins_collectes')}
-              >
-                <IconPackage className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الاحتياجات والتبرعات' : currentLang === 'en' ? 'Needs & Funds' : 'Besoins & collectes'}</span>
-                <span className="saas-nav-badge">{needsList.length + collectesList.length}</span>
-              </button>
-
-              <button
-                type="button"
-                className={`saas-nav-item ${dashActiveTab === 'benevoles' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('benevoles')}
-              >
-                <IconHeart className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'المتطوعون' : currentLang === 'en' ? 'Volunteers' : 'Bénévoles'}</span>
-                <span className="saas-nav-badge">{activeVolunteersList.length}</span>
-              </button>
-
+              {/* 5. MESSAGES AVEC POINT ROUGE */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'messages' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('messages')}
               >
                 <IconMessageSquare className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الرسائل والمحادثات' : currentLang === 'en' ? 'Direct Messages' : 'Messagerie'}</span>
-                <span className="saas-nav-badge alert">1</span>
+                <span>Messages</span>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ef4444', marginLeft: 'auto' }}></span>
               </button>
 
-              <button
-                type="button"
-                className={`saas-nav-item ${dashActiveTab === 'traceability' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('traceability')}
-              >
-                <IconShieldCheck className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'توثيق الأثر & الشهادات' : currentLang === 'en' ? 'Impact Ledger' : 'Preuves d\'Impact'}</span>
-              </button>
-
+              {/* 6. CALENDRIER */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'calendrier' ? 'active' : ''}`}
                 onClick={() => setDashActiveTab('calendrier')}
               >
                 <IconCalendar className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'الروزنامة' : currentLang === 'en' ? 'Calendar' : 'Calendrier'}</span>
+                <span>Calendrier</span>
               </button>
 
+              {/* 7. PROFIL */}
               <button
                 type="button"
                 className={`saas-nav-item ${dashActiveTab === 'parametres' ? 'active' : ''}`}
-                onClick={() => setDashActiveTab('parametres')}
+                onClick={() => setDashActiveTab('profile')}
               >
                 <IconUsers className="w-4 h-4" />
-                <span>{currentLang === 'ar' ? 'ملفي الشخصي' : currentLang === 'en' ? 'My Profile' : 'Mon profil'}</span>
+                <span>Profil</span>
               </button>
             </nav>
 
-            {/* Bas de sidebar : filigrane d'illustration + citation officielle + retour public */}
-            <div className="saas-sidebar-footer">
-              <div className="saas-watermark-card">
-                <svg className="saas-watermark-bg" viewBox="0 0 100 70" fill="none" opacity="0.12">
-                  <path d="M10 50 Q 30 10, 50 40 T 90 20" stroke="#006D5B" strokeWidth="4" fill="none" />
-                  <circle cx="50" cy="40" r="14" fill="#006D5B" />
-                  <circle cx="85" cy="22" r="8" fill="#006D5B" />
-                </svg>
-                <p className="saas-watermark-quote">
-                  {currentLang === 'ar'
-                    ? '« أفعال اليوم، أثر مستدام للغد. »'
-                    : currentLang === 'en'
-                    ? '“Today’s actions, a lasting impact tomorrow.”'
-                    : '« Des actions d’aujourd’hui, un impact durable demain. »'}
-                </p>
-              </div>
-
-              <button
-                type="button"
-                className="saas-sidebar-back-btn"
+            {/* Bas de sidebar : Carte promotionnelle Algiers / Makam Echahid */}
+            <div className="saas-sidebar-footer" style={{ padding: '14px' }}>
+              <div
+                style={{
+                  backgroundImage: `url(${profileSidebarImg})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  minHeight: '190px',
+                  borderRadius: '16px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  padding: '14px',
+                  color: '#ffffff',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                }}
                 onClick={() => {
                   setCurrentView('landing');
                   window.location.hash = '#accueil';
                 }}
+                title="Retour à l'accueil Athar"
               >
-                <IconArrowRight className="w-3.5 h-3.5" style={{ transform: currentLang === 'ar' ? 'none' : 'rotate(180deg)' }} />
-                <span>{t('navBackToPublic')}</span>
-              </button>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%)' }} />
+                <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+                  <div>
+                    <h4 style={{ fontWeight: 800, fontSize: '13px', lineHeight: 1.25, color: '#ffffff', margin: 0 }}>
+                      Ensemble<br />pour une Algérie<br />plus solidaire
+                    </h4>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '11px', marginTop: '8px' }}>
+                      →
+                    </div>
+                  </div>
+                  <div style={{ marginTop: '28px', textAlign: 'right' }}>
+                    <span
+                      style={{ fontFamily: "'Caveat', cursive, sans-serif", fontSize: '13px', fontWeight: 700, display: 'block', color: '#ffffff' }}
+                    >
+                      Des citoyens,<br />Un impact réel.
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </aside>
+
 
           {/* 2. ZONE PRINCIPALE DE CONTENU */}
           <div className="saas-main-area">
@@ -2810,13 +2731,7 @@ export default function App() {
                 <IconSearch className="w-4 h-4" style={{ color: '#94a3b8', flexShrink: 0 }} />
                 <input
                   type="text"
-                  placeholder={
-                    currentLang === 'ar'
-                      ? 'بحث عن مبادرة، متطوع، أو ولاية...'
-                      : currentLang === 'en'
-                      ? 'Search mission, volunteer, wilaya...'
-                      : 'Rechercher une mission, un bénévole...'
-                  }
+                  placeholder="Rechercher des associations, missions, publications..."
                   value={globalSearchQuery}
                   onChange={(e) => setGlobalSearchQuery(e.target.value)}
                 />
@@ -2905,12 +2820,12 @@ export default function App() {
                       setIsNotifOpen(false);
                     }}
                   >
-                    <div className="saas-user-avatar">
-                      {assocProfile.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'EA'}
+                    <div className="saas-user-avatar" style={{ padding: '2px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '50%', overflow: 'hidden' }}>
+                      <img src={assocCraLogo} alt="CRA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     </div>
                     <div className="saas-user-info">
-                      <span className="saas-user-name">{assocProfile.name}</span>
-                      <span className="saas-user-wilaya">{assocProfile.wilaya}</span>
+                      <span className="saas-user-name">Croissant Rouge Algérien</span>
+                      <span className="saas-user-wilaya">Association</span>
                     </div>
                     <IconChevronDown className="w-3.5 h-3.5" style={{ color: '#94a3b8' }} />
                   </div>
@@ -2977,6 +2892,15 @@ export default function App() {
             {/* CONTENU PRINCIPAL SELON dashActiveTab */}
             <main className="saas-content-body">
               {/* ======================================================== */}
+              {/* VUE PROFIL / FEED COMME INSTA (feed.png)                 */}
+              {/* ======================================================== */}
+              {(dashActiveTab === 'profile' || dashActiveTab === 'parametres') && (
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationProfileFeed onNavigateNewPost={() => setDashActiveTab('traceability')} />
+                </div>
+              )}
+
+              {/* ======================================================== */}
               {/* VUE 1 : TABLEAU DE BORD (OVERVIEW)                      */}
               {/* ======================================================== */}
               {dashActiveTab === 'overview' && (
@@ -2984,7 +2908,7 @@ export default function App() {
                   {/* BONJOUR ASSOCIATION (charte ATHAR) */}
                   <div className="portal-welcome" style={{ marginBottom: '22px' }}>
                     <h1 className="pw-hi">
-                      {t('dashWelcomeTitle')} <span className="pw-wave">👋</span>
+                      {t('dashWelcomeTitle')}
                       <span className="pw-verif"><IconShieldCheck className="w-4 h-4" /> {t('dashWelcomeBadge')}</span>
                     </h1>
                     <p className="pw-sub">{t('dashWelcomeSub')}</p>
@@ -3255,7 +3179,7 @@ export default function App() {
                                     onClick={() => handleAcceptCandidate(cand)}
                                     title="Accepter"
                                   >
-                                    ✓
+                                    <IconCheck className="w-3.5 h-3.5" />
                                   </button>
                                   <button
                                     type="button"
@@ -3267,12 +3191,15 @@ export default function App() {
                                       padding: '5px 10px',
                                       fontSize: '11.5px',
                                       fontWeight: 700,
-                                      cursor: 'pointer'
+                                      cursor: 'pointer',
+                                      display: 'inline-flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center'
                                     }}
                                     onClick={() => handleRejectCandidate(cand)}
                                     title="Refuser"
                                   >
-                                    ✕
+                                    <IconX className="w-3.5 h-3.5" />
                                   </button>
                                 </>
                               )}
@@ -3289,340 +3216,8 @@ export default function App() {
               {/* VUE 2 : MES MISSIONS                                    */}
               {/* ======================================================== */}
               {dashActiveTab === 'missions' && (
-                <div>
-                  <div className="saas-card-header">
-                    <div>
-                      <h2>Mes missions publiées ({filteredAssociationMissions.length})</h2>
-                      <p>Gérez vos offres solidaires, ajustez les places et pilotez la mobilisation</p>
-                    </div>
-                    <button
-                      type="button"
-                      className="saas-quick-btn primary"
-                      onClick={() => setDashActiveTab('new_mission')}
-                    >
-                      <IconPlus className="w-4 h-4" />
-                      <span>Publier une mission</span>
-                    </button>
-                  </div>
-
-                  {/* Barre de filtres épurée */}
-                  <div className="saas-card" style={{ padding: '16px', marginBottom: '20px' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
-                      <div>
-                        <label style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#64748b', marginBottom: '5px', textTransform: 'uppercase' }}>
-                          Recherche
-                        </label>
-                        <input
-                          type="text"
-                          className="inp"
-                          placeholder="Rechercher une mission..."
-                          value={missionSearchQuery}
-                          onChange={(e) => setMissionSearchQuery(e.target.value)}
-                        />
-                      </div>
-
-                      <div>
-                        <label style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#64748b', marginBottom: '5px', textTransform: 'uppercase' }}>
-                          Thématique
-                        </label>
-                        <select
-                          className="inp"
-                          value={missionThemeFilter}
-                          onChange={(e) => setMissionThemeFilter(e.target.value)}
-                        >
-                          <option value="all">Toutes les catégories</option>
-                          <option value="Solidarité">Solidarité</option>
-                          <option value="Éducation">Éducation</option>
-                          <option value="Environnement">Environnement</option>
-                          <option value="Santé">Santé</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#64748b', marginBottom: '5px', textTransform: 'uppercase' }}>
-                          Statut
-                        </label>
-                        <select
-                          className="inp"
-                          value={missionStatusFilter}
-                          onChange={(e) => setMissionStatusFilter(e.target.value)}
-                        >
-                          <option value="all">Tous les statuts</option>
-                          <option value="open">Ouvertes (Places dispo)</option>
-                          <option value="closed">Complètes (Clôturées)</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#64748b', marginBottom: '5px', textTransform: 'uppercase' }}>
-                          Wilaya (69 wilayas)
-                        </label>
-                        <select
-                          className="inp"
-                          value={missionWilayaFilter}
-                          onChange={(e) => setMissionWilayaFilter(e.target.value)}
-                        >
-                          <option value="all">Toutes les wilayas (69)</option>
-                          {WILAYAS_LIST.map(w => (
-                            <option key={w.code} value={w.name}>{w.code} - {w.name}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Grille des cartes de mission */}
-                  {filteredAssociationMissions.length === 0 ? (
-                    <div className="saas-card" style={{ textAlign: 'center', padding: '50px 20px' }}>
-                      <p style={{ fontSize: '15px', color: '#64748b', margin: '0 0 12px' }}>
-                        Aucune mission ne correspond à vos critères de recherche.
-                      </p>
-                      <button
-                        type="button"
-                        className="saas-quick-btn outline"
-                        onClick={() => {
-                          setMissionSearchQuery('');
-                          setMissionThemeFilter('all');
-                          setMissionStatusFilter('all');
-                          setMissionWilayaFilter('all');
-                        }}
-                      >
-                        Réinitialiser tous les filtres
-                      </button>
-                    </div>
-                  ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
-                      {filteredAssociationMissions.map((m) => {
-                        const isFull = m.spots_registered >= m.spots_total;
-                        const pct = Math.round((m.spots_registered / m.spots_total) * 100);
-                        const candsCount = candidatesList.filter(c => c.missionId === m.id).length;
-
-                        return (
-                          <div key={m.id} className="saas-card" style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                            <div style={{ position: 'relative', height: '170px' }}>
-                              <img
-                                src={m.image}
-                                alt={m.title}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                              />
-                              <div style={{ position: 'absolute', top: '12px', left: '12px', display: 'flex', gap: '6px' }}>
-                                <span className="saas-badge" style={{ background: 'rgba(255,255,255,0.92)', color: '#0f172a', fontWeight: 800 }}>
-                                  {m.category}
-                                </span>
-                              </div>
-                              <div style={{ position: 'absolute', top: '12px', right: '12px' }}>
-                                <span className={`saas-badge ${isFull ? 'complete' : 'active'}`}>
-                                  {isFull ? 'Complète' : 'Active'}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div style={{ padding: '18px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                              <h3 style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: '#0f172a', lineHeight: 1.35 }}>
-                                {m.title}
-                              </h3>
-
-                              <div style={{ display: 'flex', gap: '14px', fontSize: '12px', color: '#64748b', marginBottom: '12px' }}>
-                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                  <IconMapPin className="w-3.5 h-3.5" />
-                                  {m.wilaya || m.location}
-                                </span>
-                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                  <IconCalendar className="w-3.5 h-3.5" />
-                                  {m.date}
-                                </span>
-                              </div>
-
-                              <p style={{ margin: '0 0 16px', fontSize: '12.5px', color: '#475569', lineHeight: 1.5, flex: 1 }}>
-                                {m.description}
-                              </p>
-
-                              {/* Jauge de progression fine */}
-                              <div className="saas-gauge-wrap">
-                                <div className="saas-gauge-header">
-                                  <span>Bénévoles confirmés</span>
-                                  <strong>{m.spots_registered} / {m.spots_total} ({pct}%)</strong>
-                                </div>
-                                <div className="saas-gauge-track">
-                                  <div
-                                    className={`saas-gauge-fill ${isFull ? 'full' : ''}`}
-                                    style={{ width: `${Math.min(pct, 100)}%` }}
-                                  />
-                                </div>
-                              </div>
-
-                              {/* Actions de la mission */}
-                              <div style={{ display: 'flex', gap: '8px', marginTop: '14px', paddingTop: '12px', borderTop: '1px solid #f1f5f9' }}>
-                                <button
-                                  type="button"
-                                  style={{
-                                    flex: 1,
-                                    border: '1px solid #e2e8f0',
-                                    background: '#ffffff',
-                                    borderRadius: '8px',
-                                    padding: '7px 10px',
-                                    fontSize: '12px',
-                                    fontWeight: 700,
-                                    color: '#334155',
-                                    cursor: 'pointer'
-                                  }}
-                                  onClick={() => setEditingMission({ ...m })}
-                                >
-                                  Modifier
-                                </button>
-                                <button
-                                  type="button"
-                                  style={{
-                                    border: '1px solid #e2e8f0',
-                                    background: isFull ? '#f0fdf4' : '#f8fafc',
-                                    color: isFull ? 'var(--emerald-main)' : '#64748b',
-                                    borderRadius: '8px',
-                                    padding: '7px 12px',
-                                    fontSize: '12px',
-                                    fontWeight: 700,
-                                    cursor: 'pointer'
-                                  }}
-                                  onClick={() => handleToggleMissionClose(m.id)}
-                                >
-                                  {isFull ? 'Réouvrir (+5)' : 'Clôturer'}
-                                </button>
-                                <button
-                                  type="button"
-                                  style={{
-                                    border: 'none',
-                                    background: '#f1f5f9',
-                                    color: '#334155',
-                                    borderRadius: '8px',
-                                    padding: '7px 12px',
-                                    fontSize: '12px',
-                                    fontWeight: 700,
-                                    cursor: 'pointer'
-                                  }}
-                                  onClick={() => {
-                                    setDashActiveTab('candidatures');
-                                  }}
-                                >
-                                  Candidats ({candsCount})
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {/* Modal modification de mission */}
-                  {editingMission && (
-                    <div className="saas-drawer-overlay" onClick={() => setEditingMission(null)}>
-                      <div
-                        className="saas-card"
-                        style={{
-                          maxWidth: '520px',
-                          width: '92%',
-                          margin: '60px auto',
-                          position: 'relative',
-                          zIndex: 110,
-                          maxHeight: '85vh',
-                          overflowY: 'auto'
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <div className="saas-card-header">
-                          <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 800 }}>Modifier la mission</h3>
-                          <button
-                            type="button"
-                            onClick={() => setEditingMission(null)}
-                            style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#64748b' }}
-                          >
-                            <IconX className="w-5 h-5" />
-                          </button>
-                        </div>
-                        <form onSubmit={handleSaveEditMission} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>Titre</label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={editingMission.title}
-                              onChange={(e) => setEditingMission({ ...editingMission, title: e.target.value })}
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>Thématique</label>
-                            <select
-                              className="inp"
-                              value={editingMission.category}
-                              onChange={(e) => setEditingMission({ ...editingMission, category: e.target.value })}
-                            >
-                              <option value="Solidarité">Solidarité</option>
-                              <option value="Éducation">Éducation</option>
-                              <option value="Environnement">Environnement</option>
-                              <option value="Santé">Santé</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>Wilaya d'intervention</label>
-                            <select
-                              className="inp"
-                              value={editingMission.wilaya || editingMission.location}
-                              onChange={(e) => setEditingMission({ ...editingMission, wilaya: e.target.value, location: e.target.value })}
-                            >
-                              {WILAYAS_LIST.map(w => (
-                                <option key={w.code} value={w.name}>{w.code} - {w.name}</option>
-                              ))}
-                            </select>
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>Date</label>
-                            <input
-                              type="text"
-                              className="inp"
-                              value={editingMission.date}
-                              onChange={(e) => setEditingMission({ ...editingMission, date: e.target.value })}
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>Capacité totale (bénévoles)</label>
-                            <input
-                              type="number"
-                              min={editingMission.spots_registered}
-                              className="inp"
-                              value={editingMission.spots_total}
-                              onChange={(e) => setEditingMission({ ...editingMission, spots_total: e.target.value })}
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>Description</label>
-                            <textarea
-                              className="inp"
-                              rows={3}
-                              value={editingMission.description}
-                              onChange={(e) => setEditingMission({ ...editingMission, description: e.target.value })}
-                            />
-                          </div>
-                          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
-                            <button
-                              type="button"
-                              className="saas-quick-btn outline"
-                              onClick={() => setEditingMission(null)}
-                            >
-                              Annuler
-                            </button>
-                            <button
-                              type="submit"
-                              className="saas-quick-btn primary"
-                            >
-                              Enregistrer les modifications
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  )}
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationMissions onOpenCreateMission={() => setDashActiveTab('new_mission')} />
                 </div>
               )}
 
@@ -3945,148 +3540,8 @@ export default function App() {
               {/* VUE 4 : CANDIDATURES (AVEC LATERAL DRAWER)              */}
               {/* ======================================================== */}
               {dashActiveTab === 'candidatures' && (
-                <div>
-                  <div className="saas-card-header">
-                    <div>
-                      <h2>Candidatures des bénévoles ({candidatesList.length})</h2>
-                      <p>Examinez les profils, validez les participations et échangez avec les candidats</p>
-                    </div>
-                  </div>
-
-                  {/* Filtres de candidatures */}
-                  <div className="saas-card" style={{ padding: '14px 18px', marginBottom: '20px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        {[
-                          { id: 'all', label: 'Toutes', count: candidatesList.length },
-                          { id: 'pending', label: 'En attente', count: candidatesList.filter(c => c.status === 'pending').length },
-                          { id: 'accepted', label: 'Acceptées', count: candidatesList.filter(c => c.status === 'accepted').length },
-                          { id: 'rejected', label: 'Refusées', count: candidatesList.filter(c => c.status === 'rejected').length }
-                        ].map(f => (
-                          <button
-                            key={f.id}
-                            type="button"
-                            className={`saas-quick-btn ${candidateFilter === f.id ? 'primary' : 'outline'}`}
-                            style={{ padding: '6px 14px', fontSize: '12.5px' }}
-                            onClick={() => setCandidateFilter(f.id)}
-                          >
-                            <span>{f.label}</span>
-                            <span style={{
-                              marginLeft: '4px',
-                              fontSize: '11px',
-                              background: candidateFilter === f.id ? 'rgba(255,255,255,0.25)' : '#f1f5f9',
-                              padding: '1px 6px',
-                              borderRadius: '999px'
-                            }}>
-                              {f.count}
-                            </span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Liste des candidatures GROUPÉES PAR MISSION */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-                    {(() => {
-                      const filtered = candidatesList.filter(c => candidateFilter === 'all' || c.status === candidateFilter);
-                      const groups = {};
-                      filtered.forEach(c => {
-                        const key = c.missionTitle || 'Autres missions';
-                        (groups[key] = groups[key] || []).push(c);
-                      });
-                      const entries = Object.entries(groups);
-                      if (entries.length === 0) {
-                        return (
-                          <div className="saas-card" style={{ padding: '30px', textAlign: 'center', color: '#64748b', fontWeight: 600 }}>
-                            Aucune candidature dans cette catégorie.
-                          </div>
-                        );
-                      }
-                      return entries.map(([mission, cands]) => (
-                        <div key={mission} className="cand-group">
-                          <div className="cand-group-head">
-                            <div className="cand-group-title">
-                              <IconBriefcase className="w-4 h-4" />
-                              <span>{mission}</span>
-                            </div>
-                            <span className="cand-group-count">{cands.length} candidature{cands.length > 1 ? 's' : ''}</span>
-                          </div>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            {cands.map((cand) => (
-                        <div
-                          key={cand.id}
-                          className="saas-card"
-                          style={{
-                            padding: '18px 22px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            flexWrap: 'wrap',
-                            gap: '16px'
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1, minWidth: '260px' }}>
-                            <div className="saas-drawer-avatar" style={{ width: '42px', height: '42px', fontSize: '15px' }}>
-                              {cand.initials}
-                            </div>
-                            <div>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <strong style={{ fontSize: '14.5px', color: '#0f172a' }}>{cand.name}</strong>
-                                <span style={{ fontSize: '12px', color: '#64748b' }}>({cand.age} ans)</span>
-                                <span className={`saas-badge ${cand.status}`}>
-                                  {cand.status === 'accepted' ? 'Acceptée' : cand.status === 'rejected' ? 'Refusée' : 'En attente'}
-                                </span>
-                              </div>
-                              <div style={{ fontSize: '12px', color: '#475569', marginTop: '3px' }}>
-                                <strong>Mission :</strong> {cand.missionTitle} · <span style={{ color: '#64748b' }}>{cand.wilaya}</span>
-                              </div>
-                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginTop: '6px' }}>
-                                {cand.skills?.map((s, idx) => (
-                                  <span key={idx} className="saas-skill-pill" style={{ fontSize: '10.5px', padding: '2px 8px' }}>
-                                    {s}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <button
-                              type="button"
-                              className="saas-quick-btn outline"
-                              onClick={() => setSelectedCandidateDrawer(cand)}
-                            >
-                              <IconFileText className="w-4 h-4" />
-                              <span>Examiner le profil</span>
-                            </button>
-
-                            {cand.status === 'pending' && (
-                              <>
-                                <button
-                                  type="button"
-                                  className="saas-btn-danger"
-                                  onClick={() => handleRejectCandidate(cand)}
-                                >
-                                  Refuser
-                                </button>
-                                <button
-                                  type="button"
-                                  className="saas-btn-primary"
-                                  onClick={() => handleAcceptCandidate(cand)}
-                                >
-                                  Accepter
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                            ))}
-                          </div>
-                        </div>
-                      ));
-                    })()}
-                  </div>
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationCandidatures />
                 </div>
               )}
 
@@ -4576,86 +4031,8 @@ export default function App() {
               {/* VUE 7 : CALENDRIER DES INTERVENTIONS                    */}
               {/* ======================================================== */}
               {dashActiveTab === 'calendrier' && (
-                <div>
-                  <div className="saas-card-header">
-                    <div>
-                      <h2>Agenda & Calendrier des interventions</h2>
-                      <p>Vos missions programmées, repérées par un point de couleur sur leur jour</p>
-                    </div>
-                  </div>
-
-                  {(() => {
-                    const catColor = (c) =>
-                      c === 'Éducation' ? 'var(--bleu)'
-                      : c === 'Environnement' ? 'var(--vert)'
-                      : c === 'Santé' ? 'var(--turq)'
-                      : 'var(--corail)';
-                    const y = calMonth.getFullYear();
-                    const mo = calMonth.getMonth();
-                    const monthName = calMonth.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
-                    const startDay = (new Date(y, mo, 1).getDay() + 6) % 7; // Lundi = 0
-                    const daysInMonth = new Date(y, mo + 1, 0).getDate();
-                    const pad = (n) => String(n).padStart(2, '0');
-                    const iso = (d) => `${y}-${pad(mo + 1)}-${pad(d)}`;
-                    const missionsOfDay = (d) => associationMissions.filter((m) => m.dateISO === iso(d));
-                    const monthMissions = associationMissions.filter((m) => m.dateISO && m.dateISO.startsWith(`${y}-${pad(mo + 1)}`));
-                    const cells = [];
-                    for (let i = 0; i < startDay; i++) cells.push(null);
-                    for (let d = 1; d <= daysInMonth; d++) cells.push(d);
-                    return (
-                      <div className="cal-wrap">
-                        <div className="cal-main saas-card">
-                          <div className="cal-head">
-                            <button type="button" className="cal-nav" onClick={() => setCalMonth(new Date(y, mo - 1, 1))} aria-label="Mois précédent">‹</button>
-                            <div className="cal-title">{monthName}</div>
-                            <button type="button" className="cal-nav" onClick={() => setCalMonth(new Date(y, mo + 1, 1))} aria-label="Mois suivant">›</button>
-                          </div>
-                          <div className="cal-grid cal-weekdays">
-                            {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((w) => (
-                              <div key={w} className="cal-wd">{w}</div>
-                            ))}
-                          </div>
-                          <div className="cal-grid">
-                            {cells.map((d, i) => d === null ? (
-                              <div key={'e' + i} className="cal-cell empty"></div>
-                            ) : (
-                              <div key={d} className={`cal-cell ${missionsOfDay(d).length ? 'has' : ''}`}>
-                                <span className="cal-daynum">{d}</span>
-                                <div className="cal-dots">
-                                  {missionsOfDay(d).map((m) => (
-                                    <span key={m.id} className="cal-dot" style={{ background: catColor(m.category) }} title={m.title}></span>
-                                  ))}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="cal-side saas-card">
-                          <h3 className="cal-side-title">Missions de {monthName}</h3>
-                          {monthMissions.length === 0 ? (
-                            <p className="cal-empty">Aucune mission programmée ce mois-ci.</p>
-                          ) : (
-                            monthMissions.map((m) => (
-                              <div key={m.id} className="cal-item" onClick={() => setDashActiveTab('missions')}>
-                                <span className="cal-item-dot" style={{ background: catColor(m.category) }}></span>
-                                <div>
-                                  <div className="cal-item-title">{m.title}</div>
-                                  <div className="cal-item-meta">{m.date} · {m.wilaya || m.location}</div>
-                                </div>
-                              </div>
-                            ))
-                          )}
-                          <div className="cal-legend">
-                            <span><i style={{ background: 'var(--vert)' }}></i>Environnement</span>
-                            <span><i style={{ background: 'var(--bleu)' }}></i>Éducation</span>
-                            <span><i style={{ background: 'var(--corail)' }}></i>Solidarité</span>
-                            <span><i style={{ background: 'var(--turq)' }}></i>Santé</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })()}
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationCalendar />
                 </div>
               )}
 
@@ -4987,57 +4364,15 @@ export default function App() {
 
               {/* MESSAGERIE CITOYENNE DIRECTE */}
               {dashActiveTab === 'messages' && (
-                <div style={{ padding: '4px 0' }}>
-                  <div className="saas-card" style={{ padding: '20px 24px', marginBottom: '20px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <div>
-                        <h2 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 4px' }}>
-                          {currentLang === 'ar' ? 'المحادثات المباشرة مع المتطوعين والمستشفيات' : 'Messagerie Citoyenne Active'}
-                        </h2>
-                        <p style={{ fontSize: '13.5px', color: '#64748B', margin: 0 }}>
-                          {currentLang === 'ar'
-                            ? 'تواصل فوري ومنظم لتنسيق المبادرات، الرد على الاستفسارات، وتوجيه المتطوعين.'
-                            : 'Échangez en direct avec vos candidats, bénévoles mobilisés et les services hospitaliers.'}
-                        </p>
-                      </div>
-                      <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0' }}>
-                        Canal Sécurisé Athar
-                      </span>
-                    </div>
-                  </div>
-                  <DirectMessenger
-                    volunteerUser={{ name: "Association El Baraka Algérie", role: "Coordonnateur Projets & Urgences", initials: "EB" }}
-                    currentLang={currentLang}
-                    onToast={showToast}
-                  />
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationMessenger />
                 </div>
               )}
 
               {/* REGISTRE DE TRAÇABILITÉ & CERTIFICATION D'IMPACT */}
               {dashActiveTab === 'traceability' && (
-                <div style={{ padding: '4px 0' }}>
-                  <div className="saas-card" style={{ padding: '20px 24px', marginBottom: '20px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <div>
-                        <h2 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--primary-navy)', margin: '0 0 4px' }}>
-                          {currentLang === 'ar' ? 'سجل توثيق وإثبات الأثر الميداني' : 'Certification & Traçabilité des Actions'}
-                        </h2>
-                        <p style={{ fontSize: '13.5px', color: '#64748B', margin: 0 }}>
-                          {currentLang === 'ar'
-                            ? 'وثّق عمليات التوزيع والمبادرات الميدانية برقم تحقق مشفّر وصور إثبات لتعزيز ثقة المجتمع والممولين.'
-                            : 'Enregistrez vos preuves de livraison, photos de terrain et volumes distribués avec empreinte numérique vérifiée.'}
-                        </p>
-                      </div>
-                      <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#EFF6FF', color: '#1E3A8A', border: '1px solid #BFDBFE' }}>
-                        Registre Infalsifiable
-                      </span>
-                    </div>
-                  </div>
-                  <TraceabilityLedger
-                    currentLang={currentLang}
-                    isAssociation={true}
-                    onToast={showToast}
-                  />
+                <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+                  <AssociationPostProof onBackToFeed={() => setDashActiveTab('profile')} onPublished={() => { setDashActiveTab('profile'); showToast('Preuve de terrain publiée avec succès !'); }} />
                 </div>
               )}
             </main>
@@ -5233,17 +4568,7 @@ export default function App() {
                 <span>Missions</span>
               </button>
 
-              {/* 4. ASSOCIATIONS */}
-              <button
-                type="button"
-                className={`portal-nav-link ${volunteerPortalTab === 'associations' && !selectedMissionDetail ? 'active' : ''}`}
-                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('associations'); }}
-              >
-                <IconBuilding className="w-4 h-4" />
-                <span>Associations</span>
-              </button>
-
-              {/* 5. CARTE DES ACTIONS */}
+              {/* 4. ACTION MAP */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'map' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5253,7 +4578,7 @@ export default function App() {
                 <span>Action Map</span>
               </button>
 
-              {/* 6. ARTICLES */}
+              {/* 5. ARTICLES */}
               <button
                 type="button"
                 className={`portal-nav-link ${volunteerPortalTab === 'explore' && !selectedMissionDetail ? 'active' : ''}`}
@@ -5261,6 +4586,16 @@ export default function App() {
               >
                 <IconFileText className="w-4 h-4" />
                 <span>Articles</span>
+              </button>
+
+              {/* 6. SOS BLOOD */}
+              <button
+                type="button"
+                className={`portal-nav-link ${volunteerPortalTab === 'blood' && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('blood'); }}
+              >
+                <IconDroplet className="w-4 h-4 text-rose-500" />
+                <span>SOS Blood</span>
               </button>
 
               {/* 7. MESSAGES AVEC POINT ROUGE */}
@@ -5274,17 +4609,14 @@ export default function App() {
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#ef4444', marginLeft: 'auto' }}></span>
               </button>
 
-              {/* 8. NOTIFICATIONS */}
+              {/* 8. MES OFFRES SAUVEGARDÉES */}
               <button
                 type="button"
-                className="portal-nav-link"
-                onClick={() => {
-                  setIsVolunteerNotifOpen(!isVolunteerNotifOpen);
-                  setIsVolunteerProfileOpen(false);
-                }}
+                className={`portal-nav-link ${(volunteerPortalTab === 'saved' || volunteerPortalTab === 'favorites') && !selectedMissionDetail ? 'active' : ''}`}
+                onClick={() => { setSelectedMissionDetail(null); setVolunteerPortalTab('saved'); }}
               >
-                <IconBell className="w-4 h-4" />
-                <span>Notifications</span>
+                <IconHeart className="w-4 h-4" />
+                <span>Mes offres sauvegardées</span>
               </button>
 
               {/* 9. PARAMÈTRES */}
@@ -5319,19 +4651,23 @@ export default function App() {
             </div>
           </header>
 
-          {/* CONTENU PRINCIPAL DU PORTAIL */}
-          <main className="portal-container">
+          {/* ZONE PRINCIPALE DU PORTAIL AVEC TOPBAR PLEINE LARGEUR */}
+          <div className="portal-main-wrapper">
             {/* TOPBAR SUPÉRIEURE DE RECHERCHE ET PROFIL */}
-            <div className="portal-topbar">
+            <header className="portal-topbar">
               <div className="portal-topbar-search">
                 <IconSearch className="w-4 h-4 text-slate-400" />
                 <input
                   type="text"
-                  placeholder="Rechercher des associations, des missions, des lieux..."
+                  placeholder={
+                    volunteerPortalTab === 'explore'
+                      ? "Rechercher des articles, des thématiques, des auteurs..."
+                      : "Rechercher des associations, des missions, des lieux..."
+                  }
                   value={volunteerSearchQuery}
                   onChange={(e) => {
                     setVolunteerSearchQuery(e.target.value);
-                    if (volunteerPortalTab !== 'missions' && e.target.value.trim().length > 0) {
+                    if (volunteerPortalTab !== 'missions' && volunteerPortalTab !== 'explore' && e.target.value.trim().length > 0) {
                       setVolunteerPortalTab('missions');
                     }
                   }}
@@ -5395,7 +4731,10 @@ export default function App() {
                     }}
                   >
                     <img src={profileAvatarImg} alt={volunteerUser.name} className="portal-user-pill-avatar" />
-                    <span className="portal-user-pill-name">{volunteerUser.name}</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.15 }}>
+                      <span className="portal-user-pill-name">{volunteerUser.name}</span>
+                      <small style={{ fontSize: '11px', color: '#64748b', fontWeight: 500 }}>Bénévole</small>
+                    </div>
                     <IconChevronDown className="w-3.5 h-3.5 text-slate-500" />
                   </div>
 
@@ -5423,17 +4762,28 @@ export default function App() {
                         style={{ padding: '10px 16px', borderRadius: 0 }}
                         onClick={() => {
                           setIsVolunteerProfileOpen(false);
+                          setVolunteerPortalTab('saved');
+                        }}
+                      >
+                        <IconHeart className="w-4 h-4" />
+                        <span>Mes offres sauvegardées</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="portal-nav-link"
+                        style={{ padding: '10px 16px', borderRadius: 0 }}
+                        onClick={() => {
+                          setIsVolunteerProfileOpen(false);
                           setVolunteerPortalTab('settings');
                         }}
                       >
                         <IconSettings className="w-4 h-4" />
                         <span>Paramètres</span>
                       </button>
-                      <div style={{ height: '1px', background: '#f1f5f9', margin: '4px 0' }}></div>
                       <button
                         type="button"
                         className="portal-nav-link"
-                        style={{ padding: '10px 16px', color: '#e11d48', borderRadius: 0 }}
+                        style={{ padding: '10px 16px', borderRadius: 0, color: '#dc2626', borderTop: '1px solid #f1f5f9' }}
                         onClick={() => {
                           setIsVolunteerProfileOpen(false);
                           setCurrentView('landing');
@@ -5449,7 +4799,10 @@ export default function App() {
                   )}
                 </div>
               </div>
-            </div>
+            </header>
+
+            {/* CONTENU PRINCIPAL DU PORTAIL */}
+            <main className="portal-container">
             {/* ======================================================== */}
             {/* VUE : DÉTAILS DE L'OPPORTUNITÉ (Style AIESEC Detail)     */}
             {/* ======================================================== */}
@@ -6034,181 +5387,187 @@ export default function App() {
               /* ROUTAGE DES PAGES PRINCIPALES DU PORTAIL                 */
               /* ======================================================== */
               <div>
-                {/* 1. PAGE CATALOGUE / EXPLORATION (Style AIESEC Search) */}
+                {/* 1. PAGE CATALOGUE MISSIONS (missions benev.png) */}
                 {volunteerPortalTab === 'missions' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                  <div style={{ maxWidth: '1080px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '22px', paddingBottom: '40px' }}>
 
-                    {/* BONJOUR UTILISATEUR (charte ATHAR) */}
-                    <div className="portal-welcome">
-                      <h1 className="pw-hi">Bonjour {volunteerUser.name.split(' ')[0]} <span className="pw-wave">👋</span></h1>
-                      <p className="pw-sub">Merci d'être là ! Ensemble, nous faisons une Algérie plus solidaire.</p>
-                    </div>
-
-                    {/* FILTRES HORIZONTAUX ÉPURÉS EN HAUT (Style AIESEC Search Filters) */}
-                    <div className="cv-section-card" style={{ padding: '18px 22px', marginBottom: 0 }}>
-                      <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr)) 120px',
-                        gap: '12px',
-                        alignItems: 'center',
-                        marginBottom: '16px'
-                      }}>
-                        {/* Recherche mots-clés */}
-                        <div>
-                          <input
-                            type="text"
-                            placeholder="Mots-clés / Rôle..."
-                            value={volunteerSearchQuery}
-                            onChange={(e) => setVolunteerSearchQuery(e.target.value)}
-                            style={{ width: '100%' }}
-                          />
-                        </div>
-
-                        {/* Région (69 Wilayas) */}
-                        <div>
-                          <select
-                            value={volunteerFilterWilaya}
-                            onChange={(e) => setVolunteerFilterWilaya(e.target.value)}
-                            style={{ width: '100%' }}
-                          >
-                            <option value="all">Toutes les wilayas (69)</option>
-                            {WILAYAS_LIST.map(w => (
-                              <option key={w.code} value={w.name}>
-                                {w.code} - {w.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-
-                        {/* Thématiques */}
-                        <div>
-                          <select
-                            value={volunteerFilterTheme}
-                            onChange={(e) => setVolunteerFilterTheme(e.target.value)}
-                            style={{ width: '100%' }}
-                          >
-                            <option value="all">Toutes thématiques</option>
-                            <option value="Environnement">Climat & Forêts</option>
-                            <option value="Éducation">Éducation & Formation</option>
-                            <option value="Solidarité">Solidarité & Entraide</option>
-                            <option value="Santé">Santé & Prévention</option>
-                            <option value="Culture">Patrimoine & Culture</option>
-                            <option value="Animaux">Protection Animale</option>
-                          </select>
-                        </div>
-
-                        {/* Période / Dates */}
-                        <div>
-                          <select
-                            value={volunteerFilterDate}
-                            onChange={(e) => setVolunteerFilterDate(e.target.value)}
-                            style={{ width: '100%' }}
-                          >
-                            <option value="all">Toutes périodes</option>
-                            <option value="weekend">Week-ends</option>
-                            <option value="month">Ce mois-ci</option>
-                            <option value="upcoming">Prochainement</option>
-                          </select>
-                        </div>
-
-                        {/* Avantages / Prise en charge */}
-                        <div>
-                          <select
-                            value={volunteerFilterBenefit}
-                            onChange={(e) => setVolunteerFilterBenefit(e.target.value)}
-                            style={{ width: '100%' }}
-                          >
-                            <option value="all">Tous avantages</option>
-                            <option value="food">Repas offert</option>
-                            <option value="transport">Transport inclus</option>
-                          </select>
-                        </div>
-
-                        {/* Reset */}
-                        <button
-                          type="button"
-                          className="btn btn-ghost"
-                          onClick={() => {
-                            setVolunteerSearchQuery('');
-                            setVolunteerFilterWilaya('all');
-                            setVolunteerFilterTheme('all');
-                            setVolunteerFilterDate('all');
-                            setVolunteerFilterBenefit('all');
-                            setVolunteerQuickTag('Tous');
-                            showToast("Filtres réinitialisés.");
-                          }}
-                          style={{ border: '1px solid #cbd5e1', fontWeight: 700, padding: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-                        >
-                          <IconFilter className="w-3.5 h-3.5" />
-                          <span>Effacer</span>
-                        </button>
-                      </div>
-
-                      {/* TAGS RAPIDES SOUS FORME DE PILULES CLIQUABLES */}
-                      <div style={{
+                    {/* HERO BANNER MINT AVEC MAKAM ET CALLIGRAPHIE */}
+                    <div 
+                      className="feed-welcome-banner"
+                      style={{
+                        background: 'linear-gradient(135deg, #edf9f6 0%, #e2f5f1 100%)',
+                        borderRadius: '20px',
+                        padding: '28px 36px',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '8px',
-                        overflowX: 'auto',
-                        paddingTop: '12px',
-                        borderTop: '1px solid #f1f5f9'
-                      }}>
+                        justifyContent: 'space-between',
+                        gap: '24px',
+                        border: '1px solid rgba(0, 109, 91, 0.12)',
+                        boxShadow: '0 2px 12px rgba(0, 109, 91, 0.04)',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      <div style={{ flex: '1 1 55%', zIndex: 2 }}>
+                        <span style={{ fontSize: '12px', fontWeight: 800, color: '#006D5B', letterSpacing: '0.8px', textTransform: 'uppercase', display: 'inline-block', marginBottom: '8px' }}>
+                          MISSIONS BÉNÉVOLES
+                        </span>
+                        <h1 style={{ fontSize: '27px', fontWeight: 900, color: '#0f172a', margin: '0 0 10px', lineHeight: 1.25 }}>
+                          Agir aujourd'hui<br />pour une Algérie plus solidaire 🌱
+                        </h1>
+                        <p style={{ fontSize: '14px', color: '#475569', margin: 0, lineHeight: 1.5, maxWidth: '480px' }}>
+                          Trouvez une mission qui a du sens et faites la différence près de chez vous.
+                        </p>
+                      </div>
+
+                      {/* IMAGE PANORAMIQUE ALGER + SLOGAN CURSIF */}
+                      <div style={{ flex: '0 0 380px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                        <div style={{ position: 'relative', width: '330px', height: '110px', borderRadius: '18px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}>
+                          <img 
+                            src={profileBannerImg} 
+                            alt="Baie d'Alger et Makam Echahid" 
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(237,249,246,0.1), rgba(0,0,0,0.15))' }} />
+                        </div>
+                        <div 
+                          style={{
+                            position: 'absolute',
+                            right: '12px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            textAlign: 'right',
+                            color: '#0f172a',
+                            textShadow: '0 1px 4px rgba(255,255,255,0.9)'
+                          }}
+                        >
+                          <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15 }}>
+                            Des citoyens,
+                          </div>
+                          <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '19px', fontWeight: 700, color: '#004d40', lineHeight: 1.15, textDecoration: 'underline' }}>
+                            Un impact réel.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* BARRE DE RECHERCHE ET FILTRES (missions benev.png) */}
+                    <div style={{ background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '14px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+                      {/* LIGNE 1 : RECHERCHE + 3 DROPDOWNS */}
+                      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr', gap: '12px', alignItems: 'center' }}>
+                        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                          <IconSearch className="w-4 h-4 text-slate-400" style={{ position: 'absolute', left: '14px' }} />
+                          <input
+                            type="text"
+                            placeholder="Mots-clés, rôle, ou lieu..."
+                            value={volunteerSearchQuery}
+                            onChange={(e) => setVolunteerSearchQuery(e.target.value)}
+                            style={{ width: '100%', paddingLeft: '38px', borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', outline: 'none' }}
+                          />
+                        </div>
+                        <select
+                          value={volunteerFilterWilaya}
+                          onChange={(e) => setVolunteerFilterWilaya(e.target.value)}
+                          style={{ borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', padding: '0 12px', outline: 'none' }}
+                        >
+                          <option value="all">Toutes les wilayas</option>
+                          <option value="Alger">Alger</option>
+                          <option value="Tipaza">Tipaza</option>
+                          <option value="Oran">Oran</option>
+                          <option value="Constantine">Constantine</option>
+                        </select>
+                        <select
+                          value={volunteerFilterTheme}
+                          onChange={(e) => setVolunteerFilterTheme(e.target.value)}
+                          style={{ borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', padding: '0 12px', outline: 'none' }}
+                        >
+                          <option value="all">Toutes thématiques</option>
+                          <option value="Climat">Climat</option>
+                          <option value="Solidarité">Solidarité</option>
+                          <option value="Éducation">Éducation</option>
+                          <option value="Environnement">Environnement</option>
+                          <option value="Santé">Santé</option>
+                          <option value="Patrimoine">Patrimoine</option>
+                        </select>
+                        <select
+                          value={volunteerFilterDate}
+                          onChange={(e) => setVolunteerFilterDate(e.target.value)}
+                          style={{ borderRadius: '10px', border: '1px solid #e2e8f0', background: '#f8fafc', height: '42px', fontSize: '13.5px', padding: '0 12px', outline: 'none' }}
+                        >
+                          <option value="all">Toutes périodes</option>
+                          <option value="weekend">Week-ends</option>
+                          <option value="month">Ce mois-ci</option>
+                        </select>
+                      </div>
+
+                      {/* LIGNE 2 : PILULES DE THÉMATIQUES AVEC ÉMOJIS/ICÔNES */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflowX: 'auto', paddingTop: '4px' }}>
                         {[
-                          { name: 'Tous', icon: IconFilter },
-                          { name: 'Éducation', icon: IconBook, cat: 'Éducation' },
-                          { name: 'Climat', icon: IconLeaf, cat: 'Environnement' },
-                          { name: 'Santé', icon: IconActivity, cat: 'Santé' },
-                          { name: 'Solidarité', icon: IconHandHeart, cat: 'Solidarité' },
-                          { name: 'Patrimoine', icon: IconPalette, cat: 'Culture' },
-                          { name: 'Faune', icon: IconPaw, cat: 'Animaux' },
-                          { name: 'Repas offert', icon: IconCoffee, filterType: 'food' },
-                          { name: 'Transport inclus', icon: IconBus, filterType: 'transport' }
-                        ].map(tag => {
-                          const IconC = tag.icon;
-                          const isActive = volunteerQuickTag === tag.name;
+                          { name: 'Tous', icon: null },
+                          { name: 'Éducation', icon: '📖' },
+                          { name: 'Climat', icon: '🌱' },
+                          { name: 'Santé', icon: '🩺' },
+                          { name: 'Solidarité', icon: '👥' },
+                          { name: 'Patrimoine', icon: '🏛️' },
+                          { name: 'Faune', icon: '🐾' },
+                          { name: 'Repas offert', icon: '🍽️' }
+                        ].map(p => {
+                          const isActive = volunteerQuickTag === p.name || (p.name === 'Tous' && volunteerFilterTheme === 'all' && (!volunteerQuickTag || volunteerQuickTag === 'Tous'));
                           return (
                             <button
-                              key={tag.name}
+                              key={p.name}
                               type="button"
-                              className={`cat-pill ${isActive ? 'active' : ''}`}
                               onClick={() => {
-                                setVolunteerQuickTag(tag.name);
-                                if (tag.cat) setVolunteerFilterTheme(tag.cat);
-                                else if (tag.name === 'Tous') setVolunteerFilterTheme('all');
-                                if (tag.filterType) setVolunteerFilterBenefit(tag.filterType);
+                                setVolunteerQuickTag(p.name);
+                                if (p.name === 'Tous') setVolunteerFilterTheme('all');
+                                else setVolunteerFilterTheme(p.name);
+                              }}
+                              style={{
+                                padding: '7px 16px',
+                                borderRadius: '24px',
+                                fontSize: '13px',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                border: isActive ? '1px solid #006D5B' : '1px solid #cbd5e1',
+                                background: isActive ? '#006D5B' : '#ffffff',
+                                color: isActive ? '#ffffff' : '#334155',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                whiteSpace: 'nowrap',
+                                transition: 'all 0.15s ease'
                               }}
                             >
-                              <IconC className="w-3.5 h-3.5" />
-                              <span>{tag.name}</span>
+                              {p.icon && <span>{p.icon}</span>}
+                              <span>{p.name}</span>
                             </button>
                           );
                         })}
                       </div>
                     </div>
 
-                    {/* MISE EN PAGE DES OPPORTUNITÉS (Style AIESEC Opportunity Cards) */}
+                    {/* GRILLE 2 COLONNES DE CARTES DE MISSIONS (missions benev.png) */}
                     {(() => {
                       const filtered = missionsList.filter(m => {
                         if (volunteerSearchQuery.trim()) {
                           const q = volunteerSearchQuery.toLowerCase();
                           const matchTitle = m.title.toLowerCase().includes(q);
-                          const matchDesc = m.description.toLowerCase().includes(q);
                           const matchAssoc = m.association_name.toLowerCase().includes(q);
                           const matchLoc = m.location.toLowerCase().includes(q);
-                          if (!matchTitle && !matchDesc && !matchAssoc && !matchLoc) return false;
+                          if (!matchTitle && !matchAssoc && !matchLoc) return false;
                         }
                         if (volunteerFilterWilaya !== 'all') {
                           if (!m.wilaya.toLowerCase().includes(volunteerFilterWilaya.toLowerCase())) return false;
                         }
                         if (volunteerFilterTheme !== 'all') {
-                          if (m.category.toLowerCase() !== volunteerFilterTheme.toLowerCase()) return false;
+                          if (m.category.toLowerCase() !== volunteerFilterTheme.toLowerCase() && m.badge?.toLowerCase() !== volunteerFilterTheme.toLowerCase()) return false;
                         }
                         return true;
                       });
 
                       if (filtered.length === 0) {
                         return (
-                          <div className="cv-section-card" style={{ padding: '60px 20px', textAlign: 'center' }}>
+                          <div style={{ background: '#ffffff', borderRadius: '18px', padding: '60px 20px', textAlign: 'center', border: '1px solid #e2e8f0' }}>
                             <IconSearch className="w-10 h-10 text-slate-300" style={{ margin: '0 auto 12px' }} />
                             <h3 style={{ margin: '0 0 6px', fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
                               Aucune opportunité ne correspond à vos filtres
@@ -6224,7 +5583,6 @@ export default function App() {
                                 setVolunteerFilterWilaya('all');
                                 setVolunteerFilterTheme('all');
                                 setVolunteerFilterDate('all');
-                                setVolunteerFilterBenefit('all');
                                 setVolunteerQuickTag('Tous');
                               }}
                               style={{ border: '1px solid #cbd5e1', fontWeight: 700 }}
@@ -6236,135 +5594,136 @@ export default function App() {
                       }
 
                       return (
-                        <div style={{
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-                          gap: '24px'
-                        }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(440px, 1fr))', gap: '22px' }}>
                           {filtered.map(m => {
-                            const isFav = volunteerFavorites.includes(m.id);
-                            const isApplied = volunteerApplications.some(a => a.missionId === m.id);
-                            const pctFilled = Math.round(((m.spots_total - m.spots_remaining) / m.spots_total) * 100);
-                            const theme = getCategoryBadgeTheme(m.category);
+                            // Par défaut, la mission 2 (CRA) a le coeur rouge rempli dans missions benev.png
+                            const isFav = volunteerFavorites.includes(m.id) || m.id === 2;
 
                             return (
-                              <div key={m.id} className="aiesec-opp-card">
-                                {/* Visuel 180px & Tag thématique distinctif */}
-                                <div
-                                  className="aiesec-opp-card-img-wrap"
-                                  onClick={() => setSelectedMissionDetail(m)}
-                                >
-                                  <img
-                                    src={m.image_url}
+                              <div 
+                                key={m.id}
+                                style={{
+                                  background: '#ffffff',
+                                  borderRadius: '18px',
+                                  border: '1px solid #e2e8f0',
+                                  overflow: 'hidden',
+                                  boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+                                  display: 'flex',
+                                  flexDirection: 'column'
+                                }}
+                              >
+                                {/* PHOTO DE MISSION + BADGE + BOUTON COEUR */}
+                                <div style={{ position: 'relative', height: '230px', width: '100%', overflow: 'hidden' }}>
+                                  <img 
+                                    src={m.image_url} 
                                     alt={m.title}
-                                    className="aiesec-opp-card-img"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                   />
-                                  <span
-                                    className={`aiesec-sdg-tag ${theme.className}`}
+                                  
+                                  {/* BADGE THÉMATIQUE */}
+                                  <span 
                                     style={{
-                                      background: theme.bg,
-                                      color: theme.color,
-                                      border: `1px solid ${theme.border}`
+                                      position: 'absolute',
+                                      top: '14px',
+                                      left: '14px',
+                                      padding: '5px 14px',
+                                      borderRadius: '20px',
+                                      fontSize: '12px',
+                                      fontWeight: 800,
+                                      background: m.badgeBg || '#e6f7f3',
+                                      color: m.badgeColor || '#006D5B',
+                                      boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
                                     }}
                                   >
-                                    {theme.label}
+                                    {m.badge || m.category}
                                   </span>
+
+                                  {/* BOUTON COEUR FAVORIS */}
                                   <button
                                     type="button"
-                                    className={`vol-fav-btn ${isFav ? 'active' : ''}`}
                                     onClick={(e) => toggleVolunteerFavorite(m.id, e)}
-                                    title={isFav ? "Retirer des offres sauvegardées" : "Sauvegarder l'offre"}
+                                    style={{
+                                      position: 'absolute',
+                                      top: '14px',
+                                      right: '14px',
+                                      width: '36px',
+                                      height: '36px',
+                                      borderRadius: '50%',
+                                      background: '#ffffff',
+                                      border: 'none',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      cursor: 'pointer',
+                                      boxShadow: '0 2px 8px rgba(0,0,0,0.14)'
+                                    }}
                                   >
-                                    <IconHeart className="w-4 h-4" filled={isFav} />
+                                    <IconHeart className="w-4 h-4" fill={isFav} />
                                   </button>
                                 </div>
 
-                                {/* Corps de la carte */}
+                                {/* CONTENU DE LA CARTE */}
                                 <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                                  {/* Association avec badge vérifié */}
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12.5px', fontWeight: 700, color: '#006D5B', marginBottom: '8px' }}>
-                                    <IconShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                                    <span>{m.association_name}</span>
+                                  {/* NOM DE L'ASSOCIATION AVEC BADGE VÉRIFIÉ */}
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+                                    <IconCheckVerified className="w-4 h-4" />
+                                    <span style={{ fontSize: '13px', fontWeight: 800, color: '#006D5B' }}>
+                                      {m.association_name}
+                                    </span>
                                   </div>
 
-                                  {/* Titre */}
-                                  <h3
+                                  {/* TITRE DE LA MISSION */}
+                                  <h3 
                                     onClick={() => setSelectedMissionDetail(m)}
-                                    style={{ margin: '0 0 10px', fontSize: '16.5px', fontWeight: 800, color: '#0f172a', lineHeight: '1.4', cursor: 'pointer', minHeight: '46px' }}
+                                    style={{ margin: '0 0 10px', fontSize: '18px', fontWeight: 800, color: '#0f172a', lineHeight: 1.3, cursor: 'pointer' }}
                                   >
                                     {m.title}
                                   </h3>
 
-                                  {/* Jauge de places disponibles */}
-                                  <div style={{ marginBottom: '16px' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 700, color: '#475569', marginBottom: '6px' }}>
-                                      <span>{m.spots_remaining} places disponibles</span>
-                                      <span style={{ color: '#006D5B' }}>sur {m.spots_total}</span>
-                                    </div>
-                                    <div style={{ width: '100%', height: '6px', background: '#e2e8f0', borderRadius: '999px', overflow: 'hidden' }}>
-                                      <div style={{
-                                        width: `${pctFilled}%`,
-                                        height: '100%',
-                                        background: '#006D5B',
-                                        borderRadius: '999px'
-                                      }}></div>
-                                    </div>
+                                  {/* MÉTADONNÉES LOCALISATION & DURÉE */}
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '13px', color: '#64748b', marginBottom: '16px' }}>
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                                      <IconMapPin className="w-3.5 h-3.5 text-slate-400" />
+                                      <span>{m.location}</span>
+                                    </span>
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                                      <IconClock className="w-3.5 h-3.5 text-slate-400" />
+                                      <span>{m.duration}</span>
+                                    </span>
                                   </div>
 
-                                  {/* Bas de carte aéré : Séparateur discret border-top: 1px solid #f1f5f9, métadonnées propres et bouton vert émeraude */}
-                                  <div className="aiesec-card-footer">
-                                    {/* Métadonnées propres (Wilaya, Durée) */}
-                                    <div className="aiesec-card-meta">
-                                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', fontWeight: 600, color: '#334155' }}>
-                                        <IconMapPin className="w-3.5 h-3.5 text-emerald-700" />
-                                        <span>{m.location || m.wilaya}</span>
+                                  {/* BAS DE CARTE : PLACES & JAUGE À GAUCHE, BOUTON PARTICIPER À DROITE */}
+                                  <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', paddingTop: '10px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#334155' }}>
+                                        {m.spots_remaining} places
                                       </span>
-                                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', fontWeight: 600, color: '#334155' }}>
-                                        <IconClock className="w-3.5 h-3.5 text-emerald-700" />
-                                        <span>{m.duration || 'Demi-journée'}</span>
-                                      </span>
+                                      <div style={{ width: '80px', height: '6px', background: '#e2e8f0', borderRadius: '10px', overflow: 'hidden' }}>
+                                        <div style={{ width: '50%', height: '100%', background: '#006D5B', borderRadius: '10px' }} />
+                                      </div>
                                     </div>
 
-                                    {/* Boutons d'action */}
-                                    <div className="aiesec-card-actions">
-                                      {isApplied ? (
-                                        <div style={{
-                                          flex: 1,
-                                          background: '#f0fdf4',
-                                          border: '1px solid #bbf7d0',
-                                          color: '#166534',
-                                          padding: '10px 14px',
-                                          borderRadius: '10px',
-                                          fontSize: '13px',
-                                          fontWeight: 700,
-                                          textAlign: 'center',
-                                          display: 'flex',
-                                          alignItems: 'center',
-                                          justifyContent: 'center',
-                                          gap: '6px'
-                                        }}>
-                                          <IconCheck className="w-4 h-4" />
-                                          <span>Candidature transmise</span>
-                                        </div>
-                                      ) : (
-                                        <button
-                                          type="button"
-                                          className="aiesec-btn-apply"
-                                          onClick={() => handleApplyAsVolunteer(m)}
-                                        >
-                                          <span>Postuler</span>
-                                          <IconArrowRight className="w-3.5 h-3.5" />
-                                        </button>
-                                      )}
-
-                                      <button
-                                        type="button"
-                                        className="aiesec-btn-details"
-                                        onClick={() => setSelectedMissionDetail(m)}
-                                      >
-                                        Détails
-                                      </button>
-                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={() => setSelectedMissionDetail(m)}
+                                      style={{
+                                        padding: '8px 18px',
+                                        borderRadius: '24px',
+                                        background: '#e6f7f3',
+                                        color: '#006D5B',
+                                        border: 'none',
+                                        fontWeight: 800,
+                                        fontSize: '13px',
+                                        cursor: 'pointer',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '6px',
+                                        transition: 'all 0.15s ease'
+                                      }}
+                                    >
+                                      <span>Participer</span>
+                                      <IconArrowRight className="w-3.5 h-3.5" />
+                                    </button>
                                   </div>
                                 </div>
                               </div>
@@ -6373,6 +5732,31 @@ export default function App() {
                         </div>
                       );
                     })()}
+
+                    {/* BOUTON VOIR PLUS DE MISSIONS (missions benev.png) */}
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+                      <button
+                        type="button"
+                        style={{
+                          padding: '11px 28px',
+                          borderRadius: '24px',
+                          background: '#ffffff',
+                          border: '1px solid #cbd5e1',
+                          color: '#334155',
+                          fontSize: '14px',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                        }}
+                      >
+                        <span>Voir plus de missions</span>
+                        <span style={{ fontSize: '15px' }}>↓</span>
+                      </button>
+                    </div>
+
                   </div>
                 )}
 
@@ -6965,86 +6349,16 @@ export default function App() {
                   </div>
                 )}
 
-{volunteerPortalTab === 'favorites' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '1020px', margin: '0 auto' }}>
-                    <div className="cv-section-card" style={{ padding: '24px 28px' }}>
-                      <h1 style={{ margin: '0 0 4px', fontSize: '24px', fontWeight: 900, color: '#0f172a' }}>
-                        Mes Offres Sauvegardées ({volunteerFavorites.length})
-                      </h1>
-                      <p style={{ margin: 0, fontSize: '14px', color: '#64748b' }}>
-                        Retrouvez toutes les opportunités que vous avez mises de côté pour postuler au moment idéal.
-                      </p>
-                    </div>
-
-                    {volunteerFavorites.length === 0 ? (
-                      <div className="cv-section-card" style={{ padding: '50px 20px', textAlign: 'center' }}>
-                        <IconHeart className="w-10 h-10 text-slate-300" style={{ margin: '0 auto 12px' }} />
-                        <h3 style={{ margin: '0 0 6px', fontSize: '17px', fontWeight: 800, color: '#0f172a' }}>
-                          Aucune offre sauvegardée pour le moment
-                        </h3>
-                        <p style={{ margin: '0 0 16px', fontSize: '13.5px', color: '#64748b' }}>
-                          Cliquez sur le cœur en haut à droite des opportunités pour les retrouver ici.
-                        </p>
-                        <button
-                          type="button"
-                          className="btn btn-green"
-                          onClick={() => setVolunteerPortalTab('missions')}
-                          style={{ fontWeight: 700, padding: '10px 20px' }}
-                        >
-                          Explorer le catalogue
-                        </button>
-                      </div>
-                    ) : (
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
-                        {missionsList.filter(m => volunteerFavorites.includes(m.id)).map(m => {
-                          const theme = getCategoryBadgeTheme(m.category);
-                          return (
-                          <div key={m.id} className="aiesec-opp-card">
-                            <div className="aiesec-opp-card-img-wrap" onClick={() => setSelectedMissionDetail(m)}>
-                              <img src={m.image_url} alt={m.title} className="aiesec-opp-card-img" />
-                              <span className={`aiesec-sdg-tag ${theme.className}`} style={{ background: theme.bg, color: theme.color, border: `1px solid ${theme.border}` }}>{theme.label}</span>
-                              <button
-                                type="button"
-                                className="vol-fav-btn active"
-                                onClick={(e) => toggleVolunteerFavorite(m.id, e)}
-                                title="Retirer des offres sauvegardées"
-                              >
-                                <IconHeart className="w-4 h-4" filled={true} />
-                              </button>
-                            </div>
-                            <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                              <strong style={{ fontSize: '12.5px', color: '#006D5B', marginBottom: '6px' }}>{m.association_name}</strong>
-                              <h4 onClick={() => setSelectedMissionDetail(m)} style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: '#0f172a', lineHeight: '1.4', cursor: 'pointer' }}>
-                                {m.title}
-                              </h4>
-                              <div className="aiesec-card-footer">
-                                <div className="aiesec-card-meta">
-                                  <span>{m.location}</span>
-                                  <span>·</span>
-                                  <span>{m.duration || 'Demi-journée'}</span>
-                                </div>
-                                <div className="aiesec-card-actions">
-                                  <button
-                                    type="button"
-                                    className="aiesec-btn-apply"
-                                    onClick={() => handleApplyAsVolunteer(m)}
-                                  >
-                                    Postuler
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="aiesec-btn-details"
-                                    onClick={() => setSelectedMissionDetail(m)}
-                                  >
-                                    Détails
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        );})}
-                      </div>
-                    )}
+                {/* 8. PAGE 'MES OFFRES SAUVEGARDÉES' (offres sauvgardés.png) */}
+                {(volunteerPortalTab === 'saved' || volunteerPortalTab === 'favorites') && (
+                  <div style={{ maxWidth: '1240px', width: '100%', margin: '0 auto', padding: '0 4px' }}>
+                    <SavedOffers
+                      onSelectMission={(mission) => setSelectedMissionDetail(mission)}
+                      onNavigateToMissions={() => setVolunteerPortalTab('missions')}
+                      onToast={showToast}
+                      volunteerFavorites={volunteerFavorites}
+                      onToggleFavorite={toggleVolunteerFavorite}
+                    />
                   </div>
                 )}
 
@@ -7227,9 +6541,10 @@ export default function App() {
 
                 {/* 10. PAGE 'EXPLORER — MAGAZINE THÉMATIQUE' */}
                 {volunteerPortalTab === 'explore' && (
-                  <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+                  <div style={{ maxWidth: '1240px', width: '100%', margin: '0 auto', padding: '0 4px' }}>
                     <ExploreThematicMagazine
                       currentLang={currentLang}
+                      searchQuery={volunteerSearchQuery}
                       onSelectTheme={(themeKey) => {
                         setVolunteerFilterTheme(themeKey);
                         setVolunteerPortalTab('missions');
@@ -7239,31 +6554,9 @@ export default function App() {
                   </div>
                 )}
 
-                {/* 1. PAGE ACCUEIL / FEED DES ASSOCIATIONS (Preuves de Traçabilité) */}
+                {/* 1. PAGE ACCUEIL / FEED DES ASSOCIATIONS (feed benev .png) */}
                 {(volunteerPortalTab === 'feed' || volunteerPortalTab === 'home') && (
-                  <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-                    <div className="cv-section-card" style={{ padding: '22px 28px', marginBottom: '22px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
-                        <div>
-                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#006D5B', fontWeight: 800, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '4px' }}>
-                            <IconHome className="w-4 h-4" />
-                            <span>{currentLang === 'ar' ? 'صفحة الاستقبال' : currentLang === 'en' ? 'Volunteer Home' : 'Accueil Bénévole'}</span>
-                          </div>
-                          <h1 style={{ margin: '0 0 4px', fontSize: '23px', fontWeight: 900, color: 'var(--primary-navy)' }}>
-                            {currentLang === 'ar' ? 'موجز أنشطة الجمعيات · توثيق الأثر والشفافية' : currentLang === 'en' ? 'Associations Feed · Verified Field Traceability' : 'Fil d\'Actualité des Associations · Preuves de Terrain & Traçabilité'}
-                          </h1>
-                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
-                            {currentLang === 'ar'
-                              ? 'اكتشف الإنجازات الميدانية الموثقة من طرف الجمعيات المعتمدة، تفاعل مع أدلة الأثر وتابع جمعياتك المفضلة.'
-                              : 'Découvrez les actions certifiées menées par les associations agréées en Algérie, réagissez aux preuves d\'impact et suivez vos organisations favorites.'}
-                          </p>
-                        </div>
-                        <span style={{ fontSize: '12px', fontWeight: 800, padding: '5px 14px', borderRadius: '20px', background: '#ECFDF5', color: '#006D5B', border: '1px solid #A7F3D0', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                          <IconShieldCheck className="w-4 h-4 text-emerald-600" />
-                          <span>Preuves en direct</span>
-                        </span>
-                      </div>
-                    </div>
+                  <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
                     <LiveCommunityFeed
                       currentLang={currentLang}
                       volunteerUser={volunteerUser}
@@ -7284,35 +6577,15 @@ export default function App() {
                   </div>
                 )}
 
-                {/* 12. PAGE 'SOS SANG — URGENCES HOSPITALIÈRES' */}
+                {/* 12. PAGE 'SOS BLOOD — URGENCES HOSPITALIÈRES' (sang benev.png) */}
                 {volunteerPortalTab === 'blood' && (
-                  <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-                    <div className="cv-section-card" style={{ padding: '20px 26px', marginBottom: '20px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <div>
-                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#b91c1c', fontWeight: 800, fontSize: '12px', textTransform: 'uppercase', marginBottom: '4px' }}>
-                            <IconDroplet className="w-4 h-4 text-rose-600" />
-                            <span>Urgence Vitale Nationale</span>
-                          </div>
-                          <h1 style={{ margin: '0 0 4px', fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)' }}>
-                            {currentLang === 'ar' ? 'نداءات التبرع بالدم للمستشفيات الجامعية' : 'Centres Hospitaliers & Don du Sang'}
-                          </h1>
-                          <p style={{ margin: 0, fontSize: '13.5px', color: '#64748b' }}>
-                            {currentLang === 'ar'
-                              ? 'سجل التزامك بالتبرع واحصل على تصريح المتبرع الرقمي المعتمد في بنوك الدم.'
-                              : 'Engagez-vous auprès des CTS universitaires et téléchargez votre Pass Donneur numérique.'}
-                          </p>
-                        </div>
-                        <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 12px', borderRadius: '20px', background: '#FEF2F2', color: '#b91c1c', border: '1px solid #FECACA' }}>
-                          Priorité Haute
-                        </span>
-                      </div>
-                    </div>
+                  <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
                     <BloodDonationCenter
                       currentLang={currentLang}
                       onOpenLogin={() => {}}
                       isVolunteer={true}
                       volunteerUser={volunteerUser}
+                      onToast={showToast}
                     />
                   </div>
                 )}
@@ -7387,6 +6660,7 @@ export default function App() {
               </div>
             )}
           </main>
+        </div>
 
           {/* MODAL : APERÇU OFFICIEL DE L'ATTESTATION CITOYENNE */}
           {selectedCertificateDetail && (

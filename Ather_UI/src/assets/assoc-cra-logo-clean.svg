@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <!-- Definitions for text paths -->
+  <defs>
+    <!-- Top arc for Arabic text -->
+    <path id="arcArabic" d="M 45 150 A 105 105 0 0 1 255 150" fill="none" />
+    <!-- Bottom arc for French text -->
+    <path id="arcFrench" d="M 42 155 A 108 108 0 0 0 258 155" fill="none" />
+  </defs>
+
+  <!-- Clean white background disc -->
+  <circle cx="150" cy="150" r="145" fill="#ffffff" />
+
+  <!-- Outer red rings -->
+  <circle cx="150" cy="150" r="142" fill="none" stroke="#E11D48" stroke-width="4.5" />
+  <circle cx="150" cy="150" r="134" fill="none" stroke="#E11D48" stroke-width="2" />
+
+  <!-- Inner circle framing crescent -->
+  <circle cx="150" cy="150" r="82" fill="none" stroke="#E11D48" stroke-width="1.5" stroke-dasharray="none" />
+
+  <!-- Arabic Top Text -->
+  <text fill="#E11D48" font-size="21" font-weight="900" font-family="'Cairo', 'Amiri', 'Segoe UI', Tahoma, sans-serif">
+    <textPath href="#arcArabic" startOffset="50%" text-anchor="middle">
+      الهلال الأحمر الجزائري
+    </textPath>
+  </text>
+
+  <!-- Central Red Crescent (Smooth Bezier) -->
+  <path
+    d="M 148 78
+       A 72 72 0 1 0 215 186
+       A 60 60 0 1 1 148 78 Z"
+    fill="#E11D48"
+  />
+
+  <!-- French Bottom Text -->
+  <text fill="#E11D48" font-size="16.5" font-weight="800" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" letter-spacing="1">
+    <textPath href="#arcFrench" startOffset="50%" text-anchor="middle">
+      Croissant Rouge Algérien
+    </textPath>
+  </text>
+</svg>

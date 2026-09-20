@@ -1,0 +1,380 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : OVERVIEW, BESOINS, BÉNÉVOLES & PARAMÈTRES
+   Stylisation exhaustive des vues Dashboard pour éliminer tout encombrement.
+   ========================================================================== */
+
+@import './variables.css';
+
+/* --------------------------------------------------------------------------
+   1. TABLEAU DE BORD (OVERVIEW) : CARTES MÉTRIQUES & ACTIONS RAPIDES
+   -------------------------------------------------------------------------- */
+.portal-welcome {
+  margin-bottom: 26px;
+}
+
+.pw-hi {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pw-verif {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--assoc-emerald);
+  background-color: var(--assoc-emerald-tint);
+  border: 1px solid var(--assoc-emerald-border);
+  padding: 4px 10px;
+  border-radius: var(--assoc-radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pw-sub {
+  font-size: 13.5px;
+  color: var(--assoc-text-muted);
+  margin: 0;
+}
+
+/* Grille des 4 métriques clés */
+.saas-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+@media (max-width: 1024px) {
+  .saas-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .saas-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.saas-metric-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--assoc-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  transition: all 0.15s ease;
+}
+
+.saas-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: var(--assoc-shadow-sm);
+}
+
+.saas-metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.saas-metric-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--assoc-text-muted);
+}
+
+.saas-metric-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--assoc-radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.saas-metric-badge.green {
+  background-color: var(--assoc-emerald-tint);
+  color: var(--assoc-emerald);
+}
+
+.saas-metric-badge.amber {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+}
+
+.saas-metric-badge.blue {
+  background-color: var(--assoc-blue-light);
+  color: var(--assoc-blue);
+}
+
+.saas-metric-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+/* Raccourcis d'actions rapides */
+.saas-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.saas-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--assoc-radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.saas-quick-btn.primary {
+  background-color: var(--assoc-emerald);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 109, 91, 0.25);
+}
+
+.saas-quick-btn.primary:hover {
+  background-color: var(--assoc-emerald-hover);
+  transform: translateY(-1px);
+}
+
+.saas-quick-btn.outline {
+  background-color: #ffffff;
+  border: 1px solid var(--assoc-border);
+  color: var(--assoc-text-body);
+}
+
+.saas-quick-btn.outline:hover {
+  background-color: var(--assoc-bg-subtle);
+  border-color: #cbd5e1;
+  color: var(--assoc-emerald);
+}
+
+/* Cartes standard SaaS aérées (Padding 24px) */
+.saas-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 24px 28px;
+  box-shadow: var(--assoc-shadow-xs);
+  margin-bottom: 24px;
+}
+
+.saas-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.saas-card-header h2,
+.saas-card-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0;
+}
+
+.saas-card-header p,
+.saas-card-header small {
+  font-size: 13px;
+  color: var(--assoc-text-muted);
+  display: block;
+  margin-top: 4px;
+}
+
+/* Jauge de remplissage */
+.saas-gauge-wrap {
+  margin-top: 10px;
+}
+
+.saas-gauge-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--assoc-text-muted);
+  margin-bottom: 5px;
+}
+
+.saas-gauge-track {
+  width: 100%;
+  height: 7px;
+  background-color: var(--assoc-bg-subtle);
+  border-radius: var(--assoc-radius-full);
+  overflow: hidden;
+}
+
+.saas-gauge-fill {
+  height: 100%;
+  border-radius: var(--assoc-radius-full);
+  background-color: var(--assoc-emerald);
+  transition: width 0.3s ease;
+}
+
+.saas-gauge-fill.full {
+  background-color: #64748b;
+}
+
+/* Badges génériques */
+.saas-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--assoc-radius-full);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.saas-badge.active {
+  background-color: var(--assoc-emerald-tint);
+  color: var(--assoc-emerald);
+}
+
+.saas-badge.complete {
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-text-muted);
+}
+
+.saas-badge.accepted {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+
+.saas-badge.rejected {
+  background-color: #fff1f2;
+  color: #9f1239;
+}
+
+.saas-badge.en_attente,
+.saas-badge.pending {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+}
+
+/* --------------------------------------------------------------------------
+   2. FORMULAIRE PUBLIER UNE NOUVELLE MISSION (5 ÉTAPES)
+   -------------------------------------------------------------------------- */
+.saas-publish-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .saas-publish-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.publish-step-card {
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-xl);
+  padding: 24px 28px;
+  box-shadow: var(--assoc-shadow-xs);
+  margin-bottom: 20px;
+}
+
+.publish-step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+}
+
+.publish-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.publish-step-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--assoc-navy);
+  margin: 0;
+}
+
+.publish-live-preview-wrap {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.publish-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--assoc-emerald);
+  background-color: var(--assoc-emerald-tint);
+  border: 1px solid var(--assoc-emerald-border);
+  padding: 6px 12px;
+  border-radius: var(--assoc-radius-full);
+  align-self: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   3. BESOINS MATÉRIELS & COLLECTES DE DONS
+   -------------------------------------------------------------------------- */
+.saas-skill-pill {
+  background-color: var(--assoc-bg-subtle);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-full);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--assoc-text-body);
+}
+
+/* --------------------------------------------------------------------------
+   4. ANNIVERSAIRE & ANNUAIRE DES BÉNÉVOLES
+   -------------------------------------------------------------------------- */
+.saas-drawer-avatar {
+  border-radius: 50%;
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}

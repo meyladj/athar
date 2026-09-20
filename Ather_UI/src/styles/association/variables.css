@@ -1,0 +1,62 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : DESIGN TOKENS & VARIABLES
+   Charte graphique officielle : Vert Émeraude Algérien, Marine & Ambre
+   ========================================================================== */
+
+:root {
+  /* Couleurs Principales Espace Association */
+  --assoc-emerald: #006D5B;          /* Vert émeraude Athar signature */
+  --assoc-emerald-hover: #005547;    /* Vert foncé interaction */
+  --assoc-emerald-dark: #003d33;     /* Teinte profonde */
+  --assoc-emerald-light: #e6f4f1;    /* Fond vert très doux */
+  --assoc-emerald-tint: #f0fdf4;     /* Badge & surbrillance */
+  --assoc-emerald-border: #b2dfdb;   /* Bordure émeraude douce */
+
+  /* Couleurs d'accentuation */
+  --assoc-navy: #0f284e;             /* Bleu nuit institutionnel pour les titres */
+  --assoc-navy-light: #1e3a8a;       /* Accentuation calligraphie */
+  --assoc-amber: #d97706;            /* Ambre attention / en cours */
+  --assoc-amber-light: #fef3c7;      /* Badge ambre doux */
+  --assoc-amber-border: #fde68a;
+  --assoc-rose: #e11d48;             /* Rouge urgence / refus */
+  --assoc-rose-light: #ffe4e6;       /* Badge rose doux */
+  --assoc-rose-border: #fecdd3;
+  --assoc-blue: #2563eb;             /* Bleu information / éducation */
+  --assoc-blue-light: #eff6ff;       /* Badge bleu doux */
+  --assoc-blue-border: #bfdbfe;
+
+  /* Teintes Neutres & Textes */
+  --assoc-bg-page: #f8fafc;          /* Fond général aéré (Slate 50) */
+  --assoc-bg-card: #ffffff;          /* Fond des cartes et conteneurs */
+  --assoc-bg-subtle: #f1f5f9;        /* Fond des blocs intérieurs (Slate 100) */
+  --assoc-bg-hover: #f8fafc;         /* Hover doux */
+  --assoc-text-primary: #0f172a;     /* Titres et textes prioritaires (Slate 900) */
+  --assoc-text-body: #334155;        /* Texte courant lisible (Slate 700) */
+  --assoc-text-muted: #64748b;       /* Métadonnées et labels secondaires (Slate 500) */
+  --assoc-text-faint: #94a3b8;       /* Placeholders et séparateurs (Slate 400) */
+  --assoc-border: #e2e8f0;           /* Bordure standard nette (Slate 200) */
+  --assoc-border-subtle: #f1f5f9;    /* Bordure intérieure légère (Slate 100) */
+
+  /* Typographie */
+  --assoc-font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --assoc-font-handwriting: 'Caveat', cursive, sans-serif;
+
+  /* Rayons de courbure (Border Radius) */
+  --assoc-radius-xs: 6px;
+  --assoc-radius-sm: 10px;
+  --assoc-radius-md: 14px;
+  --assoc-radius-lg: 18px;
+  --assoc-radius-xl: 24px;
+  --assoc-radius-full: 9999px;
+
+  /* Ombres portées (Shadows) */
+  --assoc-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --assoc-shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.05), 0 1px 3px -1px rgba(15, 23, 42, 0.03);
+  --assoc-shadow-md: 0 6px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --assoc-shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+
+  /* Espacements normalisés (Spacings) */
+  --assoc-card-padding: 24px;
+  --assoc-card-padding-lg: 32px;
+  --assoc-card-gap: 24px;
+}

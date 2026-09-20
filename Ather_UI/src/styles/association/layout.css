@@ -1,0 +1,481 @@
+/* ==========================================================================
+   ATHAR PLATFORM — ESPACE ASSOCIATION : LAYOUT, SIDEBAR & TOPBAR
+   Garantit un conteneur aéré, aucun chevauchement, une navigation limpide.
+   ========================================================================== */
+
+@import './variables.css';
+
+/* Conteneur racine du SaaS */
+.saas-dashboard-root {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--assoc-bg-page);
+  color: var(--assoc-text-primary);
+  font-family: var(--assoc-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   1. SIDEBAR FIXE À GAUCHE
+   -------------------------------------------------------------------------- */
+.saas-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background-color: var(--assoc-bg-card);
+  border-right: 1px solid var(--assoc-border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 1px 0 3px rgba(15, 23, 42, 0.02);
+}
+
+[dir="rtl"] .saas-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--assoc-border);
+}
+
+.saas-sidebar-logo-wrap {
+  width: 100%;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.saas-sidebar-logo {
+  max-height: 48px;
+  max-width: 140px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.saas-sidebar-logo:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+/* Navigation verticale */
+.saas-sidebar-nav {
+  flex: 1;
+  padding: 18px 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.saas-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-radius: var(--assoc-radius-sm);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--assoc-text-muted);
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  position: relative;
+  font-family: inherit;
+  user-select: none;
+}
+
+[dir="rtl"] .saas-nav-item {
+  text-align: right;
+}
+
+.saas-nav-item:hover {
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-emerald);
+}
+
+.saas-nav-item.active {
+  background-color: var(--assoc-emerald-tint);
+  color: var(--assoc-emerald);
+  font-weight: 700;
+}
+
+.saas-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3.5px;
+  background-color: var(--assoc-emerald);
+  border-radius: 0 4px 4px 0;
+}
+
+[dir="rtl"] .saas-nav-item.active::before {
+  left: auto;
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.saas-nav-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--assoc-radius-full);
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-text-muted);
+}
+
+[dir="rtl"] .saas-nav-badge {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.saas-nav-badge.alert {
+  background-color: var(--assoc-amber-light);
+  color: var(--assoc-amber);
+}
+
+/* Bas de sidebar */
+.saas-sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid var(--assoc-border-subtle);
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. TOPBAR MODERNE & HORIZONTALE
+   -------------------------------------------------------------------------- */
+.saas-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--assoc-bg-page);
+}
+
+.saas-topbar {
+  height: 70px;
+  background-color: var(--assoc-bg-card);
+  border-bottom: 1px solid var(--assoc-border);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02);
+}
+
+/* Barre de recherche globale */
+.saas-global-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--assoc-bg-subtle);
+  border: 1px solid transparent;
+  border-radius: var(--assoc-radius-md);
+  padding: 0 14px;
+  width: 100%;
+  max-width: 440px;
+  height: 42px;
+  transition: all 0.2s ease;
+}
+
+.saas-global-search:focus-within {
+  background-color: #ffffff;
+  border-color: var(--assoc-emerald-border);
+  box-shadow: 0 0 0 3px rgba(0, 109, 91, 0.08);
+}
+
+.saas-global-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  font-size: 13.5px;
+  color: var(--assoc-text-primary);
+  margin-left: 10px;
+  outline: none;
+  font-family: inherit;
+}
+
+.saas-global-search input::placeholder {
+  color: var(--assoc-text-faint);
+}
+
+.saas-search-clear {
+  border: none;
+  background: none;
+  color: var(--assoc-text-faint);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.saas-search-clear:hover {
+  color: var(--assoc-text-primary);
+  background-color: #e2e8f0;
+}
+
+/* Actions à droite */
+.saas-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+/* Bouton Cloche de notifications */
+.saas-notif-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--assoc-radius-md);
+  border: 1px solid var(--assoc-border);
+  background-color: var(--assoc-bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--assoc-text-muted);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.saas-notif-btn:hover {
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-emerald);
+  border-color: var(--assoc-emerald-border);
+}
+
+.saas-notif-badge {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--assoc-rose);
+  border: 2px solid #ffffff;
+}
+
+/* Dropdown des notifications */
+.saas-notif-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 340px;
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-lg);
+  box-shadow: var(--assoc-shadow-lg);
+  overflow: hidden;
+  z-index: 50;
+  animation: assocFadeSlide 0.15s ease-out;
+}
+
+.saas-notif-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+}
+
+.saas-notif-item {
+  padding: 12px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.saas-notif-item:hover {
+  background-color: var(--assoc-bg-subtle);
+}
+
+.saas-notif-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--assoc-emerald-light);
+  color: var(--assoc-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Profil Utilisateur / Association Pill */
+.saas-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px 5px 6px;
+  border-radius: var(--assoc-radius-full);
+  border: 1px solid var(--assoc-border);
+  background-color: var(--assoc-bg-card);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.saas-user-pill:hover {
+  background-color: var(--assoc-bg-subtle);
+  border-color: #cbd5e1;
+}
+
+.saas-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--assoc-bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--assoc-text-primary);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.saas-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.saas-user-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--assoc-text-primary);
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.saas-user-wilaya {
+  font-size: 11px;
+  color: var(--assoc-text-muted);
+}
+
+/* Dropdown Profil */
+.saas-profile-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background-color: var(--assoc-bg-card);
+  border: 1px solid var(--assoc-border);
+  border-radius: var(--assoc-radius-md);
+  box-shadow: var(--assoc-shadow-lg);
+  padding: 8px;
+  z-index: 50;
+  animation: assocFadeSlide 0.15s ease-out;
+}
+
+.saas-profile-dropdown-header {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--assoc-border-subtle);
+  margin-bottom: 6px;
+}
+
+.saas-profile-dropdown-header strong {
+  display: block;
+  font-size: 13px;
+  color: var(--assoc-text-primary);
+}
+
+.saas-profile-dropdown-header small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--assoc-text-muted);
+  margin-top: 2px;
+}
+
+.saas-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--assoc-radius-xs);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--assoc-text-body);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.12s ease;
+  font-family: inherit;
+}
+
+.saas-dropdown-item:hover {
+  background-color: var(--assoc-bg-subtle);
+  color: var(--assoc-emerald);
+}
+
+.saas-dropdown-item.danger {
+  color: var(--assoc-rose);
+}
+
+.saas-dropdown-item.danger:hover {
+  background-color: var(--assoc-rose-light);
+}
+
+.saas-dropdown-divider {
+  height: 1px;
+  background-color: var(--assoc-border-subtle);
+  margin: 6px 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. ZONE PRINCIPALE DE CONTENU AÉRÉE
+   -------------------------------------------------------------------------- */
+.saas-content-body {
+  padding: 32px 36px 64px;
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .saas-content-body {
+    padding: 24px 20px 48px;
+  }
+  .saas-topbar {
+    padding: 0 18px;
+  }
+}
+
+@keyframes assocFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
