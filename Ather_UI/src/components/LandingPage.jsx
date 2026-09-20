@@ -667,12 +667,12 @@ export default function LandingPage({
       photo: algiersCardCrop,
       photoAlt: currentLang === 'ar' ? "خليج الجزائر ومقام الشهيد" : currentLang === 'ber' ? "ⴰⵎⴷⴰ ⵏ ⴷⵣⴰⵢⴻⵔ ⴷ ⵎⴰⵇⴰⵎ ⵛⵛⴰⵀⵉⴷ" : "Baie d'Alger et Maqam Echahid",
       quote: currentLang === 'ar'
-        ? "“التطوع مع أثر مكنني من لقاء أشخاص رائعين والمساهمة بقدر استطاعتي في جزائر أكثر تضامناً وترابطاً.”"
+        ? "“التطوع مع غيث مكنني من لقاء أشخاص رائعين والمساهمة بقدر استطاعتي في جزائر أكثر تضامناً وترابطاً.”"
         : currentLang === 'ber'
-        ? "“ⴰⴷⴷⴰⴷ ⴷ ⵓⵎⵙⴻⴷⵔⵓⵢ ⴳ ⵡⴰⵜⵜⴰⵔ ⵢⴻⴼⴽⴰ-ⵢⵉ ⵜⴰⴳⵏⵉⵜ ⴰⴷ ⵎⵢⴰⵡⴰⴹⴻⵖ ⴷ ⵢⵉⵎⴷⴰⵏⴻⵏ ⵉⵍⴰⵍⵉⵢⴻⵏ ⴷ ⵓⴷⵀⴰⵍ ⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.”"
+        ? "“ⴰⴷⴷⴰⴷ ⴷ ⵓⵎⵙⴻⴷⵔⵓⵢ ⴳ ⵖⴰⵢⵜ ⵢⴻⴼⴽⴰ-ⵢⵉ ⵜⴰⴳⵏⵉⵜ ⴰⴷ ⵎⵢⴰⵡⴰⴹⴻⵖ ⴷ ⵢⵉⵎⴷⴰⵏⴻⵏ ⵉⵍⴰⵍⵉⵢⴻⵏ ⴷ ⵓⴷⵀⴰⵍ ⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.”"
         : currentLang === 'en'
-        ? "“Volunteering with Athar has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
-        : "“Être bénévole avec Athar m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
+        ? "“Volunteering with Ghayth has allowed me to meet incredible people and contribute, at my own scale, to a more united Algeria.”"
+        : "“Être bénévole avec Ghayth m'a permis de rencontrer des personnes incroyables et de contribuer, à mon échelle, à une Algérie plus solidaire.”",
       name: "Nadia M.",
       role: currentLang === 'ar' ? "متطوعة منذ 2023 · الجزائر" : currentLang === 'ber' ? "ⵜⴰⵎⵙⴻⴷⵔⵓⵢⵜ ⵙⴻⴳ 2023 · ⴷⵣⴰⵢⴻⵔ" : currentLang === 'en' ? "Volunteer since 2023 · Algiers" : "Bénévole depuis 2023 · Alger",
       avatar: candAvatar1
@@ -683,12 +683,12 @@ export default function LandingPage({
       photo: feedCraImg,
       photoAlt: currentLang === 'ar' ? "توزيع طرود تضامنية مع الهلال الأحمر الجزائري" : currentLang === 'ber' ? "ⴰⴱⵟⵟⵓ ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⴷ ⵓⵢⵢⵓⵔ ⴰⵣⴻⴳⴳⵯⴰⵖ" : "Distribution de colis solidaires avec le Croissant-Rouge Algérien",
       quote: currentLang === 'ar'
-        ? "“بفضل قوافل التضامن عبر أثر، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في القرى. عمل ميداني حقيقي وملموس.”"
+        ? "“بفضل قوافل التضامن عبر غيث، وزعنا أكثر من 450 طرداً غذائياً للعائلات المعزولة في القرى. عمل ميداني حقيقي وملموس.”"
         : currentLang === 'ber'
-        ? "“ⵙ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⴳ ⵡⴰⵜⵜⴰⵔ, ⵏⴱⴻⵟⵟⵓ ⵓⴳⴰⵔ ⵏ 450 ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵡⵓⵜⵛⵉ ⵉ ⵜⵡⴰⵛⵓⵍⵉⵏ. ⴰⵎⴰⵀⵉⵍ ⴷⴻⴳ ⵓⵏⵏⴰⵔ ⵢⴻⵜⵜⵡⴰⵥⵔⴰⵏ.”"
+        ? "“ⵙ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵜⵡⵉⵣⴰ ⴳ ⵖⴰⵢⵜ, ⵏⴱⴻⵟⵟⵓ ⵓⴳⴰⵔ ⵏ 450 ⵏ ⵜⴽⴰⵔⴰⵡⴰⵏⵉⵏ ⵏ ⵡⵓⵜⵛⵉ ⵉ ⵜⵡⴰⵛⵓⵍⵉⵏ. ⴰⵎⴰⵀⵉⵍ ⴷⴻⴳ ⵓⵏⵏⴰⵔ ⵢⴻⵜⵜⵡⴰⵥⵔⴰⵏ.”"
         : currentLang === 'en'
-        ? "“Thanks to solidarity caravans organized through Athar, we distributed over 450 food parcels to isolated families. Real, tangible field impact.”"
-        : "“Grâce aux caravanes de solidarité coordonnées via Athar, nous avons distribué plus de 450 colis alimentaires aux familles isolées. Un impact concret et mesurable.”",
+        ? "“Thanks to solidarity caravans organized through Ghayth, we distributed over 450 food parcels to isolated families. Real, tangible field impact.”"
+        : "“Grâce aux caravanes de solidarité coordonnées via Ghayth, nous avons distribué plus de 450 colis alimentaires aux familles isolées. Un impact concret et mesurable.”",
       name: "Amine Benali",
       role: currentLang === 'ar' ? "منسق قوافل التضامن · الهلال الأحمر" : currentLang === 'ber' ? "ⴰⵎⵙⴻⵎⵢⵓⴷⴷⴻⵙ ⵏ ⵜⵡⵉⵣⴰ · ⴰⵢⵢⵓⵔ ⴰⵣⴻⴳⴳⵯⴰⵖ" : currentLang === 'en' ? "Solidarity Coordinator · Algerian Red Crescent" : "Coordinateur Solidaire · Croissant-Rouge Algérien",
       avatar: candAvatar2
@@ -699,12 +699,12 @@ export default function LandingPage({
       photo: bloodHeroDoctor,
       photoAlt: currentLang === 'ar' ? "طبيبة جزائرية في حملة التبرع بالدم بالمستشفى الجامعي" : currentLang === 'ber' ? "ⵜⴰⴹⴱⵉⴱⵜ ⵜⴰⴷⵣⴰⵢⵔⵉⵜ ⴷⴻⴳ ⵜⵉⴳⴰⵡⵜ ⵏ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ" : "Médecin algérienne lors d'une collecte de sang au CHU",
       quote: currentLang === 'ar'
-        ? "“أحدثت منصة أثر فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية. يستجيب المتبرعون في دقائق معدودة لإنقاذ الأرواح.”"
+        ? "“أحدثت منصة غيث فارقاً حقيقياً في تنظيم نداءات التبرع بالدم للمستشفيات الجامعية. يستجيب المتبرعون في دقائق معدودة لإنقاذ الأرواح.”"
         : currentLang === 'ber'
-        ? "“ⴰⵜⵜⴰⵔ ⵢⴻⴱⴷⴻⵍ ⵜⵉⵖⴰⵡⵙⵉⵡⵉⵏ ⴷⴻⴳ ⵓⵙⵓⴷⴷⴻⵙ ⵏ ⵜⵎⵓⵍⵉⵡⵉⵏ ⵏ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ. ⵉⵏⴰⵔⴰⵎⴻⵏ ⵜⵜⴰⵔⵔⴰⵏ-ⴷ ⴷⴻⴳ ⵢⵉⵎⵉⵔⴻⵏ ⵉ ⵓⵙⴻⵍⵍⴻⴽ ⵏ ⵜⵓⴷⴻⵔⵜ.”"
+        ? "“ⵖⴰⵢⵜ ⵢⴻⴱⴷⴻⵍ ⵜⵉⵖⴰⵡⵙⵉⵡⵉⵏ ⴷⴻⴳ ⵓⵙⵓⴷⴷⴻⵙ ⵏ ⵜⵎⵓⵍⵉⵡⵉⵏ ⵏ ⵓⴼⴽⴰⵢ ⵏ ⵢⵉⴷⴰⵎⵎⴻⵏ. ⵉⵏⴰⵔⴰⵎⴻⵏ ⵜⵜⴰⵔⵔⴰⵏ-ⴷ ⴷⴻⴳ ⵢⵉⵎⵉⵔⴻⵏ ⵉ ⵓⵙⴻⵍⵍⴻⴽ ⵏ ⵜⵓⴷⴻⵔⵜ.”"
         : currentLang === 'en'
-        ? "“Athar transformed how we coordinate urgent hospital blood donation calls. Citizens respond in minutes to save lives.”"
-        : "“Athar a révolutionné nos appels urgents de don de sang aux hôpitaux. Les citoyens répondent en quelques minutes pour sauver des vies.”",
+        ? "“Ghayth transformed how we coordinate urgent hospital blood donation calls. Citizens respond in minutes to save lives.”"
+        : "“Ghayth a révolutionné nos appels urgents de don de sang aux hôpitaux. Les citoyens répondent en quelques minutes pour sauver des vies.”",
       name: "Dr. Selma Khelifi",
       role: currentLang === 'ar' ? "طبيبة ومسؤولة بنك الدم · CHU الجزائر" : currentLang === 'ber' ? "ⵜⴰⴹⴱⵉⴱⵜ ⴷ ⵜⵎⴻⵙⴼⵔⴻⴽⵜ · ⴰⵙⴻⴳⵏⴰⴼ ⴰⵙⴷⴰⵡⴰⵏ ⴷⵣⴰⵢⴻⵔ" : currentLang === 'en' ? "Doctor & Blood Bank Lead · CHU Algiers" : "Médecin & Responsable Don du Sang · CHU Alger",
       avatar: candAvatar6
@@ -770,7 +770,7 @@ export default function LandingPage({
             <div className="brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img
                 src={logoImg}
-                alt="Athar Platform أثر"
+                alt="Ghayth Platform غيث"
                 style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
               />
             </div>
@@ -880,7 +880,7 @@ export default function LandingPage({
       ></div>
       <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-nav-top">
-          <img src={logoImg} alt="Athar" style={{ height: '42px', width: 'auto', objectFit: 'contain' }} />
+          <img src={logoImg} alt="Ghayth" style={{ height: '42px', width: 'auto', objectFit: 'contain' }} />
           <button
             type="button"
             className="mobile-nav-close"
@@ -1073,27 +1073,27 @@ export default function LandingPage({
           <div className="atop">
             <h2 className="atitle">
               {currentLang === 'ar' ? (
-                <>اختيار أثر يعني مضاعفة<br />الأثر الإيجابي،<br />
+                <>اختيار غيث يعني مضاعفة<br />الأثر الإيجابي،<br />
                 <span className="or">وليس مجرد تقديم مساعدة.</span></>
               ) : currentLang === 'ber' ? (
-                <>ⴰⴼⵔⴰⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⵢⴻⵙⵙⵉⵎⵖⵓⵔ<br />ⴰⴷⵔⵉⵣ ⵏ ⵜⵡⵉⵣⴰ,<br />
+                <>ⴰⴼⵔⴰⵏ ⵏ ⵖⴰⵢⵜ ⵢⴻⵙⵙⵉⵎⵖⵓⵔ<br />ⴰⴷⵔⵉⵣ ⵏ ⵜⵡⵉⵣⴰ,<br />
                 <span className="or">ⵎⴰⵛⵉ ⴽⴰⵏ ⴷ ⵜⴰⵍⵍⴰⵍⵜ.</span></>
               ) : currentLang === 'en' ? (
-                <>Choosing Athar means<br />growing the impact,<br />
+                <>Choosing Ghayth means<br />growing the impact,<br />
                 <span className="or">not just helping.</span></>
               ) : (
-                <>Choisir Athar, c'est faire<br />grandir l'impact,<br />
+                <>Choisir Ghayth, c'est faire<br />grandir l'impact,<br />
                 <span className="or">pas seulement aider.</span></>
               )}
             </h2>
             <div className="adesc">
               <p>
                 {currentLang === 'ar' ? (
-                  <>أثر هي المنصة الوطنية التي تربط بين <b>المتطوعين</b> و<b>الهيئات والجمعيات</b> في الجزائر، لمضاعفة الأثر الميداني معاً. نقرب المخلصين في الميدان من القضايا الإنسانية والمجتمعية التي تحتاج إليهم في جميع أنحاء الوطن.</>
+                  <>غيث هي المنصة الوطنية التي تربط بين <b>المتطوعين</b> و<b>الهيئات والجمعيات</b> في الجزائر، لمضاعفة الأثر الميداني معاً. نقرب المخلصين في الميدان من القضايا الإنسانية والمجتمعية التي تحتاج إليهم في جميع أنحاء الوطن.</>
                 ) : currentLang === 'ber' ? (
-                  <>ⴰⵜⵜⴰⵔ ⴷ ⵜⴰⵙⴰⵖⵓⵔⵜ ⵜⴰⵖⴻⵍⵏⴰⵡⵜ ⵉ ⵢⴻⵙⵙⴻⵎⵍⵉⵍⵉⵢⴻⵏ <b>ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ</b> ⴷ <b>ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ</b> ⴷⴻⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ, ⵉ ⵓⵙⵙⵉⵎⵖⴻⵔ ⵏ ⵓⴷⵔⵉⵣ ⴳ ⵓⵏⵏⴰⵔ. ⵏⴻⵙⵙⴻⵇⵔⴰⴱ ⵉⵎⴷⴰⵏⴻⵏ ⵖⴻⵔ ⵜⵎⴻⵙⵍⴰⵢⵉⵏ ⵉ ⵜⴻⵏ-ⵢⴻⵃⵡⴰⵊⴻⵏ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ.</>
+                  <>ⵖⴰⵢⵜ ⴷ ⵜⴰⵙⴰⵖⵓⵔⵜ ⵜⴰⵖⴻⵍⵏⴰⵡⵜ ⵉ ⵢⴻⵙⵙⴻⵎⵍⵉⵍⵉⵢⴻⵏ <b>ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ</b> ⴷ <b>ⵜⵉⴷⴷⵓⴽⵍⵉⵡⵉⵏ</b> ⴷⴻⴳ ⵍⴻⵣⵣⴰⵢⴻⵔ, ⵉ ⵓⵙⵙⵉⵎⵖⴻⵔ ⵏ ⵓⴷⵔⵉⵣ ⴳ ⵓⵏⵏⴰⵔ. ⵏⴻⵙⵙⴻⵇⵔⴰⴱ ⵉⵎⴷⴰⵏⴻⵏ ⵖⴻⵔ ⵜⵎⴻⵙⵍⴰⵢⵉⵏ ⵉ ⵜⴻⵏ-ⵢⴻⵃⵡⴰⵊⴻⵏ ⴷⴻⴳ 69 ⵏ ⵜⵡⵉⵍⴰⵢⵉⵏ.</>
                 ) : (
-                  <>Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie, pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain des causes qui ont besoin d'eux, partout dans le pays.</>
+                  <>Ghayth est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie, pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain des causes qui ont besoin d'eux, partout dans le pays.</>
                 )}
               </p>
               <p className="anote">
@@ -1146,13 +1146,13 @@ export default function LandingPage({
               </div>
               <h2 className="how-heading">
                 {currentLang === 'ar' ? (
-                  <>التطوع مع أثر<br />في خطوات بسيطة</>
+                  <>التطوع مع غيث<br />في خطوات بسيطة</>
                 ) : currentLang === 'ber' ? (
-                  <>ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵡⴰⵜⵜⴰⵔ<br />ⵙ ⵢⵉⵙⵓⵔⵉⴼⴻⵏ ⵉⴼⴻⵙⵙⴰⵙⴻⵏ</>
+                  <>ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵖⴰⵢⵜ<br />ⵙ ⵢⵉⵙⵓⵔⵉⴼⴻⵏ ⵉⴼⴻⵙⵙⴰⵙⴻⵏ</>
                 ) : currentLang === 'en' ? (
-                  <>Volunteer with Athar<br />in a few steps</>
+                  <>Volunteer with Ghayth<br />in a few steps</>
                 ) : (
-                  <>S'engager avec Athar<br />en quelques étapes</>
+                  <>S'engager avec Ghayth<br />en quelques étapes</>
                 )}
               </h2>
               <p className="how-subtext">
@@ -1618,7 +1618,7 @@ export default function LandingPage({
                   <span className="cico">
                     <IconMail className="w-4 h-4" />
                   </span>
-                  <span>hello@athar.dz</span>
+                  <span>hello@ghayth.dz</span>
                 </div>
                 <div className="crow">
                   <span className="cico">
@@ -1636,18 +1636,18 @@ export default function LandingPage({
 
               <div className="creach">{currentLang === 'ar' ? 'تابعونا على المنصات' : currentLang === 'ber' ? 'ⴹⴼⴻⵔ-ⵏⵖ ⴷⴻⴳ ⵢⵉⵥⴻⴹⵡⴰⵏ' : 'Suivez-nous'}</div>
               <div className="csoc">
-                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لغيث ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵖⴰⵢⵜ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Ghayth bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <circle cx="12" cy="12" r="9"/>
                     <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/>
                   </svg>
                 </a>
-                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لغيث ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵖⴰⵢⵜ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Ghayth bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <path d="M22 3 11 14M22 3l-7 18-4-7-7-4 18-7Z"/>
                   </svg>
                 </a>
-                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵡⴰⵜⵜⴰⵔ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لغيث ستكون متاحة قريباً!" : currentLang === 'ber' ? "ⵉⵥⴻⴹⵡⴰⵏ ⵉⵏⵎⴻⵜⵜⵉⵢⴻⵏ ⵏ ⵖⴰⵢⵜ ⴰⴷ ⵉⵍⵉⵏ ⵇⵔⵉⴱ !" : "Réseaux sociaux Ghayth bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <circle cx="6" cy="12" r="2.4"/>
                     <circle cx="18" cy="6" r="2.4"/>
@@ -1692,7 +1692,7 @@ export default function LandingPage({
               <div className="footer-brand-badge">
                 <img
                   src={logoImg}
-                  alt="Athar Logo"
+                  alt="Ghayth Logo"
                 />
               </div>
               <p className="footer-lead">
@@ -1747,10 +1747,10 @@ export default function LandingPage({
               </h4>
               <p className="footer-contact-info">
                 {currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ ⵜⴰⵎⴰⵏⴰⵖⵜ, ⴷⵣⴰⵢⴻⵔ' : 'Alger, Algérie'}<br />
-                contact@athar.dz
+                contact@ghayth.dz
               </p>
               <div className="footer-contact-copy">
-                {currentLang === 'ar' ? '© 2025 منصة أثر. جميع الحقوق محفوظة.' : currentLang === 'ber' ? '© 2025 ⵜⴰⵙⴰⵖⵓⵔⵜ ⴰⵜⵜⴰⵔ. ⴰⴽⴽ ⵉⵣⴻⵔⴼⴰⵏ ⵜⵜⵡⴰⵃⴻⵔⵣⴻⵏ.' : '© 2025 Plateforme Athar. Tous droits réservés.'}
+                {currentLang === 'ar' ? '© 2025 منصة غيث. جميع الحقوق محفوظة.' : currentLang === 'ber' ? '© 2025 ⵜⴰⵙⴰⵖⵓⵔⵜ ⵖⴰⵢⵜ. ⴰⴽⴽ ⵉⵣⴻⵔⴼⴰⵏ ⵜⵜⵡⴰⵃⴻⵔⵣⴻⵏ.' : '© 2025 Plateforme Ghayth. Tous droits réservés.'}
               </div>
             </div>
           </div>
@@ -1758,10 +1758,10 @@ export default function LandingPage({
           <div className="footer-bottom">
             <div>
               {currentLang === 'ar'
-                ? 'أثر – العمل التطوعي في خدمة جزائر متضامنة.'
+                ? 'غيث – العمل التطوعي في خدمة جزائر متضامنة.'
                 : currentLang === 'ber'
-                ? 'ⴰⵜⵜⴰⵔ – ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵓⵎⴰⵀⵉⵍ ⵏ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.'
-                : "Athar – Le bénévolat au service d'une Algérie solidaire."}
+                ? 'ⵖⴰⵢⵜ – ⵜⴰⵡⵉⵣⴰ ⴷⴻⴳ ⵓⵎⴰⵀⵉⵍ ⵏ ⵍⴻⵣⵣⴰⵢⴻⵔ ⵢⴻⴷⴷⵓⴽⵍⴻⵏ.'
+                : "Ghayth – Le bénévolat au service d'une Algérie solidaire."}
             </div>
             <div className="footer-cities">
               <span>{currentLang === 'ar' ? 'الجزائر' : currentLang === 'ber' ? 'ⴷⵣⴰⵢⴻⵔ' : 'Alger'}</span>

@@ -4715,7 +4715,8 @@ html[dir="rtl"] .hero h1 {
   background: #991b1b;
 }
 
-/* ATHARPASS INTERACTIF */
+/* GHAYTHPASS / ATHARPASS INTERACTIF */
+.ghaythpass-interactive-container,
 .atharpass-interactive-container {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -4723,6 +4724,7 @@ html[dir="rtl"] .hero h1 {
   align-items: flex-start;
 }
 
+.ghaythpass-skills-column,
 .atharpass-skills-column {
   display: flex;
   flex-direction: column;
@@ -4818,7 +4820,8 @@ html[dir="rtl"] .hero h1 {
   color: var(--primary-navy);
 }
 
-/* PAPIER CERTIFIÉ ATHARPASS */
+/* PAPIER CERTIFIÉ GHAYTHPASS / ATHARPASS */
+.ghaythpass-preview-column,
 .atharpass-preview-column {
   position: sticky;
   top: 90px;
@@ -5123,6 +5126,7 @@ html[dir="rtl"] .hero h1 {
 }
 
 @media (max-width: 900px) {
+  .ghaythpass-interactive-container,
   .atharpass-interactive-container {
     grid-template-columns: 1fr;
   }

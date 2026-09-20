@@ -203,8 +203,8 @@ function renderCompetenceIcon(type) {
   }
 }
 
-// Les 8 Compétences Clés AtharPass (inspiré de Youthpass)
-const ATHARPASS_COMPETENCES = [
+// Les 8 Compétences Clés GhaythPass (inspiré de Youthpass)
+const GHAYTHPASS_COMPETENCES = [
   {
     id: 'citizenship',
     name: 'Citoyenneté & Engagement Civique',
@@ -382,10 +382,10 @@ const INITIAL_SOLIDARITY_PROJECTS = [
 
 export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser = null, onOpenLogin, onToast }) {
   const isAr = currentLang === 'ar';
-  const [activeTab, setActiveTab] = useState('tracks'); // 'tracks' | 'atharpass' | 'projects' | 'quality'
+  const [activeTab, setActiveTab] = useState('tracks'); // 'tracks' | 'ghaythpass' | 'projects' | 'quality'
   const [projectsList, setProjectsList] = useState(INITIAL_SOLIDARITY_PROJECTS);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-  const [isAtharPassModalOpen, setIsAtharPassModalOpen] = useState(false);
+  const [isGhaythPassModalOpen, setIsGhaythPassModalOpen] = useState(false);
 
   // Formulaire nouveau projet de 5 jeunes
   const [newProjTitle, setNewProjTitle] = useState('');
@@ -415,8 +415,8 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
       teamSize: 5,
       teamMembers: [volunteerUser?.name || 'Nadia Mansouri', 'Membre 2', 'Membre 3', 'Membre 4', 'Membre 5'],
       teamMembersAr: [volunteerUser?.name || 'نادية منصوري', 'عضو 2', 'عضو 3', 'عضو 4', 'عضو 5'],
-      mentorAssoc: isAr ? 'لجنة اعتماد أثر والجمعية الشريكة' : 'Comité de Validation Athar & ONG Partenaire',
-      mentorAssocAr: 'لجنة اعتماد أثر والجمعية الشريكة',
+      mentorAssoc: isAr ? 'لجنة اعتماد غيث والجمعية الشريكة' : 'Comité de Validation Athar & ONG Partenaire',
+      mentorAssocAr: 'لجنة اعتماد غيث والجمعية الشريكة',
       duration: isAr ? '6 أشهر' : '6 mois',
       durationAr: '6 أشهر',
       budgetGranted: isAr ? 'قيد الدراسة' : 'En cours d\'instruction',
@@ -435,7 +435,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
     setNewProjTitle('');
     setNewProjDesc('');
     setNewProjTarget('');
-    if (onToast) onToast(isAr ? 'تم إيداع مشروع التضامن بنجاح! سيتواصل معكم فريق منصة أثر خلال 48 ساعة.' : 'Votre Projet de Solidarité a été déposé avec succès ! Le comité Athar vous contactera sous 48h.');
+    if (onToast) onToast(isAr ? 'تم إيداع مشروع التضامن بنجاح! سيتواصل معكم فريق منصة غيث خلال 48 ساعة.' : 'Votre Projet de Solidarité a été déposé avec succès ! Le comité Ghayth vous contactera sous 48h.');
   };
 
   // Soutenir un projet
@@ -467,8 +467,8 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
 
         <p className="corps-subtitle-lead">
           {isAr
-            ? 'منصة وطنية شاملة تمنح الشباب بين 18 و35 عاماً فرصة قيادة مشاريع تضامنية في فرق شبابية، التطوع في الميدان، والحصول على جواز المهارات الرسمي أثر باس (AtharPass).'
-            : 'Vous avez entre 18 et 35 ans ? Engagez-vous dans des missions d\'intérêt général, lancez votre propre projet solidaire en équipe de 5 jeunes, et valorisez vos compétences grâce au Passeport AtharPass.'}
+            ? 'منصة وطنية شاملة تمنح الشباب بين 18 و35 عاماً فرصة قيادة مشاريع تضامنية في فرق شبابية، التطوع في الميدان، والحصول على جواز المهارات الرسمي غيث باس (GhaythPass).'
+            : 'Vous avez entre 18 et 35 ans ? Engagez-vous dans des missions d\'intérêt général, lancez votre propre projet solidaire en équipe de 5 jeunes, et valorisez vos compétences grâce au Passeport GhaythPass.'}
         </p>
 
         {/* 3 ACTIONS CLÉS EN HAUT DE PAGE */}
@@ -483,7 +483,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
           </div>
           <div className="corps-stat-item">
             <span className="stat-val">8</span>
-            <span className="stat-desc">{isAr ? 'مهارات قيادية معتمدة في AtharPass' : 'Compétences clés certifiées AtharPass'}</span>
+            <span className="stat-desc">{isAr ? 'مهارات قيادية معتمدة في GhaythPass' : 'Compétences clés certifiées GhaythPass'}</span>
           </div>
           <div className="corps-stat-item">
             <span className="stat-val">69</span>
@@ -501,10 +501,10 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
           <span>{isAr ? '1. مسارات المشاركة الثلاثة' : '1. Les 3 Voies d\'Engagement'}</span>
         </button>
         <button
-          className={`corps-tab-btn ${activeTab === 'atharpass' ? 'active' : ''}`}
-          onClick={() => setActiveTab('atharpass')}
+          className={`corps-tab-btn ${activeTab === 'ghaythpass' ? 'active' : ''}`}
+          onClick={() => setActiveTab('ghaythpass')}
         >
-          <span>{isAr ? '2. جواز المهارات (AtharPass)' : '2. Passeport de Compétences (AtharPass)'}</span>
+          <span>{isAr ? '2. جواز المهارات (GhaythPass)' : '2. Passeport de Compétences (GhaythPass)'}</span>
           <span className="tab-pill-highlight">{isAr ? 'معتمد رسمياً' : 'Certifiant'}</span>
         </button>
         <button
@@ -532,7 +532,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
             <p>
               {isAr
                 ? 'يقدم فيلق التضامن الوطني أثر ثلاثة مسارات مرنة تتناسب مع أوقات فراغك وطموحاتك المجتمعية.'
-                : 'Le Corps Solidaire Athar propose trois parcours adaptés à vos disponibilités et à vos ambitions citoyennes.'}
+                : 'Le Corps Solidaire Ghayth propose trois parcours adaptés à vos disponibilités et à vos ambitions citoyennes.'}
             </p>
           </div>
 
@@ -564,7 +564,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <IconCheck />
-                  <span>{isAr ? 'تسليم فوري لشهادة AtharPass' : 'Délivrance automatique de l\'AtharPass'}</span>
+                  <span>{isAr ? 'تسليم فوري لشهادة GhaythPass' : 'Délivrance automatique de l\'GhaythPass'}</span>
                 </li>
               </ul>
               <button
@@ -588,8 +588,8 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
               <h3>{isAr ? 'مشاريع التضامن الشبابية' : 'Projets de Solidarité Jeunesse'}</h3>
               <p>
                 {isAr
-                  ? 'هل لديك فكرة تخدم حيك أو ولايتك؟ كوّن فريقاً من 5 شباب (18-35 سنة) وسجّل مشروعك. تمنحك أثر الدعم المالي والتأطيري لتحقيقه!'
-                  : 'Vous avez une idée pour votre quartier ou votre wilaya ? Réunissez un groupe de 5 jeunes (18-35 ans) et déposez votre projet. Athar vous accompagne pour le financer et le concrétiser !'}
+                  ? 'هل لديك فكرة تخدم حيك أو ولايتك؟ كوّن فريقاً من 5 شباب (18-35 سنة) وسجّل مشروعك. تمنحك غيث الدعم المالي والتأطيري لتحقيقه!'
+                  : 'Vous avez une idée pour votre quartier ou votre wilaya ? Réunissez un groupe de 5 jeunes (18-35 ans) et déposez votre projet. Ghayth vous accompagne pour le financer et le concrétiser !'}
               </p>
               <ul className="track-benefits-list">
                 <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -662,9 +662,9 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
       )}
 
       {/* ======================================================== */}
-      {/* ONGLET 2 : ATHARPASS (YOUTHPASS ALGÉRIEN)               */}
+      {/* ONGLET 2 : GHAYTHPASS (YOUTHPASS ALGÉRIEN)               */}
       {/* ======================================================== */}
-      {activeTab === 'atharpass' && (
+      {activeTab === 'ghaythpass' && (
         <div className="corps-tab-content">
           <div className="corps-section-head">
             <div className="inline-flex items-center gap-2 mb-2">
@@ -672,24 +672,24 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                 {isAr ? 'أداة رسمية للاعتراف بالمهارات والخبرات التطوعية' : 'OUTIL OFFICIEL DE RECONNAISSANCE EUROPÉEN & ALGÉRIEN'}
               </span>
             </div>
-            <h2>{isAr ? 'جواز أثر باس (AtharPass) : ثبّت مهاراتك القيادية' : 'L\'AtharPass : Valorisez vos compétences non-formelles'}</h2>
+            <h2>{isAr ? 'جواز غيث باس (GhaythPass) : ثبّت مهاراتك القيادية' : 'L\'GhaythPass : Valorisez vos compétences non-formelles'}</h2>
             <p>
               {isAr
-                ? 'مستوحى من أداة Youthpass المعتمدة دولياً، يعد AtharPass أكثر من مجرد شهادة : إنه يترجم جهودك التطوعية إلى مهارات مهنية ملموسة تعترف بها الشركات والجامعات.'
-                : 'Inspiré de l\'instrument Youthpass de la Commission Européenne, l\'AtharPass est bien plus qu\'une attestation : il certifie et traduit vos actions de bénévolat en compétences professionnelles concrètes reconnues par les recruteurs et les universités.'}
+                ? 'مستوحى من أداة Youthpass المعتمدة دولياً، يعد GhaythPass أكثر من مجرد شهادة : إنه يترجم جهودك التطوعية إلى مهارات مهنية ملموسة تعترف بها الشركات والجامعات.'
+                : 'Inspiré de l\'instrument Youthpass de la Commission Européenne, l\'GhaythPass est bien plus qu\'une attestation : il certifie et traduit vos actions de bénévolat en compétences professionnelles concrètes reconnues par les recruteurs et les universités.'}
             </p>
           </div>
 
-          <div className="atharpass-interactive-container">
+          <div className="ghaythpass-interactive-container">
             {/* Colonne de gauche : Grille des 8 Compétences Clés */}
-            <div className="atharpass-skills-column">
+            <div className="ghaythpass-skills-column">
               <div className="skills-header-row">
                 <h3>{isAr ? 'المهارات الثماني المعتمدة رسمياً' : 'Les 8 Compétences Clés Certifiées'}</h3>
                 <span className="skills-sub">{isAr ? 'الإطار المرجعي للتعلم غير النظامي' : 'Cadre de référence de l\'apprentissage non-formel'}</span>
               </div>
 
               <div className="skills-radar-list">
-                {ATHARPASS_COMPETENCES.map((comp) => (
+                {GHAYTHPASS_COMPETENCES.map((comp) => (
                   <div key={comp.id} className="skill-card-item">
                     <div className="skill-item-top">
                       <div className="flex items-center gap-3">
@@ -716,20 +716,20 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
               </div>
             </div>
 
-            {/* Colonne de droite : Aperçu du Certificat Officiel AtharPass */}
-            <div className="atharpass-preview-column">
+            {/* Colonne de droite : Aperçu du Certificat Officiel GhaythPass */}
+            <div className="ghaythpass-preview-column">
               <div className="official-pass-paper">
                 <div className="pass-watermark-top">
                   <div className="pass-republique">
                     {isAr ? 'الجمهورية الجزائرية الديمقراطية الشعبية' : 'RÉPUBLIQUE ALGÉRIENNE DÉMOCRATIQUE ET POPULAIRE'}
                   </div>
                   <div className="pass-agency">
-                    {isAr ? 'الوكالة الوطنية للتطوع وفيلق التضامن أثر' : 'AGENCE NATIONALE DU BÉNÉVOLAT & CORPS SOLIDAIRE ATHAR'}
+                    {isAr ? 'الوكالة الوطنية للتطوع وفيلق التضامن غيث' : 'AGENCE NATIONALE DU BÉNÉVOLAT & CORPS SOLIDAIRE GHAYTH'}
                   </div>
                 </div>
 
                 <div className="pass-seal-row">
-                  <div className="pass-id-chip">ATHARPASS-DZ-2026-8842</div>
+                  <div className="pass-id-chip">GHAYTHPASS-DZ-2026-8842</div>
                   <div className="pass-qr-box">
                     <svg viewBox="0 0 100 100" width="48" height="48" fill="#16234A">
                       <rect width="25" height="25" x="10" y="10" />
@@ -755,7 +755,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                 <div className="pass-validation-text">
                   {isAr
                     ? 'تشهد هذه الوثيقة الرسمية أن حاملها قد شارك بالتزام ومسؤولية في مهام الفيلق الوطني للتضامن أثر، مظهراً كفاءة عالية في العمل الجماعي، وإدارة الطوارئ، والمبادرة المدنية.'
-                    : 'Le présent document certifie que le titulaire a participé avec assiduité et responsabilité aux missions du Corps Solidaire Athar, démontrant un niveau d\'excellence dans le travail en équipe, la gestion d\'urgence et l\'initiative citoyenne.'}
+                    : 'Le présent document certifie que le titulaire a participé avec assiduité et responsabilité aux missions du Corps Solidaire Ghayth, démontrant un niveau d\'excellence dans le travail en équipe, la gestion d\'urgence et l\'initiative citoyenne.'}
                 </div>
 
                 <div className="pass-signatures-row">
@@ -768,7 +768,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                     </div>
                   </div>
                   <div className="pass-sign">
-                    <small>{isAr ? 'لجنة اعتماد أثر' : 'Commission Athar'}</small>
+                    <small>{isAr ? 'لجنة اعتماد غيث' : 'Commission Ghayth'}</small>
                     <div className="sign-author">{isAr ? 'أ.د أسامة بلوز' : 'Pr. Oussama Bellouze'}</div>
                     <div className="sign-stamp" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                       <IconCheck color="#166534" />
@@ -780,13 +780,13 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                 <button
                   className="btn-download-pass"
                   onClick={() => {
-                    setIsAtharPassModalOpen(true);
-                    if (onToast) onToast(isAr ? 'تم توليد شهادة AtharPass الرسمية بنجاح!' : 'Votre AtharPass officiel a été généré avec succès au format certifié !');
+                    setIsGhaythPassModalOpen(true);
+                    if (onToast) onToast(isAr ? 'تم توليد شهادة GhaythPass الرسمية بنجاح!' : 'Votre GhaythPass officiel a été généré avec succès au format certifié !');
                   }}
                   style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                 >
                   <IconDownload />
-                  <span>{isAr ? 'تحميل جواز AtharPass الرسمي (PDF)' : 'Télécharger mon AtharPass officiel (PDF)'}</span>
+                  <span>{isAr ? 'تحميل جواز GhaythPass الرسمي (PDF)' : 'Télécharger mon GhaythPass officiel (PDF)'}</span>
                 </button>
               </div>
             </div>
@@ -884,11 +884,11 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
       {activeTab === 'quality' && (
         <div className="corps-tab-content">
           <div className="corps-section-head">
-            <h2>{isAr ? 'علامة الجودة أثر وميثاق المتطوع' : 'Le Label Qualité Athar (Quality Label)'}</h2>
+            <h2>{isAr ? 'علامة الجودة غيث وميثاق المتطوع' : 'Le Label Qualité Ghayth (Quality Label)'}</h2>
             <p>
               {isAr
-                ? 'كما في المعايير العالمية المتقدمة، يتعين على كل جمعية أو مستشفى شريك الحصول على علامة الجودة أثر لضمان تجربة تطوعية آمنة ومحترمة للشباب.'
-                : 'Comme dans le Corps Européen de Solidarité, toute structure d\'accueil (association, ONG, hôpital, parc naturel) doit obtenir le Label Qualité Athar avant de mobiliser des jeunes.'}
+                ? 'كما في المعايير العالمية المتقدمة، يتعين على كل جمعية أو مستشفى شريك الحصول على علامة الجودة غيث لضمان تجربة تطوعية آمنة ومحترمة للشباب.'
+                : 'Comme dans le Corps Européen de Solidarité, toute structure d\'accueil (association, ONG, hôpital, parc naturel) doit obtenir le Label Qualité Ghayth avant de mobiliser des jeunes.'}
             </p>
           </div>
 
@@ -936,8 +936,8 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
               <h3>{isAr ? '4. اعتماد وتوثيق المهارات' : '4. Certification des Compétences'}</h3>
               <p>
                 {isAr
-                  ? 'تسليم إلزامي لجواز AtharPass لتعزيز السيرة الذاتية وفتح آفاق مهنية وأكاديمية للمتطوع.'
-                  : 'Délivrance obligatoire de l\'AtharPass avec auto-évaluation réflexive pour enrichir le CV et l\'avenir professionnel du jeune.'}
+                  ? 'تسليم إلزامي لجواز GhaythPass لتعزيز السيرة الذاتية وفتح آفاق مهنية وأكاديمية للمتطوع.'
+                  : 'Délivrance obligatoire de l\'GhaythPass avec auto-évaluation réflexive pour enrichir le CV et l\'avenir professionnel du jeune.'}
               </p>
             </div>
           </div>
@@ -964,7 +964,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
               </h2>
               <p style={{ fontSize: '13.5px', color: '#64748B', margin: 0 }}>
                 {isAr
-                  ? 'ستتولى مجموعتكم قيادة هذا المشروع باستقلالية تامة مع الدعم المالي والمنهجي لمنصة أثر.'
+                  ? 'ستتولى مجموعتكم قيادة هذا المشروع باستقلالية تامة مع الدعم المالي والمنهجي لمنصة غيث.'
                   : 'Votre collectif portera ce projet en toute autonomie avec le soutien méthodologique et financier d\'Athar.'}
               </p>
             </div>
@@ -1071,13 +1071,13 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
       )}
 
       {/* ======================================================== */}
-      {/* MODAL : VISUALISATION COMPLÈTE ATHARPASS                 */}
+      {/* MODAL : VISUALISATION COMPLÈTE GHAYTHPASS                 */}
       {/* ======================================================== */}
-      {isAtharPassModalOpen && (
+      {isGhaythPassModalOpen && (
         <div className="modal on" role="dialog" aria-modal="true" style={{ direction: isAr ? 'rtl' : 'ltr' }}>
-          <div className="modal-bg" onClick={() => setIsAtharPassModalOpen(false)}></div>
+          <div className="modal-bg" onClick={() => setIsGhaythPassModalOpen(false)}></div>
           <div className="modal-card" style={{ maxWidth: '680px', padding: '32px' }}>
-            <button className="modal-x" onClick={() => setIsAtharPassModalOpen(false)}>
+            <button className="modal-x" onClick={() => setIsGhaythPassModalOpen(false)}>
               <IconClose />
             </button>
 
@@ -1086,7 +1086,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                 {isAr ? 'الجمهورية الجزائرية الديمقراطية الشعبية' : 'RÉPUBLIQUE ALGÉRIENNE DÉMOCRATIQUE ET POPULAIRE'}
               </div>
               <h2 style={{ fontSize: '22px', fontWeight: 900, color: 'var(--primary-navy)', margin: '4px 0' }}>
-                {isAr ? 'ATHARPASS · الجواز الرسمي لمهارات المتطوع' : 'ATHARPASS · PASSEPORT OFFICIEL DU BÉNÉVOLE'}
+                {isAr ? 'GHAYTHPASS · الجواز الرسمي لمهارات المتطوع' : 'GHAYTHPASS · PASSEPORT OFFICIEL DU BÉNÉVOLE'}
               </h2>
               <div style={{ fontSize: '12.5px', color: 'var(--primary-teal)', fontWeight: 700 }}>
                 {isAr ? 'الآلية الوطنية لتوثيق مكتسبات الالتزام المدني والتطوعي' : 'Instrument National de Validation des Acquis de l\'Engagement Civique'}
@@ -1097,7 +1097,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '13px' }}>
                 <div>{isAr ? 'المتطوع :' : 'Bénévole :'} <strong>{volunteerUser?.name || (isAr ? 'نادية منصوري' : 'Nadia Mansouri')}</strong></div>
                 <div>{isAr ? 'الولاية :' : 'Wilaya de référence :'} <strong>{volunteerUser?.wilaya || (isAr ? 'الجزائر العاصمة' : 'Alger')}</strong></div>
-                <div>{isAr ? 'المعرف الفريد :' : 'Identifiant unique :'} <strong>ATHARPASS-DZ-2026-8842</strong></div>
+                <div>{isAr ? 'المعرف الفريد :' : 'Identifiant unique :'} <strong>GHAYTHPASS-DZ-2026-8842</strong></div>
                 <div>{isAr ? 'الاعتماد الرسمي :' : 'Validation officielle :'} <strong style={{ color: '#006D5B' }}>{isAr ? 'مطابق لمعايير Youthpass' : 'Conforme aux standards Youthpass'}</strong></div>
               </div>
             </div>
@@ -1107,7 +1107,7 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
             </h4>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '22px' }}>
-              {ATHARPASS_COMPETENCES.slice(0, 6).map(c => (
+              {GHAYTHPASS_COMPETENCES.slice(0, 6).map(c => (
                 <div key={c.id} style={{ background: '#ffffff', padding: '10px 14px', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <span style={{ fontSize: '13px', fontWeight: 700, color: '#16234A', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -1125,8 +1125,8 @@ export default function YouthSolidarityCorps({ currentLang = 'fr', volunteerUser
                 className="btn btn-green btn-lg"
                 style={{ width: '100%', fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                 onClick={() => {
-                  alert(isAr ? 'تم تحميل شهادة AtharPass الرسمية بدقة عالية ومزودة بالختم الرقمي QR!' : 'Attestation AtharPass officielle téléchargée en haute résolution avec sceau cryptographique QR !');
-                  setIsAtharPassModalOpen(false);
+                  alert(isAr ? 'تم تحميل شهادة GhaythPass الرسمية بدقة عالية ومزودة بالختم الرقمي QR!' : 'Attestation GhaythPass officielle téléchargée en haute résolution avec sceau cryptographique QR !');
+                  setIsGhaythPassModalOpen(false);
                 }}
               >
                 <IconDownload />

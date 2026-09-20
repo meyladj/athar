@@ -147,7 +147,7 @@ const INITIAL_LEDGER_ENTRIES = [
     notesAr: 'حملة استعجالية خاصة بالشباب. تم فرز 140 كيساً إلى كريات حمراء وبلازما طازجة مجمدة.'
   },
   {
-    id: 'ATHAR-TRC-2026-0839',
+    id: 'GHAYTH-TRC-2026-0839',
     entity_name: 'Association Green Future Algérie',
     entity_nameAr: 'جمعية المستقبل الأخضر الجزائر',
     entity_type: 'Association Écologique Nationale',
@@ -171,7 +171,7 @@ const INITIAL_LEDGER_ENTRIES = [
     notesAr: 'شجيرات وفرتها المشاتل الوطنية مع تثبيت الدعامات وسقي الانطلاق الميداني بنجاح.'
   },
   {
-    id: 'ATHAR-TRC-2026-0831',
+    id: 'GHAYTH-TRC-2026-0831',
     entity_name: 'Association El Baraka Algérie',
     entity_nameAr: 'جمعية البركة الجزائرية',
     entity_type: 'Organisation Humanitaire Agréée',
@@ -195,7 +195,7 @@ const INITIAL_LEDGER_ENTRIES = [
     notesAr: 'طرود تشتمل على الطحين، الزيت، السميد، البقوليات والمصبرات، سلمت مباشرة للعائلات.'
   },
   {
-    id: 'ATHAR-TRC-2026-0825',
+    id: 'GHAYTH-TRC-2026-0825',
     entity_name: 'Club Robotique & Tech USTHB',
     entity_nameAr: 'نادي الروبوتيك والتكنولوجيا باب الزوار USTHB',
     entity_type: 'Collectif Universitaire Bab Ezzouar',
@@ -252,11 +252,11 @@ export default function TraceabilityLedger({ currentLang = 'fr', isAssociation =
     if (!newTitle.trim() || !newQty.trim()) return;
 
     const newRecord = {
-      id: `ATHAR-TRC-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+      id: `GHAYTH-TRC-2026-${Math.floor(1000 + Math.random() * 9000)}`,
       entity_name: newTitle,
       entity_nameAr: newTitle,
-      entity_type: isAr ? 'منظمة معتمدة في منصة أثر' : 'Organisation Certifiée Athar',
-      entity_typeAr: 'منظمة معتمدة في منصة أثر',
+      entity_type: isAr ? 'منظمة معتمدة في منصة غيث' : 'Organisation Certifiée Ghayth',
+      entity_typeAr: 'منظمة معتمدة في منصة غيث',
       category: newCategory,
       categoryAr: newCategory,
       wilaya: newWilaya,
@@ -268,8 +268,8 @@ export default function TraceabilityLedger({ currentLang = 'fr', isAssociation =
       beneficiaries: newBeneficiaries || (isAr ? 'مستفيدو المبادرة' : 'Bénéficiaires de la mission'),
       beneficiariesAr: newBeneficiaries || 'مستفيدو المبادرة',
       hash: `0x${Math.random().toString(16).slice(2, 10).toUpperCase()}...${Math.random().toString(16).slice(2, 8).toUpperCase()}`,
-      verifier: isAr ? 'التحقق الرقمي الفوري لأثر' : 'Validation Numérique Instantanée Athar',
-      verifierAr: 'التحقق الرقمي الفوري لأثر',
+      verifier: isAr ? 'التحقق الرقمي الفوري لغيث' : 'Validation Numérique Instantanée Ghayth',
+      verifierAr: 'التحقق الرقمي الفوري لغيث',
       status: 'VERIFIED',
       proof_image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80',
       notes: newNotes || (isAr ? 'عمل ميداني مسجل وموثق بنجاح.' : 'Action de terrain enregistrée et certifiée avec succès.'),
@@ -380,7 +380,7 @@ export default function TraceabilityLedger({ currentLang = 'fr', isAssociation =
               </div>
               <div className="trace-status-pill">
                 <span className="trace-dot-verified"></span>
-                <span>{isAr ? 'ختم أثر موثّق' : 'Sceau Athar Vérifié'}</span>
+                <span>{isAr ? 'ختم غيث موثّق' : 'Sceau Ghayth Vérifié'}</span>
               </div>
             </div>
 

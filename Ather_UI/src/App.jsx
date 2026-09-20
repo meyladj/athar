@@ -709,7 +709,7 @@ const translations = {
     
     heroBadge: "Initiative Citoyenne Nationale",
     heroTitle: "Chaque action laisse une empreinte.",
-    heroSubtitle: "Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Athar vous accompagne.",
+    heroSubtitle: "Que vous soyez un citoyen désireux de donner quelques heures ou une association en quête de forces vives, Ghayth vous accompagne.",
     heroExplore: "Explorer les missions",
     heroJoin: "Rejoindre la communauté",
     heroAssocSpace: "Espace Association",
@@ -795,7 +795,7 @@ const translations = {
     navMissions: "الفرص التطوعية",
     navCorps: "فيلق التضامن",
     navExplore: "استكشف",
-    navPulse: "نبض أثر",
+    navPulse: "نبض غيث",
     navBlood: "SOS دم",
     navTrace: "شفافية الأثر",
     navMessages: "الرسائل",
@@ -810,7 +810,7 @@ const translations = {
     
     heroBadge: "المبادرة الوطنية للعمل التطوعي",
     heroTitle: "كل عمل يترك أثراً.",
-    heroSubtitle: "سواء كنت مواطناً يرغب في التطوع ببعض الوقت أو جمعية تبحث عن طاقات حية، منصة أثر ترافقك في كل خطوة.",
+    heroSubtitle: "سواء كنت مواطناً يرغب في التطوع ببعض الوقت أو جمعية تبحث عن طاقات حية، منصة غيث ترافقك في كل خطوة.",
     heroExplore: "استكشف الفرص",
     heroJoin: "انضم إلى مجتمعنا",
     heroAssocSpace: "فضاء الجمعيات",
@@ -896,7 +896,7 @@ const translations = {
     navMissions: "Missions",
     navCorps: "Solidarity Corps",
     navExplore: "Explore",
-    navPulse: "Athar Pulse",
+    navPulse: "Ghayth Pulse",
     navBlood: "SOS Blood",
     navTrace: "Traceability",
     navMessages: "Messages",
@@ -911,7 +911,7 @@ const translations = {
     
     heroBadge: "National Volunteering Initiative",
     heroTitle: "Every action leaves an imprint.",
-    heroSubtitle: "Whether you wish to dedicate a few hours or you are an association seeking motivated volunteers, Athar supports your journey.",
+    heroSubtitle: "Whether you wish to dedicate a few hours or you are an association seeking motivated volunteers, Ghayth supports your journey.",
     heroExplore: "Explore Missions",
     heroJoin: "Join the Community",
     heroAssocSpace: "Association Space",
@@ -1553,7 +1553,7 @@ export default function App() {
       time: mission.time_str || "09h00 – 15h00",
       status: "pending",
       appliedDate: "Aujourd'hui",
-      notes: volunteerApplyNote || "Candidature transmise via le Portail Bénévole Athar. Profil et CV partagés."
+      notes: volunteerApplyNote || "Candidature transmise via le Portail Bénévole Ghayth. Profil et CV partagés."
     };
     setVolunteerApplications(prev => [newApp, ...prev]);
 
@@ -2222,7 +2222,7 @@ export default function App() {
       date: newMissionForm.date || 'À définir',
       spots_registered: 0,
       spots_total: totalSpots,
-      description: newMissionForm.description || "Mission citoyenne ouverte aux bénévoles engagés d'Athar.",
+      description: newMissionForm.description || "Mission citoyenne ouverte aux bénévoles engagés de Ghayth.",
       requirements: newMissionForm.requirements,
       status: asDraft ? 'brouillon' : 'active'
     };
@@ -2887,11 +2887,11 @@ export default function App() {
         <div className="saas-dashboard-root">
           {/* 1. SIDEBAR FIXE À GAUCHE */}
           <aside className="saas-sidebar">
-            {/* Logo officiel d'Athar unique sans aucun texte à côté */}
+            {/* Logo officiel de Ghayth unique sans aucun texte à côté */}
             <div className="saas-sidebar-logo-wrap">
               <img
                 src={logoImg}
-                alt="Athar منصة أثر"
+                alt="Ghayth منصة غيث"
                 className="saas-sidebar-logo"
                 onClick={() => {
                   setCurrentView('landing');
@@ -3007,7 +3007,7 @@ export default function App() {
                   setCurrentView('landing');
                   window.location.hash = '#accueil';
                 }}
-                title="Retour à l'accueil Athar"
+                title="Retour à l'accueil Ghayth"
               >
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%)' }} />
                 <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
@@ -4562,11 +4562,11 @@ export default function App() {
             >
               <img
                 src={atharLogoClean}
-                alt="Athar Platform منصة أثر"
+                alt="Ghayth Platform منصة غيث"
                 style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
               />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: '18px', fontWeight: 900, color: '#006D5B', lineHeight: 1.1 }}>Athar</span>
+                <span style={{ fontSize: '18px', fontWeight: 900, color: '#006D5B', lineHeight: 1.1 }}>Ghayth</span>
                 <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>
                   {currentLang === 'ar' ? 'التطوع له معنى وأثر' : 'Le bénévolat a un sens'}
                 </span>
@@ -5175,7 +5175,7 @@ export default function App() {
                           <IconShieldCheck className="w-5 h-5 text-emerald-700" />
                           <div>
                             <strong style={{ fontSize: '13.5px', display: 'block', color: '#0f172a' }}>Assurance & Certificat</strong>
-                            <span style={{ fontSize: '12.5px', color: '#64748b' }}>Assurance RC bénévole incluse et attestation Athar délivrée</span>
+                            <span style={{ fontSize: '12.5px', color: '#64748b' }}>Assurance RC bénévole incluse et attestation Ghayth délivrée</span>
                           </div>
                         </div>
                       </div>
@@ -5261,7 +5261,7 @@ export default function App() {
                           }}>
                             <iframe
                               key={missionMapType + '-' + selectedMissionDetail.id}
-                              title={`Carte de la mission - ${selectedMissionDetail.title || 'Athar'}`}
+                              title={`Carte de la mission - ${selectedMissionDetail.title || 'Ghayth'}`}
                               src={missionMapType === 'osm' ? osmEmbedUrl : googleEmbedUrl}
                               style={{
                                 width: '100%',
@@ -5426,12 +5426,12 @@ export default function App() {
                         {selectedMissionDetail.association_name}
                       </strong>
                       <p style={{ margin: '0 0 12px', fontSize: '12.5px', color: '#64748b' }}>
-                        Association partenaire agréée enregistrée sur la plateforme nationale Athar.
+                        Association partenaire agréée enregistrée sur la plateforme nationale Ghayth.
                       </p>
                       <button
                         type="button"
                         className="btn btn-ghost"
-                        onClick={() => showToast(`Contact coordinateur : ${selectedMissionDetail.association_name} · contact@athar-dz.org`)}
+                        onClick={() => showToast(`Contact coordinateur : ${selectedMissionDetail.association_name} · contact@ghayth-dz.org`)}
                         style={{ width: '100%', border: '1px solid #cbd5e1', fontSize: '12.5px', fontWeight: 700, padding: '8px' }}
                       >
                         Poser une question à l'organisation
@@ -6393,9 +6393,9 @@ export default function App() {
                     {/* 5. FOOTER DE BAS DE PAGE */}
                     <footer className="benev-portal-footer">
                       <div className="benev-footer-left">
-                        <img src={atharLogoClean} alt="Athar" style={{ height: '26px', width: 'auto' }} />
+                        <img src={atharLogoClean} alt="Ghayth" style={{ height: '26px', width: 'auto' }} />
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
-                          <strong style={{ fontSize: '13px', color: '#006D5B', lineHeight: 1.1 }}>Athar</strong>
+                          <strong style={{ fontSize: '13px', color: '#006D5B', lineHeight: 1.1 }}>Ghayth</strong>
                           <small style={{ fontSize: '10.5px', color: '#94a3b8' }}>
                             {currentLang === 'ar' ? 'التطوع له معنى وأثر' : 'Le bénévolat a un sens'}
                           </small>
@@ -6406,7 +6406,7 @@ export default function App() {
                         <a href="#aide" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "مركز المساعدة والأسئلة الشائعة" : "Centre d'aide et FAQ en ligne"); }}>
                           {currentLang === 'ar' ? 'المساعدة' : 'Aide'}
                         </a>
-                        <a href="#confidentialite" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "سياسة الخصوصية لمنصة أثر" : "Politique de confidentialité Athar"); }}>
+                        <a href="#confidentialite" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "سياسة الخصوصية لمنصة غيث" : "Politique de confidentialité Ghayth"); }}>
                           {currentLang === 'ar' ? 'الخصوصية' : 'Confidentialité'}
                         </a>
                         <a href="#conditions" onClick={(e) => { e.preventDefault(); showToast(currentLang === 'ar' ? "شروط الاستخدام العامة" : "Conditions Générales d'Utilisation"); }}>
@@ -6501,10 +6501,10 @@ export default function App() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '860px', margin: '0 auto' }}>
                     <div className="cv-section-card" style={{ padding: '32px' }}>
                       <h1 style={{ margin: '0 0 10px', fontSize: '26px', fontWeight: 900, color: '#006D5B' }}>
-                        À propos d'Athar (منصة أثر)
+                        À propos de Ghayth (منصة غيث)
                       </h1>
                       <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#334155' }}>
-                        Athar est la première plateforme nationale dédiée à la valorisation et à la structuration du bénévolat en Algérie.
+                        Ghayth est la première plateforme nationale dédiée à la valorisation et à la structuration du bénévolat en Algérie.
                         Notre mission est de connecter les énergies citoyennes, particulièrement la jeunesse, avec les associations agréées œuvrant pour des causes d'intérêt général à travers les 69 wilayas.
                       </p>
 
@@ -6613,7 +6613,7 @@ export default function App() {
                         </label>
                         <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: '#334155', cursor: 'pointer' }}>
                           <input type="checkbox" defaultChecked />
-                          <span>Recevoir la newsletter mensuelle des récits d'impact Athar</span>
+                          <span>Recevoir la newsletter mensuelle des récits d'impact Ghayth</span>
                         </label>
                       </div>
                     </div>
@@ -6754,7 +6754,7 @@ export default function App() {
 
                 {/* ENTÊTE DE L'ATTESTATION */}
                 <div style={{ textAlign: 'center', borderBottom: '2px solid #006D5B', paddingBottom: '16px', marginBottom: '22px' }}>
-                  <img src={logoImg} alt="Athar" style={{ height: '60px', margin: '0 auto 8px', display: 'block' }} />
+                  <img src={logoImg} alt="Ghayth" style={{ height: '60px', margin: '0 auto 8px', display: 'block' }} />
                   <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#64748b', textTransform: 'uppercase' }}>
                     RÉPUBLIQUE ALGÉRIENNE DÉMOCRATIQUE ET POPULAIRE
                   </div>
@@ -6762,7 +6762,7 @@ export default function App() {
                     ATTESTATION OFFICIELLE D'ENGAGEMENT CITOYEN
                   </h2>
                   <div style={{ fontSize: '12px', color: '#64748b' }}>
-                    Plateforme Nationale du Bénévolat · منصة أثر
+                    Plateforme Nationale du Bénévolat · منصة غيث
                   </div>
                 </div>
 
@@ -6787,10 +6787,10 @@ export default function App() {
                   </div>
 
                   <div style={{ marginTop: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11.5px', color: '#94a3b8' }}>
-                    <div>Hash vérification : <code>{selectedCertificateDetail.hash || 'ATHAR-VERIF-8902-DZ'}</code></div>
+                    <div>Hash vérification : <code>{selectedCertificateDetail.hash || 'GHAYTH-VERIF-8902-DZ'}</code></div>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#166534', fontWeight: 700 }}>
                       <IconShieldCheck className="w-3.5 h-3.5" />
-                      <span>Sceau numérique Athar vérifié</span>
+                      <span>Sceau numérique Ghayth vérifié</span>
                     </div>
                   </div>
                 </div>
@@ -7028,7 +7028,7 @@ export default function App() {
           <div className="modal-head" style={{ textAlign: 'center', marginBottom: '20px' }}>
             <img
               src={logoImg}
-              alt="Logo Athar"
+              alt="Logo Ghayth"
               style={{ height: '70px', width: 'auto', objectFit: 'contain', margin: '0 auto 12px', display: 'block' }}
             />
             <h3 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '25px', fontWeight: 700, color: 'var(--bleu)' }}>
@@ -7211,7 +7211,7 @@ export default function App() {
             <div className="mview">
               <div className="modal-head">
                 <h3>{currentLang === 'ar' ? 'إنشاء حساب جديد' : currentLang === 'ber' ? 'ⵙⵏⵓⵍⴼⵓ-ⴷ ⴰⵎⴹⴰⵏ ⴰⵎⴰⵢⵏⵓ' : 'Créer un compte'}</h3>
-                <p>{currentLang === 'ar' ? 'انضم إلى منصة أثر. اختر نوع الحساب الذي يناسبك.' : currentLang === 'ber' ? 'ⴷⴷⵓ-ⴷ ⵖⴻⵔ ⵡⴰⵜⵜⴰⵔ. ⴼⵔⴻⵏ ⴰⵏⴰⵡ ⵏ ⵓⵎⴹⴰⵏ ⵉⴽ-ⵢⴻⵍⵀⴰⵏ.' : 'Rejoignez Athar. Choisissez le type de compte qui vous correspond.'}</p>
+                <p>{currentLang === 'ar' ? 'انضم إلى منصة غيث. اختر نوع الحساب الذي يناسبك.' : currentLang === 'ber' ? 'ⴷⴷⵓ-ⴷ ⵖⴻⵔ ⵖⴰⵢⵜ. ⴼⵔⴻⵏ ⴰⵏⴰⵡ ⵏ ⵓⵎⴹⴰⵏ ⵉⴽ-ⵢⴻⵍⵀⴰⵏ.' : 'Rejoignez Ghayth. Choisissez le type de compte qui vous correspond.'}</p>
               </div>
               <div className="choices">
                 <div className="choice ben" onClick={() => setSignupView('ben')}>
@@ -7260,7 +7260,7 @@ export default function App() {
                 className="mform"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  showToast("Compte bénévole créé avec succès ! Bienvenue sur Athar.");
+                  showToast("Compte bénévole créé avec succès ! Bienvenue sur Ghayth.");
                   closeSignup();
                 }}
               >
@@ -7366,7 +7366,7 @@ export default function App() {
                 <input type="password" required placeholder="••••••••" />
                 <label className="agree">
                   <input type="checkbox" required defaultChecked />
-                  <span>J'accepte les conditions d'utilisation d'Athar.</span>
+                  <span>J'accepte les conditions d'utilisation de Ghayth.</span>
                 </label>
                 <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
                   Créer mon compte
@@ -7500,7 +7500,7 @@ export default function App() {
                 </div>
                 <label className="agree">
                   <input type="checkbox" required defaultChecked />
-                  <span>J'accepte les conditions d'utilisation d'Athar.</span>
+                  <span>J'accepte les conditions d'utilisation de Ghayth.</span>
                 </label>
                 <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
                   Créer le compte

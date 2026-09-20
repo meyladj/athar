@@ -4,13 +4,13 @@
 
 ATHER connecte les associations (qui cherchent des bénévoles / organisent des événements) avec des bénévoles (qui veulent s'engager), grâce à un **matching intelligent (IA)**.
 
-## 🧱 Stack technique
+##  Stack technique
 - **Frontend** : React (Vite) → dossier [`Ather_UI/`](./Ather_UI)
 - **Backend** : Django + Django REST Framework → dossier [`Ather_backend/`](./Ather_backend)
 - **Base de données** : MySQL
 - **Moteur IA** : Python (service de matching)
 
-## 📁 Structure du dépôt
+##  Structure du dépôt
 ```
 ATHER/
 ├── Ather_UI/         # Frontend React (Vite)
@@ -21,7 +21,7 @@ ATHER/
     └── .env.example
 ```
 
-## 🚀 Lancer le projet
+##  Lancer le projet
 
 ### Backend (Django)
 ```bash
@@ -42,10 +42,10 @@ npm install
 npm run dev                  # http://localhost:5173
 ```
 
-## 🌿 Convention de travail (Git)
+##  Convention de travail (Git)
 - Branche principale : `main`
 - Créer une branche par fonctionnalité : `feature/nom-de-la-fonctionnalite`
 - Faire des Pull Requests pour fusionner dans `main`
 
-## 👥 Acteurs
+##  Acteurs
 Association · Bénévole · Administrateur · Visiteur
