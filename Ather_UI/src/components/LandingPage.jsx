@@ -238,38 +238,56 @@ const defaultMissions = [
   {
     id: 1,
     title: "Plantation d'arbres et reboisement à Zéralda",
+    titleAr: "غرس الأشجار وإعادة التشجير في زرالدة",
     association_name: "Association Green Future",
+    associationNameAr: "جمعية المستقبل الأخضر",
     category: "Environnement",
+    categoryAr: "بيئة",
     location: "Zéralda, Alger",
+    locationAr: "زرالدة، الجزائر",
     wilaya: "Alger",
     date_str: "Sam. 12 avr. 2025",
+    dateStrAr: "السبت 12 أفريل 2025",
     spots_remaining: 15,
     image_url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
-    description: "Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Ensemble, contribuons à restaurer la canopée méditerranéenne et à sensibiliser les familles à la biodiversité locale."
+    description: "Participez à notre grande action de reboisement dans la forêt récréative de Zéralda. Ensemble, contribuons à restaurer la canopée méditerranéenne et à sensibiliser les familles à la biodiversité locale.",
+    descriptionAr: "شارك في حملتنا الكبرى لإعادة التشجير في غابة زرالدة الترفيهية. نساهم معاً في ترميم الغطاء النباتي المتوسطي والتوعية بحماية التنوع البيولوجي."
   },
   {
     id: 2,
     title: "Campagne de distribution de colis alimentaires solidaires",
+    titleAr: "حملة توزيع الطرود والقفف الغذائية التضامنية",
     association_name: "Croissant Rouge Algérien",
+    associationNameAr: "الهلال الأحمر الجزائري",
     category: "Solidarité",
+    categoryAr: "تضامن",
     location: "Bab Ezzouar, Alger",
+    locationAr: "باب الزوار، الجزائر",
     wilaya: "Alger",
     date_str: "Sam. 19 avr. 2025",
+    dateStrAr: "السبت 19 أفريل 2025",
     spots_remaining: 20,
     image_url: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
-    description: "Tri, conditionnement méticuleux et acheminement de colis alimentaires solidaires destinés à 300 familles nécessiteuses recensées. Une action humanitaire directe au service des personnes les plus vulnérables."
+    description: "Tri, conditionnement méticuleux et acheminement de colis alimentaires solidaires destinés à 300 familles nécessiteuses recensées. Une action humanitaire directe au service des personnes les plus vulnérables.",
+    descriptionAr: "فرز وتوضيب ونقل الطرود الغذائية التضامنية الموجهة لـ 300 عائلة معوزة مسجلة. عمل إنساني مباشر في خدمة الفئات الأكثر احتياجاً."
   },
   {
     id: 3,
     title: "Ateliers de lecture et éveil artistique pour enfants",
+    titleAr: "ورشات القراءة والتنشيط الفني للأطفال",
     association_name: "Lire pour Demain",
+    associationNameAr: "اقرأ للغد",
     category: "Éducation",
+    categoryAr: "تعليم",
     location: "Hydra, Alger",
+    locationAr: "حيدرة، الجزائر",
     wilaya: "Alger",
     date_str: "Mer. 16 avr. 2025",
+    dateStrAr: "الأربعاء 16 أفريل 2025",
     spots_remaining: 8,
     image_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
-    description: "Animation de contes bilingues, jeux de rôles créatifs et éveil au plaisir de lire pour un groupe de 25 enfants de 6 à 11 ans au centre culturel communautaire."
+    description: "Animation de contes bilingues, jeux de rôles créatifs et éveil au plaisir de lire pour un groupe de 25 enfants de 6 à 11 ans au centre culturel communautaire.",
+    descriptionAr: "تنشيط حكايات وقصص ثنائية اللغة، وألعاب أدوار إبداعية وغرس حب المطالعة لدى مجموعة من 25 طفلاً تتراوح أعمارهم بين 6 و11 سنة بالمركز الثقافي."
   }
 ];
 
@@ -383,15 +401,14 @@ export default function LandingPage({
     };
   }, []);
 
-  // Category filter & Missions state
-  const categories = [
-    'Toutes',
-    'Environnement',
-    'Solidarité',
-    'Éducation',
-    'Santé',
-    'Aide d\'urgence',
-    'Patrimoine'
+  const categoriesList = [
+    { key: 'Toutes', labelFr: 'Toutes', labelAr: 'الكل', labelEn: 'All' },
+    { key: 'Environnement', labelFr: 'Environnement', labelAr: 'البيئة والتشجير', labelEn: 'Environment' },
+    { key: 'Solidarité', labelFr: 'Solidarité', labelAr: 'التضامن والإغاثة', labelEn: 'Solidarity' },
+    { key: 'Éducation', labelFr: 'Éducation', labelAr: 'التعليم والتكوين', labelEn: 'Education' },
+    { key: 'Santé', labelFr: 'Santé', labelAr: 'الصحة والتبرع بالدم', labelEn: 'Health' },
+    { key: 'Aide d\'urgence', labelFr: "Aide d'urgence", labelAr: 'إغاثة عاجلة', labelEn: 'Emergency Aid' },
+    { key: 'Patrimoine', labelFr: 'Patrimoine', labelAr: 'التراث والثقافة', labelEn: 'Heritage' }
   ];
 
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
@@ -656,17 +673,29 @@ export default function LandingPage({
         <div className="wrap">
           <div className="atop">
             <h2 className="atitle">
-              Choisir Athar, c'est faire<br />grandir l'impact,<br />
-              <span className="or">pas seulement aider.</span>
+              {currentLang === 'ar' ? (
+                <>اختيار أثر يعني مضاعفة<br />الأثر الإيجابي،<br />
+                <span className="or">وليس مجرد تقديم مساعدة.</span></>
+              ) : currentLang === 'en' ? (
+                <>Choosing Athar means<br />growing the impact,<br />
+                <span className="or">not just helping.</span></>
+              ) : (
+                <>Choisir Athar, c'est faire<br />grandir l'impact,<br />
+                <span className="or">pas seulement aider.</span></>
+              )}
             </h2>
             <div className="adesc">
               <p>
-                Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie,
-                pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain
-                des causes qui ont besoin d'eux, partout dans le pays.
+                {currentLang === 'ar' ? (
+                  <>أثر هي المنصة الوطنية التي تربط بين <b>المتطوعين</b> و<b>الهيئات والجمعيات</b> في الجزائر، لمضاعفة الأثر الميداني معاً. نقرب المخلصين في الميدان من القضايا الإنسانية والمجتمعية التي تحتاج إليهم في جميع أنحاء الوطن.</>
+                ) : (
+                  <>Athar est la plateforme qui connecte les <b>bénévoles</b> et les <b>associations</b> en Algérie, pour faire grandir l'impact ensemble. Nous rapprochons les femmes et les hommes de terrain des causes qui ont besoin d'eux, partout dans le pays.</>
+                )}
               </p>
               <p className="anote">
-                Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.
+                {currentLang === 'ar'
+                  ? 'انضم إلى مجتمع نشط وتطوع في مبادرات هادفة بالقرب منك.'
+                  : 'Rejoignez une communauté engagée et participez à des missions qui ont du sens, près de chez vous.'}
               </p>
             </div>
           </div>
@@ -796,20 +825,20 @@ export default function LandingPage({
         <div className="wrap">
           <div className="missions-head-row">
             <div className="missions-head-left">
-              <div className="eyebrow">SUR LE TERRAIN</div>
-              <h2>Missions engagées près de chez vous</h2>
-              <p>Explorez des missions vérifiées dans différentes wilayas et thématiques.</p>
+              <div className="eyebrow">{currentLang === 'ar' ? 'في الميدان' : 'SUR LE TERRAIN'}</div>
+              <h2>{currentLang === 'ar' ? 'مبادرات تطوعية قريبة منك' : 'Missions engagées près de chez vous'}</h2>
+              <p>{currentLang === 'ar' ? 'استكشف مبادرات معتمدة وموثوقة عبر مختلف الولايات والمجالات.' : 'Explorez des missions vérifiées dans différentes wilayas et thématiques.'}</p>
             </div>
 
             {/* Filtres thématiques alignés à droite */}
             <div className="missions-filter-bar">
-              {categories.map((cat, idx) => (
+              {categoriesList.map((catItem) => (
                 <button
-                  key={idx}
-                  onClick={() => handleCategoryChange(cat)}
-                  className={`filter-btn ${selectedCategoryFilter === cat ? 'active' : ''}`}
+                  key={catItem.key}
+                  onClick={() => handleCategoryChange(catItem.key)}
+                  className={`filter-btn ${selectedCategoryFilter === catItem.key ? 'active' : ''}`}
                 >
-                  {cat}
+                  {currentLang === 'ar' ? catItem.labelAr : currentLang === 'en' ? catItem.labelEn : catItem.labelFr}
                 </button>
               ))}
             </div>
@@ -821,7 +850,9 @@ export default function LandingPage({
               [1, 2, 3].map((n) => <MissionCardSkeleton key={n} />)
             ) : filteredMissions.length === 0 ? (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '48px 16px', color: '#64748B' }}>
-                <p style={{ fontSize: '18px', fontWeight: 600 }}>Aucune mission trouvée pour cette catégorie.</p>
+                <p style={{ fontSize: '18px', fontWeight: 600 }}>
+                  {currentLang === 'ar' ? 'لم يتم العثور على أي مبادرة في هذا المجال.' : 'Aucune mission trouvée pour cette catégorie.'}
+                </p>
               </div>
             ) : (
               filteredMissions.slice(0, 3).map((m) => (
@@ -829,31 +860,31 @@ export default function LandingPage({
                   <div>
                     <div className="mission-img-wrap">
                       <img src={m.image_url} alt={m.title} />
-                      <span className="mission-tag">{m.category}</span>
+                      <span className="mission-tag">{currentLang === 'ar' && m.categoryAr ? m.categoryAr : m.category}</span>
                     </div>
 
                     <div className="mission-content">
                       <div className="mission-asso">
                         <IconShieldCheck className="w-4 h-4 shrink-0" />
-                        <span>{m.association_name}</span>
+                        <span>{currentLang === 'ar' && m.associationNameAr ? m.associationNameAr : m.association_name}</span>
                       </div>
 
-                      <h3 className="mission-title">{m.title}</h3>
+                      <h3 className="mission-title">{currentLang === 'ar' && m.titleAr ? m.titleAr : m.title}</h3>
 
-                      <p className="mission-desc">{m.description}</p>
+                      <p className="mission-desc">{currentLang === 'ar' && m.descriptionAr ? m.descriptionAr : m.description}</p>
 
                       <div className="mission-details">
                         <div className="mission-detail-row">
                           <IconMapPin className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>{m.location}</span>
+                          <span>{currentLang === 'ar' && m.locationAr ? m.locationAr : m.location}</span>
                         </div>
                         <div className="mission-detail-row">
                           <IconCalendar className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>{m.date_str}</span>
+                          <span>{currentLang === 'ar' && m.dateStrAr ? m.dateStrAr : m.date_str}</span>
                         </div>
                         <div className="mission-detail-row spots">
                           <IconUsers className="w-4 h-4 text-slate-500 shrink-0" />
-                          <span>{m.spots_remaining} places disponibles</span>
+                          <span>{m.spots_remaining} {currentLang === 'ar' ? 'مقاعد متاحة' : 'places disponibles'}</span>
                         </div>
                       </div>
                     </div>
@@ -867,8 +898,8 @@ export default function LandingPage({
                       }}
                       className="mission-btn"
                     >
-                      <span>Je participe à cette mission</span>
-                      <IconArrowRight className="w-4 h-4" />
+                      <span>{currentLang === 'ar' ? 'المشاركة في هذه المهمة' : 'Je participe à cette mission'}</span>
+                      <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
                     </button>
                   </div>
                 </div>
@@ -898,8 +929,8 @@ export default function LandingPage({
                 transition: 'all 0.2s ease'
               }}
             >
-              <span>Voir plus</span>
-              <IconArrowRight className="w-4 h-4" />
+              <span>{currentLang === 'ar' ? 'عرض المزيد من المبادرات' : 'Voir plus'}</span>
+              <IconArrowRight className={`w-4 h-4 ${currentLang === 'ar' ? 'transform rotate-180' : ''}`} />
             </button>
           </div>
         </div>
@@ -1155,9 +1186,11 @@ export default function LandingPage({
         <div className="wrap">
           <div className="ccard2">
             <div className="cleft">
-              <h2>Contactez-nous</h2>
+              <h2>{currentLang === 'ar' ? 'تواصل معنا' : 'Contactez-nous'}</h2>
               <p className="clead">
-                Une question, une idée de partenariat, ou juste envie de dire bonjour ? Nous serions ravis d'échanger avec vous.
+                {currentLang === 'ar'
+                  ? 'لديك استفسار، فكرة شراكة، أو ترغب في الانضمام إلينا؟ يسعدنا جداً التواصل والتعاون معك.'
+                  : "Une question, une idée de partenariat, ou juste envie de dire bonjour ? Nous serions ravis d'échanger avec vous."}
               </p>
               <div className="cinfo">
                 <div className="crow">
@@ -1176,24 +1209,24 @@ export default function LandingPage({
                   <span className="cico">
                     <IconMapPin className="w-4 h-4" />
                   </span>
-                  <span>Alger, Algérie</span>
+                  <span>{currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : 'Alger, Algérie'}</span>
                 </div>
               </div>
 
-              <div className="creach">Suivez-nous</div>
+              <div className="creach">{currentLang === 'ar' ? 'تابعونا على المنصات' : 'Suivez-nous'}</div>
               <div className="csoc">
-                <a className="sb" onClick={() => showToast("Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : "Réseaux sociaux Athar bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <circle cx="12" cy="12" r="9"/>
                     <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/>
                   </svg>
                 </a>
-                <a className="sb" onClick={() => showToast("Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : "Réseaux sociaux Athar bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <path d="M22 3 11 14M22 3l-7 18-4-7-7-4 18-7Z"/>
                   </svg>
                 </a>
-                <a className="sb" onClick={() => showToast("Réseaux sociaux Athar bientôt en ligne !")}>
+                <a className="sb" onClick={() => showToast(currentLang === 'ar' ? "شبكات التواصل الاجتماعي لأثر ستكون متاحة قريباً!" : "Réseaux sociaux Athar bientôt en ligne !")}>
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                     <circle cx="6" cy="12" r="2.4"/>
                     <circle cx="18" cy="6" r="2.4"/>
@@ -1208,28 +1241,28 @@ export default function LandingPage({
               className="cform"
               onSubmit={(e) => {
                 e.preventDefault();
-                showToast("Message envoyé avec succès ! Notre équipe vous répondra sous peu.");
+                showToast(currentLang === 'ar' ? "تم إرسال رسالتكم بنجاح! سيجيبكم فريقنا في أقرب وقت." : "Message envoyé avec succès ! Notre équipe vous répondra sous peu.");
                 e.target.reset();
               }}
             >
-              <label>Nom complet</label>
-              <input type="text" required placeholder="Votre nom" />
+              <label>{currentLang === 'ar' ? 'الاسم الكامل' : 'Nom complet'}</label>
+              <input type="text" required placeholder={currentLang === 'ar' ? "اسمكم الكريم" : "Votre nom"} />
 
-              <label>Email</label>
-              <input type="email" required placeholder="vous@exemple.com" />
+              <label>{currentLang === 'ar' ? 'البريد الإلكتروني' : 'Email'}</label>
+              <input type="email" required placeholder={currentLang === 'ar' ? "example@email.com" : "vous@exemple.com"} />
 
-              <label>Message</label>
-              <textarea required placeholder="Comment pouvons-nous vous aider ?"></textarea>
+              <label>{currentLang === 'ar' ? 'الرسالة' : 'Message'}</label>
+              <textarea required placeholder={currentLang === 'ar' ? "كيف يمكننا مساعدتكم والتعاون معكم؟" : "Comment pouvons-nous vous aider ?"}></textarea>
 
               <button type="submit" className="btn btn-green btn-lg" style={{ width: '100%', marginTop: '6px' }}>
-                Envoyer le message
+                {currentLang === 'ar' ? 'إرسال الرسالة' : 'Envoyer le message'}
               </button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* 12. MAIN FOOTER (comme le tout premier) */}
+      {/* 12. MAIN FOOTER */}
       <footer className="footer-dark">
         <div className="wrap">
           <div className="footer-grid">
@@ -1242,73 +1275,77 @@ export default function LandingPage({
                 />
               </div>
               <p className="footer-lead">
-                Plateforme nationale algérienne dédiée à l'engagement bénévole et à la solidarité active. Chaque action laisse une empreinte.
+                {currentLang === 'ar'
+                  ? 'المنصة الوطنية الجزائرية المكرسة للعمل التطوعي والتضامن الميداني الفاعل. كل عمل يترك أثراً طيباً.'
+                  : "Plateforme nationale algérienne dédiée à l'engagement bénévole et à la solidarité active. Chaque action laisse une empreinte."}
               </p>
               <div className="footer-tagline">
-                Fièrement développé pour l'Algérie
+                {currentLang === 'ar' ? 'طُوِّر بكل فخر لأجل الجزائر' : "Fièrement développé pour l'Algérie"}
               </div>
             </div>
 
             {/* Col 2 */}
             <div>
               <h4 className="footer-col-title">
-                Navigation
+                {currentLang === 'ar' ? 'التنقل' : 'Navigation'}
               </h4>
               <ul className="footer-links">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#missions">Missions</a></li>
-                <li><a href="#causes">Causes</a></li>
-                <li><a href="#about">À propos</a></li>
+                <li><a href="#accueil">{currentLang === 'ar' ? 'الرئيسية' : 'Accueil'}</a></li>
+                <li><a href="#missions">{currentLang === 'ar' ? 'المهمات' : 'Missions'}</a></li>
+                <li><a href="#causes">{currentLang === 'ar' ? 'المجالات' : 'Causes'}</a></li>
+                <li><a href="#about">{currentLang === 'ar' ? 'من نحن' : 'À propos'}</a></li>
               </ul>
             </div>
 
             {/* Col 3 */}
             <div>
               <h4 className="footer-col-title">
-                Espaces
+                {currentLang === 'ar' ? 'الفضاءات' : 'Espaces'}
               </h4>
               <ul className="footer-links">
                 <li>
                   <button onClick={() => openLogin('volunteer')}>
-                    Espace Bénévole
+                    {currentLang === 'ar' ? 'فضاء المتطوع' : 'Espace Bénévole'}
                   </button>
                 </li>
                 <li>
                   <button onClick={() => openLogin('association')}>
-                    Espace Association
+                    {currentLang === 'ar' ? 'فضاء الهيئة' : 'Espace Association'}
                   </button>
                 </li>
-                <li><a href="#missions">69 Wilayas</a></li>
+                <li><a href="#missions">{currentLang === 'ar' ? '69 ولاية' : '69 Wilayas'}</a></li>
               </ul>
             </div>
 
             {/* Col 4 */}
             <div>
               <h4 className="footer-col-title">
-                Contact
+                {currentLang === 'ar' ? 'الاتصال' : 'Contact'}
               </h4>
               <p className="footer-contact-info">
-                Alger, Algérie<br />
+                {currentLang === 'ar' ? 'الجزائر العاصمة، الجزائر' : 'Alger, Algérie'}<br />
                 contact@athar.dz
               </p>
               <div className="footer-contact-copy">
-                © 2025 Plateforme Athar. Tous droits réservés.
+                {currentLang === 'ar' ? '© 2025 منصة أثر. جميع الحقوق محفوظة.' : '© 2025 Plateforme Athar. Tous droits réservés.'}
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
             <div>
-              Athar – Le bénévolat au service d'une Algérie solidaire.
+              {currentLang === 'ar'
+                ? 'أثر – العمل التطوعي في خدمة جزائر متضامنة.'
+                : "Athar – Le bénévolat au service d'une Algérie solidaire."}
             </div>
             <div className="footer-cities">
-              <span>Alger</span>
+              <span>{currentLang === 'ar' ? 'الجزائر' : 'Alger'}</span>
               <span>•</span>
-              <span>Oran</span>
+              <span>{currentLang === 'ar' ? 'وهران' : 'Oran'}</span>
               <span>•</span>
-              <span>Constantine</span>
+              <span>{currentLang === 'ar' ? 'قسنطينة' : 'Constantine'}</span>
               <span>•</span>
-              <span>69 Wilayas</span>
+              <span>{currentLang === 'ar' ? '69 ولاية' : '69 Wilayas'}</span>
             </div>
           </div>
         </div>

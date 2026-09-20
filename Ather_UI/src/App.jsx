@@ -884,7 +884,7 @@ const translations = {
     
     modalLoginTitle: "تسجيل الدخول إلى حسابك",
     tabVolunteer: "متطوع",
-    tabAssoc: "جمعية",
+    tabAssoc: "هيئة",
     labelEmail: "البريد الإلكتروني",
     labelPassword: "كلمة المرور",
     btnConnect: "تسجيل الدخول",
@@ -7038,8 +7038,8 @@ export default function App() {
           {signupView === 'choice' && (
             <div className="mview">
               <div className="modal-head">
-                <h3>Créer un compte</h3>
-                <p>Rejoignez Athar. Choisissez le type de compte qui vous correspond.</p>
+                <h3>{currentLang === 'ar' ? 'إنشاء حساب جديد' : 'Créer un compte'}</h3>
+                <p>{currentLang === 'ar' ? 'انضم إلى منصة أثر. اختر نوع الحساب الذي يناسبك.' : 'Rejoignez Athar. Choisissez le type de compte qui vous correspond.'}</p>
               </div>
               <div className="choices">
                 <div className="choice ben" onClick={() => setSignupView('ben')}>
@@ -7050,8 +7050,8 @@ export default function App() {
                     </svg>
                   </div>
                   <div className="choice-txt">
-                    <h4>Bénévole</h4>
-                    <p>Je veux donner de mon temps et rejoindre des missions près de chez moi.</p>
+                    <h4>{currentLang === 'ar' ? 'متطوع' : 'Bénévole'}</h4>
+                    <p>{currentLang === 'ar' ? 'أرغب في التطوع بوقتي والمشاركة في مبادرات قريبة مني.' : 'Je veux donner de mon temps et rejoindre des missions près de chez moi.'}</p>
                   </div>
                 </div>
 
@@ -7060,13 +7060,14 @@ export default function App() {
                     <IconBuilding className="w-7 h-7" />
                   </div>
                   <div className="choice-txt">
-                    <h4>Association</h4>
-                    <p>Je représente une association et je veux publier des missions et trouver des bénévoles.</p>
+                    <h4>{currentLang === 'ar' ? 'هيئة' : 'Association'}</h4>
+                    <p>{currentLang === 'ar' ? 'أمثل هيئة أو جمعية وأرغب في نشر مبادرات واستقطاب متطوعين.' : 'Je représente une association et je veux publier des missions et trouver des bénévoles.'}</p>
                   </div>
                 </div>
               </div>
               <div className="modal-foot">
-                Déjà un compte ? <a onClick={() => openLogin('volunteer')}>Se connecter</a>
+                {currentLang === 'ar' ? 'لديك حساب بالفعل؟ ' : 'Déjà un compte ? '}
+                <a onClick={() => openLogin('volunteer')}>{currentLang === 'ar' ? 'تسجيل الدخول' : 'Se connecter'}</a>
               </div>
             </div>
           )}
