@@ -4,11 +4,9 @@ import '../styles/association/profile-feed.css';
 // Assets
 import assocCoverAlger from '../assets/assoc-cover-alger.png';
 import assocCraLogo from '../assets/assoc-cra-logo.png';
-import assocPostAide from '../assets/assoc-post-aide.png';
 import assocPostEcole from '../assets/assoc-post-ecole.png';
 import assocPostPlage from '../assets/assoc-post-plage.png';
 import assocPostArbre from '../assets/assoc-post-arbre.png';
-import assocPostTimgad from '../assets/assoc-post-timgad.png';
 import assocPostSante from '../assets/assoc-post-sante.png';
 import assocStoryTerrain from '../assets/assoc-story-terrain.png';
 import assocStoryEducation from '../assets/assoc-story-education.png';
@@ -244,17 +242,6 @@ const STORY_HIGHLIGHTS = [
 
 const POSTS = [
   {
-    id: 'post-1',
-    title: 'Aide alimentaire d’urgence',
-    location: 'Tizi Ouzou',
-    image: assocPostAide,
-    photosCount: 3,
-    likes: 245,
-    comments: 38,
-    date: '18 Mai 2025',
-    caption: "Distribution de plus de 350 colis alimentaires de première nécessité auprès des familles dans les villages de Kabylie. Un engagement sans faille de nos bénévoles sur le terrain ! #Solidarité #Athar #CroissantRouge"
-  },
-  {
     id: 'post-2',
     title: 'Caravane humanitaire',
     location: 'Biskra & Oasis',
@@ -319,17 +306,6 @@ const POSTS = [
     comments: 29,
     date: '14 Avril 2025',
     caption: "Remise de cartables neufs garnis de fournitures pour 180 élèves scolarisés dans les communes montagneuses. Garantir à chaque enfant le droit d'apprendre avec dignité."
-  },
-  {
-    id: 'post-8',
-    title: 'Secours & Vestiges antiques',
-    location: 'Timgad, Batna',
-    image: assocPostTimgad,
-    photosCount: 3,
-    likes: 210,
-    comments: 18,
-    date: '5 Avril 2025',
-    caption: "Poste de secours avancé et sensibilisation aux premiers gestes qui sauvent lors du rassemblement culturel de Timgad. La sécurité civile au service de tous."
   }
 ];
 
