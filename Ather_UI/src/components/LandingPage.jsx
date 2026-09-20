@@ -654,6 +654,7 @@ export default function LandingPage({
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('Toutes');
   const [isMissionsLoading, setIsMissionsLoading] = useState(false);
   const [selectedMission, setSelectedMission] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Slider des témoignages bénévoles avec photos de différentes wilayas d'Algérie
   const [activeSlide, setActiveSlide] = useState(0);
@@ -831,28 +832,161 @@ export default function LandingPage({
 
             <div className="right">
               <div
-                className="icon-btn"
+                className="icon-btn search-btn-desktop"
                 title={t('navSearch')}
                 onClick={() => showToast(currentLang === 'ar' ? "البحث سيكون متاحاً قريباً!" : currentLang === 'ber' ? "ⴰⵔⵣⵣⵓ ⴰⴷ ⵢⵉⵍⵉ ⵇⵔⵉⴱ !" : "Recherche bientôt disponible !")}
               >
                 <IconSearch className="w-4 h-4" />
               </div>
 
-              <button className="btn btn-ghost" onClick={() => openLogin('volunteer')}>
+              <button className="btn btn-ghost nav-login-btn" onClick={() => openLogin('volunteer')}>
                 {t('navLogin')}
               </button>
 
-              <button className="btn btn-green" onClick={() => openSignup('choice')}>
+              <button className="btn btn-green nav-signup-btn" onClick={() => openSignup('choice')}>
                 <span>{t('navSignup')}</span>
                 <IconArrowRight className={`w-3.5 h-3.5 inline ${currentLang === 'ar' ? 'mr-1 transform rotate-180' : 'ml-1'}`} />
               </button>
 
               {/* SÉLECTEUR DE LANGUE DISCRET & ÉLÉGANT */}
               <LanguageDropdown currentLang={currentLang} setCurrentLang={setCurrentLang} />
+
+              {/* BOUTON BURGER POUR SMARTPHONE */}
+              <button
+                type="button"
+                className="mobile-burger-btn"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Menu de navigation"
+                aria-expanded={mobileMenuOpen}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                  {mobileMenuOpen ? (
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
             </div>
           </nav>
         </div>
       </header>
+
+      {/* MOBILE DRAWER NAVIGATION */}
+      <div
+        className={`mobile-nav-backdrop ${mobileMenuOpen ? 'open' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden={!mobileMenuOpen}
+      ></div>
+      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-nav-top">
+          <img src={logoImg} alt="Athar" style={{ height: '42px', width: 'auto', objectFit: 'contain' }} />
+          <button
+            type="button"
+            className="mobile-nav-close"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Fermer le menu"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="mobile-nav-links">
+          <a
+            href="#accueil"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              const el = document.getElementById('accueil');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              else window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
+            {t('navHome')}
+          </a>
+          <a
+            href="#missions"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              const el = document.getElementById('missions');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {t('navMissions')}
+          </a>
+          <a
+            href="#causes"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              const el = document.getElementById('causes');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {currentLang === 'ar' ? 'المجالات' : currentLang === 'ber' ? 'ⵉⵃⵔⵉⵛⴻⵏ' : currentLang === 'en' ? 'Causes' : 'Nos Causes'}
+          </a>
+          <a
+            href="#stats-section"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              const el = document.getElementById('stats-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {t('navAssociations')}
+          </a>
+          <a
+            href="#temoignages"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              const el = document.getElementById('temoignages');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {currentLang === 'ar' ? 'آراء المتطوعين' : currentLang === 'ber' ? 'ⵉⵎⵙⴻⴷⵔⵓⵢⴻⵏ' : currentLang === 'en' ? 'Testimonials' : 'Témoignages'}
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {currentLang === 'ar' ? 'تواصل معنا' : currentLang === 'ber' ? 'ⵎⵢⴰⵡⴰⴹ' : 'Contact'}
+          </a>
+        </div>
+
+        <div className="mobile-nav-actions">
+          <button
+            className="btn btn-ghost"
+            style={{ width: '100%', justifyContent: 'center', padding: '12px' }}
+            onClick={() => {
+              setMobileMenuOpen(false);
+              openLogin('volunteer');
+            }}
+          >
+            {t('navLogin')}
+          </button>
+          <button
+            className="btn btn-green"
+            style={{ width: '100%', justifyContent: 'center', padding: '12px' }}
+            onClick={() => {
+              setMobileMenuOpen(false);
+              openSignup('choice');
+            }}
+          >
+            <span>{t('navSignup')}</span>
+            <IconArrowRight className={`w-3.5 h-3.5 inline ${currentLang === 'ar' ? 'mr-1 transform rotate-180' : 'ml-1'}`} />
+          </button>
+        </div>
+      </div>
 
       {/* HERO SECTION OFFICIELLE ATHAR (Photo en fond plein écran, texte par-dessus) */}
       <section
